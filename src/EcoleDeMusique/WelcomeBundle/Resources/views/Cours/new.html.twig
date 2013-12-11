@@ -1,0 +1,189 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Planning
+{% endblock %}
+
+      {% block content %} 
+        
+        
+        <script type="text/javascript">
+            
+             $(document).ready(function(){
+                 
+                 
+                 $(function(){$("#eleve").change(function () {
+                        document.forms["form"].action="rechargeactivite";
+                        document.forms["form"].submit(); 
+                        }); 
+                     }); 
+                 
+                 
+                 });
+            
+            
+            
+        </script>
+
+       
+       <div id="header">
+                        <div id="nompage">
+                                <h1>Cours</h1>
+                        </div>
+        </div>
+          
+             <div id="page">
+           <div>
+                  <div class="post">
+                       <h2>Saisir un nouveau cours</h2>
+                       <br />
+                             <div class="entry">
+
+                                    
+
+                                        <form action="{{ path('cours_create') }}" method="post" {{ form_enctype(form) }} name="form">
+                                            
+                                            
+                                            
+                                            <table> 
+                                           <tr>
+                                                    
+                                                    <td>
+                                                        <label for="ecoledemusique_welcomebundle_courstype_jour" class="required">Jour</label>
+                                                    </td>
+                                                    <td>
+                                                        <select id="ecoledemusique_welcomebundle_courstype_jour" name="ecoledemusique_welcomebundle_courstype[jour]" required="required">
+                                                            <option value="10" {% if 10==control.jour %} selected{% endif %}>Lundi</option>
+                                                            <option value="11" {% if 11==control.jour %} selected{% endif %}>Mardi</option>
+                                                            <option value="12" {% if 12==control.jour %} selected{% endif %}>Mecredi</option>
+                                                            <option value="13" {% if 13==control.jour %} selected{% endif %}>Jeudi</option>
+                                                            <option value="14" {% if 14==control.jour %} selected{% endif %}>Vendredi</option>
+                                                            <option value="15" {% if 15==control.jour %} selected{% endif %}>Samedi</option>
+                                                            <option value="16" {% if 16==control.jour %} selected{% endif %}>Dimanche</option>
+                                                        </select>  
+                                                   </td>
+           
+                                               </tr>
+                                               <tr>
+                                                    
+                                                    <td>
+                                                        <label class="required">Heure</label>
+                                                    </td>
+                                                    <td>
+                                                        <div id="ecoledemusique_welcomebundle_courstype_heure">
+                                                            <select id="ecoledemusique_welcomebundle_courstype_heure_hour" name="ecoledemusique_welcomebundle_courstype[heure][hour]" required="required"    size="1">
+                                                              
+                                                               {% for i in 8..21 %}
+                                                                        <option value="{{ i }}" {% if i==control.heure.hour %} selected{% endif %}>{{ i }}</option>
+                                                                {% endfor %}
+                                                                
+                                                          
+             
+                                                            </select>:
+                                                            <select id="ecoledemusique_welcomebundle_courstype_heure_minute" name="ecoledemusique_welcomebundle_courstype[heure][minute]" required="required"    size="1">
+                                                            
+                                                                {% for i in 0..59 %}
+                                                                        <option value="{{ i }}" {% if i==control.heure.minute %} selected{% endif %}>{% if i<10 %}0{% endif %}{{ i }}</option>
+                                                                {% endfor %}
+                  
+                                                            </select></div>  
+                                                   </td>
+           
+                                               </tr>
+                                                <tr>
+                                                   <td>
+                                                      <label class="required">Durée</label>
+                                                    </td>
+                                                    <td>
+                                                      <div id="ecoledemusique_welcomebundle_courstype_duree">
+                                                          <select id="ecoledemusique_welcomebundle_courstype_duree_hour" name="ecoledemusique_welcomebundle_courstype[duree][hour]" required="required"    size="1">
+                                                              {% for i in 0..9 %}
+                                                                        <option value="{{ i }}" {% if i==control.duree.hour %} selected{% endif %}>{% if i<10 %}0{% endif %}{{ i }}</option>
+                                                                {% endfor %}
+                                                         </select>:
+                                                         <select id="ecoledemusique_welcomebundle_courstype_duree_minute" name="ecoledemusique_welcomebundle_courstype[duree][minute]" required="required"    size="1">
+                                                              {% for i in 0..59 %}
+                                                                        <option value="{{ i }}" {% if i==control.duree.minute %} selected{% endif %}>{% if i<10 %}0{% endif %}{{ i }}</option>
+                                                                {% endfor %}
+                                                           
+                                                         </select>
+                                                     </div>  
+                                                    </td>
+                                               </tr>
+                                                    <tr>
+                                                   <td>
+                                                      <label for="ecoledemusique_welcomebundle_courstype_salle">Salle</label>
+                                                   </td>
+                                                    <td>
+                                                      <select id="ecoledemusique_welcomebundle_courstype_salle" name="ecoledemusique_welcomebundle_courstype[salle]">
+
+                                                        {% for  listeSalle in listeSalle %}
+                                                            <option value="{{ listeSalle.id }}" {% if listeSalle.id==control.salle %} selected{% endif %}>{{ listeSalle.nom }}</option>
+                                                        {% endfor %}
+                                                            
+                                                      </select>
+                                                    </td>
+                                               </tr>
+                                               <tr>
+                                                   <td>
+                                                      <label for="ecoledemusique_welcomebundle_courstype_prof" class="required">Prof</label>
+                                                   </td>
+                                                    <td>
+                                                      <select id="ecoledemusique_welcomebundle_courstype_prof" name="ecoledemusique_welcomebundle_courstype[prof]" required="required">
+                                                         {% for  listeProf in listeProf %}
+                                                            <option value="{{ listeProf.id }}" {% if listeProf.id==control.prof %} selected{% endif %}>{{ listeProf.nom }} {{ listeProf.prenom }}</option>
+                                                        {% endfor %}
+                                                      </select>  
+                                                    </td>
+                                               </tr>
+                                                <tr>
+                                                   <td>
+                                                      <label for="ecoledemusique_welcomebundle_courstype_activite">Activite</label>
+                                                    </td>
+                                                    <td>
+                                                      <select id="ecoledemusique_welcomebundle_courstype_activite" name="ecoledemusique_welcomebundle_courstype[activite]">
+                                                      
+                                                        {% if listeActivite is empty %}
+                                                           <option value=""></option>
+                                                       {% else %}
+                                                            {% for  listeActivite in listeActivite %}
+                                                                <option value="{{ listeActivite.id }}" {% if control.activite is defined%}{% if listeActivite.id==control.activite %} selected{% endif %}{% endif %}>{{ listeActivite.nom }}</option>
+                                                            {% endfor %}
+                                                       {% endif %}
+                                                                
+                                                                
+                                                          </select>  
+                                                    </td>
+                                               </tr>
+                                               <tr>
+                                                   <td>
+                                                     Eleve
+                                                    </td>
+                                                    <td>
+                                                        <select name="eleve" id="eleve">
+                                                           {% for  listeEleve in listeEleve %}
+                                                                <option value="{{ listeEleve.id }}" {% if listeEleve.id==control.eleve %} selected{% endif %}>{{ listeEleve.nom }} {{ listeEleve.prenom }}</option>
+                                                        {% endfor %}
+                                                        </select>
+                                                    </td>
+                                               </tr>
+                                            </table>
+                                            <p>
+                                                <button type="submit">Créer</button>
+                                            </p>
+                                        </form>
+
+                                        <ul class="record_actions">
+                                            <li>
+                                                <a href="{{ path('cours') }}">
+                                                   Retour au planning
+                                                </a>
+                                            </li>
+                                        </ul>
+                                            
+                              </div>
+                       </div>
+                   </div>
+                
+                
+{% endblock %}

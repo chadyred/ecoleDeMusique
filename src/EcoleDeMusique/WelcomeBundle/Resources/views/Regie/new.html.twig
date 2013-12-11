@@ -1,0 +1,89 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+      Régie
+{% endblock %}
+
+{% block content %} 
+        <div id="headerCentre">
+		<div id="nompage">
+			<h1>Regie</h1>
+		</div>
+	</div>
+        <div id="page">
+                       <div id="content">
+                            <div class="post">
+                            <h2 class="title">Saisie tarification élève</h2>
+                                    <div class="entry">
+                                       <p> Cette rubrique vous permettra de <strong>calculer une tarification</strong></p>
+                                       <br />
+                                          <form action="{{path('ecole_de_musique_welcome_appliquerTarification')}}" method="post" {{ form_enctype(form) }}>
+
+                                         <div>
+                                         
+                                                    {{ form_label(form.nom, "Nom de l'eleve :"|trans) }}
+                                            
+                                             <select  id="form_nom" name="form[nom]" required="required">
+                                                    {% for eleves in eleves %}
+                                                     <option value="{{ eleves.id }}" {% if eleves.regie==NULL %} style="color:red;"{% endif %}>{{ eleves.nom }} {{ eleves.prenom }}</option> <br />
+                                                    {% endfor %}
+                                                 </select>
+                                             
+                                             
+                                             
+                                             
+                                            <a href="{{ path('eleve_new') }}"> Entrer un nouvelle élève</a>
+                                        </div>
+                                        <div>
+                                            
+                                                    {{ form_label(form.capv, "Capv :"|trans) }}
+                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.capv) }}      
+                                        </div>       
+                                         <div>
+                                            
+                                                    {{ form_label(form.ea, "Enfant/Adulte :"|trans) }}
+                                                     &nbsp;
+                                                    {{ form_widget(form.ea) }}      
+                                        </div> 
+                                                   <div>
+                                            
+                                                    {{ form_label(form.cycle, "Cycle :"|trans) }}
+                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.cycle) }}      
+                                        </div>   
+                                                         <div>
+                                            
+                                                    {{ form_label(form.instru2, "Instrument 2 :"|trans) }}
+                                                     &nbsp;&nbsp;&nbsp; 
+                                                    {{ form_widget(form.instru2) }}      
+                                        </div>   
+                                        <div>
+                                            
+                                                    {{ form_label(form.instru3, "Instrument 3 :"|trans) }}
+                                                     &nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.instru3) }}      
+                                        </div> 
+                                        <div>
+                                            
+                                                    {{ form_label(form.anneDeCours, "Annee scolaire :"|trans) }}
+                                         
+                                                    {{ form_widget(form.anneDeCours) }}      
+                                        </div> 
+                                              <div>
+                                              <br />
+                                                   <input type="submit" id="submit" value="Enregistrer la tarification" name="submit" style="margin-left: 390px"/>      
+                                              </div>
+                                    </form>
+                                            
+                                       <a href="{{path('regie')}}"><h4>Accéder à la partie Consultation</h4></a>
+                                       
+                            </div>                                  
+                            <div style="clear: both;">&nbsp;</div>
+                            
+                     </div>
+			<!-- end #content -->
+			<div style="clear: both;">&nbsp;</div>
+	</div>
+     </div>
+{% endblock %}

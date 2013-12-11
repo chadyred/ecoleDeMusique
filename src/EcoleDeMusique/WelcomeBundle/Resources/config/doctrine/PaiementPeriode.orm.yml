@@ -1,0 +1,55 @@
+EcoleDeMusique\WelcomeBundle\Entity\PaiementPeriode:
+   type: entity
+   table: paiementPeriode
+   id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+   fields:
+     numPeriod:
+          type: float
+          nullable: TRUE
+     numeraire:
+          type: float
+          nullable: TRUE
+     chequeJeune:
+          type: float 
+          nullable: TRUE
+     chequeVacance:
+          type: float
+          nullable: TRUE
+     cheque:
+          type: float
+          nullable: TRUE
+     cb:
+          type: float
+          nullable: TRUE
+     prelev:
+          type: float
+          nullable: TRUE   
+     dateNumeraire:
+          type: date
+          nullable: TRUE
+     dateChequeJeune:
+          type: date
+          nullable: TRUE  
+     dateChequeVacance:
+          type: date
+          nullable: TRUE
+     dateCheque:
+          type: date
+          nullable: TRUE
+     dateCb:
+          type: date
+          nullable: TRUE
+     datePrelev:
+          type: date
+          nullable: TRUE
+   manyToOne:
+        paiement:
+            targetEntity: Paiement
+            inversedBy: paiements
+            joinColumn:
+                name: paiement_id
+                referencedColumnName: id       
+   

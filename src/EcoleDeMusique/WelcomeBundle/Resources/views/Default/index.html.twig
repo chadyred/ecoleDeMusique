@@ -1,0 +1,32 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        &#65;ccueil
+{% endblock %}
+{% block titlePage %}
+        &#65;ccueil
+{% endblock %}
+        
+
+{% block content %} 
+          <div id="header">
+		<div id="nompage">
+			<h1>Acceuil</h1>
+		</div>
+	</div>
+        
+        <div id="page">
+                       <div id="content">
+                            <div class="post">
+                            <h2 class="title">Bienvenue dans l'application Ecole de Musique</h2>
+                                    <div class="entry">
+                                        <p>L'application <strong>Ecole de Musique </strong>, permet de consulter les <a href="{{ path('paiement') }}">Paiements</a> et les <a href="{{ path('activite_sommaire') }}">Activités</a> des élèves de l'école de musique. Vous pouvez naviguer dans l'application grâce au menu ci dessus </p>			
+                                    </div>
+                            </div>                                  
+                            <div style="clear: both;">&nbsp;</div>
+                            
+                     </div>
+			<!-- end #content -->
+			<div style="clear: both;">&nbsp;</div>
+	</div>
+{% endblock %}

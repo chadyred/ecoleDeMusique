@@ -1,0 +1,85 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Etat Civil
+{% endblock %}
+{% block titlePage %}
+          Etat Civil
+{% endblock %}
+      {% block content %}  
+          <style>
+
+                  table
+                  {
+                      border-collapse:collapse;   
+                  }
+                  .records_list tr:hover
+                  {
+                        background: #DCDCDC;
+                  }       
+ 
+                  .colonneId
+                  {
+                         width: 50px;
+                  }
+                  
+                  .colonneQf
+                  {        
+                     width: 100px; 
+                  }
+          </style>
+          
+          
+         
+          <div id="header">
+                        <div id="nompage">
+                                <h1>Familles</h1>
+                        </div>
+                </div>
+          
+             <div id="page">
+           <div>
+                  <div class="post">
+                       <p>Liste des familles</p>
+                       <br />
+                             <div class="entry">
+
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="colonneId">Id</th>
+                                                <th class="colonneQf">Qf</th>
+                                                <th class="colonneMembre">Membres de la famille</th>
+                                              <!--  <th>Actions</th> -->
+                                            </tr>
+                                   </table>
+                                <div style="max-height:750px;overflow-y: scroll;">
+                                 <table class="records_list">
+                                        {% for tabeuh in tab %}
+                                            <tr>
+                                                <td  class="colonneId"><a href="{{ path('famille_membre', { 'id': tabeuh.id }) }}">{{ tabeuh.id }}</a></td>
+                                                <td class="colonneQf">{{ tabeuh.qf }}</td>
+                                                <td class="colonneMembre"> {{ tabeuh.noms }}</td>
+                                                <td>
+                                                            <a href="{{ path('famille_edit', { 'id': tabeuh.id }) }}"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/crayon.png') }}"></a>
+                                                      
+                                                </td>
+                                                <td>
+                                                               <a href="{{ path('famille_delete', { 'id': tabeuh.id }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer cette famille?')"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"></a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                            </div>
+                                    
+                                            <a href="{{ path('famille_new') }}">
+                                                Nouvelle Famille
+                                            </a>
+                                
+                          </div>
+                       </div>
+                   </div>
+                  </div>
+
+{% endblock %}

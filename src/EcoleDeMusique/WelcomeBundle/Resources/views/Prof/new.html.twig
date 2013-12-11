@@ -1,0 +1,63 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Prof
+{% endblock %}
+
+      {% block content %} 
+        <div id="header">
+		<div id="nompage">
+			<h1>Profs</h1>
+		</div>
+	</div>
+          <div id="page">
+              
+              <h1>Création d'un nouveau professeur</h1>
+              <p>Vous pouvez ici ajouter un professeur à la base : </p>
+           
+                  <div class="post">
+  
+                             <div class="entry">
+
+
+
+
+                        <form action="{{ path('prof_create') }}" method="post" {{ form_enctype(form) }}>
+                            
+                            <table>
+                            <tr>
+                                <td>
+                                        {{ form_label(form.nom, 'Nom'|trans) }}
+                                </td>
+                                <td>
+                                        {{ form_widget(form.nom) }}          
+                               </td>
+                           </tr>
+                           <tr>
+                            <td>
+                                        {{ form_label(form.prenom, 'prenom'|trans) }}
+                                </td>
+                                <td>
+                                        {{ form_widget(form.prenom) }}          
+                               </td>
+   
+                           </tr>
+                            </table>     
+                            <p>
+                                <button type="submit">Ajouter</button>
+                            </p>
+                        </form>
+
+                        <ul class="record_actions">
+                            <li>
+                                <a href="{{ path('prof') }}">
+                                   Voir les profs
+                                </a>
+                            </li>
+                        </ul>
+                  </div>
+         </div>
+</div>
+        
+        
+{% endblock %}

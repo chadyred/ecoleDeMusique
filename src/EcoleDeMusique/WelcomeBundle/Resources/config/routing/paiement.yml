@@ -1,0 +1,48 @@
+paiement:
+    pattern:  /
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:index" }
+
+paiement_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:show" }
+
+paiement_new:
+    pattern:  /new
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:new" }
+
+paiement_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:create" }
+    requirements: { _method: post }
+
+paiement_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:edit" }
+
+paiement_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:update" }
+    requirements: { _method: post }
+
+paiement_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:delete" }
+    requirements: { _method: post }
+
+paiement_interupt:
+    pattern:  /{id}/interupt
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:interupt" }
+    requirements: { _method: get }
+
+paiement_search:
+    pattern:  /search
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:search" }
+    
+paiement_searchResult:
+    pattern:  /searchResult
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:searchResult" }
+    requirements: { _method: post }
+    
+paiement_exportOds:
+    pattern:  /exportOds/{requete}
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:exportOds" }

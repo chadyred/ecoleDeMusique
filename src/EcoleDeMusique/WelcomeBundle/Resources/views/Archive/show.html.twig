@@ -1,0 +1,61 @@
+<h1>Archive</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ entity.nom }}</td>
+        </tr>
+        <tr>
+            <th>Prenom</th>
+            <td>{{ entity.prenom }}</td>
+        </tr>
+        <tr>
+            <th>Datedenaissance</th>
+            <td>{{ entity.dateDeNaissance|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Cycle</th>
+            <td>{{ entity.cycle }}</td>
+        </tr>
+        <tr>
+            <th>Instru1</th>
+            <td>{{ entity.instru1 }}</td>
+        </tr>
+        <tr>
+            <th>Instru2</th>
+            <td>{{ entity.instru2 }}</td>
+        </tr>
+        <tr>
+            <th>Anneeactivite</th>
+            <td>{{ entity.anneeActivite }}</td>
+        </tr>
+        <tr>
+            <th>Interuptioncourannee</th>
+            <td>{{ entity.interuptionCourannee|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('archive') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('archive_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('archive_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

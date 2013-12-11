@@ -1,0 +1,56 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+      Résultat de la simulation de tarification 
+{% endblock %}
+{% block titlePage %}
+       Résultat de la simulation de tarification 
+{% endblock %}
+        
+
+{% block content %} 
+    <div id="headerCentre">
+                  <div id="nompage">
+                          <h1>Résultat de la simulation</h1>
+                  </div>
+  </div>
+  <div id="page">
+      <div id="content">
+           
+                   <div class="post">
+                            <h2 class="title">Simulation effectuée selon les critères suivants : </h2>
+                            <div class="entry">
+                                <p>
+                                    <strong>Cycle</strong> : {{cycle}}<br />
+                                    <strong>Zone Capv</strong>: {{capv}}<br />
+                                    <strong>Age </strong> : {{ ea }}<br />
+                                    <strong>instrument 2 :</strong> : {{ instru2 }}<br />
+                                    <strong>instrument 3:</strong> : {{ instru3 }}<br />
+                                    <strong>Coefficient Famillial:</strong> : {{ qf }}<br />
+                                    <strong>Nombre d'enfant dans la famille inscrits </strong> : {{ nbeleve }}<br />
+                                
+                                    <br />
+                                    
+                                    
+                                    <div style="font-size:2.5em;">
+                                    <strong>Tarif sans remise  </strong>: {{ sommeSansRed }}<br />
+                                   <strong> Tarif avec remise  </strong>: {{ sommeRed }}
+                                
+                                    </div>
+                                </p>
+                            
+                            <br />
+                            <br />
+                            
+                              <a href="{{ path('regie_simul') }}">
+                                                   <h4> Nouvelle Simulation</h4>
+                                                </a>
+                                
+                            
+                            </div>
+                   </div>
+          
+          </div>
+        </div>
+        
+{% endblock %}  

@@ -1,0 +1,190 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+      Régie
+{% endblock %}
+{% block content %} 
+        <style>
+                
+        table
+        {
+            border-collapse:collapse;   
+        }
+
+        .records_list tr:hover
+        {
+              background: #DCDCDC;
+        }
+              
+        
+        .colonneId
+        {
+               width:37px;
+        }
+        
+        .colonneNom
+        {
+            width:132px;
+        }
+        
+        .colonnePrenom
+        {
+            width:135px;
+            
+        }
+         
+         
+         .colonneCapv
+         {
+             width:52px;
+             
+         }
+         
+         .colonneEnfantadulte
+         {
+             width:102px;
+             
+         }
+         
+         .colonneCycleparcours
+         {
+              width:132px;
+         }
+         
+         .colonneIntru2
+         {
+          width:102px;
+         }
+         
+         .colonneIntru3
+         {
+                  width:102px;
+         }
+         
+         .colonneSommesansremise
+         {
+             width:142px;
+         }
+         
+         .colonneRemise
+         {
+             width:102px;
+             
+         }
+         
+         
+         .colonneSommeavecremise
+         {
+             width:142px;
+         }
+         
+         
+         .colonneaAnnee
+         {
+             
+         }
+        
+        
+      
+            
+            
+            
+        </style>
+        
+        
+	<div id="header">
+		<div id="nompage">
+			<h1>Regie</h1>
+		</div>
+	</div>
+        <div id="page">
+           
+                            <div class="post">
+                            <h2 class="title">Consultation Tarif + options des parcours</h2>
+                                    <div class="entry">
+                                        <p>Cette rubrique permet de consulter les informations relatives à la tarification appliquée aux élèves. 
+                                            Vous y trouverez également les informations relatives au parcours de l'élève dans l'école de musique influant sur la tarification</p>
+                                        <br />
+                     
+                                       <table>
+                                                <tr>
+                                                    <th class="colonneId">Id</th>
+                                                    <th class="colonneNom"><a href="{{ path('eleve') }}">Nom</a></th>
+                                                    <th class="colonnePrenom">Prénom</th>
+                                                    <th class="colonneCapv">Capv</th>
+                                                    <th class="colonneEnfantadulte">Enfantadulte</th>
+                                                    <th class="colonneCycleparcours">Cycleparcours</th>
+                                                    <th class="colonneIntru2">Intru2</th>
+                                                    <th class="colonneIntru3">Intru3</th>
+                                                    <th class="colonneSommesansremise">Sommesansremise</th>
+                                                    <th class="colonneRemise">Remise</th>
+                                                    <th class="colonneSommeavecremise">Sommeavecremise</th>
+                                                    <th class="colonneaAnnee">Année d'Etude</th>
+                                                    <th></th>
+                                                </tr>
+
+                                       </table>
+                                        
+                                    <div style="max-height:750px;overflow-y: scroll;">
+                                       <table class="records_list">
+                                            {% for entity in entities %}
+                                                                                            
+                                                <tr>
+                                                    <td class="colonneId">{{ entity.regie.id }}</td>
+                                                    <td class="colonneNom">{{ entity.nom }}</td>
+                                                    <td class="colonnePrenom">{{ entity.prenom }}</td>
+                                                    <td class="colonneCapv">
+                                                         {% if entity.regie.capv == 1 %} 
+                                                            oui
+                                                         {% else %}
+                                                            non 
+                                                        {% endif %}
+                                                         
+                                                    </td>
+                                                    <td class="colonneEnfantadulte">
+                                                    {% if entity.regie.enfantAdulte==1 %}
+                                                        Enfant
+                                                    {% else %}
+                                                        Adulte
+                                                    {% endif %}
+                                                    </td>
+                                                    <td class="colonneCycleparcours">{{ entity.regie.cycleParcours }}</td>
+                                                    <td class="colonneIntru2">{{ entity.regie.intru2 }}</td>
+                                                    <td class="colonneIntru3">{{ entity.regie.intru3 }}</td>
+                                                    <td class="colonneSommesansremise">{{ '%.2f'|format(entity.regie.sommeSansRemise) }}€</td>
+                                                    <td class="colonneRemise">{{ '%.2f'|format(entity.regie.remise) }}€</td>
+                                                    <td class="colonneSommeavecremise">{{ '%.2f'|format(entity.regie.sommeAvecRemise) }}€</td>
+                                                    <td class="colonneaAnnee">{{ entity.regie.anneDeCours }}</td>
+                                                    <td><a href="{{ path('regie_delete', { 'id': entity.regie.id }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer cet tarif?')"> <img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"/></a></td>
+                                                   <!-- <td>
+                                               
+                                                                <a href="{{ path('regie_show', { 'id': entity.regie.id }) }}">show</a>
+                                                   
+                                                                <a href="{{ path('regie_edit', { 'id': entity.regie.id }) }}">edit</a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>-->
+                                             </tr>
+                                        {% endfor %}
+                                            </tbody>
+                                        </table>
+                                  </div>
+
+                                     <br />
+                                                <a href="{{ path('regie_new') }}">
+                                                   <h4> Appliquer une tarification</h4>
+                                                </a>
+                                                 <a href="{{ path('regie_simul') }}">
+                                                   <h4> Simulation</h4>
+                                                </a>
+                                
+                                        
+                                       </div>
+                            </div>
+                    
+                    
+                    
+                </div>
+        </div>
+        
+{% endblock %}

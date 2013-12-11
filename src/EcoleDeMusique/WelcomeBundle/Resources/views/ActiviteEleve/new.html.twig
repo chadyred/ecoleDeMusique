@@ -1,0 +1,41 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Activites 
+{% endblock %}
+{% block content %} 
+        <div id="headerCentre">
+		<div id="nompage">
+			<h1>Activités</h1>
+		</div>
+	</div>
+        <div id="page">
+            <div id="content">
+                  <div class="post">
+                       <h2 class="title">Lié un élève à une/des activité(s) </h2>
+                             <div class="entry">
+                                 <p>Vous pouvez dire ici qui fait quoi !</p>
+                                 <br />
+
+                                                <form action="{{ path('activiteeleve_create') }}" method="post" {{ form_enctype(form) }}>
+                                                    {{ form_widget(form) }}
+                                                    <p>
+                                                        <button type="submit">Créer</button>
+                                                    </p>
+                                                </form>
+
+                                                <ul class="record_actions">
+                                                    <li>
+                                                        <a href="{{ path('activiteeleve') }}">
+                                                            Liste des Elèves et leurs activités
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        
+     {% endblock %}   
+        
+      

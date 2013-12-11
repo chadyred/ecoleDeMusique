@@ -1,0 +1,127 @@
+
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+      Archives 
+{% endblock %}
+{% block titlePage %}
+          Archives
+{% endblock %}
+      {% block content %} 
+          <style>
+        .colonneId
+        {
+                width:30px;
+        }
+       
+        .colonneNom
+        {
+            width:140px;
+        }
+        
+        .colonnePrenom
+        {
+          width:143px;
+        }
+              
+         .colonneDatedenaissance
+        {
+            width:130px;
+        }     
+              
+        .colonneCycleparcours
+        {
+             width:50px;
+        }   
+       
+        .colonneIntru1
+        {
+            width:140px;
+        }
+        
+        .colonneIntru2
+        {
+            width:140px;
+        }
+            
+        .colonneActivite
+        {
+           width:200px; 
+        }
+       
+              </style>
+          
+          
+         <div id="header">
+		<div id="nompage">
+			<h1>Archives</h1>
+		</div>
+	</div>
+          <div id="page">
+                 <h2 class="title">Liste des élèves archivés </h2>
+                   <div class="post" style="min-height:500px;">
+                        
+                             <div class="entry">
+                               
+                            <p>Liste des élèves Archivés</p>
+                            <br />
+          
+          
+
+                    <table class="records_list">
+                     
+                            <tr>
+                                <th class="colonneId">Id</th>
+                                <th class="colonneNom">Nom</th>
+                                <th class="colonnePrenom">Prenom</th>
+                                <th class="colonneDatedenaissance">Datedenaissance</th>
+                                <th class="colonneCycleparcours">Cycle</th>
+                                <th class="colonneIntru1">Instru1</th>
+                                <th class="colonneIntru2">Instru2</th>
+                                <th class="colonneActivite">Anneeactivite</th>
+                                <th>Interuptioncourannee</th>
+                             <!--   <th>Actions</th> -->
+                            </tr>
+                    </table>
+                    <div style="max-height:800px;overflow-y: scroll;">
+                    <table>
+                        {% for entity in entities %}
+                            <tr>
+                                <td class="colonneId"><a href="{{ path('archive_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                                <td class="colonneNom">{{ entity.nom }}</td>
+                                <td class="colonnePrenom">{{ entity.prenom }}</td>
+                                <td class="colonneDatedenaissance">{% if entity.dateDeNaissance %}{{ entity.dateDeNaissance|date('d-m-Y') }}{% endif %}</td>
+                                <td class="colonneCycleparcours">{{ entity.cycle }}</td>
+                                <td class="colonneIntru1">{{ entity.instru1 }}</td>
+                                <td class="colonneIntru2">{{ entity.instru2 }}</td>
+                                <td  class="colonneActivite">{{ entity.anneeActivite }}</td>
+                                <td>{% if entity.interuptionCourannee %}{{ entity.interuptionCourannee|date('d-m-Y') }}{% endif %}</td>
+                                <td><a href="{{ path('archive_delete', { 'id': entity.id }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer cette archive ?')"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"/></a></td>
+                               <!-- <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('archive_delete', { 'id': entity.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('archive_edit', { 'id': entity.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td> -->
+                            </tr>
+                        {% endfor %}
+        
+                    </table>
+
+                    <ul>
+                        <li>
+                            <a href="{{ path('archive_new') }}">
+                                Archiver un nouvel élève
+                            </a>
+                        </li>
+                    </ul>
+                    
+                        </div>
+                    </div>
+                </div>
+             </div>
+{% endblock %}

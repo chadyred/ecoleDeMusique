@@ -1,0 +1,36 @@
+archive:
+    pattern:  /
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:index" }
+
+archive_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:show" }
+
+archive_new:
+    pattern:  /new
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:new" }
+
+archive_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:create" }
+    requirements: { _method: post }
+    
+archive_create_all:
+    pattern:  /createall
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:createall" }
+    requirements: { _method: get }
+    
+
+archive_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:edit" }
+
+archive_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:update" }
+    requirements: { _method: post }
+
+archive_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:delete" }
+    requirements: { _method: get }

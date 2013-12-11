@@ -1,0 +1,79 @@
+ecole_de_musique_welcome_homepage:
+    pattern:  /ecoledemusique 
+    defaults: { _controller: EcoleDeMusiqueWelcomeBundle:Default:index }
+
+ecole_de_musique_welcome_homepage2:
+    pattern:  /home 
+    defaults: { _controller: EcoleDeMusiqueWelcomeBundle:Default:index }
+    
+    
+ecole_de_musique_welcome_formules:
+    pattern:  /formules
+    defaults: { _controller: EcoleDeMusiqueWelcomeBundle:Default:formules }
+ecole_de_musique_welcome_formulesChangement:
+    pattern:  /formulesChangement
+    defaults: { _controller: EcoleDeMusiqueWelcomeBundle:Default:formulesChangement }
+ecole_de_musique_welcome_appliquerTarification:
+    pattern:  /appliquerTarification
+    defaults: { _controller: EcoleDeMusiqueWelcomeBundle:Default:appliquerTarification }
+        
+EcoleDeMusiqueWelcomeBundle_regie:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/regie.yml"
+    prefix:   /regie
+
+EcoleDeMusiqueWelcomeBundle_eleve:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/eleve.yml"
+    prefix:   /eleve
+
+EcoleDeMusiqueWelcomeBundle_famille:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/famille.yml"
+    prefix:   /famille
+
+EcoleDeMusiqueWelcomeBundle_paiementperiode:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/paiementperiode.yml"
+    prefix:   /paiementperiode
+
+    
+EcoleDeMusiqueWelcomeBundle_paiement:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/paiement.yml"
+    prefix:   /paiement
+
+EcoleDeMusiqueWelcomeBundle_archive:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/archive.yml"
+    prefix:   /archive
+
+EcoleDeMusiqueWelcomeBundle_activite:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/activite.yml"
+    prefix:   /activite
+
+EcoleDeMusiqueWelcomeBundle_activiteeleve:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/activiteeleve.yml"
+    prefix:   /activiteeleve
+    
+EcoleDeMusiqueWelcomeBundle_cours:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/cours.yml"
+    prefix:   /cours
+
+EcoleDeMusiqueWelcomeBundle_courseleve:
+    resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/courseleve.yml"
+    prefix:   /courseleve
+    
+EcoleDeMusiqueWelcomeBundle_prof:
+        resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/prof.yml"
+        prefix:   /prof
+
+EcoleDeMusiqueWelcomeBundle_salle:
+        resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/salle.yml"
+        prefix:   /salle
+
+EcoleDeMusiqueWelcomeBundle_mailing:
+        resource: "@EcoleDeMusiqueWelcomeBundle/Resources/config/routing/mailing.yml"
+        prefix:   /mailing
+
+login:
+    pattern: /login
+    defaults: { _controller: EcoleDeMusiqueWelcomeBundle:Security:login }
+login_check:
+    pattern: /login_check
+logout:
+    pattern: /logout

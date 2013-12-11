@@ -1,0 +1,268 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+{% block javascript  %}
+   {{ parent() }}
+{% endblock %}
+{% block title %}
+        Paiement de la Periode {{ entity.numPeriod }}
+{% endblock %}
+{% block titlePage %}
+    Paiement de la Periode {{ entity.numPeriod }}
+{% endblock %}
+{% block content %}
+    
+<div id="page">
+
+                       <div id="content">
+                       
+                            <div class="post">
+                                <h2>Date de Paiement</h2>
+                                <div class="entry">
+
+                                        <form action="{{ path('paiementperiode_updateDate') }}" method="post" {{ form_enctype(edit_form) }} id="edit_form" name="edit_form">
+                                            <table>
+                                                {% if entity.numeraire 	!=0  and entity.numeraire %}
+                                                <tr>
+                                                        <td>
+                                                            Date Numéraire 1
+                                                            {{ form_widget(edit_form.dateNumeraire1) }}
+                                                         
+                                                         </td>
+                                                </tr>
+                                                {% endif %}
+                                                {% if entity.chequeJeune !=0  and entity.chequeJeune %}
+                                                 <tr>
+                                                          <td>
+                                                                Date Cheque Jeune 1
+                                                                {{ form_widget(edit_form.dateChequeJeune1) }}
+                                                         </td>
+                                              </tr>
+                                              {% endif %}
+                                              {% if entity.chequeVacance !=0  and entity.chequeVacance %}
+                                              
+                                               <tr>
+                                                          <td>
+                                                                Date Cheque Vacance 1
+                                                                {{ form_widget(edit_form.dateChequeVacance1) }}
+                                                         </td>
+                                              </tr>
+                                              
+                                                  {% endif %}
+                                                {% if entity.cheque !=0  and entity.cheque %}
+                                               <tr>
+                                                          <td>
+                                                                Date Cheque Cheque 1
+                                                                {{ form_widget(edit_form.dateCheque1) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                                {% if entity.cb !=0  and entity.cb %}
+                                               <tr>
+                                                          <td>
+                                                                Date Carte Bleau 1
+                                                                {{ form_widget(edit_form.dateCb1) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                                    
+                                               {% if entity.prelev !=0  and entity.prelev %}
+                                              <tr>
+                                                          <td>
+                                                                Date Prelevement 1
+                                                                {{ form_widget(edit_form.datePrelev1) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                              
+                                              
+                                              
+                                              <!--Periode 2 -->
+                                                {% if entity2.numeraire!=0  and entity2.numeraire %}
+                                                <tr>
+                                                        <td>
+                                                            Date Numéraire 2
+                                                            {{ form_widget(edit_form.dateNumeraire2) }}
+                                                         
+                                                         </td>
+                                                </tr>
+                                                {% endif %}
+                                                {% if entity2.chequeJeune !=0  and entity2.chequeJeune %}
+                                                 <tr>
+                                                          <td>
+                                                                Date Cheque Jeune 2
+                                                                {{ form_widget(edit_form.dateChequeJeune2) }}
+                                                         </td>
+                                              </tr>
+                                              {% endif %}
+                                              {% if entity2.chequeVacance !=0  and entity2.chequeVacance %}
+                                              
+                                               <tr>
+                                                          <td>
+                                                                Date Cheque Vacance 2
+                                                                {{ form_widget(edit_form.dateChequeVacance2) }}
+                                                         </td>
+                                              </tr>
+                                              
+                                                  {% endif %}
+                                                {% if entity2.cheque !=0  and entity2.cheque %}
+                                               <tr>
+                                                          <td>
+                                                                Date Cheque Cheque 2
+                                                                {{ form_widget(edit_form.dateCheque2) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                                {% if entity2.cb !=0  and entity2.cb %}
+                                               <tr>
+                                                          <td>
+                                                                Date Carte Bleau 2
+                                                                {{ form_widget(edit_form.dateCb2) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                                    
+                                               {% if entity2.prelev !=0  and entity2.prelev %}
+                                              <tr>
+                                                          <td>
+                                                                Date Prelevement 2
+                                                                {{ form_widget(edit_form.datePrelev2) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                              
+                                              
+                                              
+                                              <!-- Periode 3 -->
+                                               {% if entity3.numeraire!=0  and entity3.numeraire %}
+                                                <tr>
+                                                        <td>
+                                                            Date Numéraire 3
+                                                            {{ form_widget(edit_form.dateNumeraire3) }}
+                                                         
+                                                         </td>
+                                                </tr>
+                                                {% endif %}
+                                                {% if entity3.chequeJeune !=0  and entity3.chequeJeune %}
+                                                 <tr>
+                                                          <td>
+                                                                Date Cheque Jeune 3
+                                                                {{ form_widget(edit_form.dateChequeJeune3) }}
+                                                         </td>
+                                              </tr>
+                                              {% endif %}
+                                              {% if entity3.chequeVacance !=0  and entity3.chequeVacance %}
+                                              
+                                               <tr>
+                                                          <td>
+                                                                Date Cheque Vacance 3
+                                                                {{ form_widget(edit_form.dateChequeVacance3) }}
+                                                         </td>
+                                              </tr>
+                                              
+                                                  {% endif %}
+                                                {% if entity3.cheque !=0  and entity3.cheque %}
+                                               <tr>
+                                                          <td>
+                                                                Date Cheque Cheque 3
+                                                                {{ form_widget(edit_form.dateCheque3) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                                {% if entity3.cb !=0  and entity3.cb %}
+                                               <tr>
+                                                          <td>
+                                                                Date Carte Bleau 3
+                                                                {{ form_widget(edit_form.dateCb3) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                                    
+                                               {% if entity3.prelev !=0  and entity3.prelev %}
+                                              <tr>
+                                                          <td>
+                                                                Date Prelevement 3
+                                                                {{ form_widget(edit_form.datePrelev3) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                              
+                                              
+                                              <!-- Periode 4 -->
+                                               {% if entity4.numeraire!=0  and entity4.numeraire %}
+                                                <tr>
+                                                        <td>
+                                                            Date Numéraire 4
+                                                            {{ form_widget(edit_form.dateNumeraire4) }}
+                                                         
+                                                         </td>
+                                                </tr>
+                                                {% endif %}
+                                                {% if entity4.chequeJeune !=0  and entity4.chequeJeune %}
+                                                 <tr>
+                                                          <td>
+                                                                Date Cheque Jeune 4
+                                                                {{ form_widget(edit_form.dateChequeJeune4) }}
+                                                         </td>
+                                              </tr>
+                                              {% endif %}
+                                              {% if entity4.chequeVacance !=0  and entity4.chequeVacance %}
+                                              
+                                               <tr>
+                                                          <td>
+                                                                Date Cheque Vacance 4
+                                                                {{ form_widget(edit_form.dateChequeVacance4) }}
+                                                         </td>
+                                              </tr>
+                                              
+                                                  {% endif %}
+                                                {% if entity4.cheque !=0  and entity4.cheque %}
+                                               <tr>
+                                                          <td>
+                                                                Date Cheque Cheque 4
+                                                                {{ form_widget(edit_form.dateCheque4) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                                {% if entity4.cb !=0  and entity4.cb %}
+                                               <tr>
+                                                          <td>
+                                                                Date Carte Bleau 4
+                                                                {{ form_widget(edit_form.dateCb4) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                                    
+                                               {% if entity4.prelev !=0  and entity4.prelev %}
+                                              <tr>
+                                                          <td>
+                                                                Date Prelevement 4
+                                                                {{ form_widget(edit_form.datePrelev4) }}
+                                                         </td>
+                                              </tr>
+                                               {% endif %}
+                                              
+                                     
+                                                
+                                              
+                                              {{ form_widget(edit_form.idperiode1) }}
+                                              
+                                            </table>
+                          
+                                             
+                                                 
+                                                 <button type="submit">Appliquer</button>
+                                        </form>
+                                       
+                                    
+                                    
+                                    <br />
+                                                <a href="{{ path('paiement') }}">
+                                                    Retour aux paiements
+                                                </a>
+                                      
+                                     </div>
+                                  </div>
+                               </div>
+                       </div>
+   
+                                 
+{% endblock %}

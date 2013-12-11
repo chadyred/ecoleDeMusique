@@ -1,0 +1,68 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        &#65;ccueil
+{% endblock %}
+{% block titlePage %}
+        &#65;ccueil
+{% endblock %}
+        
+
+{% block content %} 
+          <div id="headerCentre">
+		<div id="nompage">
+			<h1>Mailing</h1>
+		</div>
+	</div>
+        
+        <div id="page">
+                       <div id="content">
+                            <div class="post">
+                                    <div  class="entryMail">
+                                        <p>Envoyer un e-mail aux élèves : </p>			
+                                    <form action="{{ path('mailing_create') }}" method="post" {{ form_enctype(form) }}>
+                                        <div class="block-left">
+                                        {# Génération du label. #}
+  					{{ form_label(form.nomActivite, "Activité(s) choisie(s): ") }}
+                                        {# Les erreurs générales du formulaire. #}
+                                        {{ form_errors(form.nomActivite) }}
+                                        {# Génération de l'input. #}
+  					{{ form_widget(form.nomActivite) }} <br />
+                                        {# Génération du label. #}
+  					{{ form_label(form.activiteEleves, "Elève(s)* : ") }}
+                                        {# Les erreurs générales du formulaire. #}
+                                        {{ form_errors(form.activiteEleves) }}
+                                        {# Génération de l'input. #}
+  					{{ form_widget(form.activiteEleves) }}   <br />
+                                        </div>
+                                        <div class="block-right">    
+                                        {# Génération du label. #}
+  					{{ form_label(form.titre, "Titre* : ") }}
+                                        {# Les erreurs générales du formulaire. #}
+                                        {{ form_errors(form.titre) }}
+                                        {# Génération de l'input. #}
+  					{{ form_widget(form.titre) }} <br />
+                                        {# Génération du label. #}
+  					{{ form_label(form.message, "Message : ") }}
+                                        {# Les erreurs générales du formulaire. #}
+                                        {{ form_errors(form.message) }}
+                                        {# Génération de l'input. #}
+  					{{ form_widget(form.message) }} <br />
+  					{{ form_errors(form) }}
+					{{ form_rest(form) }} 	
+                                        <input type="submit" value="Envoyer"/>
+                                        </div>
+                                    </form>
+                                      
+                            </div>                                  
+                            <div style="clear: both;">&nbsp; <a href="{{ path('mailing') }}">Retour</a></div>
+                     </div>
+			<div style="clear: both;">&nbsp; * : Champs obligatoires</div>
+                 </div>
+            </div>
+	
+    
+
+{% endblock %} 
+        
+        

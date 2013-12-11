@@ -1,0 +1,30 @@
+courseleve:
+    pattern:  /
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:CoursEleve:index" }
+
+courseleve_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:CoursEleve:show" }
+
+courseleve_new:
+    pattern:  /new
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:CoursEleve:new" }
+
+courseleve_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:CoursEleve:create" }
+    requirements: { _method: post }
+
+courseleve_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:CoursEleve:edit" }
+
+courseleve_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:CoursEleve:update" }
+    requirements: { _method: post }
+
+courseleve_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:CoursEleve:delete" }
+    requirements: { _method: post }

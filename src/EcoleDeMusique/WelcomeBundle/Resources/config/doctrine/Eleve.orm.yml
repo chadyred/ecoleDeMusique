@@ -1,0 +1,70 @@
+EcoleDeMusique\WelcomeBundle\Entity\Eleve:
+   type: entity
+   table: eleve
+   id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+   fields:
+      nom:
+          type: string
+          length: 255
+      prenom:
+          type: string
+          length: 255
+      adresse:
+          type: string
+          length: 255
+      codePostal:
+          type: integer
+      ville:
+          type: string
+          length: 255
+      civilite:
+          type: string
+          length: 255
+      telEleve:
+          type: string  
+          length: 255
+      telMere:
+          type: string
+          length: 255
+      telPere:
+          type: string
+          length: 255
+      dateDeNaissance:
+          type: date(25)
+          notnull: true
+      mail:
+          type: string
+          length: 255
+   manyToOne:
+        famille:
+            targetEntity: Famille
+            inversedBy: familles
+            joinColumn:
+                name: famille_id
+                referencedColumnName: id
+   oneToOne:
+        regie:
+            targetEntity: Regie
+            inversedBy: regies
+            joinColumn:
+                name: regie_id
+                referencedColumnName: id   
+   oneToMany:
+        eleves:
+            targetEntity: Paiement
+            mappedBy: eleve
+   oneToMany:
+        eleves:
+            targetEntity: ActiviteEleve
+            mappedBy: eleve
+   oneToMany:
+        eleves:
+            targetEntity: CoursEleve
+            mappedBy: eleve
+   ManyToMany:
+        eleves:
+          targetEntity: Mailing
+          mappedBy: eleves

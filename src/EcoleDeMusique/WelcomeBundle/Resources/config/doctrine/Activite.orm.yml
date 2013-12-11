@@ -1,0 +1,21 @@
+EcoleDeMusique\WelcomeBundle\Entity\Activite:
+   type: entity
+   table: Activite
+   id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+   fields:
+     categorie:
+       type : string
+     nom:
+       type : string
+       
+   oneToMany:
+        activites:
+          targetEntity: ActiviteEleve
+          mappedBy: activite
+   oneToMany:
+        activites:
+          targetEntity: Cours
+          mappedBy: activite

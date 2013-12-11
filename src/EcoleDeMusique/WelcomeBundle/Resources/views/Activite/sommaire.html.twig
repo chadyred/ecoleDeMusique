@@ -1,0 +1,37 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Activites 
+{% endblock %}
+{% block content %} 
+      <div id="header">
+		<div id="nompage">
+			<h1>Activités</h1>
+		</div>
+	</div>
+        <div id="page">
+           <div id="content">
+                  <div class="post">
+                       <h2 class="title">Menu Activités </h2>
+                       
+                       <p>Sélectionnez une action :</p>
+                       <br />
+                       
+                       <div class="entry">
+                           
+                           
+                           
+                      <strong><a href="{{ path('activite') }}">Listes des activiés proposées par l'école</a></strong> <br />
+                       <strong><a href="{{ path('activite_new') }}">Créer une nouvelle activité</a></strong> <br><br>
+                       <strong><a href="{{ path('activiteeleve') }}">Liste des élèves et de leurs activités</a></strong> <br />
+                        <strong><a href="{{ path('activiteeleve_new') }}">Lier une activité à un élève</a></strong> 
+                       </div>
+                     
+                 </div>
+           </div>
+         </div>
+                       
+                       
+                       
+                       
+{% endblock %}

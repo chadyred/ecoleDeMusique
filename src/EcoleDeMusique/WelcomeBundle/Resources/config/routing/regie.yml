@@ -1,0 +1,37 @@
+regie:
+    pattern:  /consult
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:index" }
+
+regie_simul:
+    pattern:  /simulation
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:simulation" }
+
+regie_simulationApplication:
+    pattern:  /simulationApplication
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:simulationApplication" }
+regie_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:show" }
+
+regie_new:
+    pattern:  /new
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:new" }
+
+regie_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:create" }
+    requirements: { _method: post }
+
+regie_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:edit" }
+
+regie_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:update" }
+    requirements: { _method: post }
+
+regie_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Regie:delete" }
+    requirements: { _method: get }

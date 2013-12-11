@@ -1,0 +1,85 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+      Régie
+{% endblock %}
+{% block titlePage %}
+        Régie
+{% endblock %}
+        
+
+{% block content %} 
+        
+        <div id="headerCentre">
+		<div id="nompage">
+			<h1>Regie</h1>
+		</div>
+	</div>
+  <div id="page">
+           <div id="content">
+                   <div class="post">
+                            <h2 class="title">Simulation des tarifs </h2>
+                                <p>Cette rubrique vous permet de simuler un tarif en fonction des différents critères influant. </p>
+                            
+                            
+                                <form action="{{path('regie_simulationApplication')}}" method="post" {{ form_enctype(form) }}>
+
+                                 
+                                        <div>
+                                            
+                                                    {{ form_label(form.capv, "Capv :"|trans) }}
+                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.capv) }}      
+                                        </div>       
+                                         <div>
+                                            
+                                                    {{ form_label(form.ea, "Enfant/Adulte :"|trans) }}
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                                    {{ form_widget(form.ea) }}      
+                                        </div> 
+                                                   <div>
+                                            
+                                                    {{ form_label(form.cycle, "Cycle :"|trans) }}
+                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.cycle) }}      
+                                        </div>   
+                                                         <div>
+                                            
+                                                    {{ form_label(form.instru2, "Instrument 2 :"|trans) }}
+                                                     &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.instru2) }}      
+                                        </div>   
+                                        <div>
+                                            
+                                                    {{ form_label(form.instru3, "Instrument 3 :"|trans) }}
+                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.instru3) }}      
+                                        </div> 
+                                     <div>
+                                            
+                                                    {{ form_label(form.nbeleve, "Nombre d'élève  :"|trans) }}
+                                                     &nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.nbeleve) }}      
+                                        </div>
+                                                <div>
+                                                    {{ form_label(form.qf, "Coefficient famillial :"|trans) }}
+                                                    {{ form_widget(form.qf) }}      
+                                        </div>
+                                              <div>
+                                              <br />
+                                                   <input type="submit" id="submit" value="Enregistrer la tarification" name="submit" style="margin-left: 390px"/>      
+                                              </div>
+                                    </form>
+                                <br />
+                                
+                                </div>
+                                
+                            
+            
+                        
+                   </div>
+      </div>
+        
+        
+        
+{% endblock %}

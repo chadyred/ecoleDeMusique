@@ -1,0 +1,77 @@
+
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+      Archives 
+{% endblock %}
+{% block titlePage %}
+          Archives
+{% endblock %}
+      {% block content %} 
+       <div id="header">
+		<div id="nompage">
+			<h1>Archives</h1>
+		</div>
+	</div>
+            <div id="page">
+                 <h2 class="title">Liste des élèves pouvant être archivés </h2>
+                   <div class="post" style="min-height:500px;">
+                        
+                             <div class="entry">
+                               
+                            <p>Vous pouvez archiver ici l'élève de votre choix en cliquant sur le bouton "Archiver"
+                            <br />
+                            <a href="{{ path('archive_create_all') }}">Archiver tous avec Renouvellement</a>
+                            
+                            
+                            </p>
+                            <br />
+                                <table class="records_list" cellpadding=0 cellspacing=0>
+                                    
+                                    
+                                    <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Nom</th>
+                                                <th>Prenom</th>
+                                                <th>Année Interompue</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    
+                                    
+                                    
+                                    {% for entity in entities %}
+                                                                      <tr>
+                                                                          <td>{{ entity.idEleve }}</td>
+                                                                          <td>{{ entity.nom }}</td>
+                                                                          <td>{{ entity.prenom }}</td>
+                                                                          <td>{{ entity.interupt }}</td>
+                                                                          <td><a href="#box{{ entity.idEleve }}" rel="superbox[content]">Archiver</a></td>
+                                                                      </tr>
+                                           
+                                   {% endfor %}
+                                </table>
+                            <br />
+                            <strong><a href="{{ path('archive') }}">Afficher la liste des élèves archivés</a></strong>
+                           
+                                 
+                                 {% for entity in entities %}                        
+                                        <div class="box-content" id="box{{ entity.idEleve }}" name="form">
+                                             <form action="{{ path('archive_create') }}" method="post" >
+                                   <strong> Renouvellement de l'inscription pour l'année suivant ?</strong><br />
+                                                 <input type="radio" name="re" value="oui">oui<br>
+                                                 <input type="radio" name="re" value="non">non<br>
+                                                 
+                                                 
+                                                  <input type="hidden" name="idEleve" value="{{ entity.idEleve }}">
+                                                  <button type="submit">Archiver !</button>        
+                                         </form>
+
+                                       </div>    
+                              {% endfor %}
+                                  </div>
+                             </div>
+                       </div>
+            
+      {% endblock %}

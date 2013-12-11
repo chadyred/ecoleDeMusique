@@ -1,0 +1,94 @@
+
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+     Etat Civil 
+{% endblock %}
+{% block titlePage %}
+          Etat Civil 
+{% endblock %}
+      {% block content %} 
+       <div id="headerCentre">
+                      <div id="nompage">
+                              <h1>Etat Civil</h1>
+                      </div>
+       </div>
+       <div id="page">
+         <div id="content">
+             <h2 class="title">Fiche Individuelle de <strong>{{ entity.nom }} {{ entity.prenom }}</strong></h2>
+           <div class="post">
+             <div class="entry">
+                 <br />
+                    <table class="record_properties">
+                        <tbody>
+                            <tr>
+                                <th>Nom</th>
+                                <td>{{ entity.nom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prenom</th>
+                                <td>{{ entity.prenom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Adresse</th>
+                                <td>{{ entity.adresse }}</td>
+                            </tr>
+                            <tr>
+                                <th>Codepostal</th>
+                                <td>{{ entity.codePostal }}</td>
+                            </tr>
+                            <tr>
+                                <th>Civilite</th>
+                                <td>{{ entity.civilite }}</td>
+                            </tr>
+                            <tr>
+                                <th>Teleleve</th>
+                                <td>{{ entity.telEleve }}</td>
+                            </tr>
+                            <tr>
+                                <th>Telmere</th>
+                                <td>{{ entity.telMere }}</td>
+                            </tr>
+                            <tr>
+                                <th>Telpere</th>
+                                <td>{{ entity.telPere }}</td>
+                            </tr>
+                            <tr>
+                                <th>Datedenaissance</th>
+                                <td>{{ entity.dateDeNaissance|date('d-m-Y') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mail</th>
+                                <td>{{ entity.mail }}</td>
+                            </tr>
+                           <tr>
+                               <th>&nbsp;</th>
+                               <td>&nbsp;</td>
+                            </tr>
+                            
+                            {% if entity.regie is not null %}
+                                    <tr>
+                                        <th>remise</th>
+                                        <td>{{ '%.2f'|format(entity.regie.remise) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Somme Total à payer </th>
+                                       <td> 
+                                               <strong> {{ '%.2f'|format(entity.regie.sommeAvecRemise) }}</strong>
+                                       </td> 
+                                    </tr>
+                            
+                             {% endif %}
+                            
+                            
+                        </tbody>
+                    </table>
+                 <br />
+                            <a href="{{ path('eleve') }}"> Liste des élèves</a><br />
+                     <!--       <a href="{{ path('eleve_edit', { 'id': entity.id }) }}"> Editer ce profil</a> -->
+                 </div>
+            </div>
+             
+         </div>
+          </div>
+{% endblock %}

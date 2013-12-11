@@ -1,0 +1,132 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Etat Civil
+{% endblock %}
+{% block titlePage %}
+          Etat Civil
+{% endblock %}
+      {% block content %}    
+          <div id="headerCentre">
+                        <div id="nompage">
+                                <h1>Etat Civil</h1>
+                        </div>
+                </div>
+        <div id="page">
+           <div id="content">
+                  <div class="post">
+                
+                       <h2 class="title">Ajout d'un nouvel élève</h2>
+                             <div class="entry">
+                                 <p>Cette rubrique permet de créer un <strong>nouvel élève</strong> dans la base pour l'année en cours</p>
+                                 <br />
+                                <form action="{{ path('eleve_create') }}" method="post" {{ form_enctype(form) }}>
+                                    
+                           
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                    {{ form_label(form.famille, 'Famille'|trans) }} &nbsp; &nbsp; 
+                                                    {{ form_widget(form.famille) }}
+                                                    <br />
+                                                    <a href="{{ path('famille_new') }}"> Créer une nouvelle famille</a>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                                     {{ form_label(form.nom, 'Nom'|trans) }}&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                     {{ form_widget(form.nom) }}                                               
+                                                    </td>
+                                                    <td>
+                                   
+                                                                     {{ form_label(form.prenom, 'Prénom'|trans) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                     {{ form_widget(form.prenom) }}
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                    <td>
+                                                                      {{ form_label(form.adresse, 'Adresse'|trans) }}&nbsp;
+                                                                     {{ form_widget(form.adresse) }}
+                                                     </td>
+                                                     <td>
+                                                                  {{ form_label(form.codePostal, 'Code Postal'|trans) }}&nbsp;
+                                                                     {{ form_widget(form.codePostal) }}
+                                                     </td>
+                                              
+                                              </tr>
+                                              <tr>
+                                                  <td>
+                                                         {{ form_label(form.ville, 'Ville'|trans) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                          {{ form_widget(form.ville) }}
+                                                  </td>
+                                                  
+                                                  
+                                                  <td>
+                                                         {{ form_label(form.civilite, 'Civilite'|trans) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                          {{ form_widget(form.civilite) }}
+                                                  </td>
+                                                  
+                                             </tr>
+                                              <tr>
+                                                  
+                                                  <td>
+                                                              {{ form_label(form.telEleve, 'Tel Élève'|trans) }}
+                                                              {{ form_widget(form.telEleve) }}
+                                                  </td>
+   
+                                           
+                                                  <td>
+                                                      
+                                                      {{ form_label(form.telMere, 'Tel Mère'|trans) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        {{ form_widget(form.telMere) }}
+                                                  
+                                                  </td>
+                                               </tr>
+                                              <tr>
+                                                  <td>
+                                                      {{ form_label(form.telPere, 'Tel Père'|trans) }}&nbsp;
+                                                      {{ form_widget(form.telPere) }}
+                                                  
+                                                  </td>                                            
+                                             
+                                                  <td>
+                                                     {{ form_label(form.mail, 'Mail'|trans) }}
+                                                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ form_widget(form.mail) }}
+
+                                                  </td>
+                                                </tr>
+                                             <tr>
+           
+                                                   <td>
+                                                       {{ form_label(form.dateDeNaissance, 'Date de Naissance'|trans) }}
+                                                    {{ form_widget(form.dateDeNaissance) }}
+                                                  </td>
+                                           
+                                                   <td>
+                                             
+                                                  </td>
+                                                  
+                                              </tr>
+                                           </table>
+                           
+                                    <p>
+                                        <button type="submit" style="width:230px; height:40px;">Enregistrer</button>
+                                    </p>
+                                </form>
+
+                                <ul class="record_actions">
+                                    <li>
+                                        <a href="{{ path('eleve') }}">
+                                           Partie Consultation
+                                        </a>
+                                    </li>
+                            </ul>
+                            </div>
+                    </div>
+            </div>
+      </div>
+                   
+{% endblock %}

@@ -1,0 +1,31 @@
+EcoleDeMusique\WelcomeBundle\Entity\Regie:
+   type: entity
+   table: regie
+   id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+   fields:
+        capv:
+            type : boolean
+        enfantAdulte:
+            type : boolean
+        cycleParcours :
+            type : integer
+        intru2:
+            type : string
+        intru3:
+            type : string
+        sommeSansRemise:
+            type : float
+        remise:
+            type : float
+        sommeAvecRemise:
+            type : float
+        anneDeCours:
+            type: integer
+    
+   oneToOne:
+        regies:
+          targetEntity: Eleve
+          mappedBy: regie

@@ -1,0 +1,49 @@
+EcoleDeMusique\WelcomeBundle\Entity\Formule:
+   type: entity
+   table: formule
+   id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+   fields:
+        cycle:
+            type : integer
+        formule :
+             type : string
+        param1:
+             type : float
+        param2:
+             type : float
+        param3:
+             type : float
+        param4:
+             type : float
+        param5:
+             type : float
+        multiplicateurAdulte:
+             type : float
+        coefCapv:
+             type : float
+        coefInstru2:
+            type : float
+        coefInstru3:
+            type : float
+        coef2eleves:
+            type : float
+        coef3eleves:
+            type : float
+        coef4eleves:
+            type : float
+        coef5eleves:
+            type : float
+        coefcyle0:
+            type : float
+        coefcyle1:
+            type : float
+        coefcyle2:
+            type : float
+        coefcyle3:
+            type : float
+        tarifMax:
+            type : float
+        

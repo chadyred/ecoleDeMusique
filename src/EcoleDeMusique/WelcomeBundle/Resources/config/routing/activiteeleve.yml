@@ -1,0 +1,38 @@
+activiteeleve:
+    pattern:  /
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:index" }
+
+activiteeleve_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:show" }
+
+activiteeleve_new:
+    pattern:  /new
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:new" }
+
+activiteeleve_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:create" }
+    requirements: { _method: post }
+
+activiteeleve_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:edit" }
+
+activiteeleve_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:update" }
+    requirements: { _method: post }
+
+activiteeleve_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:delete" }
+    requirements: { _method: get }
+
+activiteeleve_search:
+    pattern:  /searchActiviteEleve
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:search" }
+
+activiteeleve_searchResult:
+     pattern:  /searchResult
+     defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:ActiviteEleve:searchResult" }

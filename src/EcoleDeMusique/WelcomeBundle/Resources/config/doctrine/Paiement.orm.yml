@@ -1,0 +1,27 @@
+EcoleDeMusique\WelcomeBundle\Entity\Paiement:
+   type: entity
+   table: paiement
+   id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+   fields:
+      interupt:
+          type: boolean
+      dateInterupt:
+          type: date(25)
+          nullable: TRUE
+      sommePeriode:
+          type: float
+      sommeTotal:
+          type: float
+   manyToOne:
+        eleve:
+            targetEntity: Eleve
+            inversedBy: eleves
+            joinColumn:
+                name: eleve_id
+                referencedColumnName: id  
+
+
+

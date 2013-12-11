@@ -1,0 +1,45 @@
+cours:
+    pattern:  /
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:index" }
+
+cours_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:show" }
+
+cours_new:
+    pattern:  /new
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:new" }
+
+cours_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:create" }
+    requirements: { _method: post }
+
+cours_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:edit" }
+
+cours_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:update" }
+    requirements: { _method: post }
+
+cours_delete:
+    pattern:  /{id}/{mode}/{name}/delete
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:delete" }
+    requirements: { _method: get }
+cours_new_collectif:
+    pattern:  /newcol
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:collectif" }
+    requirements: { _method: get }
+cours_create_collectif:
+    pattern:  /createcol
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:createCollectif" }
+    requirements: { _method: post }
+
+cours_rechargeActivite:
+    pattern:  /rechargeactivite
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Cours:rechargeActivite" }
+    requirements: { _method: post }
+    
+    

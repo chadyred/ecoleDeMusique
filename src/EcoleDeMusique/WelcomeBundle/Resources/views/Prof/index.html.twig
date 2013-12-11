@@ -1,0 +1,58 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Prof
+{% endblock %}
+
+      {% block content %} 
+        <div id="header">
+		<div id="nompage">
+			<h1>Profs</h1>
+		</div>
+	</div>
+          <div id="page">
+           
+                  <div class="post">
+                       <h2 class="title">Professeurs</h2>
+                             <div class="entry">
+                                 <p>Cette rubrique contient la liste des professeurs de l'établissement                 
+                                  
+
+                                            <table class="records_list">
+                                                <thead>
+                                                    <tr>
+        
+                                                        <th>Nom</th>
+                                                        <th>Prenom</th>
+                                                        <th></th>                                      
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for entity in entities %}
+                                                    <tr>
+                                                      
+                                                        <td>{{ entity.nom }}</td>
+                                                        <td>{{ entity.prenom }}</td>
+                                                        <td>
+                                                                    <a href="{{ path('prof_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/crayon.png') }}"></a>
+                                                       </td>
+                                                       <td>
+                                                                     <a href="{{ path('prof_delete', { 'id': entity.id }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer ce prof?')"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"></a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('prof_new') }}">
+                                                        Nouveau prof
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                 
+                                </div>
+                       </div>
+              </div>
+{% endblock %}

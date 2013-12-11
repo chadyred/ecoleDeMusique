@@ -1,0 +1,526 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+{% block javascript  %}
+   {{ parent() }}
+{% endblock %}
+{% block title %}
+Paiements
+
+{% endblock %}
+{% block titlePage %}
+Paiements<h2 class="title">Information sur les paiements</h2>   
+{% endblock %}
+
+
+      {% block content %} 
+{% block javascript2 %}
+<script type="text/javascript">
+
+    var champ = "{{ app.session.get('champ') }}";
+    var position = "{{ app.session.get('scroll') }}";
+    $(document).ready(function() {
+        if (position != "") {
+            $('html').scrollTop({{ app.session.get('scroll') }});
+        }
+        if (champ == "") {
+            champ = "information{{ premierId }}NumerairePeriode1";
+        }
+        $("#" + champ).css("display", "none");
+        $("#" + champ + "Input").css("display", "block");
+    });
+
+    $(function() {
+        $(".noneInput").click(
+                function() {
+                    //Je met en session le dernier element clique
+                    document.getElementById('champ').value = $(this).attr("id");
+                    $(".champ").val(document.getElementById('champ').value);
+
+                    $(".scroll").val($('html').scrollTop());
+
+                    document.forms[$("#" + champ).attr("form")].submit();
+                });
+    });
+    </script>   
+            <script type="text/javascript">$(function() {
+                $.superbox();
+            });</script>
+{% endblock %}
+    <div style="margin-left:320px; width:900px;">
+        <div id="nompage">
+            <h1>Paiements</h1>
+        </div>
+        <p>Vous trouverez ici les paiements des 4 périodes de l'année en cours. 
+            Changez de champ pour enregistrer les modifications de paiement
+            Vous pouvez également faire <a href="{{path('paiement_search')}}">une recherche filtrée et faire des exports</a>
+        </p>
+        <br />
+    </div>
+
+    <div class="post" style="min-height:500px;">
+
+        <div class="entry">
+
+            <table class="records_list" cellpadding=0 cellspacing=0>
+                <thead>
+
+                    <tr>
+                        <th  COLSPAN="6">
+
+
+
+                        </th>
+                        <th COLSPAN="7" style="text-align:center; " class="celluleGrise">
+                            Periode 1
+
+                        </th>
+                        <th COLSPAN="7" style="text-align:center; ">
+                            Periode 2
+
+
+                        </th>
+                        <th COLSPAN="7" style="text-align:center; " class="celluleGrise">
+                            Periode 3
+
+
+                        </th>
+                        <th COLSPAN="7" style="text-align:center; ">
+                            Periode 4
+
+
+                        </th>
+                        </th>
+                        <th COLSPAN="2" style="text-align:center;" class="celluleGrise">Général</th>   
+
+
+                    </tr>
+                    <tr>
+                        <!--       <th>Id</th> -->
+                        <th>Nom</th>
+                        <th>Prenom </th>
+                        <th>Inter.</th>
+                        <th>Date Inte.</th>
+                        <th>Date P.</th>
+                        <th>Par 4</th>
+                        <th class="celluleGrise">Num</th>
+                        <th class="celluleGrise">CheqJ</th>
+                        <th class="celluleGrise">CheqV</th>
+                        <th class="celluleGrise">Cheq</th>
+                        <th class="celluleGrise">CB</th>
+                        <th class="celluleGrise">PrelV</th>
+                        <th class="celluleGrise">Total</th>
+                        <th>Num</th>
+                        <th>CheqJ</th>
+                        <th>CheqV</th>
+                        <th>cheq</th>
+                        <th>CB</th>
+                        <th>PrelV</th>
+                        <th>Total</th>
+                        <th class="celluleGrise">Num</th>
+                        <th class="celluleGrise">CheqJ</th>
+                        <th class="celluleGrise">CheqV</th>
+                        <th class="celluleGrise">Cheq</th>
+                        <th class="celluleGrise">CB</th>
+                        <th class="celluleGrise">PrelV</th>
+                        <th class="celluleGrise">Total</th>
+                        <th>Num</th>
+                        <th>CheqJ</th>
+                        <th>CheqV</th>
+                        <th>Cheq</th>
+                        <th>CB</th>
+                        <th>PrelV</th>
+                        <th>Total</th>
+                        <th class="celluleGrise" style="text-align:center; ">Total</th>
+                        <th class="celluleGrise">Reste</th>
+
+
+                        <!--      <th>Actions</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                                            {% for entity in entities %}
+                        <tr>
+                          <!--  <td><a href="{{ path('paiement_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td> -->
+                            <td>{{ entity.nom }}</td>
+                            <td>{{ entity.prenom }}</td>
+                            <td>
+
+                                                        {% if entity.dateInterupt %}
+                                <a href="{{ path('paiement_interupt', { 'id': entity.id }) }}">
+                                                        {% else %}       
+                                        <a href="#boxArchive{{ entity.id }}" rel="superbox[content]">
+                                                        {% endif %}
+
+                                                                        {{ entity.interupt }}
+                                            </a>
+
+                                    </td>
+                                    <td>{% if entity.dateInterupt %}{{ entity.dateInterupt|date('d-m-Y') }}{% endif %}</td>
+                                    <td>
+                                        <a href="{{ path('paiementperiode_edit', { 'id': entity.periode1.id }) }}">Saisir</a>
+                                    </td>
+                                    <td>{{ entity.sommePeriode }}</td>
+
+
+
+                            <form name="form1{{ entity.periode1.id }}" method="get" action="{{ path('paiementperiode_update', { 'id': entity.periode1.id }) }}">
+
+                                <td class="celluleGrise">
+                                    <span id="information{{ entity.periode1.id }}NumerairePeriode1" class="noneInput" title='{% if entity.periode1.dateNumeraire != NULL %} {{ entity.periode1.dateNumeraire|date("d/m/Y") }} {% endif %}' periode="1" form="form1{{ entity.periode1.id }}">
+                                                                     {% if entity.periode1.numeraire is null %} 0{% endif %}
+                                                                     {{ entity.periode1.numeraire }}
+                                        </span>
+                                        <span id="information{{ entity.periode1.id }}NumerairePeriode1Input" class="input" periode="1" form="form1{{ entity.periode1.id }}"> 
+
+                                            <input type="text" size="1" value="{{ entity.periode1.numeraire }}" name="numeraire">
+                                        </span>
+                                    </td>
+
+                                    <td class="celluleGrise">
+                                        <span id="information{{ entity.periode1.id }}ChequejPeriode1" class="noneInput" title='{% if entity.periode1.dateChequeJeune != NULL %} {{ entity.periode1.dateChequeJeune|date("d/m/Y") }} {% endif %}' periode="1" form="form1{{ entity.periode1.id }}">
+                                                                      {% if entity.periode1.chequeJeune is null %} 0{% endif %}
+                                                                        {{ entity.periode1.chequeJeune }}
+                                            </span>
+                                            <span id="information{{ entity.periode1.id }}ChequejPeriode1Input" class="input" periode="1" form="form1{{ entity.periode1.id }}">
+                                                <input type="text" size="1" value="{{ entity.periode1.chequeJeune }}" name="jeune">
+                                            </span>    
+                                        </td>
+
+                                        <td class="celluleGrise" >
+                                            <span id="information{{ entity.periode1.id }}ChequeVPeriode1" class="noneInput" title='{% if entity.periode1.dateChequeVacance != NULL %} {{ entity.periode1.dateChequeVacance|date("d/m/Y") }} {% endif %}' periode="1" form="form1{{ entity.periode1.id }}">
+                                                                      {% if entity.periode1.chequeVacance is null %} 0{% endif %}
+                                                                        {{ entity.periode1.chequeVacance }}
+                                                </span>
+                                                <span id="information{{ entity.periode1.id }}ChequeVPeriode1Input" class="input" periode="1" form="form1{{ entity.periode1.id }}">
+                                                    <input type="text" size="1" value="{{ entity.periode1.chequeVacance }}" name="vacance">
+                                                </span>    
+                                            </td>
+
+                                            <td class="celluleGrise" >
+                                                <span id="information{{ entity.periode1.id }}ChequePeriode1" class="noneInput" title='{% if entity.periode1.dateCheque != NULL %} {{ entity.periode1.dateCheque|date("d/m/Y") }} {% endif %}' periode="1" form="form1{{ entity.periode1.id }}">
+                                                                      {% if entity.periode1.cheque is null %} 0{% endif %}
+                                                                        {{ entity.periode1.cheque }}
+                                                    </span>
+                                                    <span id="information{{ entity.periode1.id }}ChequePeriode1Input" class="input" periode="1" form="form1{{ entity.periode1.id }}">
+                                                        <input type="text" size="1" value="{{ entity.periode1.cheque }}" name="cheque">
+                                                    </span>  
+                                                </td>
+                                                <td class="celluleGrise">
+                                                    <span id="information{{ entity.periode1.id }}CbPeriode1" class="noneInput"  title='{% if entity.periode1.dateCb != NULL %} {{ entity.periode1.dateCb|date("d/m/Y") }} {% endif %}' periode="1" form="form1{{ entity.periode1.id }}">
+                                                                        {% if entity.periode1.cb is null %} 0{% endif %}
+                                                                        {{ entity.periode1.cb }}
+                                                        </span>
+                                                        <span id="information{{ entity.periode1.id }}CbPeriode1Input" class="input" periode="1" form="form1{{ entity.periode1.id }}">
+                                                            <input type="text" size="1" value="{{ entity.periode1.cb }}" name="cb">
+                                                        </span> 
+                                                    </td>
+                                                    <td class="celluleGrise">
+                                                        <span id="information{{ entity.periode1.id }}PrelevPeriode1" class="noneInput" title='{% if entity.periode1.datePrelev != NULL %} {{ entity.periode1.datePrelev|date("d/m/Y") }} {% endif %}' periode="1" form="form1{{ entity.periode1.id }}">
+                                                                        {% if entity.periode1.prelev is null %} 0{% endif %}
+                                                                        {{ entity.periode1.prelev }}
+                                                            </span>
+                                                            <span id="information{{ entity.periode1.id }}PrelevPeriode1Input" class="input" periode="1" form="form1{{ entity.periode1.id }}">
+                                                                <input type="text" size="1" value="{{ entity.periode1.prelev }}" name="prelev">
+                                                            </span> 
+                                                        </td>
+
+
+                                                        <input type="hidden" id="champ" name="champ" class="champ" value="">
+                                                        <input type="hidden" id="champ" name="dernierElem" value="cache"> 
+                                                        <input type="hidden" id="scroll" name="scroll" class="scroll">
+
+                                                    </form>    
+
+                                                    <td class="celluleGrise" >{{ entity.periode1.total }}</td>
+                                                    </tbreak>
+
+                                                    <form name="form2{{ entity.periode2.id }}" method="get" action="{{ path('paiementperiode_update', { 'id': entity.periode2.id }) }}">
+
+                                                        <td>
+                                                            <span id="information{{ entity.periode2.id }}NumerairePeriode2" class="noneInput" title='{% if entity.periode2.dateNumeraire != NULL %} {{ entity.periode2.dateNumeraire|date("d/m/Y") }} {% endif %}' periode="2" form="form2{{ entity.periode2.id }}">
+                                                                     {% if entity.periode2.numeraire is null %} 0{% endif %}
+                                                                     {{ entity.periode2.numeraire }}
+                                                                </span>
+                                                                <span id="information{{ entity.periode2.id }}NumerairePeriode2Input" class="input" periode="2" form="form2{{ entity.periode2.id }}"> 
+
+                                                                    <input type="text" size="1" value="{{ entity.periode2.numeraire }}" name="numeraire">
+                                                                </span>
+                                                            </td>
+
+                                                            <td>
+                                                                <span id="information{{ entity.periode2.id }}ChequejPeriode2" class="noneInput" title='{% if entity.periode2.dateChequeJeune != NULL %} {{ entity.periode2.dateChequeJeune|date("d/m/Y") }} {% endif %}' periode="2" form="form2{{ entity.periode2.id }}">
+                                                                      {% if entity.periode2.chequeJeune is null %} 0{% endif %}
+                                                                        {{ entity.periode2.chequeJeune }}
+                                                                    </span>
+                                                                    <span id="information{{ entity.periode2.id }}ChequejPeriode2Input" class="input" periode="2" form="form2{{ entity.periode2.id }}">
+                                                                        <input type="text" size="1" value="{{ entity.periode2.chequeJeune }}" name="jeune">
+                                                                    </span>    
+                                                                </td>
+
+                                                                <td>
+                                                                    <span id="information{{ entity.periode2.id }}ChequeVPeriode2" class="noneInput" title='{% if entity.periode2.dateChequeVacance != NULL %} {{ entity.periode2.dateChequeVacance|date("d/m/Y") }} {% endif %}' periode="2" form="form2{{ entity.periode2.id }}">
+                                                                      {% if entity.periode2.chequeVacance is null %} 0{% endif %}
+                                                                        {{ entity.periode2.chequeVacance }}
+                                                                        </span>
+                                                                        <span id="information{{ entity.periode2.id }}ChequeVPeriode2Input" class="input" periode="2" form="form2{{ entity.periode2.id }}">
+                                                                            <input type="text" size="1" value="{{ entity.periode2.chequeVacance }}" name="vacance">
+                                                                        </span>    
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <span id="information{{ entity.periode2.id }}ChequePeriode2" class="noneInput" title='{% if entity.periode2.dateCheque  != NULL %} {{ entity.periode2.dateCheque |date("d/m/Y") }} {% endif %}' periode="2" form="form2{{ entity.periode2.id }}">
+                                                                      {% if entity.periode2.cheque is null %} 0{% endif %}
+                                                                        {{ entity.periode2.cheque }}
+                                                                            </span>
+                                                                            <span id="information{{ entity.periode2.id }}ChequePeriode2Input" class="input" periode="2" form="form2{{ entity.periode2.id }}">
+                                                                                <input type="text" size="1" value="{{ entity.periode2.cheque }}" name="cheque">
+                                                                            </span>  
+                                                                        </td>
+                                                                        <td>
+                                                                            <span id="information{{ entity.periode2.id }}CbPeriode2" class="noneInput" title='{% if entity.periode2.dateCb  != NULL %} {{ entity.periode2.dateCb |date("d/m/Y") }} {% endif %}'  periode="2" form="form2{{ entity.periode2.id }}">
+                                                                        {% if entity.periode2.cb is null %} 0{% endif %}
+                                                                        {{ entity.periode2.cb }}
+                                                                                </span>
+                                                                                <span id="information{{ entity.periode2.id }}CbPeriode2Input" class="input" periode="2" form="form2{{ entity.periode2.id }}">
+                                                                                    <input type="text" size="1" value="{{ entity.periode2.cb }}" name="cb">
+                                                                                </span> 
+                                                                            </td>
+                                                                            <td>
+                                                                                <span id="information{{ entity.periode2.id }}PrelevPeriode2" class="noneInput" title='{% if entity.periode2.datePrelev  != NULL %} {{ entity.periode2.datePrelev |date("d/m/Y") }} {% endif %}' periode="2" form="form2{{ entity.periode2.id }}">
+                                                                        {% if entity.periode2.prelev is null %} 0{% endif %}
+                                                                        {{ entity.periode2.prelev }}
+                                                                                    </span>
+                                                                                    <span id="information{{ entity.periode2.id }}PrelevPeriode2Input" class="input" periode="2" form="form2{{ entity.periode2.id }}">
+                                                                                        <input type="text" size="1" value="{{ entity.periode2.prelev }}" name="prelev">
+                                                                                    </span> 
+                                                                                </td>
+
+                                                                                <td>{{ entity.periode2.total }}</td>
+
+                                                                                <input type="hidden" id="champ" name="champ" class="champ" value="">
+                                                                                <input type="hidden" id="champ" name="dernierElem" value="cache"> 
+                                                                                <input type="hidden" id="scroll" name="scroll" class="scroll">
+                                                                            </form>  
+
+
+                                                                            <form name="form3{{ entity.periode3.id }}" method="get" action="{{ path('paiementperiode_update', { 'id': entity.periode3.id }) }}">
+
+                                                                                <td class="celluleGrise">
+                                                                                    <span id="information{{ entity.periode3.id }}NumerairePeriode3" class="noneInput"  title='{% if entity.periode3.dateNumeraire != NULL %} {{ entity.periode3.dateNumeraire|date("d/m/Y") }} {% endif %}' periode="3" form="form3{{ entity.periode3.id }}">
+                                                                     {% if entity.periode3.numeraire is null %} 0{% endif %}
+                                                                     {{ entity.periode3.numeraire }}
+                                                                                        </span>
+                                                                                        <span id="information{{ entity.periode3.id }}NumerairePeriode3Input" class="input" periode="3" form="form3{{ entity.periode3.id }}"> 
+
+                                                                                            <input type="text" size="1" value="{{ entity.periode3.numeraire }}" name="numeraire">
+                                                                                        </span>
+                                                                                    </td>
+
+                                                                                    <td class="celluleGrise">
+                                                                                        <span id="information{{ entity.periode3.id }}ChequejPeriode3" class="noneInput" title='{% if entity.periode3.dateChequeJeune != NULL %} {{ entity.periode3.dateChequeJeune|date("d/m/Y") }} {% endif %}' periode="3" form="form3{{ entity.periode3.id }}">
+                                                                      {% if entity.periode3.chequeJeune is null %} 0{% endif %}
+                                                                        {{ entity.periode3.chequeJeune }}
+                                                                                            </span>
+                                                                                            <span id="information{{ entity.periode3.id }}ChequejPeriode3Input" class="input" periode="3" form="form3{{ entity.periode3.id }}">
+                                                                                                <input type="text" size="1" value="{{ entity.periode3.chequeJeune }}" name="jeune">
+                                                                                            </span>    
+                                                                                        </td>
+
+                                                                                        <td class="celluleGrise" >
+                                                                                            <span id="information{{ entity.periode3.id }}ChequeVPeriode3" class="noneInput" title='{% if entity.periode3.dateChequeVacance != NULL %} {{ entity.periode3.dateChequeVacance|date("d/m/Y") }} {% endif %}' periode="3" form="form3{{ entity.periode3.id }}">
+                                                                      {% if entity.periode3.chequeVacance is null %} 0{% endif %}
+                                                                        {{ entity.periode3.chequeVacance }}
+                                                                                                </span>
+                                                                                                <span id="information{{ entity.periode3.id }}ChequeVPeriode3Input" class="input" periode="3" form="form3{{ entity.periode3.id }}">
+                                                                                                    <input type="text" size="1" value="{{ entity.periode3.chequeVacance }}" name="vacance">
+                                                                                                </span>    
+                                                                                            </td>
+
+                                                                                            <td class="celluleGrise" >
+                                                                                                <span id="information{{ entity.periode3.id }}ChequePeriode3" class="noneInput" title='{% if entity.periode3.dateCheque  != NULL %} {{ entity.periode3.dateCheque |date("d/m/Y") }} {% endif %}' periode="3" form="form3{{ entity.periode3.id }}">
+                                                                      {% if entity.periode3.cheque is null %} 0{% endif %}
+                                                                        {{ entity.periode3.cheque }}
+                                                                                                    </span>
+                                                                                                    <span id="information{{ entity.periode3.id }}ChequePeriode3Input" class="input" periode="3" form="form3{{ entity.periode3.id }}">
+                                                                                                        <input type="text" size="1" value="{{ entity.periode3.cheque }}" name="cheque">
+                                                                                                    </span>  
+                                                                                                </td>
+                                                                                                <td class="celluleGrise">
+                                                                                                    <span id="information{{ entity.periode3.id }}CbPeriode3" class="noneInput" title='{% if entity.periode3.dateCb  != NULL %} {{ entity.periode3.dateCb |date("d/m/Y") }} {% endif %}' periode="3" form="form3{{ entity.periode3.id }}">
+                                                                        {% if entity.periode3.cb is null %} 0{% endif %}
+                                                                        {{ entity.periode3.cb }}
+                                                                                                        </span>
+                                                                                                        <span id="information{{ entity.periode3.id }}CbPeriode3Input" class="input" periode="3" form="form3{{ entity.periode3.id }}">
+                                                                                                            <input type="text" size="1" value="{{ entity.periode3.cb }}" name="cb">
+                                                                                                        </span> 
+                                                                                                    </td>
+                                                                                                    <td class="celluleGrise">
+                                                                                                        <span id="information{{ entity.periode3.id }}PrelevPeriode3" class="noneInput" title='{% if entity.periode3.datePrelev  != NULL %} {{ entity.periode3.datePrelev |date("d/m/Y") }} {% endif %}' periode="3" form="form3{{ entity.periode3.id }}">
+                                                                        {% if entity.periode3.prelev is null %} 0{% endif %}
+                                                                        {{ entity.periode3.prelev }}
+                                                                                                            </span>
+                                                                                                            <span id="information{{ entity.periode3.id }}PrelevPeriode3Input" class="input" periode="1" form="form3{{ entity.periode3.id }}">
+                                                                                                                <input type="text" size="1" value="{{ entity.periode3.prelev }}" name="prelev">
+                                                                                                            </span> 
+                                                                                                        </td>
+
+                                                                                                        <input type="hidden" id="champ" name="champ" class="champ" value="">
+                                                                                                        <input type="hidden" id="champ" name="dernierElem" value="cache"> 
+                                                                                                        <input type="hidden" id="scroll" name="scroll" class="scroll">
+                                                                                                    </form>    
+
+                                                                                                    <td class="celluleGrise" >{{ entity.periode3.total }}</td>
+
+                                                                                                    <form name="form4{{ entity.periode4.id }}" method="get" action="{{ path('paiementperiode_update', { 'id': entity.periode4.id }) }}">
+
+                                                                                                        <td>
+                                                                                                            <span id="information{{ entity.periode4.id }}NumerairePeriode4" class="noneInput" title='{% if entity.periode4.dateNumeraire != NULL %} {{ entity.periode4.dateNumeraire|date("d/m/Y") }} {% endif %}'  periode="4" form="form4{{ entity.periode4.id }}">
+                                                                     {% if entity.periode4.numeraire is null %} 0{% endif %}
+                                                                     {{ entity.periode4.numeraire }}
+                                                                                                                </span>
+                                                                                                                <span id="information{{ entity.periode4.id }}NumerairePeriode4Input" class="input" periode="4" form="form4{{ entity.periode4.id }}"> 
+
+                                                                                                                    <input type="text" size="1" value="{{ entity.periode4.numeraire }}" name="numeraire">
+                                                                                                                </span>
+                                                                                                            </td>
+
+                                                                                                            <td>
+                                                                                                                <span id="information{{ entity.periode4.id }}ChequejPeriode4" class="noneInput" title='{% if entity.periode4.dateChequeJeune != NULL %} {{ entity.periode4.dateChequeJeune|date("d/m/Y") }} {% endif %}' periode="4" form="form4{{ entity.periode4.id }}">
+                                                                      {% if entity.periode4.chequeJeune is null %} 0{% endif %}
+                                                                        {{ entity.periode4.chequeJeune }}
+                                                                                                                    </span>
+                                                                                                                    <span id="information{{ entity.periode4.id }}ChequejPeriode4Input" class="input" periode="4" form="form4{{ entity.periode4.id }}">
+                                                                                                                        <input type="text" size="1" value="{{ entity.periode4.chequeJeune }}" name="jeune">
+                                                                                                                    </span>    
+                                                                                                                </td>
+
+                                                                                                                <td>
+                                                                                                                    <span id="information{{ entity.periode4.id }}ChequeVPeriode4" class="noneInput" title='{% if entity.periode4.dateChequeVacance != NULL %} {{ entity.periode4.dateChequeVacance|date("d/m/Y") }} {% endif %}' periode="4" form="form4{{ entity.periode4.id }}">
+                                                                      {% if entity.periode4.chequeVacance is null %} 0{% endif %}
+                                                                        {{ entity.periode4.chequeVacance }}
+                                                                                                                        </span>
+                                                                                                                        <span id="information{{ entity.periode4.id }}ChequeVPeriode4Input" class="input" periode="4" form="form4{{ entity.periode4.id }}">
+                                                                                                                            <input type="text" size="1" value="{{ entity.periode4.chequeVacance }}" name="vacance">
+                                                                                                                        </span>    
+                                                                                                                    </td>
+
+                                                                                                                    <td>
+                                                                                                                        <span id="information{{ entity.periode4.id }}ChequePeriode4" class="noneInput" title='{% if entity.periode4.dateCheque  != NULL %} {{ entity.periode4.dateCheque |date("d/m/Y") }} {% endif %}' periode="4" form="form4{{ entity.periode4.id }}">
+                                                                      {% if entity.periode4.cheque is null %} 0{% endif %}
+                                                                        {{ entity.periode4.cheque }}
+                                                                                                                            </span>
+                                                                                                                            <span id="information{{ entity.periode4.id }}ChequePeriode4Input" class="input" periode="4">
+                                                                                                                                <input type="text" size="1" value="{{ entity.periode4.cheque }}" name="cheque">
+                                                                                                                            </span>  
+                                                                                                                        </td>
+                                                                                                                        <td>
+                                                                                                                            <span id="information{{ entity.periode4.id }}CbPeriode4" class="noneInput" title='{% if entity.periode4.dateCb  != NULL %} {{ entity.periode4.dateCb |date("d/m/Y") }} {% endif %}' periode="4" form="form4{{ entity.periode4.id }}">
+                                                                        {% if entity.periode4.cb is null %} 0{% endif %}
+                                                                        {{ entity.periode4.cb }}
+                                                                                                                                </span>
+                                                                                                                                <span id="information{{ entity.periode4.id }}CbPeriode4Input" class="input" periode="4" form="form4{{ entity.periode4.id }}">
+                                                                                                                                    <input type="text" size="1" value="{{ entity.periode4.cb }}" name="cb">
+                                                                                                                                </span> 
+                                                                                                                            </td>
+                                                                                                                            <td>
+                                                                                                                                <span id="information{{ entity.periode4.id }}PrelevPeriode4" class="noneInput" title='{% if entity.periode4.datePrelev  != NULL %} {{ entity.periode4.datePrelev |date("d/m/Y") }} {% endif %}' periode="4" form="form4{{ entity.periode4.id }}">
+                                                                        {% if entity.periode4.prelev is null %} 0{% endif %}
+                                                                        {{ entity.periode4.prelev }}
+                                                                                                                                    </span>
+                                                                                                                                    <span id="information{{ entity.periode4.id }}PrelevPeriode4Input" class="input" periode="4" form="form4{{ entity.periode4.id }}">
+                                                                                                                                        <input type="text" size="1" value="{{ entity.periode4.prelev }}" name="prelev">
+                                                                                                                                    </span> 
+                                                                                                                                </td>
+                                                                                                                                <td>{{ entity.periode4.total }}</td>
+
+                                                                                                                                <input type="hidden" id="champ" name="champ" class="champ" value="">
+                                                                                                                                <input type="hidden" id="champ" name="dernierElem" value="cache"> 
+                                                                                                                                <input type="hidden" id="scroll" name="scroll" class="scroll">
+                                                                                                                            </form>  
+
+                                                                                                                            <td class="celluleGrise">{% if ('%.2f'|format(entity.totalG))==-0.00 %}
+                                                                                                                                0.00
+                                                                                                                                {% else %}
+                                                                                                                                    {{ '%.2f'|format(entity.totalG) }}
+                                                                                                                                {% endif %}
+
+                                                                                                                            </td>
+                                                                                                                            <td>{{ '%.2f'|format(entity.sommeToutPaiement) }}</td>
+                                                                                                                            <!--   <td>
+                                                                                                                                   <ul>
+                                                                                                                                       <li>
+                                                                                                                                           <a href="{{ path('paiement_show', { 'id': entity.id }) }}">show</a>
+                                                                                                                                       </li>
+                                                                                                                                       <li>
+                                                                                                                                           <a href="{{ path('paiement_edit', { 'id': entity.id }) }}">edit</a>
+                                                                                                                                       </li>
+                                                                                                                                   </ul>
+                                                                                                                               </td> -->
+                                                                                                                            </tr>
+                                            {% endfor %}
+                                                                                                                            </tbody>
+                                                                                                                        </table>
+
+
+                                                                                                                        <div id="sommeTotal">
+                                                                                                                            <table>
+                                                                                                                                <tr>
+                                                                                                                                    <td><strong>Somme totale</strong></td><td><strong>Somme Payée</strong></td> 
+                                                                                                                                </tr>
+                                                                                                                                <tr>
+                                                                                                                                    <td>{{SommeTot}}</td>
+                                                                                                                                    <td>{{sommePaye}}</td><td></td>
+
+
+                                                                                                                                </tr>
+                                                                                                                            </table>   
+
+
+
+                                                                                                                        </div>
+
+
+
+                                                                                                                    </div>
+                                                                                                                </div>
+
+                             {% for entity in entities %}                        
+                                                                                                                <div class="box-content" id="boxArchive{{ entity.id }}" name="form">
+                                                                                                                    <form method="get" action="{{ path('paiement_interupt', { 'id': entity.id }) }}" id="formarchive" name="formarchive">
+
+                                                                                                                        <strong>Faire payer à ....</strong><br />
+                                                                                                                        <input type="hidden" value="{{ entity.id }}">
+                                                                                                                        <input type="radio" name="tarif" value="plein">Plein tarif<br>
+
+                                                                                                                        <input type="radio" name="tarif" value="reduit">Tarif reduit
+                                                                                                                        <input type="text" name="valeur" value="0"> Euros
+                                                                                                                        <br />
+
+                                                                                                                        <button type="submit">Archiver !</button>    
+                                                                                                                    </form>
+
+                                                                                                                </div>  
+
+                                                                                                                <div class="box-content" id="boxDate{{ entity.id }}">
+                                                                                                                    <form action="" method="post" {{ form_enctype(edit_form) }}>
+
+
+                                                  {{ form_widget(edit_form.dateNumeraire) }}   
+                                                                                                                        <button type="submit">Appliquer</button>
+
+
+
+
+
+                                                                                                                    </form>
+
+
+                                                                                                                </div>
+
+
+
+                              {% endfor %}
+
+
+
+
+{% endblock %}

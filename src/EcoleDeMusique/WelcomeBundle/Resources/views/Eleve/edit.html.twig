@@ -1,0 +1,115 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+      Etat Civil
+{% endblock %}
+
+{% block content %} 
+        <div id="headerCentre">
+		<div id="nompage">
+			<h1>Etat Civil</h1>
+		</div>
+	</div>
+        <div id="page">
+                       <div id="content">
+                            <div class="post">
+                                    <div class="entry">
+
+
+                                        <h1>Eleve edit</h1>
+
+                                        <form action="{{ path('eleve_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+                                       
+                                            <table>
+                                                <tr>
+                                                    <td>{{ form_label(form.nom, "Nom de l'eleve :"|trans) }}</td>
+                                                    <td>{{ form_widget(form.nom) }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ form_label(form.prenom, 'Prénom'|trans) }}</td>
+                                                    <td>
+                                                        {{ form_widget(form.prenom) }}
+                                                    </td>
+                                                    
+                                                </tr>
+                                                 <tr>
+                                                    <td>{{ form_label(form.adresse, 'Adresse'|trans) }}</td>
+                                                    <td>
+                                                        {{ form_widget(form.adresse) }}
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ form_label(form.codePostal, 'Code Postal'|trans) }}</td>
+                                                    <td>{{ form_widget(form.codePostal) }}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ form_label(form.ville, 'Ville'|trans) }}</td>
+                                                    <td>{{ form_widget(form.ville) }}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ form_label(form.civilite, 'Civilite'|trans) }}</td>
+                                                    <td>{{ form_widget(form.civilite) }}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ form_label(form.telEleve, 'Tel Élève'|trans) }}</td>
+                                                    <td>{{ form_widget(form.telEleve) }}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ form_label(form.telMere, 'Tel Mère'|trans) }}</td>
+                                                    <td>{{ form_widget(form.telMere) }}</td>
+                                                    
+                                                </tr>
+                                                 <tr>
+                                                    <td>{{ form_label(form.telPere, 'Tel Père'|trans) }}</td>
+                                                    <td>{{ form_widget(form.telPere) }}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ form_label(form.mail, 'Mail'|trans) }}</td>
+                                                    <td>{{ form_widget(form.mail) }}</td>
+                                                    
+                                                </tr>
+                                                 <tr>
+                                                    <td>{{ form_label(form.dateDeNaissance, 'Date de Naissance'|trans) }}</td>
+                                                    <td>{{ form_widget(form.dateDeNaissance) }}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ form_label(form.famille, 'Famille'|trans) }}</td>
+                                                    <td>{{ form_widget(form.famille) }}</td>
+                                                    
+                                                </tr>
+                                            
+                                            
+                                            
+                                            
+                                            </table>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <p>
+                                                <button type="submit">Valider</button>
+                                            </p>
+                                        </form>
+
+                                        <ul class="record_actions">
+                                            <li>
+                                                <a href="{{ path('eleve') }}">
+                                                    Back to the list
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                     </div>
+                           </div>
+                      </div>
+                </div>
+       {% endblock %}

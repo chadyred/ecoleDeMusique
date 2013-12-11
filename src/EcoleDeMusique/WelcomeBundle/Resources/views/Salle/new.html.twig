@@ -1,0 +1,37 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Salle
+{% endblock %}
+
+      {% block content %} 
+        <div id="header">
+		<div id="nompage">
+			<h1>Salles</h1>
+		</div>
+	</div>
+          <div id="page">
+           
+                  <div class="post">
+                       <h2 class="title">Saisie d'une salle</h2>
+                       <p>Entrez ici le nom de la salle à ajouter</p>
+                             <div class="entry">
+
+                            <form action="{{ path('salle_create') }}" method="post" {{ form_enctype(form) }}>
+                                {{ form_widget(form) }}
+                                <p>
+                                    <button type="submit">Create</button>
+                                </p>
+                            </form>
+
+                            <ul class="record_actions">
+                                <li>
+                                    <a href="{{ path('salle') }}">
+                                        Back to the list
+                                    </a>
+                                </li>
+                            </ul>
+                             </div>
+                 </div>
+       </div>
+{% endblock %}

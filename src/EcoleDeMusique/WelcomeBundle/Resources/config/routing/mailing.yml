@@ -1,0 +1,23 @@
+mailing:
+    pattern:  /
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Mailing:index" }
+     
+mailing_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Mailing:create" }
+    requirements: { _method: post }
+    
+mailing_search:
+    pattern:  /search
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Mailing:search" }
+    requirements: { _method: post }   
+    
+mailing_index:
+    pattern:  /index
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Mailing:index" }
+    requirements: { _method: post }   
+    
+mailing_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Mailing:delete" }
+    requirements: { _method: get }  

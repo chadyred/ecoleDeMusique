@@ -1,0 +1,41 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Salle
+{% endblock %}
+
+      {% block content %} 
+        <div id="header">
+		<div id="nompage">
+			<h1>Salles</h1>
+		</div>
+	</div>
+          <div id="page">
+           
+                  <div class="post">
+                       <h2 class="title">Edition d'une salle</h2>
+                       <p>Editez ici le nom de la salle en question</p>
+                             <div class="entry">
+
+                                <form action="{{ path('salle_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                                    {{ form_widget(edit_form) }}
+                                    <p>
+                                        <button type="submit">Editer</button>
+                                    </p>
+                                </form>
+
+                                <ul class="record_actions">
+                                    <li>
+                                        <a href="{{ path('salle') }}">
+                                           Liste des salles 
+                                        </a>
+                                    </li>
+                                </ul>
+                             </div>
+                      </div>
+             </div>
+        
+
+                                
+                                
+{% endblock %}

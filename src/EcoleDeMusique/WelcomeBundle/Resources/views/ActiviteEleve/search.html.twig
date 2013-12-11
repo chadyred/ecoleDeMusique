@@ -1,0 +1,78 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Actvités élèves
+{% endblock %}
+      {% block content %} 
+            <div id="headerCentre">
+                        <div id="nompage">
+                                <h1>Actvités</h1>
+                        </div>
+                </div>
+        <div id="page">
+               <div id="content">
+                  <div class="post">
+                       <h2 class="title">Recherches des Activites d'élèves </h2>
+                             <div class="entry">
+                                 <p>Tapez les données exactes </p>
+                                 <br />
+
+                                        <form action="{{ path('activiteeleve_searchResult') }}" method="post" {{ form_enctype(form) }}>   
+                                    <table>
+  
+                                       <tr>
+                                                    <td>
+                                                            {{ form_label(form.nom, "nom :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.nom) }} 
+                                                   </td>
+                                           </tr>
+                                           <tr>
+                                                    <td>
+                                                            {{ form_label(form.prenom, "prénom :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.prenom) }} 
+                                                   </td>
+                                           </tr>
+                                           <tr>
+                                  
+                                                    <tr>
+                                                    <td>
+                                                            {{ form_label(form.pratique, "pratique :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.pratique) }} 
+                                                   </td>
+                                           </tr>
+                                           <tr>
+                                                    <td>
+                                                            {{ form_label(form.type, "type(instru1..):"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.type) }} 
+                                                   </td>
+                                           </tr>
+                                            <tr>
+                                                    <td>
+                                                            {{ form_label(form.cycle, "cycle :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.cycle) }} 
+                                                   </td>
+                                           </tr>         
+                                                    
+                                                    
+                                           </table>
+                                            <p>
+                                                <button type="submit">Recherche</button>
+                                            </p>
+                                        </form>
+
+                                     
+                              </div>
+                  </div>
+              </div>
+         </div>
+      {% endblock %}  

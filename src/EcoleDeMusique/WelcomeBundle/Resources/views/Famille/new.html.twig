@@ -1,0 +1,50 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Etat Civil
+{% endblock %}
+{% block titlePage %}
+          Etat Civil
+{% endblock %}
+      {% block content %}    
+                <div id="headerCentre">
+                        <div id="nompage">
+                                <h1>Familles</h1>
+                        </div>
+                </div>
+           <div id="page">
+           <div id="content">
+                  <div class="post">
+       
+                       <h2 class="title">Saisie d'une nouvelle famille</h2>
+                       <p>Saisissez un QF, et une nouvelle famille sera générée avec ce QF, par la suite vous devrez lier les individus à la famille dans le <a href="{{ path('eleve_new') }}">modules de saisie d'élève</a>. Si la famille n'a pas de QF ne pas remplir ce champ.</p>
+                       <br />
+                             <div class="entry">
+ 
+
+                                <form action="{{ path('famille_create') }}" method="post" {{ form_enctype(form) }}>
+                                    {{ form_widget(form) }}
+                                        <br />
+                                    <p>
+                                        <button type="submit">Créer</button>
+                                    </p>
+                                </form>
+
+                                <ul class="record_actions">
+                                    <li>
+                                        <a href="{{ path('famille') }}">
+                                            Liste des Familles
+                                        </a>
+                                    </li>
+                                      <li>
+                                        <a href="{{ path('eleve_new') }}">Retour vers "Ajout d'un nouvel élève"</a>
+                                       
+                                        </a>
+                                    </li>
+                                </ul>
+                           </div>
+                      </div>
+            </div>
+           </div>
+
+{% endblock %}    

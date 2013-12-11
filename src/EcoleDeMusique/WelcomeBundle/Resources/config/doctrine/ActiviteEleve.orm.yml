@@ -1,0 +1,29 @@
+EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve:
+   type: entity
+   table: ActiviteEleve
+   id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+   fields:
+     type:
+       type : string
+       
+   manyToOne:
+        activite:
+            targetEntity: Activite
+            inversedBy: activites
+            joinColumn:
+                name: activite_id
+                referencedColumnName: id
+        eleve:
+            targetEntity: Eleve
+            inversedBy: eleves
+            joinColumn:
+                name: eleve_id
+                referencedColumnName: id
+                
+   ManyToMany:
+        mailing:
+          targetEntity: Mailing
+          mappedBy: activiteEleves

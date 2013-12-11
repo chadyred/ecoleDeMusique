@@ -1,0 +1,42 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Activites 
+{% endblock %}
+{% block titlePage %}
+        Activites 
+{% endblock %}
+      {% block content %} 
+     <div id="headerCentre">
+		<div id="nompage">
+			<h1>Activités</h1>
+		</div>
+	</div>
+        <div id="page">
+           <div id="content">
+                  <div class="post">
+                       <h2 class="title">Création d'une nouvelle activité </h2>
+                       
+                       <p>Rentrer une Activité proposé par l'école avec sa categorie ! Par exemple pour un cours de violon <br />(nom : violon categorie : instrument)</p>
+                       <br />
+                             <div class="entry">
+                                    <form action="{{ path('activite_create') }}" method="post" {{ form_enctype(form) }}>
+                                        {{ form_widget(form) }}
+                                            
+                                        <p><br />
+                                            <button type="submit">Créer</button>
+                                        </p>
+                                    </form>
+
+                                    <ul class="record_actions">
+                                        <li>
+                                            <a href="{{ path('activite') }}">
+                                                Retour à la liste
+                                            </a>
+                                        </li>
+                                    </ul>
+                              </div>
+                      </div>
+                   </div>
+       </div>
+{% endblock %}

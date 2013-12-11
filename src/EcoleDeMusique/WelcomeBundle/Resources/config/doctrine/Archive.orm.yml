@@ -1,0 +1,30 @@
+EcoleDeMusique\WelcomeBundle\Entity\Archive:
+   type: entity
+   table: archive
+   id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+   fields:
+     nom:
+          type: string
+          length: 255
+     prenom:
+          type: string
+          length: 255
+     dateDeNaissance:
+          type: date(25)
+          notnull: true
+     cycle:
+          type: integer  
+     instru1:
+          type: string
+          length: 255 
+     instru2:
+          type: string
+          length: 255 
+     anneeActivite:
+          type: integer
+     interuptionCourannee:
+          type: date(25)
+          nullable: TRUE

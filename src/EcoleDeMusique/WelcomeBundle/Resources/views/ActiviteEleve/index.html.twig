@@ -1,0 +1,74 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Activites 
+{% endblock %}
+{% block titlePage %}
+        Activites 
+{% endblock %}
+{% block content %} 
+<div id="header">
+		<div id="nompage">
+			<h1>Activités</h1>
+		</div>
+	</div>
+        
+        <div id="page">
+                  <div class="post">
+                       <h2 class="title">Activité exercé par les élèves</h2>
+                             <div class="entry">
+                                 <p>Listes des élèves avec les activités qu'ils pratiquent
+                                 <br />
+                                 <a href="{{ path('activiteeleve_search') }}">Faire une recherche</a></p>
+                                 <br />
+                                            <table class="records_list">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nom</th>
+                                                        <th>Prenom</th>
+                                                        <th>Nom Pratique</th>
+                                                        <th>Type</th>
+                                                     <!--   <th>Actions</th> -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for entity in entities %}
+                                                    <tr>
+                                                        <td>{{ entity.eleve.nom }}</td>
+                                                        <td>{{ entity.eleve.prenom }}</td>
+                                                        <td>{{ entity.activite.nom }}</td>
+                                                        <td>{{ entity.type }}</td>
+                                                        <td><a href="{{ path('activiteeleve_delete', { 'id': entity.id }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer cette combinaison?')"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"/></a></td>
+                                                   <!--     <td>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="{{ path('activiteeleve_show', { 'id': entity.id }) }}">show</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="{{ path('activiteeleve_edit', { 'id': entity.id }) }}">edit</a>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                   -->
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('activiteeleve_new') }}">
+                                                       Dire qui fait quoi 
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            
+                          </div>
+                      </div>
+               </div>
+                                            
+                                            
+                                            
+                                            
+                          
+                      {% endblock %}

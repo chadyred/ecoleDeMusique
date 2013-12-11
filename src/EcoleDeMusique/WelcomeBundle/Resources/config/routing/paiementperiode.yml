@@ -1,0 +1,35 @@
+paiementperiode:
+    pattern:  /
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:PaiementPeriode:index" }
+
+paiementperiode_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:PaiementPeriode:show" }
+
+paiementperiode_new:
+    pattern:  /new
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:PaiementPeriode:new" }
+
+paiementperiode_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:PaiementPeriode:create" }
+    requirements: { _method: post }
+
+paiementperiode_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:PaiementPeriode:edit" }
+
+paiementperiode_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:PaiementPeriode:update" }
+    requirements: { _method: get }
+
+paiementperiode_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:PaiementPeriode:delete" }
+    requirements: { _method: post }
+
+paiementperiode_updateDate:
+    pattern:  /updateDate
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:PaiementPeriode:updateDate" }
+    requirements: { _method: post }

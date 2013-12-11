@@ -1,0 +1,56 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        EcoleDeMusique\WelcomeBundle\Entity\User: plaintext
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        customer:
+            entity: { class: EcoleDeMusiqueWelcomeBundle:User, property: login }
+
+    firewalls:
+        vitrine_area:
+            pattern: ^/
+            anonymous: ~
+            form_login:
+                login_path: /login
+                check_path: /login_check
+            logout:
+                path: /logout
+                target: /ecoledemusique
+
+    access_control:
+        - { path: ^/eleve/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/regie/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/formules, role: ROLE_SUPER_ADMIN }
+        - { path: ^/famille/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/archive/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/archive/createall, role: ROLE_SUPER_ADMIN }
+        - { path: ^/activiteeleve/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/activite/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/cours/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/cours/newcol, role: ROLE_SUPER_ADMIN }
+        - { path: ^/prof/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/salle/new, role: ROLE_SUPER_ADMIN }
+        - { path: ^/ecoledemusique, role: ROLE_ADMIN }
+        - { path: ^/regie, role: ROLE_ADMIN }
+        - { path: ^/eleve, role: ROLE_ADMIN }
+        - { path: ^/famille, role: ROLE_ADMIN }
+        - { path: ^/archive, role: ROLE_ADMIN }
+        - { path: ^/activite/sommaire, role: ROLE_ADMIN }
+        - { path: ^/activite, role: ROLE_ADMIN }
+        - { path: ^/activiteeleve, role: ROLE_ADMIN }
+        - { path: ^/regie/simulation, role: ROLE_ADMIN }
+        - { path: ^/paiement, role: ROLE_ADMIN }
+        - { path: ^/paiement/search, role: ROLE_ADMIN }
+        - { path: ^/cours, role: ROLE_ADMIN }
+        - { path: ^/prof, role: ROLE_ADMIN }
+        - { path: ^/salle, role: ROLE_ADMIN }
+        
+        

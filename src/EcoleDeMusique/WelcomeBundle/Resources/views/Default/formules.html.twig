@@ -1,0 +1,181 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Formule
+{% endblock %}
+{% block titlePage %}
+      Formule
+{% endblock %}
+        
+
+{% block content %} 
+         <div id="headerCentre">
+		<div id="nompage">
+			<h1>Formules</h1>
+		</div>
+	</div>
+<div id="page">
+                       <div id="content">
+                            <div class="post">
+                                <h2 class="title">Permet de gérer les formules de tarification</h2>
+                                <div class="entry">
+
+                                    <p>Cette rubrique permet de <strong>changer la valeur des paramètres</strong> de la formule de tarification, ainsi que la valeur des coefficients de chaques options de la formation.
+                                        Les valeurs visibles dans les champs sont celles actuellement utilisées.Pour en savoir plus sur le fonctionnement de ce module, <strong>Cliquez</strong> <a href=""><strong>ici</strong></a>.</p>
+                                    <br />
+                                    <form action="{{path('ecole_de_musique_welcome_formulesChangement')}}" method="post" {{ form_enctype(form) }}>
+
+                                        <div>
+                                            <h3>Formule</h3>
+                                            {{ form_label(form.FormuleCalcul, 'Formule'|trans) }}
+                                       {{ form_widget(form.FormuleCalcul) }}
+                                            <h3>Paramètres de la Formule</h3>
+                                       {{ form_label(form.Formule0param1, 'Parametre 1'|trans) }}
+                                       {{ form_widget(form.Formule0param1) }}
+                                                
+                                       {{ form_label(form.Formule0param2, 'Parametre 2'|trans) }}
+                                       {{ form_widget(form.Formule0param2) }}  
+                                                
+                                       {{ form_label(form.Formule0param3, 'Parametre 3'|trans) }}
+                                       {{ form_widget(form.Formule0param3) }}
+                                                
+                                       {{ form_label(form.Formule0param4, 'Parametre 4'|trans) }}
+                                       {{ form_widget(form.Formule0param4) }}
+                                                
+                                       {{ form_label(form.Formule0param5, 'Parametre 5'|trans) }}
+                                       {{ form_widget(form.Formule0param5) }}
+
+                                      </div>
+                                        <div>
+                                            <h3>Coefficients Capv et Instrument</h3>
+                                            
+                                            
+                                            <table>
+                                              <tr>    
+                                                    <td>
+                                                            {{ form_label(form.capv, 'Capv'|trans) }}<br>
+                                                            {{ form_widget(form.capv) }}
+                                                    </td>
+                                                    <td>
+                                                            {{ form_label(form.coefInstru2, 'Instrument 2'|trans) }}<br>
+                                                            {{ form_widget(form.coefInstru2) }}
+                                                    </td>
+                                             </tr>
+                                             <tr>    
+                                                    <td>
+                                                           {{ form_label(form.coefInstru3, 'Instrument 3'|trans) }}<br>
+                                                           {{ form_widget(form.coefInstru3) }}
+                                                    </td>
+                                             </tr>
+                                             </table>
+                                            
+                                            <h3>Reduction Familial par nombre d'élèves</h3>
+                                            <table>
+                                             <tr>
+                                                     <td>
+                                                           {{ form_label(form.coef2eleves, '2 Eleves'|trans) }}<br>
+                                                           {{ form_widget(form.coef2eleves) }}  
+                                                    </td>       
+                                      
+                                                     <td>
+                                                            {{ form_label(form.coef3eleves, '3 Eleves'|trans) }}<br>
+                                                            {{ form_widget(form.coef3eleves) }} 
+                                                     </td>
+                                                     
+                                            </tr>
+                                             <tr>    
+                                                     
+                                                     <td>
+                                                            {{ form_label(form.coef4eleves, '4 Eleves'|trans) }}<br>
+                                                            {{ form_widget(form.coef4eleves) }} 
+                                                    </td>
+                                   
+                                                     <td>
+                                                    {{ form_label(form.coef5eleves, '5 Eleves'|trans) }}<br>
+                                                     {{ form_widget(form.coef5eleves) }} 
+                                                             
+                                                     </td>
+                                             </tr>
+                                   </table>
+                                            
+                                            <h3>Coefficients Cycle</h3>
+                                    <table>
+                                        
+                                              <tr>
+                                                     <td>
+                                                     {{ form_label(form.cycle0, 'Eveil Musical'|trans) }}<br>
+                                                     {{ form_widget(form.cycle0) }} 
+                                                     
+                                                     </td>
+                                                        <td>
+                                                     {{ form_label(form.cycle1, 'Cycle 1'|trans) }}<br>
+                                                     {{ form_widget(form.cycle1) }} 
+                                                     
+                                                     </td>
+                                             </tr>
+                                             <tr>
+                                                     <td>
+                                                     {{ form_label(form.cycle2, 'Cycle 2'|trans) }}<br>
+                                                     {{ form_widget(form.cycle2) }} 
+                                                     
+                                                     </td>
+                                                        <td>
+                                                     {{ form_label(form.cycle3, 'Cycle 3'|trans) }}<br>
+                                                     {{ form_widget(form.cycle3) }} 
+                                                     
+                                                     </td>
+                                             </tr>
+                                            </table>
+                                            
+                                  <h3>Multiplicateur Adulte</h3>
+                                    <table>
+                                        
+                                              <tr>
+                                                     <td>
+                                                     {{ form_label(form.MultiplicateurAdulte, 'Multiplicateur Adulte'|trans) }}<br>
+                                                     {{ form_widget(form.MultiplicateurAdulte) }} 
+                                                     
+                                                     </td>
+                                             </tr>
+                                      </table>
+                                  
+                                  
+                                  
+                                    <h3>Tarif Maximum</h3>
+                                    <table>
+                                        
+                                              <tr>
+                                                     <td>
+                                                     {{ form_label(form.tarifMax , 'Tarif Max'|trans) }}<br>
+                                                     {{ form_widget(form.tarifMax) }} 
+                                                     
+                                                     </td>
+                                             
+                                                     <td>
+                                                     
+                                                     </td>
+                                             </tr>
+                                      </table>
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                        </div>
+             
+                                      <div>
+                                                <input type="submit" id="submit" value="Appliquer les changements" name="submit" />
+                                      </div>
+                                    </form>
+                             
+                                 
+
+                            </div>
+                       </div>
+</div>
+      
+                               
+
+{% endblock %}

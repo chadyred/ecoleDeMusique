@@ -1,0 +1,82 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Paiement
+{% endblock %}
+{% block titlePage %}
+        Paiement
+{% endblock %}
+      {% block content %} 
+            <div id="headerCentre">
+                        <div id="nompage">
+                                <h1>Paiements</h1>
+                        </div>
+                </div>
+        <div id="page">
+               <div id="content">
+                  <div class="post">
+                       <h2 class="title">Liste des Paiements </h2>
+                             <div class="entry">
+                                 <p>Si vous voulez avoir tous les paiements pour un export ne rentrez aucun critère</p>
+                                 <br />
+
+                                        <form action="{{ path('paiement_searchResult') }}" method="post" {{ form_enctype(form) }}>
+                                            
+                                            <table>
+                                                                               
+                             
+                                       <tr>
+                                                    <td>
+                                                            {{ form_label(form.nom, "nom :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.nom) }} 
+                                                   </td>
+                                           </tr>
+                                           <tr>
+                                                    <td>
+                                                            {{ form_label(form.prenom, "prénom :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.prenom) }} 
+                                                   </td>
+                                           </tr>
+                                              <tr>
+                                                    <td>
+                                                            {{ form_label(form.cycle, "cycle :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.cycle) }} 
+                                                   </td>
+                                           </tr>
+                                            <tr>
+                                                    <td>
+                                                            {{ form_label(form.sommePeriode, "Somme par periode :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.sommePeriode) }} 
+                                                   </td>
+                                           </tr>
+                                           <tr>
+                                                    <td>
+                                                            {{ form_label(form.sommeTotal, "Somme Total :"|trans) }}
+                                                    </td>
+                                                    <td>
+                                                              {{ form_widget(form.sommeTotal) }} 
+                                                   </td>
+                                           </tr>
+                                                    
+                                                    
+                                                    
+                                           </table>
+                                            <p>
+                                                <button type="submit">Recherche</button>
+                                            </p>
+                                        </form>
+
+                                     
+                              </div>
+                  </div>
+              </div>
+         </div>
+      {% endblock %}  

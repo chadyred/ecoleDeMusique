@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Office Memo  
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120401
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title> {% block title %} Application Ecole de Musique{% endblock %}</title>
+        {% stylesheets filter='cssrewrite, ?yui_css'
+                '@EcoleDeMusiqueWelcomeBundle/Resources/public/css/layoutStyle.css' 
+		'@EcoleDeMusiqueWelcomeBundle/Resources/public/css/jquery.superbox.css' 
+		%}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all"/>
+	{% endstylesheets %}
+
+        <link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css" />
+        <link href="http://fonts.googleapis.com/css?family=Coda:400,800" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript" src="{{ asset('bundles/ecoledemusiquewelcome/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/ecoledemusiquewelcome/js/jquery.superbox-min.js') }}"></script>
+        <script type="text/javascript">
+            $(function() {
+                $.superbox();
+            });
+            </script>
+        </head>
+        <body>
+            <div id="menu-wrapper">
+
+                <div id="logo">
+                    <img id="background" src="{{ asset('bundles/ecoledemusiquewelcome/images/logo.png') }}"/>
+
+  {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN') %} <span id="logOutBox"><a href="{{url('logout')}}">Se Déconnecter</a></span>{% endif %}
+                </div>
+                <div id="menu">
+                    <ul>
+                        <li class="current_page_item"><a href="{{ path('ecole_de_musique_welcome_homepage') }}">Accueil</a></li>
+                        <li><a href="{{ path('regie') }}">Regie</a>
+                            <!--        <ul>
+                                            <li><a href="#">Consultation</a></li>
+                                            <li><a href="#">Saisie</a></li>
+                                    </ul>-->
+                        </li>
+                        <li><a href="{{ path('ecole_de_musique_welcome_formules') }}">Formules</a></li>
+                        <li><a href="{{ path('eleve') }}">Etat Civil</a></li>
+                        <li><a href="{{ path('famille') }}">Familles</a></li>
+                        <li><a href="{{ path('paiement') }}">Paiements</a></li>
+                        <li><a href="{{ path('archive') }}">Archives</a></li>
+                        <li><a href="{{ path('activite_sommaire') }}">Activités</a></li>
+                        <li><a href="{{ path('prof') }}">Profs</a></li>
+                        <li><a href="{{ path('salle') }}">Salles</a></li>
+                        <li><a href="{{ path('cours') }}">Plannings</a></li>
+                        <li><a href="{{ path('mailing') }}">Mailing</a></li>             
+                    </ul>
+                </div>
+                <!-- end #menu -->
+            </div>
+            <div id="header-wrapper">
+                <div id="alert-info" style="background-color:#0193CC;text-align: center;color:white;font-family: 'Arvo', serif;">
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                              {{ flashMessage }}     
+                {% endfor %}
+                    </div>
+
+                </div>
+                <div id="middle">
+
+             {% block content %} {% endblock %}
+
+                </div>
+                <div id="footer">
+                    <p>&copy; 2013 Application Ecole de Musique | Licence GPL | Développé par Florent Paccalet</p>
+                </div>
+                <!-- end #footer -->
+
+
+            </body>
+        </html>

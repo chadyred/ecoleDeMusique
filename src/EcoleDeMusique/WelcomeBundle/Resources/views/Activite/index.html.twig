@@ -1,0 +1,70 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Activites 
+{% endblock %}
+{% block titlePage %}
+        Activites 
+{% endblock %}
+      {% block content %} 
+        <div id="header">
+		<div id="nompage">
+			<h1>Activités</h1>
+		</div>
+	</div>
+        <div id="page">
+                  <div class="post">
+                       <h2 class="title">Liste des Activités </h2>
+                             <div class="entry">
+                                 <p>Liste des activites proposées par l'école de musique, notamment les pratiques collectives, instruments, formations musicales</p>
+                                 <br />
+                                        <table class="records_list">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Nom</th>
+                                                    <th>Catégorie</th>
+                                                    
+                                                <!--    <th>Actions</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for entity in entities %}
+                                                <tr>
+                                                    <td><a href="{{ path('activite_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                                                    <td>{{ entity.nom }}</td>
+                                                      <td>{{ entity.categorie }}</td>
+                                                    <td> <a href="{{ path('activite_delete', { 'id': entity.id }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer cette activité?')"> <img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"/></a></td>
+                                                    
+                                                    
+                                                    
+                                                  <!--  <td>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="{{ path('activite_show', { 'id': entity.id }) }}">show</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="{{ path('activite_edit', { 'id': entity.id }) }}">edit</a>
+                                                            </li>
+                                                        </ul>
+                                                    </td> -->
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('activite_new') }}">
+                                                    Créer une nouvelle activité
+                                                </a>
+                                            </li>
+                                        </ul>
+
+
+                            </div>
+                     </div>
+         </div>
+          
+          
+          {% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Activites 
+{% endblock %}
+
+{% block content %} 
+<div id="header">
+		<div id="nompage">
+			<h1>Activités</h1>
+		</div>
+	</div>
+        
+        <div id="page">
+              <h2 class="title">Activité exercé par les élèves</h2>
+                  <div class="post">
+                     
+                       <div class="entry">
+                       <br />
+                       <table class="records_list">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nom</th>
+                                                        <th>Prenom</th>
+                                                        <th>Nom Pratique</th>
+                                                        <th>Type</th>
+                                                     <!--   <th>Actions</th> -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for entity in entities %}
+                                                    <tr>
+                                                        <td>{{ entity.eleve.nom }}</td>
+                                                        <td>{{ entity.eleve.prenom }}</td>
+                                                        <td>{{ entity.activite.nom }}</td>
+                                                        <td>{{ entity.type }}</td>
+                                                        
+                                              {% endfor %}
+                                                </tbody>
+                                            </table>
+                       
+                       <br />
+                        <strong><a href="{{ path('activite') }}">Retour liste</a></strong> <br />
+                       </div>
+                </div>
+                
+    </div>
+        
+        
+        
+        
+        
+       
+       {% endblock %}
+ 
+        
+        

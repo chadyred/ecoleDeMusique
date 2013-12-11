@@ -1,0 +1,55 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        &#65;ccueil
+{% endblock %}
+{% block titlePage %}
+        &#65;ccueil
+{% endblock %}
+        
+
+{% block content %} 
+          <div id="header">
+		<div id="nompage">
+			<h1>Mailing</h1>
+		</div>
+	</div>
+        
+        <div id="page">
+                       <div id="content">
+                            <div class="post">
+                                    <div class="entry">
+                                        <h3>Nouveau Message</h3>			
+                                    </div>
+                                    <form id="form_search" action="{{ path('mailing_search') }}" method="post" {{ form_enctype(form) }}>
+                                        {# Génération du label. #}
+  					{{ form_label(form.activiteEleve, "Activité : ") }}
+                                        {# Les erreurs générales du formulaire. #}
+                                        {{ form_errors(form.activiteEleve) }}
+                                        {# Génération de l'input. #}
+  					{{ form_widget(form.activiteEleve) }}
+                                        {{ form_errors(form) }}
+					{{ form_rest(form) }} 
+                                       <input type="submit" value="Sélectionner" />
+                                    </form>
+                                    <div><h3>Messages envoyés</h3></div>
+                                    <div class="liste_mailing">
+                                    <table>
+                                        <th>Titre</th><th> Messages envoyés</th><th>Activité(s) concernée(s)</th>
+                                        <th>Supprimer</th>
+                                        {% for mailing in liste_mailing %}
+                                        <tr><td>{{mailing.getTitre()}}</td> <td>{{mailing.getMessage()}}</td>  
+                                            {% set activite_eleves=mailing.getActiviteEleves() %}
+                                                <td>{{mailing.getNomActivite()}}</td>
+                                                <td><a href="{{ path('mailing_delete', {'id': mailing.getId()}) }}"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"></a></td></tr>
+                                        {% endfor %}
+                                    </table>
+                                    </div>
+                            </div>                                  
+                            <div style="clear: both;">&nbsp;</div>
+                            
+                     </div>
+			<!-- end #content -->
+			<div style="clear: both;">&nbsp;</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Famille
+{% endblock %}
+{% block titlePage %}
+          Famille
+{% endblock %}
+      {% block content %}    
+          
+          
+          <div id="page">
+           <div id="content">
+                  <div class="post">
+                     <h2 class="title">Edition de la Famille</h2>
+                     <p>Vous pouvez ici changer le <strong>QF</strong> de la famille</p>
+<br />
+                         <div class="entry">
+                                <form action="{{ path('famille_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                                    {{ form_widget(edit_form) }}
+                                    <p>
+                                        <button type="submit">Changer</button>
+                                    </p>
+                                </form>
+
+                                <ul class="record_actions">
+                                    <li>
+                                        <a href="{{ path('famille') }}">
+                                            Liste des familles
+                                        </a>
+                                    </li>
+                                
+                                </ul>
+                                     
+                             </div>
+                       </div>
+                   </div>
+            </div>
+
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Etat Civil
+{% endblock %}
+
+      {% block content %}      
+
+
+<style>
+    
+        table
+        {
+            border-collapse:collapse;   
+        }
+        .records_list tr:hover
+        {
+              background: #DCDCDC;
+        }       
+                
+                
+         
+        .colonneId
+        {
+                width:30px;
+        }
+       
+        .colonneNom
+        {
+            width:120px;
+        }
+        
+        .colonnePrenom
+        {
+          width:123px;
+        }
+        
+        .colonneAdresse
+        {
+             width:200px;
+        }
+        
+        .colonneCodepostal
+        {
+            width:72px;
+        }
+        
+          .colonneVille
+        {
+            width:150px;
+        }
+        
+        .colonneCivilite
+        {   
+            width:50px;
+        }
+        
+        
+        .colonneTeleleve
+        {
+             width:85px;
+        }
+        
+        
+        .colonneTelmere
+        {
+             width:85px;
+        }
+        
+        
+        .colonneTelpere
+        {
+             width:85px;
+        }
+        
+        .colonneDatedenaissance
+        {
+            width:110px;
+        }
+        
+        
+        
+        .colonneMail
+        {
+            width:230px;
+        }
+            
+        </style> 
+
+	<div id="header">
+		<div id="nompage">
+			<h1>Etat Civil</h1>
+		</div>
+	</div>
+        <div id="page">
+           
+                  <div class="post">
+                       <h2 class="title">Informations d'Etat Civil pour la Famille {{ idFamille }}</h2>
+                             <div class="entry">
+
+
+<table>
+                                            <tr>
+                                                <th class="colonneId">Id</th>
+                                                <th class="colonneNom">Nom</th>
+                                                <th class="colonnePrenom">Prenom</th>
+                                                <th class="colonneAdresse">Adresse</th>
+                                                <th class="colonneCodepostal">CodePost</th>
+                                                <th class="colonneVille">Ville</th>
+                                                <th class="colonneCivilite">Civilite</th>
+                                                <th class="colonneTeleleve">Teleleve</th>
+                                                <th class="colonneTelmere">Telmere</th>
+                                                <th class="colonneTelpere">Telpere</th>
+                                                <th class="colonneDatedenaissance">Datedenaissance</th>
+                                                <th class="colonneMail">Mail</th>
+                                                <th></th>
+                                            </tr>
+                                        </table>
+                                 <div style="max-height:800px;overflow-y: scroll;">
+                                        <table class="records_list">
+                                        {% for entity in entities %}
+                                            <tr>
+                                                <td class="colonneId"><a href="{{ path('eleve_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                                                <td class="colonneNom">{{ entity.nom }}</td>
+                                                <td class="colonnePrenom">{{ entity.prenom }}</td>
+                                                <td class="colonneAdresse">{{ entity.adresse }}</td>
+                                                <td class="colonneCodepostal">{{ entity.codePostal }}</td>
+                                                <td class="colonneVille">{{ entity.ville }}</td>
+                                                <td class="colonneCivilite">{{ entity.civilite }}</td>
+                                                <td class="colonneTeleleve">{{ entity.telEleve }}</td>
+                                                <td class="colonneTelmere">{{ entity.telMere }}</td>
+                                                <td class="colonneTelpere">{{ entity.telPere }}</td>
+                                                <td  class="colonneDatedenaissance">{% if entity.dateDeNaissance %}{{ entity.dateDeNaissance|date('d-m-Y') }}{% endif %}</td>
+                                                <td class="colonneMail">{{ entity.mail }}</td>
+                                                <td>
+                                                            <a href="{{ path('eleve_edit', { 'id': entity.id }) }}"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/crayon.png') }}"></a>
+                                                     
+                                           
+                                                               <a href="{{ path('eleve_delete', { 'id': entity.id }) }}"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"></a>
+                                                </td>
+                                            </tr>
+                                
+                                        {% endfor %}
+                                    </table>
+                                    </div>
+                          </div>
+                       </div>
+                                         
+                                         
+                                      
+ {% endblock %}

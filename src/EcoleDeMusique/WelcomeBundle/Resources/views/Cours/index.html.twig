@@ -1,0 +1,484 @@
+{% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
+
+{% block title %}
+        Planning
+{% endblock %}
+
+      {% block content %} 
+        	<style>
+			#lundi, #mardi, #mercredi, #jeudi, #vendredi, #samedi, #dimanche 
+			{
+				
+				
+					vertical-align: top;width:191px;
+				
+			}
+			
+
+			td
+			{
+				
+						border:1px solid black;
+			}
+			#heure
+			{
+				
+				vertical-align: top;
+			  
+					
+			}	
+			
+			.tranche
+			{
+				height: 60px;   
+			}
+			
+			th
+			{
+					font-size:0.9em;
+			}
+			
+			.cours
+			{
+				background:#CECECE;
+                                position:absolute; width:191px;
+                            /*   overflow-y: scroll;
+                              */ 
+                               
+                               font-size: 0.95em;
+			}
+                        
+			
+	</style>
+        <script type="text/javascript">
+            
+             $(document).ready(function(){
+                 
+                 
+                 $(function(){$("#mode").change(function () {
+                         
+                                $('#change').val("oui");
+                             
+                       
+                        }); 
+                     }); 
+                 
+                 $(function(){$(".select").change(function () {
+                         document.forms["form"].submit(); 
+                        }); 
+                     }); 
+                 
+                 
+                 });
+            
+            
+            
+        </script>
+        
+      <div id="header">
+          <div id="nompage">
+              
+              <form action="{{ path('cours') }}" method="get" name="form">
+                  <span style="font-size:4.0em;">Planning </span>
+                  <select class="select" name="mode" id="mode">
+                      <option value="individuel"{% if mode=='individuel' %} selected{% endif %}>Individuel</option>
+                      <option value="salle"{% if mode=='salle' %} selected{% endif %}>Salle</option>
+                      <option value="prof" {% if mode=='prof' %} selected{% endif %} >Prof</option>
+                  </select>
+                   <select class="select" name="name" id="name">
+                        {% for listselect in listselect %}
+                            <option value="{{ listselect.id }}"{% if name==listselect.id %} selected {% endif %} >{{ listselect.nom }} {% if listselect.prenom is defined %} {{ listselect.prenom }} {% endif %}</option>
+                       {% endfor %}
+                   </select>
+                  <input type="submit" id="change" name="change" value="Actualiser">
+             <a href="{{ path('cours_new') }}">Saisir un nouveau cours individuel</a> <a href="{{ path('cours_new_collectif') }}">Saisir un nouveau cours collectif</a>
+               </form>   
+   {#             <form action="{{ path('cours_new', { 'id': listselect.id }) }}" method="get">
+                    <button type="submit">Saisir un nouveau cours individuel</button>
+                </form>#}
+           
+           <!-- <h2 class="title">Informations d'Etat Civil</h2>  -->
+        </div>
+	</div>
+        <div id="page">
+                  <div class="post">
+            <table cellspacing="0" cellpadding="0" border="1">
+                                            
+                                        <tr>
+												<th>
+											   </th>
+												<th>
+													lundi
+												</th>
+												<th>
+													mardi
+												</th>
+												<th>
+													mercredi
+												</th>
+												<th>
+													jeudi
+												</th>
+												<th>
+													vendredi
+												</th>
+												<th>
+													Samedi
+												</th>
+												<th>
+													Dimanche
+												</th>
+                                        
+                                        
+                                        </tr>                                                                                            
+                                       <tr>
+
+												<td id="heure">
+													<div class="tranche">
+														8:00
+													</div>
+													<div class="tranche">
+														9:00
+													</div>
+													<div class="tranche">
+														10:00
+													</div>
+													<div class="tranche">
+														11:00
+													</div>
+														<div class="tranche">
+														12:00
+													</div>
+														<div class="tranche">
+														13:00
+													</div>
+														<div class="tranche">
+														14:00
+													</div>
+														<div class="tranche">
+														15:00
+													</div>
+														<div class="tranche">
+														16:00
+													</div>
+														<div class="tranche">
+														17:00
+													</div>
+														<div class="tranche">
+														18:00
+													</div>
+														<div class="tranche">
+														19:00
+													</div>
+														<div class="tranche">
+														20:00
+													</div>
+													<div class="tranche">
+														21:00
+													</div>
+														22:00
+
+		
+												</td>
+												
+										
+										
+                                                    <td id="lundi" class="body">
+                                                    
+                                                       
+                                                       {% if mode=='individuel' %}
+                                                              {% for entity in entities %}
+                                                     
+                                                                {% if entity.cours.dateDeb|date('D')=='Mon' %}
+                                                                     <div class="cours" style="margin-top: {{ ((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i')  }}px;height: {{ (((entity.cours.dateFin|date('H')-8)*60) + entity.cours.dateFin|date('i'))-(((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i'))}}px;">
+                                                                        <strong>{{ entity.cours.activite.nom }}</strong> - {{ entity.cours.salle.nom }}- Mr  {{ entity.cours.prof.nom }} - <i>{{ entity.cours.dateDeb|date('H:i') }}->{{ entity.cours.dateFin|date('H:i') }}</i>
+                                                                            <a href="{{ path('cours_delete', { 'id': entity.cours.id,'mode': mode,'name': entity.eleve.id }) }}">Suppr.</a>
+                                                                     </div>
+                                                                {% endif %}
+                                                              {% endfor %}
+                                                       {% endif %}
+                                                        
+                                                                    {% if mode=='salle' %}
+                                                                         {% for entity in entities %}
+
+                                                                           {% if entity.dateDeb|date('D')=='Mon' %}
+                                                                                <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                   <strong>{{ entity.activite.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                    <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.salle.id }) }}">Suppr.</a>
+                                                                                </div>
+                                                                           {% endif %}
+                                                                         {% endfor %}
+                                                                  {% endif %}
+
+                                                                            {% if mode=='prof' %}
+                                                                                  {% for entity in entities %}
+
+                                                                                    {% if entity.dateDeb|date('D')=='Mon' %}
+                                                                                         <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                            <strong>{{ entity.salle.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                    <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.prof.id }) }}">Suppr.</a>
+                                                                                         </div>
+                                                                                    {% endif %}
+                                                                                  {% endfor %}
+                                                                           {% endif %}
+                                                        
+                                                        
+                                                       
+                                                    
+                                                    
+                                                    </td>
+                                                    <td id="mardi" class="body"> 
+                                                   
+                                                       {% if mode=='individuel' %}
+                                                              {% for entity in entities %}
+                                                     
+                                                                {% if entity.cours.dateDeb|date('D')=='Tue' %}
+                                                                     <div class="cours" style="margin-top: {{ ((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i')  }}px;height: {{ (((entity.cours.dateFin|date('H')-8)*60) + entity.cours.dateFin|date('i'))-(((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i'))}}px;">
+                                                                        <strong>{{ entity.cours.activite.nom }}</strong> - {{ entity.cours.salle.nom }}- Mr  {{ entity.cours.prof.nom }} - <i>{{ entity.cours.dateDeb|date('H:i') }}->{{ entity.cours.dateFin|date('H:i') }}</i>
+                                                                     <a href="{{ path('cours_delete', { 'id': entity.cours.id,'mode': mode,'name': entity.eleve.id }) }}">Suppr.</a>
+                                                                     </div>
+                                                                {% endif %}
+                                                              {% endfor %}
+                                                       {% endif %}
+                                                        
+                                                                    {% if mode=='salle' %}
+                                                                         {% for entity in entities %}
+
+                                                                           {% if entity.dateDeb|date('D')=='Tue' %}
+                                                                                <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                   <strong>{{ entity.activite.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                    <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.salle.id }) }}">Suppr.</a>
+                                                                                </div>
+                                                                           {% endif %}
+                                                                         {% endfor %}
+                                                                  {% endif %}
+
+                                                                            {% if mode=='prof' %}
+                                                                                  {% for entity in entities %}
+
+                                                                                    {% if entity.dateDeb|date('D')=='Tue' %}
+                                                                                         <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                            <strong>{{ entity.salle.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                             <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.prof.id }) }}">Suppr.</a>
+                                                                                         </div>
+                                                                                    {% endif %}
+                                                                                  {% endfor %}
+                                                                           {% endif %}
+          
+                                                    </td>
+                                                    <td id="mercredi" class="body">                                                    
+                                                    {% if mode=='individuel' %}
+                                                              {% for entity in entities %}
+                                                     
+                                                                {% if entity.cours.dateDeb|date('D')=='Wed' %}
+                                                                     <div class="cours" style="margin-top: {{ ((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i')  }}px;height: {{ (((entity.cours.dateFin|date('H')-8)*60) + entity.cours.dateFin|date('i'))-(((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i'))}}px;">
+                                                                        <strong>{{ entity.cours.activite.nom }}</strong> - {{ entity.cours.salle.nom }}- Mr  {{ entity.cours.prof.nom }} - <i>{{ entity.cours.dateDeb|date('H:i') }}->{{ entity.cours.dateFin|date('H:i') }}</i>
+                                                                      <a href="{{ path('cours_delete', { 'id': entity.cours.id,'mode': mode,'name': entity.eleve.id }) }}">Suppr.</a>
+                                                                     </div>
+                                                                {% endif %}
+                                                              {% endfor %}
+                                                       {% endif %}
+                                                        
+                                                                    {% if mode=='salle' %}
+                                                                         {% for entity in entities %}
+
+                                                                           {% if entity.dateDeb|date('D')=='Wed' %}
+                                                                                <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                   <strong>{{ entity.activite.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                    <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.salle.id }) }}">Suppr.</a>
+                                                                                </div>
+                                                                           {% endif %}
+                                                                         {% endfor %}
+                                                                  {% endif %}
+
+                                                                            {% if mode=='prof' %}
+                                                                                  {% for entity in entities %}
+
+                                                                                    {% if entity.dateDeb|date('D')=='Wed' %}
+                                                                                         <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                            <strong>{{ entity.salle.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                               <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.prof.id }) }}">Suppr.</a>
+                                                                                         </div>
+                                                                                    {% endif %}
+                                                                                  {% endfor %}
+                                                                           {% endif %}
+                                                        
+                                                
+                                                    
+                                                    </td>
+                                                    <td id="jeudi" class="body">
+                                                          {% if mode=='individuel' %}
+                                                              {% for entity in entities %}
+                                                     
+                                                                {% if entity.cours.dateDeb|date('D')=='Thu' %}
+                                                                     <div class="cours" style="margin-top: {{ ((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i')  }}px;height: {{ (((entity.cours.dateFin|date('H')-8)*60) + entity.cours.dateFin|date('i'))-(((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i'))}}px;">
+                                                                        <strong>{{ entity.cours.activite.nom }}</strong> - {{ entity.cours.salle.nom }}- Mr  {{ entity.cours.prof.nom }} - <i>{{ entity.cours.dateDeb|date('H:i') }}->{{ entity.cours.dateFin|date('H:i') }}</i>
+                                                                        <a href="{{ path('cours_delete', { 'id': entity.cours.id,'mode': mode,'name': entity.eleve.id }) }}">Suppr.</a>                             
+                                                                     </div>
+                                                                {% endif %}
+                                                              {% endfor %}
+                                                       {% endif %}
+                                                        
+                                                                    {% if mode=='salle' %}
+                                                                         {% for entity in entities %}
+
+                                                                           {% if entity.dateDeb|date('D')=='Thu' %}
+                                                                                <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                   <strong>{{ entity.activite.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                    <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.salle.id }) }}">Suppr.</a>
+                                                                                </div>
+                                                                           {% endif %}
+                                                                         {% endfor %}
+                                                                  {% endif %}
+
+                                                                            {% if mode=='prof' %}
+                                                                                  {% for entity in entities %}
+
+                                                                                    {% if entity.dateDeb|date('D')=='Thu' %}
+                                                                                         <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                            <strong>{{ entity.salle.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                             <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.prof.id }) }}">Suppr.</a>
+                                                                                         </div>
+                                                                                    {% endif %}
+                                                                                  {% endfor %}
+                                                                           {% endif %}
+                                                    
+                                                    </td>
+                                                   <td id="vendredi" class="body">
+                                                       
+                                                      {% if mode=='individuel' %}
+                                                              {% for entity in entities %}
+                                                     
+                                                                {% if entity.cours.dateDeb|date('D')=='Fri' %}
+                                                                     <div class="cours" style="margin-top: {{ ((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i')  }}px;height: {{ (((entity.cours.dateFin|date('H')-8)*60) + entity.cours.dateFin|date('i'))-(((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i'))}}px;">
+                                                                        <strong>{{ entity.cours.activite.nom }}</strong> - {{ entity.cours.salle.nom }}- Mr  {{ entity.cours.prof.nom }} - <i>{{ entity.cours.dateDeb|date('H:i') }}->{{ entity.cours.dateFin|date('H:i') }}</i>
+                                                                       <a href="{{ path('cours_delete', { 'id': entity.cours.id,'mode': mode,'name': entity.eleve.id }) }}">Suppr.</a>                                                                      
+                                                                     </div>
+                                                                {% endif %}
+                                                              {% endfor %}
+                                                       {% endif %}
+                                                        
+                                                                    {% if mode=='salle' %}
+                                                                         {% for entity in entities %}
+
+                                                                           {% if entity.dateDeb|date('D')=='Fri' %}
+                                                                                <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                   <strong>{{ entity.activite.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                    <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.salle.id }) }}">Suppr.</a>
+                                                                                </div>
+                                                                           {% endif %}
+                                                                         {% endfor %}
+                                                                  {% endif %}
+
+                                                                            {% if mode=='prof' %}
+                                                                                  {% for entity in entities %}
+
+                                                                                    {% if entity.dateDeb|date('D')=='Fri' %}
+                                                                                         <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                            <strong>{{ entity.salle.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                            <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.prof.id }) }}">Suppr.</a>
+                                                                                         </div>
+                                                                                    {% endif %}
+                                                                                  {% endfor %}
+                                                                           {% endif %}
+                                         
+                                                    </td>
+                                                    
+                                                    
+                                                       <td id="samedi" class="body">
+                                                           
+                                                           
+                                                           
+                                                           {% if mode=='individuel' %}
+                                                              {% for entity in entities %}
+                                                     
+                                                                {% if entity.cours.dateDeb|date('D')=='Sat' %}
+                                                                     <div class="cours" style="margin-top: {{ ((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i')  }}px;height: {{ (((entity.cours.dateFin|date('H')-8)*60) + entity.cours.dateFin|date('i'))-(((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i'))}}px;">
+                                                                        <strong>{{ entity.cours.activite.nom }}</strong> - {{ entity.cours.salle.nom }}- Mr  {{ entity.cours.prof.nom }} - <i>{{ entity.cours.dateDeb|date('H:i') }}->{{ entity.cours.dateFin|date('H:i') }}</i>
+                                                                        <a href="{{ path('cours_delete', { 'id': entity.cours.id,'mode': mode,'name': entity.eleve.id }) }}">Suppr.</a>
+                                                                     </div>
+                                                                {% endif %}
+                                                              {% endfor %}
+                                                       {% endif %}
+                                                        
+                                                                    {% if mode=='salle' %}
+                                                                         {% for entity in entities %}
+
+                                                                           {% if entity.dateDeb|date('D')=='Sat' %}
+                                                                                <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                   <strong>{{ entity.activite.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                    <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.salle.id }) }}">Suppr.</a>
+                                                                                </div>
+                                                                           {% endif %}
+                                                                         {% endfor %}
+                                                                  {% endif %}
+
+                                                                            {% if mode=='prof' %}
+                                                                                  {% for entity in entities %}
+
+                                                                                    {% if entity.dateDeb|date('D')=='Sat' %}
+                                                                                         <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                            <strong>{{ entity.salle.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                             <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.prof.id }) }}">Suppr.</a>
+                                                                                         </div>
+                                                                                    {% endif %}
+                                                                                  {% endfor %}
+                                                                           {% endif %}
+                                                    
+                                           
+                                                    </td>
+                                                        <td id="dimanche" class="body">
+                                                            
+                                                            {% if mode=='individuel' %}
+                                                              {% for entity in entities %}
+                                                     
+                                                                {% if entity.cours.dateDeb|date('D')=='Sun' %}
+                                                                     <div class="cours" style="margin-top: {{ ((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i')  }}px;height: {{ (((entity.cours.dateFin|date('H')-8)*60) + entity.cours.dateFin|date('i'))-(((entity.cours.dateDeb|date('H')-8)*60) + entity.cours.dateDeb|date('i'))}}px;">
+                                                                        <strong>{{ entity.cours.activite.nom }}</strong> - {{ entity.cours.salle.nom }}- Mr  {{ entity.cours.prof.nom }} - <i>{{ entity.cours.dateDeb|date('H:i') }}->{{ entity.cours.dateFin|date('H:i') }}</i>
+                                                                          <a href="{{ path('cours_delete', { 'id': entity.cours.id,'mode': mode,'name': entity.eleve.id }) }}">Suppr.</a>
+                                                                     </div>
+                                                                {% endif %}
+                                                              {% endfor %}
+                                                       {% endif %}
+                                                        
+                                                                    {% if mode=='salle' %}
+                                                                         {% for entity in entities %}
+
+                                                                           {% if entity.dateDeb|date('D')=='Sun' %}
+                                                                                <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                   <strong>{{ entity.activite.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                    <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.salle.id }) }}">Suppr.</a>
+                                                                                </div>
+                                                                           {% endif %}
+                                                                         {% endfor %}
+                                                                  {% endif %}
+
+                                                                            {% if mode=='prof' %}
+                                                                                  {% for entity in entities %}
+
+                                                                                    {% if entity.dateDeb|date('D')=='Sun' %}
+                                                                                         <div class="cours" style="margin-top: {{ ((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i')  }}px;height: {{ (((entity.dateFin|date('H')-8)*60) + entity.dateFin|date('i'))-(((entity.dateDeb|date('H')-8)*60) + entity.dateDeb|date('i'))}}px;">
+                                                                                            <strong>{{ entity.salle.nom }}</strong> - <i>{{ entity.dateDeb|date('H:i') }}->{{ entity.dateFin|date('H:i') }}</i>
+                                                                                            <a href="{{ path('cours_delete', { 'id': entity.id,'mode': mode,'name': entity.prof.id }) }}">Suppr.</a>
+                                                                                         </div>
+                                                                                    {% endif %}
+                                                                                  {% endfor %}
+                                                                           {% endif %}
+                                                    </td>
+                                                  </tr>
+                                                  
+                                                    
+                                                    
+                                                    
+                                                    
+												
+</table>
+                      
+                      
+                      
+                      
+                                
+                  </div>
+            
+                  </div>
+                        {% endblock %}

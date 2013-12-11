@@ -1,0 +1,35 @@
+famille:
+    pattern:  /
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Famille:index" }
+
+famille_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Famille:show" }
+
+famille_new:
+    pattern:  /new
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Famille:new" }
+
+famille_create:
+    pattern:  /create
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Famille:create" }
+    requirements: { _method: post }
+
+famille_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Famille:edit" }
+
+famille_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Famille:update" }
+    requirements: { _method: post }
+
+famille_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Famille:delete" }
+    requirements: { _method: get }
+
+famille_membre:
+    pattern:  /{id}/membre
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Famille:membres" }
+    requirements: { _method: get }

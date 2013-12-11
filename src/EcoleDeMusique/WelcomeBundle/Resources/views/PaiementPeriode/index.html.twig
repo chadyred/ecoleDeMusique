@@ -1,0 +1,45 @@
+<h1>PaiementPeriode list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Numperiod</th>
+            <th>Numeraire</th>
+            <th>Chequejeune</th>
+            <th>Chequevacance</th>
+            <th>Cheque</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('paiementperiode_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.numPeriod }}</td>
+            <td>{{ entity.numeraire }}</td>
+            <td>{{ entity.chequeJeune }}</td>
+            <td>{{ entity.chequeVacance }}</td>
+            <td>{{ entity.cheque }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('paiementperiode_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('paiementperiode_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('paiementperiode_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

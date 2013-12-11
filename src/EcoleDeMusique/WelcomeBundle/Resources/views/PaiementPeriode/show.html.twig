@@ -1,0 +1,49 @@
+<h1>PaiementPeriode</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Numperiod</th>
+            <td>{{ entity.numPeriod }}</td>
+        </tr>
+        <tr>
+            <th>Numeraire</th>
+            <td>{{ entity.numeraire }}</td>
+        </tr>
+        <tr>
+            <th>Chequejeune</th>
+            <td>{{ entity.chequeJeune }}</td>
+        </tr>
+        <tr>
+            <th>Chequevacance</th>
+            <td>{{ entity.chequeVacance }}</td>
+        </tr>
+        <tr>
+            <th>Cheque</th>
+            <td>{{ entity.cheque }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('paiementperiode') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('paiementperiode_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('paiementperiode_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
