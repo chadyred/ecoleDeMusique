@@ -235,8 +235,19 @@
                                                            <td>{{ entity.periode4.total }}</td>
                                                            
                       
-                                                    <td class="celluleGrise">{{ '%.2f'|format(entity.totalG) }}</td>
-                                                    <td>{{ '%.2f'|format(entity.sommeToutPaiement) }}</td>
+<td class="celluleGrise">{% if ('%.2f'|format(entity.totalG))==-0.00 %}
+                                                                                                                                0.00
+                                                                                                                                {% else %}
+                                                                                                                                    {{ '%.2f'|format(entity.totalG) }}
+                                                                                                                                {% endif %}
+
+                                                                                                                            </td>                                                    <td>
+                                                                                                                             {% if (('%.2f'|format(entity.sommeToutPaiement))==-0.00) %}
+                                                                                                                                {{ '0.00'}}
+                                                                                                                                {% else %}
+                                                                                                                                {{ '%.2f'|format(entity.sommeToutPaiement) }}
+                                                                                                                                {% endif %}
+                                                                                                                            </td>
                                                  <!--   <td>
                                                         <ul>
                                                             <li>
@@ -251,6 +262,20 @@
                                             {% endfor %}
                                             </tbody>
                                         </table>
+                                 
+                                 <div id="sommeTotal">
+                                     <table>
+                                         <tr>
+                                             <td><strong>Somme totale</strong></td><td><strong>Somme Payée</strong></td> 
+                                         </tr>
+                                         <tr>
+                                             <td>{{SommeTot}}</td>
+                                             <td>{{sommePaye}}</td><td></td>
+                                         </tr>
+                                     </table>   
+                                 </div>
+
+
 
                                      <!--   <ul>
                                             <li>

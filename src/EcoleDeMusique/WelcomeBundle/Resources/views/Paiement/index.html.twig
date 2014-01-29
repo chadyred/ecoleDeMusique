@@ -444,7 +444,13 @@ Paiements<h2 class="title">Information sur les paiements</h2>
                                                                                                                                 {% endif %}
 
                                                                                                                             </td>
-                                                                                                                            <td>{{ '%.2f'|format(entity.sommeToutPaiement) }}</td>
+                                                                                                                            <td>
+                                                                                                                             {% if (('%.2f'|format(entity.sommeToutPaiement))==-0.00) %}
+                                                                                                                                {{ '0.00'}}
+                                                                                                                                {% else %}
+                                                                                                                                {{ '%.2f'|format(entity.sommeToutPaiement) }}
+                                                                                                                                {% endif %}
+                                                                                                                            </td>
                                                                                                                             <!--   <td>
                                                                                                                                    <ul>
                                                                                                                                        <li>

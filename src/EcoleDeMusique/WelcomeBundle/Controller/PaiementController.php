@@ -82,8 +82,14 @@ class PaiementController extends Controller {
                 $tab2["chequeVacance"] = $ent->getchequeVacance();
                 $tab2["cheque"] = $ent->getcheque();
                 $tab2["numPeriod"] = $ent->getnumPeriod();
+
+
+
+
                 $tab2["dateNumeraire"] = $ent->getdateNumeraire();
-                //var_dump($tab2["dateNumeraire"]);echo "<br>";
+
+
+                //        var_dump($tab2["dateNumeraire"]);echo "<br>";
                 $tab2["dateChequeJeune"] = $ent->getdateChequeJeune();
                 $tab2["dateChequeVacance"] = $ent->getdateChequeVacance();
                 $tab2["dateCheque"] = $ent->getdateCheque();
@@ -96,7 +102,8 @@ class PaiementController extends Controller {
                 $tab[$i][$periode] = $tab2;
                 $sommeToutPaiement = $sommeToutPaiement + $tab2["total"];
             }
-            $tab[$i]["totalG"] = $ent->getPaiement()->getEleve()->getRegie()->getSommeAvecRemise();
+
+            $tab[$i]["totalG"] = $paiement->getsommetotal();
             $tab[$i]["sommeToutPaiement"] = $tab[$i]["totalG"] - $sommeToutPaiement;
 
             //Sommme argent payé
@@ -386,8 +393,9 @@ class PaiementController extends Controller {
         $query = $em->createQuery($requete);
         $entPaiement = $query->getResult();
 
-
         $i = 0;
+        $SommePaye = 0;
+        $SommeTot = 0;
         $tab = null;
         $sommeToutPaiement = 0;
 
@@ -440,12 +448,16 @@ class PaiementController extends Controller {
             }
             $tab[$i]["totalG"] = $paiement->getsommetotal();
             $tab[$i]["sommeToutPaiement"] = $tab[$i]["totalG"] - $sommeToutPaiement;
+
+            //Sommme argent payé
+            $SommePaye = $SommePaye + $sommeToutPaiement;
+            $SommeTot = $SommeTot + $paiement->getsommetotal();
             $i++;
         }
 
 
 
-        return $this->render('EcoleDeMusiqueWelcomeBundle:Paiement:searchResult.html.twig', array('entities' => $tab, 'requete' => $requete));
+        return $this->render('EcoleDeMusiqueWelcomeBundle:Paiement:searchResult.html.twig', array('entities' => $tab, 'sommePaye' => round($SommePaye, 2), 'SommeTot' => round($SommeTot, 2), 'requete' => $requete));
     }
 
     public function exportOdsAction($requete) {
@@ -459,7 +471,7 @@ class PaiementController extends Controller {
 
         //on rajoute les premieres cellule
 
-        include($_SERVER["DOCUMENT_ROOT"] . '/src/EcoleDeMusique/WelcomeBundle/LibOds/ods.php'); //include the class and wrappers
+        include($_SERVER["DOCUMENT_ROOT"] . '/web/LibOds/ods.php'); //include the class and wrappers
         $object = newOds(); //create a new ods file
 
         $object->addCell(0, 0, 0, 'id', 'string'); //add a cell to sheet 0, row 0, cell 0, with value 1 and type float
@@ -836,14 +848,14 @@ class PaiementController extends Controller {
         //----------------------------------------------------------------------------------------------------//        
 
 
-        saveOds($object, $_SERVER["DOCUMENT_ROOT"] . '/src/EcoleDeMusique/WelcomeBundle/odsExport/exportPaiement.ods'); //save the object to a ods file
+        saveOds($object, $_SERVER["DOCUMENT_ROOT"] . '/web/odsExport/exportPaiement.ods'); //save the object to a ods file
 
 
 
 
 
         $fichier = "exportPaiement.ods";
-        $chemin = $_SERVER["DOCUMENT_ROOT"] . '/src/EcoleDeMusique/WelcomeBundle/odsExport/'; // emplacement de votre fichier .pdf
+        $chemin = $_SERVER["DOCUMENT_ROOT"] . '/web/odsExport/'; // emplacement de votre fichier .pdf
 
         $response = new Response();
         $response->setContent(file_get_contents($chemin . $fichier));
@@ -851,11 +863,6 @@ class PaiementController extends Controller {
         $response->headers->set('Content-disposition', 'filename=' . $fichier);
 
         return $response;
-
-
-
-
-        die;
     }
 
 }
