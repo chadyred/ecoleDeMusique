@@ -1,1 +1,0 @@
-[2014-01-27 08:48:40] request.ERROR: Symfony\Component\HttpKernel\Exception\NotFoundHttpException: No route found for "GET /" (uncaught exception) at /home/romain/mairie2013-2014/EcoleDeMusique/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/EventListener/RouterListener.php line 92 [] []
