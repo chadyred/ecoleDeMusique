@@ -44,8 +44,7 @@ class PaiementController extends Controller {
         foreach ($entPaiement as $paiement) {
             $sommeToutPaiement = 0;
             $tab[$i]["id"] = $paiement->getId();
-            ;
-
+            
             if ($paiement->getInterupt() == null) {
                 $tab[$i]["interupt"] = "Non";
             } else {
@@ -103,12 +102,13 @@ class PaiementController extends Controller {
                 $sommeToutPaiement = $sommeToutPaiement + $tab2["total"];
             }
 
-            $tab[$i]["totalG"] = $paiement->getsommetotal();
-            $tab[$i]["sommeToutPaiement"] = $tab[$i]["totalG"] - $sommeToutPaiement;
-
+            $sommeAvecRemise = $paiement->getEleve()->findSommeAvecRemise();
+            $tab[$i]["totalG"] = $sommeAvecRemise;
+            $tab[$i]["sommeToutPaiement"] = $sommeAvecRemise - $sommeToutPaiement;
             //Sommme argent payé
             $SommePaye = $SommePaye + $sommeToutPaiement;
             $SommeTot = $SommeTot + $paiement->getsommetotal();
+           
             $i++;
         }
 
@@ -446,8 +446,9 @@ class PaiementController extends Controller {
                 $tab[$i][$periode] = $tab2;
                 $sommeToutPaiement = $sommeToutPaiement + $tab2["total"];
             }
-            $tab[$i]["totalG"] = $paiement->getsommetotal();
-            $tab[$i]["sommeToutPaiement"] = $tab[$i]["totalG"] - $sommeToutPaiement;
+            $sommeAvecRemise = $paiement->getEleve()->findSommeAvecRemise();
+            $tab[$i]["totalG"] = $sommeAvecRemise;
+            $tab[$i]["sommeToutPaiement"] = $sommeAvecRemise - $sommeToutPaiement;
 
             //Sommme argent payé
             $SommePaye = $SommePaye + $sommeToutPaiement;
@@ -801,8 +802,8 @@ class PaiementController extends Controller {
             }
 
 
-            $object->addCell(0, $i + 1, 54, $paiement->getsommetotal(), "float");
-            $object->addCell(0, $i + 1, 55, $paiement->getsommetotal() - $sommeToutPaiement, "float");
+            $object->addCell(0, $i + 1, 54, $paiement->getEleve()->getRegie()->getSommeAvecRemise(), "float");
+            $object->addCell(0, $i + 1, 55, $paiement->getEleve()->getRegie()->getSommeAvecRemise() - $sommeToutPaiement, "float");
 
             /* ------------------------ Activite ----------------------------------- */
             $em = $this->getDoctrine()->getEntityManager();

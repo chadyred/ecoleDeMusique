@@ -502,4 +502,15 @@ class Eleve
     {
         return $this->activites;
     }
+    
+    public function findremisebyeleve() {
+        
+        return $this->getRegie()->getRemise();
+       
+    }
+    
+     public function findSommeAvecRemise(){
+         return $this->getRegie()->getSommeAvecRemise();
+     }
+    
 }
