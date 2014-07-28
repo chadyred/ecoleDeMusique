@@ -44,7 +44,7 @@ class PaiementController extends Controller {
         foreach ($entPaiement as $paiement) {
             $sommeToutPaiement = 0;
             $tab[$i]["id"] = $paiement->getId();
-            
+
             if ($paiement->getInterupt() == null) {
                 $tab[$i]["interupt"] = "Non";
             } else {
@@ -108,7 +108,7 @@ class PaiementController extends Controller {
             //Sommme argent payé
             $SommePaye = $SommePaye + $sommeToutPaiement;
             $SommeTot = $SommeTot + $paiement->getsommetotal();
-           
+
             $i++;
         }
 
@@ -491,68 +491,71 @@ class PaiementController extends Controller {
         $object->addCell(0, 0, 13, 'Mail', 'string');
         $object->addCell(0, 0, 14, 'Id Famille', 'string');
         $object->addCell(0, 0, 15, 'Qf', 'string');
-
-        $object->addCell(0, 0, 16, 'Capv', 'string');
-        $object->addCell(0, 0, 17, 'Enfant/Adulte', 'string');
-        $object->addCell(0, 0, 18, 'Cycle Parcours', 'string');
-        $object->addCell(0, 0, 19, 'Instrument 2', 'string');
-        $object->addCell(0, 0, 20, 'Instrument 3', 'string');
-        $object->addCell(0, 0, 21, 'Somme Sans Remise', 'string');
-        $object->addCell(0, 0, 22, 'Remise', 'string');
-        $object->addCell(0, 0, 23, 'Somme Avec Remise', 'string');
-        $object->addCell(0, 0, 24, 'Annee en cours', 'string');
+        $object->addCell(0, 0, 16, 'Nom Responsable', 'string');
+        $object->addCell(0, 0, 17, 'Prénom Responsable', 'string');
 
 
-        $object->addCell(0, 0, 25, 'Par 4', 'string');
+        $object->addCell(0, 0, 18, 'Capv', 'string');
+        $object->addCell(0, 0, 19, 'Enfant/Adulte', 'string');
+        $object->addCell(0, 0, 20, 'Cycle Parcours', 'string');
+        $object->addCell(0, 0, 21, 'Instrument 2', 'string');
+        $object->addCell(0, 0, 22, 'Instrument 3', 'string');
+        $object->addCell(0, 0, 23, 'Somme Sans Remise', 'string');
+        $object->addCell(0, 0, 24, 'Remise', 'string');
+        $object->addCell(0, 0, 25, 'Somme Avec Remise', 'string');
+        $object->addCell(0, 0, 26, 'Annee en cours', 'string');
+
+
+        $object->addCell(0, 0, 27, 'Par 4', 'string');
         /* --------------------------------------------------------- */
-        $object->addCell(0, 0, 26, 'Num Per1', 'string');
-        $object->addCell(0, 0, 27, 'ChequeJ Per1', 'string');
-        $object->addCell(0, 0, 28, 'ChequeV Per1', 'string');
-        $object->addCell(0, 0, 29, 'Cheque Per1', 'string');
+        $object->addCell(0, 0, 28, 'Num Per1', 'string');
+        $object->addCell(0, 0, 29, 'ChequeJ Per1', 'string');
+        $object->addCell(0, 0, 30, 'ChequeV Per1', 'string');
+        $object->addCell(0, 0, 31, 'Cheque Per1', 'string');
 
-        $object->addCell(0, 0, 30, 'Cb Pers1', 'string');
-        $object->addCell(0, 0, 31, 'Prevelevement Pers1', 'string');
+        $object->addCell(0, 0, 32, 'Cb Pers1', 'string');
+        $object->addCell(0, 0, 33, 'Prevelevement Pers1', 'string');
 
-        $object->addCell(0, 0, 32, 'Total Per1', 'string');
+        $object->addCell(0, 0, 34, 'Total Per1', 'string');
         /* --------------------------------------------------------- */
-        $object->addCell(0, 0, 33, 'Num Per2', 'string');
-        $object->addCell(0, 0, 34, 'ChequeJ Per2', 'string');
-        $object->addCell(0, 0, 35, 'ChequeV Per2', 'string');
-        $object->addCell(0, 0, 36, 'Cheque Per2', 'string');
+        $object->addCell(0, 0, 35, 'Num Per2', 'string');
+        $object->addCell(0, 0, 36, 'ChequeJ Per2', 'string');
+        $object->addCell(0, 0, 37, 'ChequeV Per2', 'string');
+        $object->addCell(0, 0, 38, 'Cheque Per2', 'string');
 
-        $object->addCell(0, 0, 37, 'Cb Pers2', 'string');
-        $object->addCell(0, 0, 38, 'Prevelevement Pers2', 'string');
+        $object->addCell(0, 0, 39, 'Cb Pers2', 'string');
+        $object->addCell(0, 0, 40, 'Prevelevement Pers2', 'string');
 
-        $object->addCell(0, 0, 39, 'Total Per2', 'string');
+        $object->addCell(0, 0, 41, 'Total Per2', 'string');
         /* --------------------------------------------------------- */
-        $object->addCell(0, 0, 40, 'Num Per3', 'string');
-        $object->addCell(0, 0, 41, 'ChequeJ Per3', 'string');
-        $object->addCell(0, 0, 42, 'ChequeV Per3', 'string');
-        $object->addCell(0, 0, 43, 'Cheque Per3', 'string');
+        $object->addCell(0, 0, 42, 'Num Per3', 'string');
+        $object->addCell(0, 0, 43, 'ChequeJ Per3', 'string');
+        $object->addCell(0, 0, 44, 'ChequeV Per3', 'string');
+        $object->addCell(0, 0, 45, 'Cheque Per3', 'string');
 
-        $object->addCell(0, 0, 44, 'Cb Pers3', 'string');
-        $object->addCell(0, 0, 45, 'Prevelevement Pers3', 'string');
+        $object->addCell(0, 0, 46, 'Cb Pers3', 'string');
+        $object->addCell(0, 0, 47, 'Prevelevement Pers3', 'string');
 
-        $object->addCell(0, 0, 46, 'Total Per3', 'string');
+        $object->addCell(0, 0, 48, 'Total Per3', 'string');
         /* --------------------------------------------------------- */
 
-        $object->addCell(0, 0, 47, 'Num Per4', 'string');
-        $object->addCell(0, 0, 48, 'ChequeJ Per4', 'string');
-        $object->addCell(0, 0, 50, 'ChequeV Per4', 'string');
-        $object->addCell(0, 0, 51, 'Cheque Per4', 'string');
+        $object->addCell(0, 0, 49, 'Num Per4', 'string');
+        $object->addCell(0, 0, 50, 'ChequeJ Per4', 'string');
+        $object->addCell(0, 0, 51, 'ChequeV Per4', 'string');
+        $object->addCell(0, 0, 52, 'Cheque Per4', 'string');
 
-        $object->addCell(0, 0, 52, 'Cb Pers4', 'string');
-        $object->addCell(0, 0, 53, 'Prevelevement Pers4', 'string');
+        $object->addCell(0, 0, 53, 'Cb Pers4', 'string');
+        $object->addCell(0, 0, 54, 'Prevelevement Pers4', 'string');
 
-        $object->addCell(0, 0, 54, 'Total Per4', 'string');
+        $object->addCell(0, 0, 55, 'Total Per4', 'string');
         /* --------------------------------------------------------- */
-        $object->addCell(0, 0, 55, 'Total Général', 'string');
-        $object->addCell(0, 0, 56, 'Total Reste', 'string');
+        $object->addCell(0, 0, 56, 'Total Général', 'string');
+        $object->addCell(0, 0, 57 , 'Total Reste', 'string');
         /* ----------------------------------------------------------- */
-        $object->addCell(0, 0, 57, 'Instru1', 'string');
-        $object->addCell(0, 0, 58, 'Instru2', 'string');
-        $object->addCell(0, 0, 59, 'Instru3', 'string');
-        $object->addCell(0, 0, 60, 'Pratique Collective', 'string');
+        $object->addCell(0, 0, 59, 'Instru1', 'string');
+        $object->addCell(0, 0, 60, 'Instru2', 'string');
+        $object->addCell(0, 0, 61, 'Instru3', 'string');
+        $object->addCell(0, 0, 62, 'Pratique Collective', 'string');
         //On fait pour tout les paiements 
 
         $i = 0;
@@ -600,37 +603,39 @@ class PaiementController extends Controller {
             $object->addCell(0, $i + 1, 13, $paiement->getEleve()->getMail(), "string");
             $object->addCell(0, $i + 1, 14, $paiement->getEleve()->getFamille()->getId(), "string");
             $object->addCell(0, $i + 1, 15, $paiement->getEleve()->getFamille()->getQf(), "string");
+            $object->addCell(0, $i + 1, 16, $paiement->getEleve()->getFamille()->getNom(), "string");
+            $object->addCell(0, $i + 1, 17, $paiement->getEleve()->getFamille()->getPrenom(), "string");
 
 
 
             /* Info Regie */
 
             if ($paiement->getEleve()->getRegie()->getCapv() == TRUE) {
-                $object->addCell(0, $i + 1, 16, "oui", "string");
+                $object->addCell(0, $i + 1, 18, "oui", "string");
             } else {
-                $object->addCell(0, $i + 1, 16, "non", "string");
+                $object->addCell(0, $i + 1, 18, "non", "string");
             }
 
             if ($paiement->getEleve()->getRegie()->getEnfantAdulte() == TRUE) {
-                $object->addCell(0, $i + 1, 17, "Adulte", "string");
+                $object->addCell(0, $i + 1, 19, "Adulte", "string");
             } else {
-                $object->addCell(0, $i + 1, 17, "Enfant", "string");
+                $object->addCell(0, $i + 1, 19, "Enfant", "string");
             }
 
-            $object->addCell(0, $i + 1, 18, $paiement->getEleve()->getRegie()->getCycleParcours(), "float");
+            $object->addCell(0, $i + 1, 20, $paiement->getEleve()->getRegie()->getCycleParcours(), "float");
 
 
 
-            $object->addCell(0, $i + 1, 19, $paiement->getEleve()->getRegie()->getIntru2(), "string");
-            $object->addCell(0, $i + 1, 20, $paiement->getEleve()->getRegie()->getIntru3(), "string");
+            $object->addCell(0, $i + 1, 21, $paiement->getEleve()->getRegie()->getIntru2(), "string");
+            $object->addCell(0, $i + 1, 22, $paiement->getEleve()->getRegie()->getIntru3(), "string");
 
-            $object->addCell(0, $i + 1, 21, $paiement->getEleve()->getRegie()->getSommeSansRemise(), "float");
-            $object->addCell(0, $i + 1, 22, $paiement->getEleve()->getRegie()->getRemise(), "float");
-            $object->addCell(0, $i + 1, 23, $paiement->getEleve()->getRegie()->getSommeAvecRemise(), "float");
-            $object->addCell(0, $i + 1, 24, $paiement->getEleve()->getRegie()->getAnneDeCours(), "float");
+            $object->addCell(0, $i + 1, 23, $paiement->getEleve()->getRegie()->getSommeSansRemise(), "float");
+            $object->addCell(0, $i + 1, 24, $paiement->getEleve()->getRegie()->getRemise(), "float");
+            $object->addCell(0, $i + 1, 25, $paiement->getEleve()->getRegie()->getSommeAvecRemise(), "float");
+            $object->addCell(0, $i + 1, 26, $paiement->getEleve()->getRegie()->getAnneDeCours(), "float");
 
             /* Periode Paiement */
-            $object->addCell(0, $i + 1, 25, round($paiement->getSommePeriode(), 2), "float");
+            $object->addCell(0, $i + 1, 27, round($paiement->getSommePeriode(), 2), "float");
             $entities = $em->getRepository('EcoleDeMusiqueWelcomeBundle:PaiementPeriode')->findBypaiement($paiement);
             //pour chaque période
             foreach ($entities as $ent) {
@@ -649,37 +654,37 @@ class PaiementController extends Controller {
 
                 if ($ent->getnumPeriod() == 1) {
                     if ($ent->getnumeraire()) {
-                        $object->addCell(0, $i + 1, 26, $ent->getnumeraire(), "float");
-                    } else {
-                        $object->addCell(0, $i + 1, 26, 0, "float");
-                    }
-                    if ($ent->getchequeJeune()) {
-                        $object->addCell(0, $i + 1, 27, $ent->getchequeJeune(), "float");
-                    } else {
-                        $object->addCell(0, $i + 1, 27, 0, "float");
-                    }
-                    if ($ent->getchequeVacance()) {
-                        $object->addCell(0, $i + 1, 28, $ent->getchequeVacance(), "float");
+                        $object->addCell(0, $i + 1, 28, $ent->getnumeraire(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 28, 0, "float");
                     }
-                    if ($ent->getcheque()) {
-                        $object->addCell(0, $i + 1, 29, $ent->getcheque(), "float");
+                    if ($ent->getchequeJeune()) {
+                        $object->addCell(0, $i + 1, 29, $ent->getchequeJeune(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 29, 0, "float");
                     }
-                    if ($ent->getCb()) {
-                        $object->addCell(0, $i + 1, 30, $ent->getCb(), "float");
+                    if ($ent->getchequeVacance()) {
+                        $object->addCell(0, $i + 1, 30, $ent->getchequeVacance(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 30, 0, "float");
                     }
-                    if ($ent->getPrelev()) {
-                        $object->addCell(0, $i + 1, 31, $ent->getPrelev(), "float");
+                    if ($ent->getcheque()) {
+                        $object->addCell(0, $i + 1, 31, $ent->getcheque(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 31, 0, "float");
                     }
+                    if ($ent->getCb()) {
+                        $object->addCell(0, $i + 1, 32, $ent->getCb(), "float");
+                    } else {
+                        $object->addCell(0, $i + 1, 32, 0, "float");
+                    }
+                    if ($ent->getPrelev()) {
+                        $object->addCell(0, $i + 1, 33, $ent->getPrelev(), "float");
+                    } else {
+                        $object->addCell(0, $i + 1, 33, 0, "float");
+                    }
 
-                    $object->addCell(0, $i + 1, 32, round($ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb(), 2), "float");
+                    $object->addCell(0, $i + 1, 34, round($ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb(), 2), "float");
                     $tot = $ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb();
                 }
 
@@ -687,113 +692,113 @@ class PaiementController extends Controller {
 
                 if ($ent->getnumPeriod() == 2) {
                     if ($ent->getnumeraire()) {
-                        $object->addCell(0, $i + 1, 33, $ent->getnumeraire(), "float");
-                    } else {
-                        $object->addCell(0, $i + 1, 33, 0, "float");
-                    }
-                    if ($ent->getchequeJeune()) {
-                        $object->addCell(0, $i + 1, 34, $ent->getchequeJeune(), "float");
-                    } else {
-                        $object->addCell(0, $i + 1, 34, 0, "float");
-                    }
-                    if ($ent->getchequeVacance()) {
-                        $object->addCell(0, $i + 1, 35, $ent->getchequeVacance(), "float");
+                        $object->addCell(0, $i + 1, 35, $ent->getnumeraire(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 35, 0, "float");
                     }
-                    if ($ent->getcheque()) {
-                        $object->addCell(0, $i + 1, 36, $ent->getcheque(), "float");
+                    if ($ent->getchequeJeune()) {
+                        $object->addCell(0, $i + 1, 36, $ent->getchequeJeune(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 36, 0, "float");
                     }
-
-                    if ($ent->getCb()) {
-                        $object->addCell(0, $i + 1, 37, $ent->getCb(), "float");
+                    if ($ent->getchequeVacance()) {
+                        $object->addCell(0, $i + 1, 37, $ent->getchequeVacance(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 37, 0, "float");
                     }
-                    if ($ent->getPrelev()) {
-                        $object->addCell(0, $i + 1, 38, $ent->getPrelev(), "float");
+                    if ($ent->getcheque()) {
+                        $object->addCell(0, $i + 1, 38, $ent->getcheque(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 38, 0, "float");
                     }
 
-                    $object->addCell(0, $i + 1, 39, round($ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb(), 2), "float");
+                    if ($ent->getCb()) {
+                        $object->addCell(0, $i + 1, 39, $ent->getCb(), "float");
+                    } else {
+                        $object->addCell(0, $i + 1, 39, 0, "float");
+                    }
+                    if ($ent->getPrelev()) {
+                        $object->addCell(0, $i + 1, 40, $ent->getPrelev(), "float");
+                    } else {
+                        $object->addCell(0, $i + 1, 40, 0, "float");
+                    }
+
+                    $object->addCell(0, $i + 1, 41, round($ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb(), 2), "float");
                     $tot = $ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb();
                 }
 
                 if ($ent->getnumPeriod() == 3) {
                     if ($ent->getnumeraire()) {
-                        $object->addCell(0, $i + 1, 40, $ent->getnumeraire(), "float");
-                    } else {
-                        $object->addCell(0, $i + 1, 40, 0, "float");
-                    }
-                    if ($ent->getchequeJeune()) {
-                        $object->addCell(0, $i + 1, 41, $ent->getchequeJeune(), "float");
-                    } else {
-                        $object->addCell(0, $i + 1, 41, 0, "float");
-                    }
-                    if ($ent->getchequeVacance()) {
-                        $object->addCell(0, $i + 1, 42, $ent->getchequeVacance(), "float");
+                        $object->addCell(0, $i + 1, 42, $ent->getnumeraire(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 42, 0, "float");
                     }
-                    if ($ent->getcheque()) {
-                        $object->addCell(0, $i + 1, 43, $ent->getcheque(), "float");
+                    if ($ent->getchequeJeune()) {
+                        $object->addCell(0, $i + 1, 43, $ent->getchequeJeune(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 43, 0, "float");
                     }
-
-                    if ($ent->getCb()) {
-                        $object->addCell(0, $i + 1, 44, $ent->getCb(), "float");
+                    if ($ent->getchequeVacance()) {
+                        $object->addCell(0, $i + 1, 44, $ent->getchequeVacance(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 44, 0, "float");
                     }
-                    if ($ent->getPrelev()) {
-                        $object->addCell(0, $i + 1, 45, $ent->getPrelev(), "float");
+                    if ($ent->getcheque()) {
+                        $object->addCell(0, $i + 1, 45, $ent->getcheque(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 45, 0, "float");
                     }
 
-                    $object->addCell(0, $i + 1, 46, round($ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb(), 2), "float");
+                    if ($ent->getCb()) {
+                        $object->addCell(0, $i + 1, 46, $ent->getCb(), "float");
+                    } else {
+                        $object->addCell(0, $i + 1, 46, 0, "float");
+                    }
+                    if ($ent->getPrelev()) {
+                        $object->addCell(0, $i + 1, 47, $ent->getPrelev(), "float");
+                    } else {
+                        $object->addCell(0, $i + 1, 47, 0, "float");
+                    }
+
+                    $object->addCell(0, $i + 1, 48, round($ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb(), 2), "float");
                     $tot = $ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb();
                 }
 
                 if ($ent->getnumPeriod() == 4) {
                     if ($ent->getnumeraire()) {
-                        $object->addCell(0, $i + 1, 47, $ent->getnumeraire(), "float");
-                    } else {
-                        $object->addCell(0, $i + 1, 47, 0, "float");
-                    }
-                    if ($ent->getchequeJeune()) {
-                        $object->addCell(0, $i + 1, 48, $ent->getchequeJeune(), "float");
-                    } else {
-                        $object->addCell(0, $i + 1, 48, 0, "float");
-                    }
-                    if ($ent->getchequeVacance()) {
-                        $object->addCell(0, $i + 1, 49, $ent->getchequeVacance(), "float");
+                        $object->addCell(0, $i + 1, 49, $ent->getnumeraire(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 49, 0, "float");
                     }
-                    if ($ent->getcheque()) {
-                        $object->addCell(0, $i + 1, 50, $ent->getcheque(), "float");
+                    if ($ent->getchequeJeune()) {
+                        $object->addCell(0, $i + 1, 50, $ent->getchequeJeune(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 50, 0, "float");
                     }
-
-                    if ($ent->getCb()) {
-                        $object->addCell(0, $i + 1, 51, $ent->getCb(), "float");
+                    if ($ent->getchequeVacance()) {
+                        $object->addCell(0, $i + 1, 51, $ent->getchequeVacance(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 51, 0, "float");
                     }
-                    if ($ent->getPrelev()) {
-                        $object->addCell(0, $i + 1, 52, $ent->getPrelev(), "float");
+                    if ($ent->getcheque()) {
+                        $object->addCell(0, $i + 1, 52, $ent->getcheque(), "float");
                     } else {
                         $object->addCell(0, $i + 1, 52, 0, "float");
                     }
 
+                    if ($ent->getCb()) {
+                        $object->addCell(0, $i + 1, 53, $ent->getCb(), "float");
+                    } else {
+                        $object->addCell(0, $i + 1, 53, 0, "float");
+                    }
+                    if ($ent->getPrelev()) {
+                        $object->addCell(0, $i + 1, 54, $ent->getPrelev(), "float");
+                    } else {
+                        $object->addCell(0, $i + 1, 54, 0, "float");
+                    }
 
-                    $object->addCell(0, $i + 1, 53, round($ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb(), 2), "float");
+
+                    $object->addCell(0, $i + 1, 55, round($ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb(), 2), "float");
                     $tot = $ent->getnumeraire() + $ent->getchequeJeune() + $ent->getchequeVacance() + $ent->getcheque() + $ent->getPrelev() + $ent->getCb();
                 }
 
@@ -802,40 +807,40 @@ class PaiementController extends Controller {
             }
 
 
-            $object->addCell(0, $i + 1, 54, $paiement->getEleve()->getRegie()->getSommeAvecRemise(), "float");
-            $object->addCell(0, $i + 1, 55, $paiement->getEleve()->getRegie()->getSommeAvecRemise() - $sommeToutPaiement, "float");
+            $object->addCell(0, $i + 1, 56, $paiement->getEleve()->getRegie()->getSommeAvecRemise(), "float");
+            $object->addCell(0, $i + 1, 57, $paiement->getEleve()->getRegie()->getSommeAvecRemise() - $sommeToutPaiement, "float");
 
             /* ------------------------ Activite ----------------------------------- */
             $em = $this->getDoctrine()->getEntityManager();
             $entityActiviteEleve = $em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array("type" => "instru1", "eleve" => $paiement->geteleve()));
             if ($entityActiviteEleve != NULL) {
-                $object->addCell(0, $i + 1, 57, $entityActiviteEleve->getActivite()->getNom(), "string");
-            } else {
-                $object->addCell(0, $i + 1, 57, "", "string");
-            }
-
-
-            $entityActiviteEleve2 = $em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array("type" => "instru2", "eleve" => $paiement->geteleve()));
-            if ($entityActiviteEleve2 != NULL) {
-                $object->addCell(0, $i + 1, 58, $entityActiviteEleve2->getActivite()->getNom(), "string");
-            } else {
-                $object->addCell(0, $i + 1, 58, "", "string");
-            }
-
-
-            $entityActiviteEleve3 = $em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array("type" => "instru3", "eleve" => $paiement->geteleve()));
-            if ($entityActiviteEleve3 != NULL) {
-                $object->addCell(0, $i + 1, 59, $entityActiviteEleve3->getActivite()->getNom(), "string");
+                $object->addCell(0, $i + 1, 59, $entityActiviteEleve->getActivite()->getNom(), "string");
             } else {
                 $object->addCell(0, $i + 1, 59, "", "string");
             }
 
 
-            $entityActiviteEleve4 = $em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array("type" => "pratique collective", "eleve" => $paiement->geteleve()));
-            if ($entityActiviteEleve4 != NULL) {
-                $object->addCell(0, $i + 1, 60, $entityActiviteEleve4->getActivite()->getNom(), "string");
+            $entityActiviteEleve2 = $em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array("type" => "instru2", "eleve" => $paiement->geteleve()));
+            if ($entityActiviteEleve2 != NULL) {
+                $object->addCell(0, $i + 1, 60, $entityActiviteEleve2->getActivite()->getNom(), "string");
             } else {
                 $object->addCell(0, $i + 1, 60, "", "string");
+            }
+
+
+            $entityActiviteEleve3 = $em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array("type" => "instru3", "eleve" => $paiement->geteleve()));
+            if ($entityActiviteEleve3 != NULL) {
+                $object->addCell(0, $i + 1, 61, $entityActiviteEleve3->getActivite()->getNom(), "string");
+            } else {
+                $object->addCell(0, $i + 1, 61, "", "string");
+            }
+
+
+            $entityActiviteEleve4 = $em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array("type" => "pratique collective", "eleve" => $paiement->geteleve()));
+            if ($entityActiviteEleve4 != NULL) {
+                $object->addCell(0, $i + 1, 62, $entityActiviteEleve4->getActivite()->getNom(), "string");
+            } else {
+                $object->addCell(0, $i + 1, 62, "", "string");
             }
 
 

@@ -209,4 +209,32 @@ class Cours
     {
         return $this->dateFin;
     }
+    /**
+     * @var EcoleDeMusique\WelcomeBundle\Entity\Activite
+     */
+    private $activite;
+
+
+    /**
+     * Set activite
+     *
+     * @param EcoleDeMusique\WelcomeBundle\Entity\Activite $activite
+     * @return Cours
+     */
+    public function setActivite(\EcoleDeMusique\WelcomeBundle\Entity\Activite $activite = null)
+    {
+        $this->activite = $activite;
+    
+        return $this;
+    }
+
+    /**
+     * Get activite
+     *
+     * @return EcoleDeMusique\WelcomeBundle\Entity\Activite 
+     */
+    public function getActivite()
+    {
+        return $this->activite;
+    }
 }

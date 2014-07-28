@@ -125,4 +125,9 @@ class Prof
     {
         return $this->profs;
     }
+    
+       public function __toString() 
+    {
+            return "".$this->getPrenom()." ".$this->getNom();
+    }
 }

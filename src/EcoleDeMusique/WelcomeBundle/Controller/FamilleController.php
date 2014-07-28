@@ -64,7 +64,7 @@ class FamilleController extends Controller
                 if($ent->getQf()==null){ $qf="nul";}
                 else{$qf=$ent->getQf();}
                 
-                $tab[$i]=array("id"=>$ent->getId(),"qf"=>$qf,"noms"=>$NomGens);
+                $tab[$i]=array("id"=>$ent->getId(),"qf"=>$qf,"noms"=>$NomGens,"nom"=>$ent->getNom(),"prenom"=>$ent->getPrenom());
                 
            /*     echo $tab[$i]["id"];
                 echo $tab[$i]["qf"];

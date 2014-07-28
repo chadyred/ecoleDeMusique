@@ -20,6 +20,18 @@ class Famille
      * @var integer $qf
      */
     private $qf;
+    
+    /**
+     * @var integer $nom
+     */
+    private $nom;
+    
+    /**
+     * @var integer $prenom
+     */
+    private $prenom;
+    
+    
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
@@ -108,4 +120,50 @@ class Famille
     }
     
     
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Famille
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     * @return Famille
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string 
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
 }

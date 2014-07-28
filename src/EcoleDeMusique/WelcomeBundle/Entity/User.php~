@@ -3,11 +3,11 @@
 namespace EcoleDeMusique\WelcomeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * EcoleDeMusique\WelcomeBundle\Entity\User
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer $id
@@ -80,4 +80,69 @@ class User
     {
         return $this->mdp;
     }
+    /**
+     * @var string $role
+     */
+    private $role;
+
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+    
+    
+    
+    
+    
+    public function getRoles()
+    {
+        if($this->getRole()=="ROLE_SUPER_ADMIN")
+        {    
+            return array('ROLE_SUPER_ADMIN'); // sinon le rôle USER
+        }
+         else 
+         {
+            return array('ROLE_ADMIN');
+         }
+    }
+    
+      public function getPassword() {
+        return $this->getMdp();
+    }
+    
+    
+        public function getSalt() {
+        return null;
+    }
+
+    
+    
+    
+      public function getUsername() {
+        return  $this->getLogin();
+    }
+    
+    
+        public function eraseCredentials() { 
+    }
+    
 }

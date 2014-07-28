@@ -97,4 +97,10 @@ class Salle
     {
         return $this->salles;
     }
+    
+    
+      public function __toString() 
+    {
+            return "".$this->getNom();
+    }
 }

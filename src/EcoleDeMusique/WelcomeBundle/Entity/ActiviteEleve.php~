@@ -23,7 +23,16 @@ class ActiviteEleve
      * @var EcoleDeMusique\WelcomeBundle\Entity\Eleve
      */
     private $eleve;
-
+    
+    /**
+     * @var EcoleDeMusique\WelcomeBundle\Entity\Activite
+     */
+    private $activite;
+    
+     /**
+     * @ORM\ManyToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Mailing", mappedBy="activiteEleves", cascade={"persist"})
+     */
+    private $mailings;
 
     /**
      * Get id
@@ -80,10 +89,7 @@ class ActiviteEleve
     {
         return $this->eleve;
     }
-    /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Activite
-     */
-    private $activite;
+
 
 
     /**
@@ -108,4 +114,57 @@ class ActiviteEleve
     {
         return $this->activite;
     }
+    
+    
+     /**
+     * Add mailings
+     *
+     * @param EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings
+     * @return Mailing
+     */
+    public function addMailing(\EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings)
+    {
+        $this->mailings[] = $mailings;
+    
+        return $this;
+    }
+
+    /**
+     * Remove mailings
+     *
+     * @param EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings
+     */
+    public function removeMailing(\EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings)
+    {
+        $this->mailings->removeElement($mailings);
+    }
+
+    /**
+     * Get mailings
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMailing()
+    {
+        return $this->mailings;
+    }
+    
+       public function getLabel()
+    {
+        return $this->eleve->getNom().', '. $this->eleve->getPrenom() .' ('. $this->eleve->getMail() .')';
+    }
+      
+       public function getNomActivite()
+    {
+        return $this->activite->getNom();
+    } 
+ 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->mailings = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 }

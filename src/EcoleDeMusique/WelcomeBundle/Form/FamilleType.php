@@ -12,6 +12,13 @@ class FamilleType extends AbstractType
     {
         $builder
             ->add('qf')
+              ->add('nom', 'text', array(
+                    'required' => true, 'attr' => array(
+                        'placeholder' => 'Nom du responsable de la famille', 'class' => 'form-control'
+            )))->add('prenom', 'text', array(
+                    'required' => true, 'attr' => array(
+                        'placeholder' => 'Prénom du responsable de la famille', 'class' => 'form-control'
+            )))
         ;
     }
 

@@ -5,6 +5,7 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table()
  * EcoleDeMusique\WelcomeBundle\Entity\PaiementPeriode
  */
 class PaiementPeriode

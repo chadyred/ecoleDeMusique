@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Famille
 {
+    
+ 
     /**
      * @var integer $id
      */
@@ -18,11 +20,24 @@ class Famille
      * @var integer $qf
      */
     private $qf;
+    
+    /**
+     * @var integer $nom
+     */
+    private $nom;
+    
+    /**
+     * @var integer $prenom
+     */
+    private $prenom;
+    
+    
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private $familles;
+
 
     /**
      * Constructor
@@ -103,4 +118,6 @@ class Famille
     {
             return "".$this->getId();
     }
+    
+    
 }

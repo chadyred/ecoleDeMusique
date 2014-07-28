@@ -37,6 +37,7 @@ class Activite
         $this->activites = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
+    
     /**
      * Get id
      *
