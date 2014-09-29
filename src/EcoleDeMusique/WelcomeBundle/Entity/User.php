@@ -61,10 +61,10 @@ class User implements UserInterface
     /**
      * Set mdp
      *
-     * @param tring $mdp
+     * @param String $mdp
      * @return User
      */
-    public function setMdp(\tring $mdp)
+    public function setMdp($mdp)
     {
         $this->mdp = $mdp;
     

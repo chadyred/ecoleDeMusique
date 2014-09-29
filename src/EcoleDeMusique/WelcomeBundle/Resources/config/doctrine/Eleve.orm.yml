@@ -63,8 +63,9 @@ EcoleDeMusique\WelcomeBundle\Entity\Eleve:
    oneToMany:
         eleves:
             targetEntity: CoursEleve
+            orphanRemoval: true
             mappedBy: eleve
    ManyToMany:
         eleves:
-          targetEntity: Mailing
-          mappedBy: eleves
+            targetEntity: Mailing
+            mappedBy: eleves

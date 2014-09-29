@@ -57,7 +57,7 @@ class ArchiveController extends Controller
     public function newAction()
     {
 
-                $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $i = 0;
         $tab = null;
            $query = $em->createQuery("SELECT p, e 
@@ -108,7 +108,7 @@ class ArchiveController extends Controller
           
        //recup info eleve
         $em = $this->getDoctrine()->getManager();
-        $entityEleve = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Eleve')->find( $_POST["idEleve"]);         
+        $entityEleve = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Eleve')->find($_POST["idEleve"]);         
        //Recup info actvité
          $em = $this->getDoctrine()->getManager();
          $entiteInstru1=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array('type'=>'instru1','eleve'=>$entityEleve));
