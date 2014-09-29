@@ -461,10 +461,10 @@ class PaiementController extends Controller {
         return $this->render('EcoleDeMusiqueWelcomeBundle:Paiement:searchResult.html.twig', array('entities' => $tab, 'sommePaye' => round($SommePaye, 2), 'SommeTot' => round($SommeTot, 2), 'requete' => $requete));
     }
 
-    public function exportOdsAction($requete) {
+    public function exportOdsAction() {
 
         //vu que les variable de session refuse de fonctionne je recupere la requete dql en param....
-
+        $requete = $this->getRequest()->get('requete');
         $em = $this->getDoctrine()->getEntityManager();
         $query = $em->createQuery($requete);
         $entPaiement = $query->getResult();
@@ -472,7 +472,7 @@ class PaiementController extends Controller {
 
         //on rajoute les premieres cellule
 
-        include($_SERVER["DOCUMENT_ROOT"] . '/web/LibOds/ods.php'); //include the class and wrappers
+        include($_SERVER["DOCUMENT_ROOT"] . '/LibOds/ods.php'); //include the class and wrappers
         $object = newOds(); //create a new ods file
 
         $object->addCell(0, 0, 0, 'id', 'string'); //add a cell to sheet 0, row 0, cell 0, with value 1 and type float
@@ -854,14 +854,14 @@ class PaiementController extends Controller {
         //----------------------------------------------------------------------------------------------------//        
 
 
-        saveOds($object, $_SERVER["DOCUMENT_ROOT"] . '/web/odsExport/exportPaiement.ods'); //save the object to a ods file
+        saveOds($object, $_SERVER["DOCUMENT_ROOT"] . '/odsExport/exportPaiement.ods'); //save the object to a ods file
 
 
 
 
 
         $fichier = "exportPaiement.ods";
-        $chemin = $_SERVER["DOCUMENT_ROOT"] . '/web/odsExport/'; // emplacement de votre fichier .pdf
+        $chemin = $_SERVER["DOCUMENT_ROOT"] . '/odsExport/'; // emplacement de votre fichier .pdf
 
         $response = new Response();
         $response->setContent(file_get_contents($chemin . $fichier));

@@ -44,5 +44,5 @@ paiement_searchResult:
     requirements: { _method: post }
     
 paiement_exportOds:
-    pattern:  /exportOds/{requete}
+    pattern:  /exportOds/
     defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Paiement:exportOds" }

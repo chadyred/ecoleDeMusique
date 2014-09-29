@@ -556,8 +556,12 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             not_paiement_searchResult:
 
             // paiement_exportOds
-            if (0 === strpos($pathinfo, '/paiement/exportOds') && preg_match('#^/paiement/exportOds/(?P<requete>[^/]+)$#s', $pathinfo, $matches)) {
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'EcoleDeMusique\\WelcomeBundle\\Controller\\PaiementController::exportOdsAction',)), array('_route' => 'paiement_exportOds'));
+            if (rtrim($pathinfo, '/') === '/paiement/exportOds') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'paiement_exportOds');
+                }
+
+                return array (  '_controller' => 'EcoleDeMusique\\WelcomeBundle\\Controller\\PaiementController::exportOdsAction',  '_route' => 'paiement_exportOds',);
             }
 
         }

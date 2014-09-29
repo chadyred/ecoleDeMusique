@@ -21,7 +21,7 @@ EcoleDeMusique\WelcomeBundle\Entity\Paiement:
             inversedBy: eleves
             joinColumn:
                 name: eleve_id
-                referencedColumnName: id  
+                referencedColumnName: id
 
 
 
