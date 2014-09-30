@@ -461,10 +461,10 @@ class PaiementController extends Controller {
         return $this->render('EcoleDeMusiqueWelcomeBundle:Paiement:searchResult.html.twig', array('entities' => $tab, 'sommePaye' => round($SommePaye, 2), 'SommeTot' => round($SommeTot, 2), 'requete' => $requete));
     }
 
-    public function exportOdsAction() {
+    public function exportOdsAction(Request $request) {
 
         //vu que les variable de session refuse de fonctionne je recupere la requete dql en param....
-        $requete = $this->getRequest()->get('requete');
+        $requete = $request->get('requete');
         $em = $this->getDoctrine()->getEntityManager();
         $query = $em->createQuery($requete);
         $entPaiement = $query->getResult();

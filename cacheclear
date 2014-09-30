@@ -2,6 +2,8 @@ sudo rm -rf app/cache/*
 sudo rm -rf app/logs/*
 php app/console cache:clear
 php app/console cache:clear --env=prod --no-debug
+# Prévoyance des fichiers générer en local lié à leur propriétaire développeur non modifiable sur le serveur
+sudo chmod 777 -R web/odsExport
 sudo chmod -R 777 app/logs
 sudo chmod -R 777 app/cache
 sudo chmod -R 777 app/cache/*
