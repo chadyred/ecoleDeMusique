@@ -5,20 +5,846 @@ use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\LogicException;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
-use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 class appProdProjectContainer extends Container
 {
+    private static $parameters = array(
+            'kernel.root_dir' => '/home/florian/Documents/ecoleDeMusique/app',
+            'kernel.environment' => 'prod',
+            'kernel.debug' => false,
+            'kernel.name' => 'ap_',
+            'kernel.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod',
+            'kernel.logs_dir' => '/home/florian/Documents/ecoleDeMusique/app/logs',
+            'kernel.bundles' => array(
+                'FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
+                'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
+                'TwigBundle' => 'Symfony\\Bundle\\TwigBundle\\TwigBundle',
+                'MonologBundle' => 'Symfony\\Bundle\\MonologBundle\\MonologBundle',
+                'SwiftmailerBundle' => 'Symfony\\Bundle\\SwiftmailerBundle\\SwiftmailerBundle',
+                'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
+                'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
+                'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
+                'JMSAopBundle' => 'JMS\\AopBundle\\JMSAopBundle',
+                'JMSDiExtraBundle' => 'JMS\\DiExtraBundle\\JMSDiExtraBundle',
+                'JMSSecurityExtraBundle' => 'JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
+                'EcoleDeMusiqueWelcomeBundle' => 'EcoleDeMusique\\WelcomeBundle\\EcoleDeMusiqueWelcomeBundle',
+            ),
+            'kernel.charset' => 'UTF-8',
+            'kernel.container_class' => 'appProdProjectContainer',
+            'database_driver' => 'pdo_mysql',
+            'database_host' => '127.0.0.1',
+            'database_port' => NULL,
+            'database_name' => 'ecoleDeMusique',
+            'database_user' => 'root',
+            'database_password' => 'root',
+            'mailer_transport' => 'smtp',
+            'mailer_host' => 'mail.ville-voreppe.fr',
+            'locale' => 'fr',
+            'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
+            'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
+            'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
+            'streamed_response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\StreamedResponseListener',
+            'locale_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\LocaleListener',
+            'event_dispatcher.class' => 'Symfony\\Component\\EventDispatcher\\ContainerAwareEventDispatcher',
+            'http_kernel.class' => 'Symfony\\Component\\HttpKernel\\DependencyInjection\\ContainerAwareHttpKernel',
+            'filesystem.class' => 'Symfony\\Component\\Filesystem\\Filesystem',
+            'cache_warmer.class' => 'Symfony\\Component\\HttpKernel\\CacheWarmer\\CacheWarmerAggregate',
+            'cache_clearer.class' => 'Symfony\\Component\\HttpKernel\\CacheClearer\\ChainCacheClearer',
+            'file_locator.class' => 'Symfony\\Component\\HttpKernel\\Config\\FileLocator',
+            'uri_signer.class' => 'Symfony\\Component\\HttpKernel\\UriSigner',
+            'request_stack.class' => 'Symfony\\Component\\HttpFoundation\\RequestStack',
+            'fragment.handler.class' => 'Symfony\\Component\\HttpKernel\\Fragment\\FragmentHandler',
+            'fragment.renderer.inline.class' => 'Symfony\\Component\\HttpKernel\\Fragment\\InlineFragmentRenderer',
+            'fragment.renderer.hinclude.class' => 'Symfony\\Bundle\\FrameworkBundle\\Fragment\\ContainerAwareHIncludeFragmentRenderer',
+            'fragment.renderer.hinclude.global_template' => NULL,
+            'fragment.renderer.esi.class' => 'Symfony\\Component\\HttpKernel\\Fragment\\EsiFragmentRenderer',
+            'fragment.renderer.ssi.class' => 'Symfony\\Component\\HttpKernel\\Fragment\\SsiFragmentRenderer',
+            'fragment.path' => '/_fragment',
+            'translator.class' => 'Symfony\\Bundle\\FrameworkBundle\\Translation\\Translator',
+            'translator.logging.class' => 'Symfony\\Component\\Translation\\LoggingTranslator',
+            'translator.identity.class' => 'Symfony\\Component\\Translation\\IdentityTranslator',
+            'translator.selector.class' => 'Symfony\\Component\\Translation\\MessageSelector',
+            'translation.loader.php.class' => 'Symfony\\Component\\Translation\\Loader\\PhpFileLoader',
+            'translation.loader.yml.class' => 'Symfony\\Component\\Translation\\Loader\\YamlFileLoader',
+            'translation.loader.xliff.class' => 'Symfony\\Component\\Translation\\Loader\\XliffFileLoader',
+            'translation.loader.po.class' => 'Symfony\\Component\\Translation\\Loader\\PoFileLoader',
+            'translation.loader.mo.class' => 'Symfony\\Component\\Translation\\Loader\\MoFileLoader',
+            'translation.loader.qt.class' => 'Symfony\\Component\\Translation\\Loader\\QtFileLoader',
+            'translation.loader.csv.class' => 'Symfony\\Component\\Translation\\Loader\\CsvFileLoader',
+            'translation.loader.res.class' => 'Symfony\\Component\\Translation\\Loader\\IcuResFileLoader',
+            'translation.loader.dat.class' => 'Symfony\\Component\\Translation\\Loader\\IcuDatFileLoader',
+            'translation.loader.ini.class' => 'Symfony\\Component\\Translation\\Loader\\IniFileLoader',
+            'translation.loader.json.class' => 'Symfony\\Component\\Translation\\Loader\\JsonFileLoader',
+            'translation.dumper.php.class' => 'Symfony\\Component\\Translation\\Dumper\\PhpFileDumper',
+            'translation.dumper.xliff.class' => 'Symfony\\Component\\Translation\\Dumper\\XliffFileDumper',
+            'translation.dumper.po.class' => 'Symfony\\Component\\Translation\\Dumper\\PoFileDumper',
+            'translation.dumper.mo.class' => 'Symfony\\Component\\Translation\\Dumper\\MoFileDumper',
+            'translation.dumper.yml.class' => 'Symfony\\Component\\Translation\\Dumper\\YamlFileDumper',
+            'translation.dumper.qt.class' => 'Symfony\\Component\\Translation\\Dumper\\QtFileDumper',
+            'translation.dumper.csv.class' => 'Symfony\\Component\\Translation\\Dumper\\CsvFileDumper',
+            'translation.dumper.ini.class' => 'Symfony\\Component\\Translation\\Dumper\\IniFileDumper',
+            'translation.dumper.json.class' => 'Symfony\\Component\\Translation\\Dumper\\JsonFileDumper',
+            'translation.dumper.res.class' => 'Symfony\\Component\\Translation\\Dumper\\IcuResFileDumper',
+            'translation.extractor.php.class' => 'Symfony\\Bundle\\FrameworkBundle\\Translation\\PhpExtractor',
+            'translation.loader.class' => 'Symfony\\Bundle\\FrameworkBundle\\Translation\\TranslationLoader',
+            'translation.extractor.class' => 'Symfony\\Component\\Translation\\Extractor\\ChainExtractor',
+            'translation.writer.class' => 'Symfony\\Component\\Translation\\Writer\\TranslationWriter',
+            'property_accessor.class' => 'Symfony\\Component\\PropertyAccess\\PropertyAccessor',
+            'kernel.secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'kernel.http_method_override' => true,
+            'kernel.trusted_hosts' => array(
+            ),
+            'kernel.trusted_proxies' => array(
+            ),
+            'kernel.default_locale' => 'fr',
+            'session.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Session',
+            'session.flashbag.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Flash\\FlashBag',
+            'session.attribute_bag.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Attribute\\AttributeBag',
+            'session.storage.metadata_bag.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\MetadataBag',
+            'session.metadata.storage_key' => '_sf2_meta',
+            'session.storage.native.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\NativeSessionStorage',
+            'session.storage.php_bridge.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\PhpBridgeSessionStorage',
+            'session.storage.mock_file.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\MockFileSessionStorage',
+            'session.handler.native_file.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\Handler\\NativeFileSessionHandler',
+            'session.handler.write_check.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\Handler\\WriteCheckSessionHandler',
+            'session_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
+            'session.storage.options' => array(
+                'gc_probability' => 1,
+            ),
+            'session.save_path' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/sessions',
+            'session.metadata.update_threshold' => '0',
+            'security.secure_random.class' => 'Symfony\\Component\\Security\\Core\\Util\\SecureRandom',
+            'form.resolved_type_factory.class' => 'Symfony\\Component\\Form\\ResolvedFormTypeFactory',
+            'form.registry.class' => 'Symfony\\Component\\Form\\FormRegistry',
+            'form.factory.class' => 'Symfony\\Component\\Form\\FormFactory',
+            'form.extension.class' => 'Symfony\\Component\\Form\\Extension\\DependencyInjection\\DependencyInjectionExtension',
+            'form.type_guesser.validator.class' => 'Symfony\\Component\\Form\\Extension\\Validator\\ValidatorTypeGuesser',
+            'form.type_extension.form.request_handler.class' => 'Symfony\\Component\\Form\\Extension\\HttpFoundation\\HttpFoundationRequestHandler',
+            'form.type_extension.csrf.enabled' => true,
+            'form.type_extension.csrf.field_name' => '_token',
+            'security.csrf.token_generator.class' => 'Symfony\\Component\\Security\\Csrf\\TokenGenerator\\UriSafeTokenGenerator',
+            'security.csrf.token_storage.class' => 'Symfony\\Component\\Security\\Csrf\\TokenStorage\\SessionTokenStorage',
+            'security.csrf.token_manager.class' => 'Symfony\\Component\\Security\\Csrf\\CsrfTokenManager',
+            'templating.engine.delegating.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\DelegatingEngine',
+            'templating.name_parser.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\TemplateNameParser',
+            'templating.filename_parser.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\TemplateFilenameParser',
+            'templating.cache_warmer.template_paths.class' => 'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\TemplatePathsCacheWarmer',
+            'templating.locator.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\TemplateLocator',
+            'templating.loader.filesystem.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\FilesystemLoader',
+            'templating.loader.cache.class' => 'Symfony\\Component\\Templating\\Loader\\CacheLoader',
+            'templating.loader.chain.class' => 'Symfony\\Component\\Templating\\Loader\\ChainLoader',
+            'templating.finder.class' => 'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\TemplateFinder',
+            'templating.engine.php.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\PhpEngine',
+            'templating.helper.slots.class' => 'Symfony\\Component\\Templating\\Helper\\SlotsHelper',
+            'templating.helper.assets.class' => 'Symfony\\Component\\Templating\\Helper\\CoreAssetsHelper',
+            'templating.helper.actions.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\ActionsHelper',
+            'templating.helper.router.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\RouterHelper',
+            'templating.helper.request.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\RequestHelper',
+            'templating.helper.session.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\SessionHelper',
+            'templating.helper.code.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\CodeHelper',
+            'templating.helper.translator.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\TranslatorHelper',
+            'templating.helper.form.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\FormHelper',
+            'templating.helper.stopwatch.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\StopwatchHelper',
+            'templating.form.engine.class' => 'Symfony\\Component\\Form\\Extension\\Templating\\TemplatingRendererEngine',
+            'templating.form.renderer.class' => 'Symfony\\Component\\Form\\FormRenderer',
+            'templating.globals.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\GlobalVariables',
+            'templating.asset.path_package.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Asset\\PathPackage',
+            'templating.asset.url_package.class' => 'Symfony\\Component\\Templating\\Asset\\UrlPackage',
+            'templating.asset.package_factory.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Asset\\PackageFactory',
+            'templating.helper.code.file_link_format' => NULL,
+            'templating.helper.form.resources' => array(
+                0 => 'FrameworkBundle:Form',
+            ),
+            'templating.loader.cache.path' => NULL,
+            'templating.engines' => array(
+                0 => 'twig',
+            ),
+            'validator.class' => 'Symfony\\Component\\Validator\\ValidatorInterface',
+            'validator.builder.class' => 'Symfony\\Component\\Validator\\ValidatorBuilderInterface',
+            'validator.builder.factory.class' => 'Symfony\\Component\\Validator\\Validation',
+            'validator.mapping.cache.apc.class' => 'Symfony\\Component\\Validator\\Mapping\\Cache\\ApcCache',
+            'validator.mapping.cache.prefix' => '',
+            'validator.validator_factory.class' => 'Symfony\\Bundle\\FrameworkBundle\\Validator\\ConstraintValidatorFactory',
+            'validator.expression.class' => 'Symfony\\Component\\Validator\\Constraints\\ExpressionValidator',
+            'validator.email.class' => 'Symfony\\Component\\Validator\\Constraints\\EmailValidator',
+            'validator.translation_domain' => 'validators',
+            'validator.api' => 3,
+            'data_collector.templates' => array(
+            ),
+            'router.class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\Router',
+            'router.request_context.class' => 'Symfony\\Component\\Routing\\RequestContext',
+            'routing.loader.class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\DelegatingLoader',
+            'routing.resolver.class' => 'Symfony\\Component\\Config\\Loader\\LoaderResolver',
+            'routing.loader.xml.class' => 'Symfony\\Component\\Routing\\Loader\\XmlFileLoader',
+            'routing.loader.yml.class' => 'Symfony\\Component\\Routing\\Loader\\YamlFileLoader',
+            'routing.loader.php.class' => 'Symfony\\Component\\Routing\\Loader\\PhpFileLoader',
+            'router.options.generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator',
+            'router.options.generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator',
+            'router.options.generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper',
+            'router.options.matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher',
+            'router.options.matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher',
+            'router.options.matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper',
+            'router.cache_warmer.class' => 'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\RouterCacheWarmer',
+            'router.options.matcher.cache_class' => 'appProdUrlMatcher',
+            'router.options.generator.cache_class' => 'appProdUrlGenerator',
+            'router_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\RouterListener',
+            'router.request_context.host' => 'localhost',
+            'router.request_context.scheme' => 'http',
+            'router.request_context.base_url' => '',
+            'router.resource' => '/home/florian/Documents/ecoleDeMusique/app/config/routing.yml',
+            'router.cache_class_prefix' => 'appProd',
+            'request_listener.http_port' => 80,
+            'request_listener.https_port' => 443,
+            'annotations.reader.class' => 'Doctrine\\Common\\Annotations\\AnnotationReader',
+            'annotations.cached_reader.class' => 'Doctrine\\Common\\Annotations\\CachedReader',
+            'annotations.file_cache_reader.class' => 'Doctrine\\Common\\Annotations\\FileCacheReader',
+            'debug.debug_handlers_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\DebugHandlersListener',
+            'debug.stopwatch.class' => 'Symfony\\Component\\Stopwatch\\Stopwatch',
+            'security.context.class' => 'Symfony\\Component\\Security\\Core\\SecurityContext',
+            'security.authorization_checker.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\AuthorizationChecker',
+            'security.token_storage.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Token\\Storage\\TokenStorage',
+            'security.user_checker.class' => 'Symfony\\Component\\Security\\Core\\User\\UserChecker',
+            'security.encoder_factory.generic.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\EncoderFactory',
+            'security.user_password_encoder.generic.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\UserPasswordEncoder',
+            'security.encoder.digest.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\MessageDigestPasswordEncoder',
+            'security.encoder.plain.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\PlaintextPasswordEncoder',
+            'security.encoder.pbkdf2.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\Pbkdf2PasswordEncoder',
+            'security.encoder.bcrypt.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\BCryptPasswordEncoder',
+            'security.user.provider.in_memory.class' => 'Symfony\\Component\\Security\\Core\\User\\InMemoryUserProvider',
+            'security.user.provider.in_memory.user.class' => 'Symfony\\Component\\Security\\Core\\User\\User',
+            'security.user.provider.chain.class' => 'Symfony\\Component\\Security\\Core\\User\\ChainUserProvider',
+            'security.authentication.trust_resolver.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\AuthenticationTrustResolver',
+            'security.authentication.trust_resolver.anonymous_class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Token\\AnonymousToken',
+            'security.authentication.trust_resolver.rememberme_class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Token\\RememberMeToken',
+            'security.authentication.manager.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\AuthenticationProviderManager',
+            'security.authentication.session_strategy.class' => 'Symfony\\Component\\Security\\Http\\Session\\SessionAuthenticationStrategy',
+            'security.access.decision_manager.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\AccessDecisionManager',
+            'security.access.simple_role_voter.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\RoleVoter',
+            'security.access.authenticated_voter.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\AuthenticatedVoter',
+            'security.access.role_hierarchy_voter.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\RoleHierarchyVoter',
+            'security.access.expression_voter.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\ExpressionVoter',
+            'security.firewall.class' => 'Symfony\\Component\\Security\\Http\\Firewall',
+            'security.firewall.map.class' => 'Symfony\\Bundle\\SecurityBundle\\Security\\FirewallMap',
+            'security.firewall.context.class' => 'Symfony\\Bundle\\SecurityBundle\\Security\\FirewallContext',
+            'security.matcher.class' => 'Symfony\\Component\\HttpFoundation\\RequestMatcher',
+            'security.expression_matcher.class' => 'Symfony\\Component\\HttpFoundation\\ExpressionRequestMatcher',
+            'security.role_hierarchy.class' => 'Symfony\\Component\\Security\\Core\\Role\\RoleHierarchy',
+            'security.http_utils.class' => 'Symfony\\Component\\Security\\Http\\HttpUtils',
+            'security.validator.user_password.class' => 'Symfony\\Component\\Security\\Core\\Validator\\Constraints\\UserPasswordValidator',
+            'security.expression_language.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\ExpressionLanguage',
+            'security.authentication_utils.class' => 'Symfony\\Component\\Security\\Http\\Authentication\\AuthenticationUtils',
+            'security.authentication.retry_entry_point.class' => 'Symfony\\Component\\Security\\Http\\EntryPoint\\RetryAuthenticationEntryPoint',
+            'security.channel_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\ChannelListener',
+            'security.authentication.form_entry_point.class' => 'Symfony\\Component\\Security\\Http\\EntryPoint\\FormAuthenticationEntryPoint',
+            'security.authentication.listener.form.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\UsernamePasswordFormAuthenticationListener',
+            'security.authentication.listener.simple_form.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\SimpleFormAuthenticationListener',
+            'security.authentication.listener.simple_preauth.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\SimplePreAuthenticationListener',
+            'security.authentication.listener.basic.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\BasicAuthenticationListener',
+            'security.authentication.basic_entry_point.class' => 'Symfony\\Component\\Security\\Http\\EntryPoint\\BasicAuthenticationEntryPoint',
+            'security.authentication.listener.digest.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\DigestAuthenticationListener',
+            'security.authentication.digest_entry_point.class' => 'Symfony\\Component\\Security\\Http\\EntryPoint\\DigestAuthenticationEntryPoint',
+            'security.authentication.listener.x509.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\X509AuthenticationListener',
+            'security.authentication.listener.remote_user.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\RemoteUserAuthenticationListener',
+            'security.authentication.listener.anonymous.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\AnonymousAuthenticationListener',
+            'security.authentication.switchuser_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\SwitchUserListener',
+            'security.logout_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\LogoutListener',
+            'security.logout.handler.session.class' => 'Symfony\\Component\\Security\\Http\\Logout\\SessionLogoutHandler',
+            'security.logout.handler.cookie_clearing.class' => 'Symfony\\Component\\Security\\Http\\Logout\\CookieClearingLogoutHandler',
+            'security.logout.success_handler.class' => 'Symfony\\Component\\Security\\Http\\Logout\\DefaultLogoutSuccessHandler',
+            'security.access_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\AccessListener',
+            'security.access_map.class' => 'Symfony\\Component\\Security\\Http\\AccessMap',
+            'security.exception_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\ExceptionListener',
+            'security.context_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\ContextListener',
+            'security.authentication.provider.dao.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\DaoAuthenticationProvider',
+            'security.authentication.provider.simple.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\SimpleAuthenticationProvider',
+            'security.authentication.provider.pre_authenticated.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\PreAuthenticatedAuthenticationProvider',
+            'security.authentication.provider.anonymous.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\AnonymousAuthenticationProvider',
+            'security.authentication.success_handler.class' => 'Symfony\\Component\\Security\\Http\\Authentication\\DefaultAuthenticationSuccessHandler',
+            'security.authentication.failure_handler.class' => 'Symfony\\Component\\Security\\Http\\Authentication\\DefaultAuthenticationFailureHandler',
+            'security.authentication.custom_success_handler.class' => 'Symfony\\Component\\Security\\Http\\Authentication\\CustomAuthenticationSuccessHandler',
+            'security.authentication.custom_failure_handler.class' => 'Symfony\\Component\\Security\\Http\\Authentication\\CustomAuthenticationFailureHandler',
+            'security.authentication.simple_success_failure_handler.class' => 'Symfony\\Component\\Security\\Http\\Authentication\\SimpleAuthenticationHandler',
+            'security.authentication.provider.rememberme.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\RememberMeAuthenticationProvider',
+            'security.authentication.listener.rememberme.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\RememberMeListener',
+            'security.rememberme.token.provider.in_memory.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\RememberMe\\InMemoryTokenProvider',
+            'security.authentication.rememberme.services.persistent.class' => 'Symfony\\Component\\Security\\Http\\RememberMe\\PersistentTokenBasedRememberMeServices',
+            'security.authentication.rememberme.services.simplehash.class' => 'Symfony\\Component\\Security\\Http\\RememberMe\\TokenBasedRememberMeServices',
+            'security.rememberme.response_listener.class' => 'Symfony\\Component\\Security\\Http\\RememberMe\\ResponseListener',
+            'templating.helper.logout_url.class' => 'Symfony\\Bundle\\SecurityBundle\\Templating\\Helper\\LogoutUrlHelper',
+            'templating.helper.security.class' => 'Symfony\\Bundle\\SecurityBundle\\Templating\\Helper\\SecurityHelper',
+            'twig.extension.logout_url.class' => 'Symfony\\Bundle\\SecurityBundle\\Twig\\Extension\\LogoutUrlExtension',
+            'twig.extension.security.class' => 'Symfony\\Bridge\\Twig\\Extension\\SecurityExtension',
+            'data_collector.security.class' => 'Symfony\\Bundle\\SecurityBundle\\DataCollector\\SecurityDataCollector',
+            'security.access.denied_url' => NULL,
+            'security.authentication.manager.erase_credentials' => true,
+            'security.authentication.session_strategy.strategy' => 'migrate',
+            'security.access.always_authenticate_before_granting' => false,
+            'security.authentication.hide_user_not_found' => true,
+            'security.role_hierarchy.roles' => array(
+                'ROLE_SUPER_ADMIN' => array(
+                    0 => 'ROLE_ADMIN',
+                ),
+            ),
+            'twig.class' => 'Twig_Environment',
+            'twig.loader.filesystem.class' => 'Symfony\\Bundle\\TwigBundle\\Loader\\FilesystemLoader',
+            'twig.loader.chain.class' => 'Twig_Loader_Chain',
+            'templating.engine.twig.class' => 'Symfony\\Bundle\\TwigBundle\\TwigEngine',
+            'twig.cache_warmer.class' => 'Symfony\\Bundle\\TwigBundle\\CacheWarmer\\TemplateCacheCacheWarmer',
+            'twig.extension.trans.class' => 'Symfony\\Bridge\\Twig\\Extension\\TranslationExtension',
+            'twig.extension.assets.class' => 'Symfony\\Bundle\\TwigBundle\\Extension\\AssetsExtension',
+            'twig.extension.actions.class' => 'Symfony\\Bundle\\TwigBundle\\Extension\\ActionsExtension',
+            'twig.extension.code.class' => 'Symfony\\Bridge\\Twig\\Extension\\CodeExtension',
+            'twig.extension.routing.class' => 'Symfony\\Bridge\\Twig\\Extension\\RoutingExtension',
+            'twig.extension.yaml.class' => 'Symfony\\Bridge\\Twig\\Extension\\YamlExtension',
+            'twig.extension.form.class' => 'Symfony\\Bridge\\Twig\\Extension\\FormExtension',
+            'twig.extension.httpkernel.class' => 'Symfony\\Bridge\\Twig\\Extension\\HttpKernelExtension',
+            'twig.extension.debug.stopwatch.class' => 'Symfony\\Bridge\\Twig\\Extension\\StopwatchExtension',
+            'twig.extension.expression.class' => 'Symfony\\Bridge\\Twig\\Extension\\ExpressionExtension',
+            'twig.form.engine.class' => 'Symfony\\Bridge\\Twig\\Form\\TwigRendererEngine',
+            'twig.form.renderer.class' => 'Symfony\\Bridge\\Twig\\Form\\TwigRenderer',
+            'twig.translation.extractor.class' => 'Symfony\\Bridge\\Twig\\Translation\\TwigExtractor',
+            'twig.exception_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ExceptionListener',
+            'twig.controller.exception.class' => 'Symfony\\Bundle\\TwigBundle\\Controller\\ExceptionController',
+            'twig.exception_listener.controller' => 'twig.controller.exception:showAction',
+            'twig.form.resources' => array(
+                0 => 'form_div_layout.html.twig',
+            ),
+            'twig.options' => array(
+                'debug' => false,
+                'strict_variables' => false,
+                'exception_controller' => 'twig.controller.exception:showAction',
+                'form_themes' => array(
+                    0 => 'form_div_layout.html.twig',
+                ),
+                'autoescape_service' => NULL,
+                'autoescape_service_method' => NULL,
+                'cache' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/twig',
+                'charset' => 'UTF-8',
+                'paths' => array(
+                ),
+            ),
+            'monolog.logger.class' => 'Symfony\\Bridge\\Monolog\\Logger',
+            'monolog.gelf.publisher.class' => 'Gelf\\MessagePublisher',
+            'monolog.gelfphp.publisher.class' => 'Gelf\\Publisher',
+            'monolog.handler.stream.class' => 'Monolog\\Handler\\StreamHandler',
+            'monolog.handler.console.class' => 'Symfony\\Bridge\\Monolog\\Handler\\ConsoleHandler',
+            'monolog.handler.group.class' => 'Monolog\\Handler\\GroupHandler',
+            'monolog.handler.buffer.class' => 'Monolog\\Handler\\BufferHandler',
+            'monolog.handler.rotating_file.class' => 'Monolog\\Handler\\RotatingFileHandler',
+            'monolog.handler.syslog.class' => 'Monolog\\Handler\\SyslogHandler',
+            'monolog.handler.syslogudp.class' => 'Monolog\\Handler\\SyslogUdpHandler',
+            'monolog.handler.null.class' => 'Monolog\\Handler\\NullHandler',
+            'monolog.handler.test.class' => 'Monolog\\Handler\\TestHandler',
+            'monolog.handler.gelf.class' => 'Monolog\\Handler\\GelfHandler',
+            'monolog.handler.rollbar.class' => 'Monolog\\Handler\\RollbarHandler',
+            'monolog.handler.flowdock.class' => 'Monolog\\Handler\\FlowdockHandler',
+            'monolog.handler.browser_console.class' => 'Monolog\\Handler\\BrowserConsoleHandler',
+            'monolog.handler.firephp.class' => 'Symfony\\Bridge\\Monolog\\Handler\\FirePHPHandler',
+            'monolog.handler.chromephp.class' => 'Symfony\\Bridge\\Monolog\\Handler\\ChromePhpHandler',
+            'monolog.handler.debug.class' => 'Symfony\\Bridge\\Monolog\\Handler\\DebugHandler',
+            'monolog.handler.swift_mailer.class' => 'Symfony\\Bridge\\Monolog\\Handler\\SwiftMailerHandler',
+            'monolog.handler.native_mailer.class' => 'Monolog\\Handler\\NativeMailerHandler',
+            'monolog.handler.socket.class' => 'Monolog\\Handler\\SocketHandler',
+            'monolog.handler.pushover.class' => 'Monolog\\Handler\\PushoverHandler',
+            'monolog.handler.raven.class' => 'Monolog\\Handler\\RavenHandler',
+            'monolog.handler.newrelic.class' => 'Monolog\\Handler\\NewRelicHandler',
+            'monolog.handler.hipchat.class' => 'Monolog\\Handler\\HipChatHandler',
+            'monolog.handler.slack.class' => 'Monolog\\Handler\\SlackHandler',
+            'monolog.handler.cube.class' => 'Monolog\\Handler\\CubeHandler',
+            'monolog.handler.amqp.class' => 'Monolog\\Handler\\AmqpHandler',
+            'monolog.handler.error_log.class' => 'Monolog\\Handler\\ErrorLogHandler',
+            'monolog.handler.loggly.class' => 'Monolog\\Handler\\LogglyHandler',
+            'monolog.handler.logentries.class' => 'Monolog\\Handler\\LogEntriesHandler',
+            'monolog.activation_strategy.not_found.class' => 'Symfony\\Bundle\\MonologBundle\\NotFoundActivationStrategy',
+            'monolog.handler.fingers_crossed.class' => 'Monolog\\Handler\\FingersCrossedHandler',
+            'monolog.handler.fingers_crossed.error_level_activation_strategy.class' => 'Monolog\\Handler\\FingersCrossed\\ErrorLevelActivationStrategy',
+            'monolog.handler.filter.class' => 'Monolog\\Handler\\FilterHandler',
+            'monolog.handler.mongo.class' => 'Monolog\\Handler\\MongoDBHandler',
+            'monolog.mongo.client.class' => 'MongoClient',
+            'monolog.swift_mailer.handlers' => array(
+            ),
+            'monolog.handlers_to_channels' => array(
+                'monolog.handler.main' => NULL,
+            ),
+            'swiftmailer.class' => 'Swift_Mailer',
+            'swiftmailer.transport.sendmail.class' => 'Swift_Transport_SendmailTransport',
+            'swiftmailer.transport.mail.class' => 'Swift_Transport_MailTransport',
+            'swiftmailer.transport.failover.class' => 'Swift_Transport_FailoverTransport',
+            'swiftmailer.plugin.redirecting.class' => 'Swift_Plugins_RedirectingPlugin',
+            'swiftmailer.plugin.impersonate.class' => 'Swift_Plugins_ImpersonatePlugin',
+            'swiftmailer.plugin.messagelogger.class' => 'Swift_Plugins_MessageLogger',
+            'swiftmailer.plugin.antiflood.class' => 'Swift_Plugins_AntiFloodPlugin',
+            'swiftmailer.transport.smtp.class' => 'Swift_Transport_EsmtpTransport',
+            'swiftmailer.plugin.blackhole.class' => 'Swift_Plugins_BlackholePlugin',
+            'swiftmailer.spool.file.class' => 'Swift_FileSpool',
+            'swiftmailer.spool.memory.class' => 'Swift_MemorySpool',
+            'swiftmailer.email_sender.listener.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\EventListener\\EmailSenderListener',
+            'swiftmailer.data_collector.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\DataCollector\\MessageDataCollector',
+            'swiftmailer.mailer.default.transport.name' => 'smtp',
+            'swiftmailer.mailer.default.delivery.enabled' => true,
+            'swiftmailer.mailer.default.transport.smtp.encryption' => NULL,
+            'swiftmailer.mailer.default.transport.smtp.port' => 25,
+            'swiftmailer.mailer.default.transport.smtp.host' => 'mail.ville-voreppe.fr',
+            'swiftmailer.mailer.default.transport.smtp.username' => 'ecoledemusique',
+            'swiftmailer.mailer.default.transport.smtp.password' => 'sea42ap',
+            'swiftmailer.mailer.default.transport.smtp.auth_mode' => NULL,
+            'swiftmailer.mailer.default.transport.smtp.timeout' => 30,
+            'swiftmailer.mailer.default.transport.smtp.source_ip' => NULL,
+            'swiftmailer.mailer.default.spool.enabled' => false,
+            'swiftmailer.mailer.default.plugin.impersonate' => NULL,
+            'swiftmailer.mailer.default.single_address' => NULL,
+            'swiftmailer.spool.enabled' => false,
+            'swiftmailer.delivery.enabled' => true,
+            'swiftmailer.single_address' => NULL,
+            'swiftmailer.mailers' => array(
+                'default' => 'swiftmailer.mailer.default',
+            ),
+            'swiftmailer.default_mailer' => 'default',
+            'assetic.asset_factory.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\AssetFactory',
+            'assetic.asset_manager.class' => 'Assetic\\Factory\\LazyAssetManager',
+            'assetic.asset_manager_cache_warmer.class' => 'Symfony\\Bundle\\AsseticBundle\\CacheWarmer\\AssetManagerCacheWarmer',
+            'assetic.cached_formula_loader.class' => 'Assetic\\Factory\\Loader\\CachedFormulaLoader',
+            'assetic.config_cache.class' => 'Assetic\\Cache\\ConfigCache',
+            'assetic.config_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Loader\\ConfigurationLoader',
+            'assetic.config_resource.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Resource\\ConfigurationResource',
+            'assetic.coalescing_directory_resource.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Resource\\CoalescingDirectoryResource',
+            'assetic.directory_resource.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Resource\\DirectoryResource',
+            'assetic.filter_manager.class' => 'Symfony\\Bundle\\AsseticBundle\\FilterManager',
+            'assetic.worker.ensure_filter.class' => 'Assetic\\Factory\\Worker\\EnsureFilterWorker',
+            'assetic.worker.cache_busting.class' => 'Assetic\\Factory\\Worker\\CacheBustingWorker',
+            'assetic.value_supplier.class' => 'Symfony\\Bundle\\AsseticBundle\\DefaultValueSupplier',
+            'assetic.node.paths' => array(
+            ),
+            'assetic.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/assetic',
+            'assetic.bundles' => array(
+                0 => 'EcoleDeMusiqueWelcomeBundle',
+            ),
+            'assetic.twig_extension.class' => 'Symfony\\Bundle\\AsseticBundle\\Twig\\AsseticExtension',
+            'assetic.twig_formula_loader.class' => 'Assetic\\Extension\\Twig\\TwigFormulaLoader',
+            'assetic.helper.dynamic.class' => 'Symfony\\Bundle\\AsseticBundle\\Templating\\DynamicAsseticHelper',
+            'assetic.helper.static.class' => 'Symfony\\Bundle\\AsseticBundle\\Templating\\StaticAsseticHelper',
+            'assetic.php_formula_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Loader\\AsseticHelperFormulaLoader',
+            'assetic.debug' => false,
+            'assetic.use_controller' => false,
+            'assetic.enable_profiler' => false,
+            'assetic.read_from' => '/home/florian/Documents/ecoleDeMusique/app/../web',
+            'assetic.write_to' => '/home/florian/Documents/ecoleDeMusique/app/../web',
+            'assetic.variables' => array(
+            ),
+            'assetic.java.bin' => '/usr/bin/java',
+            'assetic.node.bin' => '/usr/local/bin/node',
+            'assetic.ruby.bin' => '/usr/bin/ruby',
+            'assetic.sass.bin' => '/usr/local/bin/sass',
+            'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',
+            'assetic.filter.yui_css.class' => 'Assetic\\Filter\\Yui\\CssCompressorFilter',
+            'assetic.filter.yui_css.java' => '/usr/bin/java',
+            'assetic.filter.yui_css.jar' => '/home/florian/Documents/ecoleDeMusique/app/Resources/java/yuicompressor-2.4.8.jar',
+            'assetic.filter.yui_css.charset' => 'UTF-8',
+            'assetic.filter.yui_css.stacksize' => NULL,
+            'assetic.filter.yui_css.timeout' => NULL,
+            'assetic.filter.yui_css.linebreak' => NULL,
+            'assetic.twig_extension.functions' => array(
+            ),
+            'doctrine_cache.apc.class' => 'Doctrine\\Common\\Cache\\ApcCache',
+            'doctrine_cache.array.class' => 'Doctrine\\Common\\Cache\\ArrayCache',
+            'doctrine_cache.file_system.class' => 'Doctrine\\Common\\Cache\\FilesystemCache',
+            'doctrine_cache.php_file.class' => 'Doctrine\\Common\\Cache\\PhpFileCache',
+            'doctrine_cache.mongodb.class' => 'Doctrine\\Common\\Cache\\MongoDBCache',
+            'doctrine_cache.mongodb.collection.class' => 'MongoCollection',
+            'doctrine_cache.mongodb.connection.class' => 'MongoClient',
+            'doctrine_cache.mongodb.server' => 'localhost:27017',
+            'doctrine_cache.riak.class' => 'Doctrine\\Common\\Cache\\RiakCache',
+            'doctrine_cache.riak.bucket.class' => 'Riak\\Bucket',
+            'doctrine_cache.riak.connection.class' => 'Riak\\Connection',
+            'doctrine_cache.riak.bucket_property_list.class' => 'Riak\\BucketPropertyList',
+            'doctrine_cache.riak.host' => 'localhost',
+            'doctrine_cache.riak.port' => 8087,
+            'doctrine_cache.memcache.class' => 'Doctrine\\Common\\Cache\\MemcacheCache',
+            'doctrine_cache.memcache.connection.class' => 'Memcache',
+            'doctrine_cache.memcache.host' => 'localhost',
+            'doctrine_cache.memcache.port' => 11211,
+            'doctrine_cache.memcached.class' => 'Doctrine\\Common\\Cache\\MemcachedCache',
+            'doctrine_cache.memcached.connection.class' => 'Memcached',
+            'doctrine_cache.memcached.host' => 'localhost',
+            'doctrine_cache.memcached.port' => 11211,
+            'doctrine_cache.redis.class' => 'Doctrine\\Common\\Cache\\RedisCache',
+            'doctrine_cache.redis.connection.class' => 'Redis',
+            'doctrine_cache.redis.host' => 'localhost',
+            'doctrine_cache.redis.port' => 6379,
+            'doctrine_cache.couchbase.class' => 'Doctrine\\Common\\Cache\\CouchbaseCache',
+            'doctrine_cache.couchbase.connection.class' => 'Couchbase',
+            'doctrine_cache.couchbase.hostnames' => 'localhost:8091',
+            'doctrine_cache.wincache.class' => 'Doctrine\\Common\\Cache\\WinCacheCache',
+            'doctrine_cache.xcache.class' => 'Doctrine\\Common\\Cache\\XcacheCache',
+            'doctrine_cache.zenddata.class' => 'Doctrine\\Common\\Cache\\ZendDataCache',
+            'doctrine_cache.security.acl.cache.class' => 'Doctrine\\Bundle\\DoctrineCacheBundle\\Acl\\Model\\AclCache',
+            'doctrine.dbal.logger.chain.class' => 'Doctrine\\DBAL\\Logging\\LoggerChain',
+            'doctrine.dbal.logger.profiling.class' => 'Doctrine\\DBAL\\Logging\\DebugStack',
+            'doctrine.dbal.logger.class' => 'Symfony\\Bridge\\Doctrine\\Logger\\DbalLogger',
+            'doctrine.dbal.configuration.class' => 'Doctrine\\DBAL\\Configuration',
+            'doctrine.data_collector.class' => 'Doctrine\\Bundle\\DoctrineBundle\\DataCollector\\DoctrineDataCollector',
+            'doctrine.dbal.connection.event_manager.class' => 'Symfony\\Bridge\\Doctrine\\ContainerAwareEventManager',
+            'doctrine.dbal.connection_factory.class' => 'Doctrine\\Bundle\\DoctrineBundle\\ConnectionFactory',
+            'doctrine.dbal.events.mysql_session_init.class' => 'Doctrine\\DBAL\\Event\\Listeners\\MysqlSessionInit',
+            'doctrine.dbal.events.oracle_session_init.class' => 'Doctrine\\DBAL\\Event\\Listeners\\OracleSessionInit',
+            'doctrine.class' => 'Doctrine\\Bundle\\DoctrineBundle\\Registry',
+            'doctrine.entity_managers' => array(
+                'default' => 'doctrine.orm.default_entity_manager',
+            ),
+            'doctrine.default_entity_manager' => 'default',
+            'doctrine.dbal.connection_factory.types' => array(
+            ),
+            'doctrine.connections' => array(
+                'default' => 'doctrine.dbal.default_connection',
+            ),
+            'doctrine.default_connection' => 'default',
+            'doctrine.orm.configuration.class' => 'Doctrine\\ORM\\Configuration',
+            'doctrine.orm.entity_manager.class' => 'Doctrine\\ORM\\EntityManager',
+            'doctrine.orm.manager_configurator.class' => 'Doctrine\\Bundle\\DoctrineBundle\\ManagerConfigurator',
+            'doctrine.orm.cache.array.class' => 'Doctrine\\Common\\Cache\\ArrayCache',
+            'doctrine.orm.cache.apc.class' => 'Doctrine\\Common\\Cache\\ApcCache',
+            'doctrine.orm.cache.memcache.class' => 'Doctrine\\Common\\Cache\\MemcacheCache',
+            'doctrine.orm.cache.memcache_host' => 'localhost',
+            'doctrine.orm.cache.memcache_port' => 11211,
+            'doctrine.orm.cache.memcache_instance.class' => 'Memcache',
+            'doctrine.orm.cache.memcached.class' => 'Doctrine\\Common\\Cache\\MemcachedCache',
+            'doctrine.orm.cache.memcached_host' => 'localhost',
+            'doctrine.orm.cache.memcached_port' => 11211,
+            'doctrine.orm.cache.memcached_instance.class' => 'Memcached',
+            'doctrine.orm.cache.redis.class' => 'Doctrine\\Common\\Cache\\RedisCache',
+            'doctrine.orm.cache.redis_host' => 'localhost',
+            'doctrine.orm.cache.redis_port' => 6379,
+            'doctrine.orm.cache.redis_instance.class' => 'Redis',
+            'doctrine.orm.cache.xcache.class' => 'Doctrine\\Common\\Cache\\XcacheCache',
+            'doctrine.orm.cache.wincache.class' => 'Doctrine\\Common\\Cache\\WinCacheCache',
+            'doctrine.orm.cache.zenddata.class' => 'Doctrine\\Common\\Cache\\ZendDataCache',
+            'doctrine.orm.metadata.driver_chain.class' => 'Doctrine\\Common\\Persistence\\Mapping\\Driver\\MappingDriverChain',
+            'doctrine.orm.metadata.annotation.class' => 'Doctrine\\ORM\\Mapping\\Driver\\AnnotationDriver',
+            'doctrine.orm.metadata.xml.class' => 'Doctrine\\ORM\\Mapping\\Driver\\SimplifiedXmlDriver',
+            'doctrine.orm.metadata.yml.class' => 'Doctrine\\ORM\\Mapping\\Driver\\SimplifiedYamlDriver',
+            'doctrine.orm.metadata.php.class' => 'Doctrine\\ORM\\Mapping\\Driver\\PHPDriver',
+            'doctrine.orm.metadata.staticphp.class' => 'Doctrine\\ORM\\Mapping\\Driver\\StaticPHPDriver',
+            'doctrine.orm.proxy_cache_warmer.class' => 'Symfony\\Bridge\\Doctrine\\CacheWarmer\\ProxyCacheWarmer',
+            'form.type_guesser.doctrine.class' => 'Symfony\\Bridge\\Doctrine\\Form\\DoctrineOrmTypeGuesser',
+            'doctrine.orm.validator.unique.class' => 'Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntityValidator',
+            'doctrine.orm.validator_initializer.class' => 'Symfony\\Bridge\\Doctrine\\Validator\\DoctrineInitializer',
+            'doctrine.orm.security.user.provider.class' => 'Symfony\\Bridge\\Doctrine\\Security\\User\\EntityUserProvider',
+            'doctrine.orm.listeners.resolve_target_entity.class' => 'Doctrine\\ORM\\Tools\\ResolveTargetEntityListener',
+            'doctrine.orm.listeners.attach_entity_listeners.class' => 'Doctrine\\ORM\\Tools\\AttachEntityListenersListener',
+            'doctrine.orm.naming_strategy.default.class' => 'Doctrine\\ORM\\Mapping\\DefaultNamingStrategy',
+            'doctrine.orm.naming_strategy.underscore.class' => 'Doctrine\\ORM\\Mapping\\UnderscoreNamingStrategy',
+            'doctrine.orm.entity_listener_resolver.class' => 'Doctrine\\ORM\\Mapping\\DefaultEntityListenerResolver',
+            'doctrine.orm.second_level_cache.default_cache_factory.class' => 'Doctrine\\ORM\\Cache\\DefaultCacheFactory',
+            'doctrine.orm.second_level_cache.default_region.class' => 'Doctrine\\ORM\\Cache\\Region\\DefaultRegion',
+            'doctrine.orm.second_level_cache.filelock_region.class' => 'Doctrine\\ORM\\Cache\\Region\\FileLockRegion',
+            'doctrine.orm.second_level_cache.logger_chain.class' => 'Doctrine\\ORM\\Cache\\Logging\\CacheLoggerChain',
+            'doctrine.orm.second_level_cache.logger_statistics.class' => 'Doctrine\\ORM\\Cache\\Logging\\StatisticsCacheLogger',
+            'doctrine.orm.second_level_cache.cache_configuration.class' => 'Doctrine\\ORM\\Cache\\CacheConfiguration',
+            'doctrine.orm.second_level_cache.regions_configuration.class' => 'Doctrine\\ORM\\Cache\\RegionsConfiguration',
+            'doctrine.orm.auto_generate_proxy_classes' => false,
+            'doctrine.orm.proxy_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/doctrine/orm/Proxies',
+            'doctrine.orm.proxy_namespace' => 'Proxies',
+            'sensio_framework_extra.view.guesser.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Templating\\TemplateGuesser',
+            'sensio_framework_extra.controller.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ControllerListener',
+            'sensio_framework_extra.routing.loader.annot_dir.class' => 'Symfony\\Component\\Routing\\Loader\\AnnotationDirectoryLoader',
+            'sensio_framework_extra.routing.loader.annot_file.class' => 'Symfony\\Component\\Routing\\Loader\\AnnotationFileLoader',
+            'sensio_framework_extra.routing.loader.annot_class.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Routing\\AnnotatedRouteControllerLoader',
+            'sensio_framework_extra.converter.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ParamConverterListener',
+            'sensio_framework_extra.converter.manager.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\ParamConverterManager',
+            'sensio_framework_extra.converter.doctrine.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
+            'sensio_framework_extra.converter.datetime.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DateTimeParamConverter',
+            'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
+            'jms_aop.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_aop',
+            'jms_aop.interceptor_loader.class' => 'JMS\\AopBundle\\Aop\\InterceptorLoader',
+            'jms_di_extra.metadata.driver.annotation_driver.class' => 'JMS\\DiExtraBundle\\Metadata\\Driver\\AnnotationDriver',
+            'jms_di_extra.metadata.driver.configured_controller_injections.class' => 'JMS\\DiExtraBundle\\Metadata\\Driver\\ConfiguredControllerInjectionsDriver',
+            'jms_di_extra.metadata.driver.lazy_loading_driver.class' => 'Metadata\\Driver\\LazyLoadingDriver',
+            'jms_di_extra.metadata.metadata_factory.class' => 'Metadata\\MetadataFactory',
+            'jms_di_extra.metadata.cache.file_cache.class' => 'Metadata\\Cache\\FileCache',
+            'jms_di_extra.metadata.converter.class' => 'JMS\\DiExtraBundle\\Metadata\\MetadataConverter',
+            'jms_di_extra.controller_resolver.class' => 'JMS\\DiExtraBundle\\HttpKernel\\ControllerResolver',
+            'jms_di_extra.controller_injectors_warmer.class' => 'JMS\\DiExtraBundle\\HttpKernel\\ControllerInjectorsWarmer',
+            'jms_di_extra.all_bundles' => false,
+            'jms_di_extra.bundles' => array(
+            ),
+            'jms_di_extra.directories' => array(
+            ),
+            'jms_di_extra.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_diextra',
+            'jms_di_extra.disable_grep' => false,
+            'jms_di_extra.doctrine_integration' => true,
+            'jms_di_extra.cache_warmer.controller_file_blacklist' => array(
+            ),
+            'jms_di_extra.doctrine_integration.entity_manager.file' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_diextra/doctrine/EntityManager_542e4b878987c.php',
+            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager542e4b878987c_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+            'security.secured_services' => array(
+            ),
+            'security.access.method_interceptor.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Interception\\MethodSecurityInterceptor',
+            'security.access.method_access_control' => array(
+            ),
+            'security.access.remembering_access_decision_manager.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\RememberingAccessDecisionManager',
+            'security.access.run_as_manager.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\RunAsManager',
+            'security.authentication.provider.run_as.class' => 'JMS\\SecurityExtraBundle\\Security\\Authentication\\Provider\\RunAsAuthenticationProvider',
+            'security.run_as.key' => 'RunAsToken',
+            'security.run_as.role_prefix' => 'ROLE_',
+            'security.access.after_invocation_manager.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\AfterInvocation\\AfterInvocationManager',
+            'security.access.after_invocation.acl_provider.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\AfterInvocation\\AclAfterInvocationProvider',
+            'security.access.iddqd_voter.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Voter\\IddqdVoter',
+            'security.extra.metadata_factory.class' => 'Metadata\\MetadataFactory',
+            'security.extra.lazy_loading_driver.class' => 'Metadata\\Driver\\LazyLoadingDriver',
+            'security.extra.driver_chain.class' => 'Metadata\\Driver\\DriverChain',
+            'security.extra.annotation_driver.class' => 'JMS\\SecurityExtraBundle\\Metadata\\Driver\\AnnotationDriver',
+            'security.extra.file_cache.class' => 'Metadata\\Cache\\FileCache',
+            'security.access.secure_all_services' => false,
+            'security.extra.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_security',
+            'security.acl.permission_evaluator.class' => 'JMS\\SecurityExtraBundle\\Security\\Acl\\Expression\\PermissionEvaluator',
+            'security.acl.has_permission_compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Acl\\Expression\\HasPermissionFunctionCompiler',
+            'security.expressions.voter.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\LazyLoadingExpressionVoter',
+            'security.expressions.handler.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\ContainerAwareExpressionHandler',
+            'security.expressions.compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\ExpressionCompiler',
+            'security.expressions.expression.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\Expression',
+            'security.expressions.variable_compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\Compiler\\ContainerAwareVariableCompiler',
+            'security.expressions.parameter_compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\Compiler\\ParameterExpressionCompiler',
+            'security.expressions.reverse_interpreter.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\ReverseInterpreter',
+            'security.extra.config_driver.class' => 'JMS\\SecurityExtraBundle\\Metadata\\Driver\\ConfigDriver',
+            'security.extra.twig_extension.class' => 'JMS\\SecurityExtraBundle\\Twig\\SecurityExtension',
+            'security.authenticated_voter.disabled' => false,
+            'security.role_voter.disabled' => false,
+            'security.acl_voter.disabled' => false,
+            'security.extra.iddqd_ignore_roles' => array(
+                0 => 'ROLE_PREVIOUS_ADMIN',
+            ),
+            'security.iddqd_aliases' => array(
+            ),
+            'console.command.ids' => array(
+            ),
+        );
     public function __construct()
     {
-        $this->parameters = $this->getDefaultParameters();
         $this->services =
         $this->scopedServices =
         $this->scopeStacks = array();
         $this->set('service_container', $this);
         $this->scopes = array('request' => 'container');
         $this->scopeChildren = array('request' => array());
+        $this->methodMap = array(
+            'annotation_reader' => 'getAnnotationReaderService',
+            'assetic.asset_factory' => 'getAssetic_AssetFactoryService',
+            'assetic.asset_manager' => 'getAssetic_AssetManagerService',
+            'assetic.filter.cssrewrite' => 'getAssetic_Filter_CssrewriteService',
+            'assetic.filter.yui_css' => 'getAssetic_Filter_YuiCssService',
+            'assetic.filter_manager' => 'getAssetic_FilterManagerService',
+            'cache_clearer' => 'getCacheClearerService',
+            'cache_warmer' => 'getCacheWarmerService',
+            'controller_name_converter' => 'getControllerNameConverterService',
+            'debug.debug_handlers_listener' => 'getDebug_DebugHandlersListenerService',
+            'debug.stopwatch' => 'getDebug_StopwatchService',
+            'doctrine' => 'getDoctrineService',
+            'doctrine.dbal.connection_factory' => 'getDoctrine_Dbal_ConnectionFactoryService',
+            'doctrine.dbal.default_connection' => 'getDoctrine_Dbal_DefaultConnectionService',
+            'doctrine.orm.default_entity_listener_resolver' => 'getDoctrine_Orm_DefaultEntityListenerResolverService',
+            'doctrine.orm.default_entity_manager' => 'getDoctrine_Orm_DefaultEntityManagerService',
+            'doctrine.orm.default_manager_configurator' => 'getDoctrine_Orm_DefaultManagerConfiguratorService',
+            'doctrine.orm.validator.unique' => 'getDoctrine_Orm_Validator_UniqueService',
+            'doctrine.orm.validator_initializer' => 'getDoctrine_Orm_ValidatorInitializerService',
+            'doctrine_cache.providers.doctrine.orm.default_metadata_cache' => 'getDoctrineCache_Providers_Doctrine_Orm_DefaultMetadataCacheService',
+            'doctrine_cache.providers.doctrine.orm.default_query_cache' => 'getDoctrineCache_Providers_Doctrine_Orm_DefaultQueryCacheService',
+            'doctrine_cache.providers.doctrine.orm.default_result_cache' => 'getDoctrineCache_Providers_Doctrine_Orm_DefaultResultCacheService',
+            'event_dispatcher' => 'getEventDispatcherService',
+            'file_locator' => 'getFileLocatorService',
+            'filesystem' => 'getFilesystemService',
+            'form.csrf_provider' => 'getForm_CsrfProviderService',
+            'form.factory' => 'getForm_FactoryService',
+            'form.registry' => 'getForm_RegistryService',
+            'form.resolved_type_factory' => 'getForm_ResolvedTypeFactoryService',
+            'form.type.birthday' => 'getForm_Type_BirthdayService',
+            'form.type.button' => 'getForm_Type_ButtonService',
+            'form.type.checkbox' => 'getForm_Type_CheckboxService',
+            'form.type.choice' => 'getForm_Type_ChoiceService',
+            'form.type.collection' => 'getForm_Type_CollectionService',
+            'form.type.country' => 'getForm_Type_CountryService',
+            'form.type.currency' => 'getForm_Type_CurrencyService',
+            'form.type.date' => 'getForm_Type_DateService',
+            'form.type.datetime' => 'getForm_Type_DatetimeService',
+            'form.type.email' => 'getForm_Type_EmailService',
+            'form.type.entity' => 'getForm_Type_EntityService',
+            'form.type.file' => 'getForm_Type_FileService',
+            'form.type.form' => 'getForm_Type_FormService',
+            'form.type.hidden' => 'getForm_Type_HiddenService',
+            'form.type.integer' => 'getForm_Type_IntegerService',
+            'form.type.language' => 'getForm_Type_LanguageService',
+            'form.type.locale' => 'getForm_Type_LocaleService',
+            'form.type.money' => 'getForm_Type_MoneyService',
+            'form.type.number' => 'getForm_Type_NumberService',
+            'form.type.password' => 'getForm_Type_PasswordService',
+            'form.type.percent' => 'getForm_Type_PercentService',
+            'form.type.radio' => 'getForm_Type_RadioService',
+            'form.type.repeated' => 'getForm_Type_RepeatedService',
+            'form.type.reset' => 'getForm_Type_ResetService',
+            'form.type.search' => 'getForm_Type_SearchService',
+            'form.type.submit' => 'getForm_Type_SubmitService',
+            'form.type.text' => 'getForm_Type_TextService',
+            'form.type.textarea' => 'getForm_Type_TextareaService',
+            'form.type.time' => 'getForm_Type_TimeService',
+            'form.type.timezone' => 'getForm_Type_TimezoneService',
+            'form.type.url' => 'getForm_Type_UrlService',
+            'form.type_extension.csrf' => 'getForm_TypeExtension_CsrfService',
+            'form.type_extension.form.http_foundation' => 'getForm_TypeExtension_Form_HttpFoundationService',
+            'form.type_extension.form.validator' => 'getForm_TypeExtension_Form_ValidatorService',
+            'form.type_extension.repeated.validator' => 'getForm_TypeExtension_Repeated_ValidatorService',
+            'form.type_extension.submit.validator' => 'getForm_TypeExtension_Submit_ValidatorService',
+            'form.type_guesser.doctrine' => 'getForm_TypeGuesser_DoctrineService',
+            'form.type_guesser.validator' => 'getForm_TypeGuesser_ValidatorService',
+            'fragment.handler' => 'getFragment_HandlerService',
+            'fragment.renderer.esi' => 'getFragment_Renderer_EsiService',
+            'fragment.renderer.hinclude' => 'getFragment_Renderer_HincludeService',
+            'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
+            'fragment.renderer.ssi' => 'getFragment_Renderer_SsiService',
+            'http_kernel' => 'getHttpKernelService',
+            'jms_aop.interceptor_loader' => 'getJmsAop_InterceptorLoaderService',
+            'jms_aop.pointcut_container' => 'getJmsAop_PointcutContainerService',
+            'jms_di_extra.controller_resolver' => 'getJmsDiExtra_ControllerResolverService',
+            'jms_di_extra.metadata.converter' => 'getJmsDiExtra_Metadata_ConverterService',
+            'jms_di_extra.metadata.metadata_factory' => 'getJmsDiExtra_Metadata_MetadataFactoryService',
+            'jms_di_extra.metadata_driver' => 'getJmsDiExtra_MetadataDriverService',
+            'kernel' => 'getKernelService',
+            'locale_listener' => 'getLocaleListenerService',
+            'logger' => 'getLoggerService',
+            'monolog.handler.main' => 'getMonolog_Handler_MainService',
+            'monolog.handler.nested' => 'getMonolog_Handler_NestedService',
+            'monolog.logger.assetic' => 'getMonolog_Logger_AsseticService',
+            'monolog.logger.doctrine' => 'getMonolog_Logger_DoctrineService',
+            'monolog.logger.php' => 'getMonolog_Logger_PhpService',
+            'monolog.logger.request' => 'getMonolog_Logger_RequestService',
+            'monolog.logger.router' => 'getMonolog_Logger_RouterService',
+            'monolog.logger.security' => 'getMonolog_Logger_SecurityService',
+            'monolog.logger.translation' => 'getMonolog_Logger_TranslationService',
+            'property_accessor' => 'getPropertyAccessorService',
+            'request' => 'getRequestService',
+            'request_stack' => 'getRequestStackService',
+            'response_listener' => 'getResponseListenerService',
+            'router' => 'getRouterService',
+            'router.request_context' => 'getRouter_RequestContextService',
+            'router_listener' => 'getRouterListenerService',
+            'routing.loader' => 'getRouting_LoaderService',
+            'security.access.decision_manager' => 'getSecurity_Access_DecisionManagerService',
+            'security.access.method_interceptor' => 'getSecurity_Access_MethodInterceptorService',
+            'security.access.pointcut' => 'getSecurity_Access_PointcutService',
+            'security.authentication.manager' => 'getSecurity_Authentication_ManagerService',
+            'security.authentication.trust_resolver' => 'getSecurity_Authentication_TrustResolverService',
+            'security.authentication_utils' => 'getSecurity_AuthenticationUtilsService',
+            'security.authorization_checker' => 'getSecurity_AuthorizationCheckerService',
+            'security.context' => 'getSecurity_ContextService',
+            'security.csrf.token_manager' => 'getSecurity_Csrf_TokenManagerService',
+            'security.encoder_factory' => 'getSecurity_EncoderFactoryService',
+            'security.expressions.compiler' => 'getSecurity_Expressions_CompilerService',
+            'security.expressions.handler' => 'getSecurity_Expressions_HandlerService',
+            'security.expressions.reverse_interpreter' => 'getSecurity_Expressions_ReverseInterpreterService',
+            'security.extra.metadata_driver' => 'getSecurity_Extra_MetadataDriverService',
+            'security.extra.metadata_factory' => 'getSecurity_Extra_MetadataFactoryService',
+            'security.firewall' => 'getSecurity_FirewallService',
+            'security.firewall.map.context.vitrine_area' => 'getSecurity_Firewall_Map_Context_VitrineAreaService',
+            'security.password_encoder' => 'getSecurity_PasswordEncoderService',
+            'security.rememberme.response_listener' => 'getSecurity_Rememberme_ResponseListenerService',
+            'security.role_hierarchy' => 'getSecurity_RoleHierarchyService',
+            'security.secure_random' => 'getSecurity_SecureRandomService',
+            'security.token_storage' => 'getSecurity_TokenStorageService',
+            'security.user.provider.concrete.customer' => 'getSecurity_User_Provider_Concrete_CustomerService',
+            'security.validator.user_password' => 'getSecurity_Validator_UserPasswordService',
+            'sensio_framework_extra.cache.listener' => 'getSensioFrameworkExtra_Cache_ListenerService',
+            'sensio_framework_extra.controller.listener' => 'getSensioFrameworkExtra_Controller_ListenerService',
+            'sensio_framework_extra.converter.datetime' => 'getSensioFrameworkExtra_Converter_DatetimeService',
+            'sensio_framework_extra.converter.doctrine.orm' => 'getSensioFrameworkExtra_Converter_Doctrine_OrmService',
+            'sensio_framework_extra.converter.listener' => 'getSensioFrameworkExtra_Converter_ListenerService',
+            'sensio_framework_extra.converter.manager' => 'getSensioFrameworkExtra_Converter_ManagerService',
+            'sensio_framework_extra.security.listener' => 'getSensioFrameworkExtra_Security_ListenerService',
+            'sensio_framework_extra.view.guesser' => 'getSensioFrameworkExtra_View_GuesserService',
+            'sensio_framework_extra.view.listener' => 'getSensioFrameworkExtra_View_ListenerService',
+            'service_container' => 'getServiceContainerService',
+            'session' => 'getSessionService',
+            'session.handler' => 'getSession_HandlerService',
+            'session.storage.filesystem' => 'getSession_Storage_FilesystemService',
+            'session.storage.metadata_bag' => 'getSession_Storage_MetadataBagService',
+            'session.storage.native' => 'getSession_Storage_NativeService',
+            'session.storage.php_bridge' => 'getSession_Storage_PhpBridgeService',
+            'session_listener' => 'getSessionListenerService',
+            'streamed_response_listener' => 'getStreamedResponseListenerService',
+            'swiftmailer.email_sender.listener' => 'getSwiftmailer_EmailSender_ListenerService',
+            'swiftmailer.mailer.default' => 'getSwiftmailer_Mailer_DefaultService',
+            'swiftmailer.mailer.default.transport' => 'getSwiftmailer_Mailer_Default_TransportService',
+            'templating' => 'getTemplatingService',
+            'templating.asset.package_factory' => 'getTemplating_Asset_PackageFactoryService',
+            'templating.filename_parser' => 'getTemplating_FilenameParserService',
+            'templating.globals' => 'getTemplating_GlobalsService',
+            'templating.helper.actions' => 'getTemplating_Helper_ActionsService',
+            'templating.helper.assets' => 'getTemplating_Helper_AssetsService',
+            'templating.helper.code' => 'getTemplating_Helper_CodeService',
+            'templating.helper.form' => 'getTemplating_Helper_FormService',
+            'templating.helper.logout_url' => 'getTemplating_Helper_LogoutUrlService',
+            'templating.helper.request' => 'getTemplating_Helper_RequestService',
+            'templating.helper.router' => 'getTemplating_Helper_RouterService',
+            'templating.helper.security' => 'getTemplating_Helper_SecurityService',
+            'templating.helper.session' => 'getTemplating_Helper_SessionService',
+            'templating.helper.slots' => 'getTemplating_Helper_SlotsService',
+            'templating.helper.stopwatch' => 'getTemplating_Helper_StopwatchService',
+            'templating.helper.translator' => 'getTemplating_Helper_TranslatorService',
+            'templating.loader' => 'getTemplating_LoaderService',
+            'templating.locator' => 'getTemplating_LocatorService',
+            'templating.name_parser' => 'getTemplating_NameParserService',
+            'translation.dumper.csv' => 'getTranslation_Dumper_CsvService',
+            'translation.dumper.ini' => 'getTranslation_Dumper_IniService',
+            'translation.dumper.json' => 'getTranslation_Dumper_JsonService',
+            'translation.dumper.mo' => 'getTranslation_Dumper_MoService',
+            'translation.dumper.php' => 'getTranslation_Dumper_PhpService',
+            'translation.dumper.po' => 'getTranslation_Dumper_PoService',
+            'translation.dumper.qt' => 'getTranslation_Dumper_QtService',
+            'translation.dumper.res' => 'getTranslation_Dumper_ResService',
+            'translation.dumper.xliff' => 'getTranslation_Dumper_XliffService',
+            'translation.dumper.yml' => 'getTranslation_Dumper_YmlService',
+            'translation.extractor' => 'getTranslation_ExtractorService',
+            'translation.extractor.php' => 'getTranslation_Extractor_PhpService',
+            'translation.loader' => 'getTranslation_LoaderService',
+            'translation.loader.csv' => 'getTranslation_Loader_CsvService',
+            'translation.loader.dat' => 'getTranslation_Loader_DatService',
+            'translation.loader.ini' => 'getTranslation_Loader_IniService',
+            'translation.loader.json' => 'getTranslation_Loader_JsonService',
+            'translation.loader.mo' => 'getTranslation_Loader_MoService',
+            'translation.loader.php' => 'getTranslation_Loader_PhpService',
+            'translation.loader.po' => 'getTranslation_Loader_PoService',
+            'translation.loader.qt' => 'getTranslation_Loader_QtService',
+            'translation.loader.res' => 'getTranslation_Loader_ResService',
+            'translation.loader.xliff' => 'getTranslation_Loader_XliffService',
+            'translation.loader.yml' => 'getTranslation_Loader_YmlService',
+            'translation.writer' => 'getTranslation_WriterService',
+            'translator' => 'getTranslatorService',
+            'translator.default' => 'getTranslator_DefaultService',
+            'translator.selector' => 'getTranslator_SelectorService',
+            'twig' => 'getTwigService',
+            'twig.controller.exception' => 'getTwig_Controller_ExceptionService',
+            'twig.exception_listener' => 'getTwig_ExceptionListenerService',
+            'twig.loader' => 'getTwig_LoaderService',
+            'twig.translation.extractor' => 'getTwig_Translation_ExtractorService',
+            'uri_signer' => 'getUriSignerService',
+            'validator' => 'getValidatorService',
+            'validator.builder' => 'getValidator_BuilderService',
+            'validator.email' => 'getValidator_EmailService',
+            'validator.expression' => 'getValidator_ExpressionService',
+        );
+        $this->aliases = array(
+            'database_connection' => 'doctrine.dbal.default_connection',
+            'doctrine.orm.default_metadata_cache' => 'doctrine_cache.providers.doctrine.orm.default_metadata_cache',
+            'doctrine.orm.default_query_cache' => 'doctrine_cache.providers.doctrine.orm.default_query_cache',
+            'doctrine.orm.default_result_cache' => 'doctrine_cache.providers.doctrine.orm.default_result_cache',
+            'doctrine.orm.entity_manager' => 'doctrine.orm.default_entity_manager',
+            'mailer' => 'swiftmailer.mailer.default',
+            'session.storage' => 'session.storage.native',
+            'swiftmailer.mailer' => 'swiftmailer.mailer.default',
+            'swiftmailer.transport' => 'swiftmailer.mailer.default.transport',
+        );
+    }
+    public function compile()
+    {
+        throw new LogicException('You cannot compile a dumped frozen container.');
     }
     protected function getAnnotationReaderService()
     {
@@ -27,7 +853,7 @@ class appProdProjectContainer extends Container
     protected function getAssetic_AssetManagerService()
     {
         $a = $this->get('templating.loader');
-        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/home/florian/Documents/ecoleDeMusique/app/cache/prod/assetic/config'), false)));
+        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig'), $this->get('monolog.logger.assetic', ContainerInterface::NULL_ON_INVALID_REFERENCE)), new \Assetic\Cache\ConfigCache('/home/florian/Documents/ecoleDeMusique/app/cache/prod/assetic/config'), false)));
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'EcoleDeMusiqueWelcomeBundle', '/home/florian/Documents/ecoleDeMusique/app/Resources/EcoleDeMusiqueWelcomeBundle/views', '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'EcoleDeMusiqueWelcomeBundle', '/home/florian/Documents/ecoleDeMusique/src/EcoleDeMusique/WelcomeBundle/Resources/views', '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, '', '/home/florian/Documents/ecoleDeMusique/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
         return $instance;
@@ -40,6 +866,9 @@ class appProdProjectContainer extends Container
     {
         $this->services['assetic.filter.yui_css'] = $instance = new \Assetic\Filter\Yui\CssCompressorFilter('/home/florian/Documents/ecoleDeMusique/app/Resources/java/yuicompressor-2.4.8.jar', '/usr/bin/java');
         $instance->setCharset('UTF-8');
+        $instance->setTimeout(NULL);
+        $instance->setStackSize(NULL);
+        $instance->setLineBreak(NULL);
         return $instance;
     }
     protected function getAssetic_FilterManagerService()
@@ -55,7 +884,15 @@ class appProdProjectContainer extends Container
         $a = $this->get('kernel');
         $b = $this->get('templating.filename_parser');
         $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, '/home/florian/Documents/ecoleDeMusique/app/Resources');
-        return $this->services['cache_warmer'] = new \Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate(array(0 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer($c, $this->get('templating.locator')), 1 => new \Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer($this), 2 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer($this->get('router')), 3 => new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer($this, $c), 4 => new \Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer($this->get('doctrine')), 5 => new \JMS\DiExtraBundle\HttpKernel\ControllerInjectorsWarmer($a, $this->get('jms_di_extra.controller_resolver'))));
+        return $this->services['cache_warmer'] = new \Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate(array(0 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer($c, $this->get('templating.locator')), 1 => new \Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer($this), 2 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer($this->get('router')), 3 => new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer($this, $c), 4 => new \Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer($this->get('doctrine')), 5 => new \JMS\DiExtraBundle\HttpKernel\ControllerInjectorsWarmer($a, $this->get('jms_di_extra.controller_resolver'), array())));
+    }
+    protected function getDebug_DebugHandlersListenerService()
+    {
+        return $this->services['debug.debug_handlers_listener'] = new \Symfony\Component\HttpKernel\EventListener\DebugHandlersListener('', $this->get('monolog.logger.php', ContainerInterface::NULL_ON_INVALID_REFERENCE), 85, false, NULL);
+    }
+    protected function getDebug_StopwatchService()
+    {
+        return $this->services['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch();
     }
     protected function getDoctrineService()
     {
@@ -67,40 +904,39 @@ class appProdProjectContainer extends Container
     }
     protected function getDoctrine_Dbal_DefaultConnectionService()
     {
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('dbname' => 'ecoleDeMusique', 'host' => '127.0.0.1', 'port' => NULL, 'user' => 'root', 'password' => 'root', 'charset' => 'UTF8', 'driver' => 'pdo_mysql', 'driverOptions' => array()), new \Doctrine\DBAL\Configuration(), new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'ecoleDeMusique', 'user' => 'root', 'password' => 'root', 'charset' => 'UTF8', 'driverOptions' => array()), new \Doctrine\DBAL\Configuration(), new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
+    }
+    protected function getDoctrine_Orm_DefaultEntityListenerResolverService()
+    {
+        return $this->services['doctrine.orm.default_entity_listener_resolver'] = new \Doctrine\ORM\Mapping\DefaultEntityListenerResolver();
     }
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
-        require_once '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_diextra/doctrine/EntityManager_542a543f43f33.php';
-        $a = new \Doctrine\Common\Cache\ArrayCache();
-        $a->setNamespace('sf2orm_default_d27a533f1e96370895e6240ca357dacd');
-        $b = new \Doctrine\Common\Cache\ArrayCache();
-        $b->setNamespace('sf2orm_default_d27a533f1e96370895e6240ca357dacd');
-        $c = new \Doctrine\Common\Cache\ArrayCache();
-        $c->setNamespace('sf2orm_default_d27a533f1e96370895e6240ca357dacd');
-        $d = new \Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver(array('/home/florian/Documents/ecoleDeMusique/src/EcoleDeMusique/WelcomeBundle/Resources/config/doctrine' => 'EcoleDeMusique\\WelcomeBundle\\Entity'));
-        $d->setGlobalBasename('mapping');
-        $e = new \Doctrine\ORM\Mapping\Driver\DriverChain();
-        $e->addDriver($d, 'EcoleDeMusique\\WelcomeBundle\\Entity');
-        $f = new \Doctrine\ORM\Configuration();
-        $f->setEntityNamespaces(array('EcoleDeMusiqueWelcomeBundle' => 'EcoleDeMusique\\WelcomeBundle\\Entity'));
-        $f->setMetadataCacheImpl($a);
-        $f->setQueryCacheImpl($b);
-        $f->setResultCacheImpl($c);
-        $f->setMetadataDriverImpl($e);
-        $f->setProxyDir('/home/florian/Documents/ecoleDeMusique/app/cache/prod/doctrine/orm/Proxies');
-        $f->setProxyNamespace('Proxies');
-        $f->setAutoGenerateProxyClasses(false);
-        $f->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
-        $f->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
-        $f->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
-        $g = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $f);
-        $this->get('doctrine.orm.default_manager_configurator')->configure($g);
-        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager542a543f43f33_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($g, $this);
+        require_once '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_diextra/doctrine/EntityManager_542e4b878987c.php';
+        $a = new \Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver(array('/home/florian/Documents/ecoleDeMusique/src/EcoleDeMusique/WelcomeBundle/Resources/config/doctrine' => 'EcoleDeMusique\\WelcomeBundle\\Entity'));
+        $a->setGlobalBasename('mapping');
+        $b = new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain();
+        $b->addDriver($a, 'EcoleDeMusique\\WelcomeBundle\\Entity');
+        $c = new \Doctrine\ORM\Configuration();
+        $c->setEntityNamespaces(array('EcoleDeMusiqueWelcomeBundle' => 'EcoleDeMusique\\WelcomeBundle\\Entity'));
+        $c->setMetadataCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_metadata_cache'));
+        $c->setQueryCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_query_cache'));
+        $c->setResultCacheImpl($this->get('doctrine_cache.providers.doctrine.orm.default_result_cache'));
+        $c->setMetadataDriverImpl($b);
+        $c->setProxyDir('/home/florian/Documents/ecoleDeMusique/app/cache/prod/doctrine/orm/Proxies');
+        $c->setProxyNamespace('Proxies');
+        $c->setAutoGenerateProxyClasses(false);
+        $c->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
+        $c->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
+        $c->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
+        $c->setEntityListenerResolver($this->get('doctrine.orm.default_entity_listener_resolver'));
+        $d = \Doctrine\ORM\EntityManager::create($this->get('doctrine.dbal.default_connection'), $c);
+        $this->get('doctrine.orm.default_manager_configurator')->configure($d);
+        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager542e4b878987c_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($d, $this);
     }
     protected function getDoctrine_Orm_DefaultManagerConfiguratorService()
     {
-        return $this->services['doctrine.orm.default_manager_configurator'] = new \Doctrine\Bundle\DoctrineBundle\ManagerConfigurator(array());
+        return $this->services['doctrine.orm.default_manager_configurator'] = new \Doctrine\Bundle\DoctrineBundle\ManagerConfigurator(array(), array());
     }
     protected function getDoctrine_Orm_Validator_UniqueService()
     {
@@ -110,22 +946,42 @@ class appProdProjectContainer extends Container
     {
         return $this->services['doctrine.orm.validator_initializer'] = new \Symfony\Bridge\Doctrine\Validator\DoctrineInitializer($this->get('doctrine'));
     }
+    protected function getDoctrineCache_Providers_Doctrine_Orm_DefaultMetadataCacheService()
+    {
+        $this->services['doctrine_cache.providers.doctrine.orm.default_metadata_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
+        $instance->setNamespace('sf2orm_default_9b36e28f3617050d3a3aae33b977fcca9a7110a2c73584b5475eb5057a2f7aaa');
+        return $instance;
+    }
+    protected function getDoctrineCache_Providers_Doctrine_Orm_DefaultQueryCacheService()
+    {
+        $this->services['doctrine_cache.providers.doctrine.orm.default_query_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
+        $instance->setNamespace('sf2orm_default_9b36e28f3617050d3a3aae33b977fcca9a7110a2c73584b5475eb5057a2f7aaa');
+        return $instance;
+    }
+    protected function getDoctrineCache_Providers_Doctrine_Orm_DefaultResultCacheService()
+    {
+        $this->services['doctrine_cache.providers.doctrine.orm.default_result_cache'] = $instance = new \Doctrine\Common\Cache\ArrayCache();
+        $instance->setNamespace('sf2orm_default_9b36e28f3617050d3a3aae33b977fcca9a7110a2c73584b5475eb5057a2f7aaa');
+        return $instance;
+    }
     protected function getEventDispatcherService()
     {
         $this->services['event_dispatcher'] = $instance = new \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher($this);
-        $instance->addListenerService('kernel.request', array(0 => 'security.firewall', 1 => 'onKernelRequest'), 8);
-        $instance->addListenerService('kernel.response', array(0 => 'security.rememberme.response_listener', 1 => 'onKernelResponse'), 0);
-        $instance->addListenerService('kernel.controller', array(0 => 'sensio_framework_extra.controller.listener', 1 => 'onKernelController'), 0);
-        $instance->addListenerService('kernel.controller', array(0 => 'sensio_framework_extra.converter.listener', 1 => 'onKernelController'), 0);
-        $instance->addListenerService('kernel.controller', array(0 => 'sensio_framework_extra.view.listener', 1 => 'onKernelController'), 0);
-        $instance->addListenerService('kernel.view', array(0 => 'sensio_framework_extra.view.listener', 1 => 'onKernelView'), 0);
-        $instance->addListenerService('kernel.response', array(0 => 'sensio_framework_extra.cache.listener', 1 => 'onKernelResponse'), 0);
         $instance->addSubscriberService('response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener');
         $instance->addSubscriberService('streamed_response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\StreamedResponseListener');
         $instance->addSubscriberService('locale_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\LocaleListener');
         $instance->addSubscriberService('session_listener', 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener');
         $instance->addSubscriberService('router_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\RouterListener');
+        $instance->addSubscriberService('debug.debug_handlers_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\DebugHandlersListener');
+        $instance->addSubscriberService('security.firewall', 'Symfony\\Component\\Security\\Http\\Firewall');
+        $instance->addSubscriberService('security.rememberme.response_listener', 'Symfony\\Component\\Security\\Http\\RememberMe\\ResponseListener');
         $instance->addSubscriberService('twig.exception_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\ExceptionListener');
+        $instance->addSubscriberService('swiftmailer.email_sender.listener', 'Symfony\\Bundle\\SwiftmailerBundle\\EventListener\\EmailSenderListener');
+        $instance->addSubscriberService('sensio_framework_extra.controller.listener', 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ControllerListener');
+        $instance->addSubscriberService('sensio_framework_extra.converter.listener', 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ParamConverterListener');
+        $instance->addSubscriberService('sensio_framework_extra.view.listener', 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener');
+        $instance->addSubscriberService('sensio_framework_extra.cache.listener', 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\HttpCacheListener');
+        $instance->addSubscriberService('sensio_framework_extra.security.listener', 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\SecurityListener');
         return $instance;
     }
     protected function getFileLocatorService()
@@ -138,7 +994,7 @@ class appProdProjectContainer extends Container
     }
     protected function getForm_CsrfProviderService()
     {
-        return $this->services['form.csrf_provider'] = new \Symfony\Component\Form\Extension\Csrf\CsrfProvider\SessionCsrfProvider($this->get('session'), 'ThisTokenIsNotSoSecretChangeIt');
+        return $this->services['form.csrf_provider'] = new \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter($this->get('security.csrf.token_manager'));
     }
     protected function getForm_FactoryService()
     {
@@ -146,7 +1002,7 @@ class appProdProjectContainer extends Container
     }
     protected function getForm_RegistryService()
     {
-        return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('field' => 'form.type.field', 'form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'entity' => 'form.type.entity'), array('form' => array(0 => 'form.type_extension.form.http_foundation', 1 => 'form.type_extension.form.validator', 2 => 'form.type_extension.csrf'), 'repeated' => array(0 => 'form.type_extension.repeated.validator')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))), $this->get('form.resolved_type_factory'));
+        return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'button' => 'form.type.button', 'submit' => 'form.type.submit', 'reset' => 'form.type.reset', 'currency' => 'form.type.currency', 'entity' => 'form.type.entity'), array('form' => array(0 => 'form.type_extension.form.http_foundation', 1 => 'form.type_extension.form.validator', 2 => 'form.type_extension.csrf'), 'repeated' => array(0 => 'form.type_extension.repeated.validator'), 'submit' => array(0 => 'form.type_extension.submit.validator')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))), $this->get('form.resolved_type_factory'));
     }
     protected function getForm_ResolvedTypeFactoryService()
     {
@@ -155,6 +1011,10 @@ class appProdProjectContainer extends Container
     protected function getForm_Type_BirthdayService()
     {
         return $this->services['form.type.birthday'] = new \Symfony\Component\Form\Extension\Core\Type\BirthdayType();
+    }
+    protected function getForm_Type_ButtonService()
+    {
+        return $this->services['form.type.button'] = new \Symfony\Component\Form\Extension\Core\Type\ButtonType();
     }
     protected function getForm_Type_CheckboxService()
     {
@@ -172,6 +1032,10 @@ class appProdProjectContainer extends Container
     {
         return $this->services['form.type.country'] = new \Symfony\Component\Form\Extension\Core\Type\CountryType();
     }
+    protected function getForm_Type_CurrencyService()
+    {
+        return $this->services['form.type.currency'] = new \Symfony\Component\Form\Extension\Core\Type\CurrencyType();
+    }
     protected function getForm_Type_DateService()
     {
         return $this->services['form.type.date'] = new \Symfony\Component\Form\Extension\Core\Type\DateType();
@@ -188,17 +1052,13 @@ class appProdProjectContainer extends Container
     {
         return $this->services['form.type.entity'] = new \Symfony\Bridge\Doctrine\Form\Type\EntityType($this->get('doctrine'));
     }
-    protected function getForm_Type_FieldService()
-    {
-        return $this->services['form.type.field'] = new \Symfony\Component\Form\Extension\Core\Type\FieldType();
-    }
     protected function getForm_Type_FileService()
     {
         return $this->services['form.type.file'] = new \Symfony\Component\Form\Extension\Core\Type\FileType();
     }
     protected function getForm_Type_FormService()
     {
-        return $this->services['form.type.form'] = new \Symfony\Component\Form\Extension\Core\Type\FormType();
+        return $this->services['form.type.form'] = new \Symfony\Component\Form\Extension\Core\Type\FormType($this->get('property_accessor'));
     }
     protected function getForm_Type_HiddenService()
     {
@@ -240,9 +1100,17 @@ class appProdProjectContainer extends Container
     {
         return $this->services['form.type.repeated'] = new \Symfony\Component\Form\Extension\Core\Type\RepeatedType();
     }
+    protected function getForm_Type_ResetService()
+    {
+        return $this->services['form.type.reset'] = new \Symfony\Component\Form\Extension\Core\Type\ResetType();
+    }
     protected function getForm_Type_SearchService()
     {
         return $this->services['form.type.search'] = new \Symfony\Component\Form\Extension\Core\Type\SearchType();
+    }
+    protected function getForm_Type_SubmitService()
+    {
+        return $this->services['form.type.submit'] = new \Symfony\Component\Form\Extension\Core\Type\SubmitType();
     }
     protected function getForm_Type_TextService()
     {
@@ -266,11 +1134,11 @@ class appProdProjectContainer extends Container
     }
     protected function getForm_TypeExtension_CsrfService()
     {
-        return $this->services['form.type_extension.csrf'] = new \Symfony\Component\Form\Extension\Csrf\Type\FormTypeCsrfExtension($this->get('form.csrf_provider'), true, '_token');
+        return $this->services['form.type_extension.csrf'] = new \Symfony\Component\Form\Extension\Csrf\Type\FormTypeCsrfExtension($this->get('form.csrf_provider'), true, '_token', $this->get('translator.default'), 'validators');
     }
     protected function getForm_TypeExtension_Form_HttpFoundationService()
     {
-        return $this->services['form.type_extension.form.http_foundation'] = new \Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension();
+        return $this->services['form.type_extension.form.http_foundation'] = new \Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension(new \Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationRequestHandler());
     }
     protected function getForm_TypeExtension_Form_ValidatorService()
     {
@@ -280,17 +1148,54 @@ class appProdProjectContainer extends Container
     {
         return $this->services['form.type_extension.repeated.validator'] = new \Symfony\Component\Form\Extension\Validator\Type\RepeatedTypeValidatorExtension();
     }
+    protected function getForm_TypeExtension_Submit_ValidatorService()
+    {
+        return $this->services['form.type_extension.submit.validator'] = new \Symfony\Component\Form\Extension\Validator\Type\SubmitTypeValidatorExtension();
+    }
     protected function getForm_TypeGuesser_DoctrineService()
     {
         return $this->services['form.type_guesser.doctrine'] = new \Symfony\Bridge\Doctrine\Form\DoctrineOrmTypeGuesser($this->get('doctrine'));
     }
     protected function getForm_TypeGuesser_ValidatorService()
     {
-        return $this->services['form.type_guesser.validator'] = new \Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser($this->get('validator.mapping.class_metadata_factory'));
+        return $this->services['form.type_guesser.validator'] = new \Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser($this->get('validator'));
+    }
+    protected function getFragment_HandlerService()
+    {
+        $this->services['fragment.handler'] = $instance = new \Symfony\Component\HttpKernel\Fragment\FragmentHandler(array(), false, $this->get('request_stack'));
+        $instance->addRenderer($this->get('fragment.renderer.inline'));
+        $instance->addRenderer($this->get('fragment.renderer.hinclude'));
+        $instance->addRenderer($this->get('fragment.renderer.esi'));
+        $instance->addRenderer($this->get('fragment.renderer.ssi'));
+        return $instance;
+    }
+    protected function getFragment_Renderer_EsiService()
+    {
+        $this->services['fragment.renderer.esi'] = $instance = new \Symfony\Component\HttpKernel\Fragment\EsiFragmentRenderer(NULL, $this->get('fragment.renderer.inline'), $this->get('uri_signer'));
+        $instance->setFragmentPath('/_fragment');
+        return $instance;
+    }
+    protected function getFragment_Renderer_HincludeService()
+    {
+        $this->services['fragment.renderer.hinclude'] = $instance = new \Symfony\Bundle\FrameworkBundle\Fragment\ContainerAwareHIncludeFragmentRenderer($this, $this->get('uri_signer'), NULL);
+        $instance->setFragmentPath('/_fragment');
+        return $instance;
+    }
+    protected function getFragment_Renderer_InlineService()
+    {
+        $this->services['fragment.renderer.inline'] = $instance = new \Symfony\Component\HttpKernel\Fragment\InlineFragmentRenderer($this->get('http_kernel'), $this->get('event_dispatcher'));
+        $instance->setFragmentPath('/_fragment');
+        return $instance;
+    }
+    protected function getFragment_Renderer_SsiService()
+    {
+        $this->services['fragment.renderer.ssi'] = $instance = new \Symfony\Component\HttpKernel\Fragment\SsiFragmentRenderer(NULL, $this->get('fragment.renderer.inline'), $this->get('uri_signer'));
+        $instance->setFragmentPath('/_fragment');
+        return $instance;
     }
     protected function getHttpKernelService()
     {
-        return $this->services['http_kernel'] = new \Symfony\Bundle\FrameworkBundle\HttpKernel($this->get('event_dispatcher'), $this, $this->get('jms_di_extra.controller_resolver'));
+        return $this->services['http_kernel'] = new \Symfony\Component\HttpKernel\DependencyInjection\ContainerAwareHttpKernel($this->get('event_dispatcher'), $this, $this->get('jms_di_extra.controller_resolver'), $this->get('request_stack'));
     }
     protected function getJmsAop_InterceptorLoaderService()
     {
@@ -320,7 +1225,7 @@ class appProdProjectContainer extends Container
     }
     protected function getLocaleListenerService()
     {
-        return $this->services['locale_listener'] = new \Symfony\Component\HttpKernel\EventListener\LocaleListener('fr', $this->get('router'));
+        return $this->services['locale_listener'] = new \Symfony\Component\HttpKernel\EventListener\LocaleListener('fr', $this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('request_stack'));
     }
     protected function getLoggerService()
     {
@@ -328,21 +1233,29 @@ class appProdProjectContainer extends Container
         $instance->pushHandler($this->get('monolog.handler.main'));
         return $instance;
     }
-    protected function getMailerService()
-    {
-        return $this->services['mailer'] = new \Swift_Mailer($this->get('swiftmailer.transport'));
-    }
     protected function getMonolog_Handler_MainService()
     {
-        return $this->services['monolog.handler.main'] = new \Monolog\Handler\FingersCrossedHandler($this->get('monolog.handler.nested'), 400, 0, true, true);
+        return $this->services['monolog.handler.main'] = new \Monolog\Handler\FingersCrossedHandler($this->get('monolog.handler.nested'), 400, 0, true, true, NULL);
     }
     protected function getMonolog_Handler_NestedService()
     {
         return $this->services['monolog.handler.nested'] = new \Monolog\Handler\StreamHandler('/home/florian/Documents/ecoleDeMusique/app/logs/prod.log', 100, true);
     }
+    protected function getMonolog_Logger_AsseticService()
+    {
+        $this->services['monolog.logger.assetic'] = $instance = new \Symfony\Bridge\Monolog\Logger('assetic');
+        $instance->pushHandler($this->get('monolog.handler.main'));
+        return $instance;
+    }
     protected function getMonolog_Logger_DoctrineService()
     {
         $this->services['monolog.logger.doctrine'] = $instance = new \Symfony\Bridge\Monolog\Logger('doctrine');
+        $instance->pushHandler($this->get('monolog.handler.main'));
+        return $instance;
+    }
+    protected function getMonolog_Logger_PhpService()
+    {
+        $this->services['monolog.logger.php'] = $instance = new \Symfony\Bridge\Monolog\Logger('php');
         $instance->pushHandler($this->get('monolog.handler.main'));
         return $instance;
     }
@@ -364,6 +1277,16 @@ class appProdProjectContainer extends Container
         $instance->pushHandler($this->get('monolog.handler.main'));
         return $instance;
     }
+    protected function getMonolog_Logger_TranslationService()
+    {
+        $this->services['monolog.logger.translation'] = $instance = new \Symfony\Bridge\Monolog\Logger('translation');
+        $instance->pushHandler($this->get('monolog.handler.main'));
+        return $instance;
+    }
+    protected function getPropertyAccessorService()
+    {
+        return $this->services['property_accessor'] = new \Symfony\Component\PropertyAccess\PropertyAccessor(false, false);
+    }
     protected function getRequestService()
     {
         if (!isset($this->scopedServices['request'])) {
@@ -371,17 +1294,21 @@ class appProdProjectContainer extends Container
         }
         throw new RuntimeException('You have requested a synthetic service ("request"). The DIC does not know how to construct this service.');
     }
+    protected function getRequestStackService()
+    {
+        return $this->services['request_stack'] = new \Symfony\Component\HttpFoundation\RequestStack();
+    }
     protected function getResponseListenerService()
     {
         return $this->services['response_listener'] = new \Symfony\Component\HttpKernel\EventListener\ResponseListener('UTF-8');
     }
     protected function getRouterService()
     {
-        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/home/florian/Documents/ecoleDeMusique/app/config/routing.yml', array('cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod', 'debug' => false, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appprodUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appprodUrlMatcher', 'strict_requirements' => false), $this->get('router.request_context'), $this->get('monolog.logger.router'));
+        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/home/florian/Documents/ecoleDeMusique/app/config/routing.yml', array('cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod', 'debug' => false, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appProdUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appProdUrlMatcher', 'strict_requirements' => false), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
     protected function getRouterListenerService()
     {
-        return $this->services['router_listener'] = new \Symfony\Component\HttpKernel\EventListener\RouterListener($this->get('router'), $this->get('router.request_context'), $this->get('monolog.logger.request'));
+        return $this->services['router_listener'] = new \Symfony\Component\HttpKernel\EventListener\RouterListener($this->get('router'), $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('monolog.logger.request', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('request_stack'));
     }
     protected function getRouting_LoaderService()
     {
@@ -395,11 +1322,20 @@ class appProdProjectContainer extends Container
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationDirectoryLoader($a, $c));
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationFileLoader($a, $c));
         $d->addLoader($c);
-        return $this->services['routing.loader'] = new \Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader($this->get('controller_name_converter'), $this->get('monolog.logger.router'), $d);
+        return $this->services['routing.loader'] = new \Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader($this->get('controller_name_converter'), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $d);
+    }
+    protected function getSecurity_Access_DecisionManagerService()
+    {
+        $a = $this->get('security.authentication.trust_resolver');
+        $b = $this->get('security.role_hierarchy');
+        $c = new \JMS\SecurityExtraBundle\Security\Authorization\Expression\LazyLoadingExpressionVoter($this->get('security.expressions.handler'), $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+        $c->setLazyCompiler($this, 'security.expressions.compiler');
+        $c->setCacheDir('/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_security/expressions');
+        return $this->services['security.access.decision_manager'] = new \JMS\SecurityExtraBundle\Security\Authorization\RememberingAccessDecisionManager(new \Symfony\Component\Security\Core\Authorization\AccessDecisionManager(array(0 => $c, 1 => new \Symfony\Component\Security\Core\Authorization\Voter\ExpressionVoter(new \Symfony\Component\Security\Core\Authorization\ExpressionLanguage(), $a, $b), 2 => new \Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter($b), 3 => new \Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter($a)), 'affirmative', false, true));
     }
     protected function getSecurity_Access_MethodInterceptorService()
     {
-        return $this->services['security.access.method_interceptor'] = new \JMS\SecurityExtraBundle\Security\Authorization\Interception\MethodSecurityInterceptor($this->get('security.context'), $this->get('security.authentication.manager'), $this->get('security.access.decision_manager'), new \JMS\SecurityExtraBundle\Security\Authorization\AfterInvocation\AfterInvocationManager(array()), new \JMS\SecurityExtraBundle\Security\Authorization\RunAsManager('RunAsToken', 'ROLE_'), $this->get('security.extra.metadata_factory'), $this->get('monolog.logger.security'));
+        return $this->services['security.access.method_interceptor'] = new \JMS\SecurityExtraBundle\Security\Authorization\Interception\MethodSecurityInterceptor($this->get('security.context'), $this->get('security.authentication.manager'), $this->get('security.access.decision_manager'), new \JMS\SecurityExtraBundle\Security\Authorization\AfterInvocation\AfterInvocationManager(array()), new \JMS\SecurityExtraBundle\Security\Authorization\RunAsManager('RunAsToken', 'ROLE_'), $this->get('security.extra.metadata_factory'), $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
     protected function getSecurity_Access_PointcutService()
     {
@@ -411,9 +1347,21 @@ class appProdProjectContainer extends Container
     {
         return $this->services['security.authentication.trust_resolver'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver('Symfony\\Component\\Security\\Core\\Authentication\\Token\\AnonymousToken', 'Symfony\\Component\\Security\\Core\\Authentication\\Token\\RememberMeToken');
     }
+    protected function getSecurity_AuthenticationUtilsService()
+    {
+        return $this->services['security.authentication_utils'] = new \Symfony\Component\Security\Http\Authentication\AuthenticationUtils($this->get('request_stack'));
+    }
+    protected function getSecurity_AuthorizationCheckerService()
+    {
+        return $this->services['security.authorization_checker'] = new \Symfony\Component\Security\Core\Authorization\AuthorizationChecker($this->get('security.token_storage'), $this->get('security.authentication.manager'), $this->get('security.access.decision_manager'), false);
+    }
     protected function getSecurity_ContextService()
     {
-        return $this->services['security.context'] = new \Symfony\Component\Security\Core\SecurityContext($this->get('security.authentication.manager'), $this->get('security.access.decision_manager'), false);
+        return $this->services['security.context'] = new \Symfony\Component\Security\Core\SecurityContext($this->get('security.token_storage'), $this->get('security.authorization_checker'));
+    }
+    protected function getSecurity_Csrf_TokenManagerService()
+    {
+        return $this->services['security.csrf.token_manager'] = new \Symfony\Component\Security\Csrf\CsrfTokenManager(new \Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator($this->get('security.secure_random')), new \Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage($this->get('session')));
     }
     protected function getSecurity_EncoderFactoryService()
     {
@@ -429,6 +1377,10 @@ class appProdProjectContainer extends Container
         $instance->addTypeCompiler($a);
         return $instance;
     }
+    protected function getSecurity_Expressions_ReverseInterpreterService()
+    {
+        return $this->services['security.expressions.reverse_interpreter'] = new \JMS\SecurityExtraBundle\Security\Authorization\Expression\ReverseInterpreter($this->get('security.expressions.compiler'), $this->get('security.expressions.handler'));
+    }
     protected function getSecurity_Extra_MetadataDriverService()
     {
         return $this->services['security.extra.metadata_driver'] = new \Metadata\Driver\DriverChain(array(0 => new \JMS\SecurityExtraBundle\Metadata\Driver\AnnotationDriver($this->get('annotation_reader'))));
@@ -439,10 +1391,10 @@ class appProdProjectContainer extends Container
     }
     protected function getSecurity_Firewall_Map_Context_VitrineAreaService()
     {
-        $a = $this->get('monolog.logger.security');
+        $a = $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE);
         $b = $this->get('security.context');
-        $c = $this->get('event_dispatcher');
-        $d = $this->get('router');
+        $c = $this->get('event_dispatcher', ContainerInterface::NULL_ON_INVALID_REFERENCE);
+        $d = $this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE);
         $e = $this->get('http_kernel');
         $f = $this->get('security.authentication.manager');
         $g = new \Symfony\Component\HttpFoundation\RequestMatcher('^/eleve/new');
@@ -501,9 +1453,16 @@ class appProdProjectContainer extends Container
         $ha = new \Symfony\Component\Security\Http\HttpUtils($d, $d);
         $ia = new \Symfony\Component\Security\Http\Firewall\LogoutListener($b, $ha, new \Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler($ha, '/ecoledemusique'), array('csrf_parameter' => '_csrf_token', 'intention' => 'logout', 'logout_path' => '/logout'));
         $ia->addHandler(new \Symfony\Component\Security\Http\Logout\SessionLogoutHandler());
-        $ja = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($ha, array('login_path' => '/login', 'always_use_default_target_path' => false, 'default_target_path' => '/', 'target_path_parameter' => '_target_path', 'use_referer' => false));
+        $ja = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($ha, array());
+        $ja->setOptions(array('login_path' => '/login', 'always_use_default_target_path' => false, 'default_target_path' => '/', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $ja->setProviderKey('vitrine_area');
-        return $this->services['security.firewall.map.context.vitrine_area'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($ga, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('security.user.provider.concrete.customer')), 'vitrine_area', $a, $c), 2 => $ia, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $ha, 'vitrine_area', $ja, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $ha, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false), $a), array('check_path' => '/login_check', 'use_forward' => false, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '542a543f310aa', $a), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $ga, $f, $a)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $ha, 'vitrine_area', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $ha, '/login', false), NULL, NULL, $a));
+        $ka = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $ha, array(), $a);
+        $ka->setOptions(array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
+        return $this->services['security.firewall.map.context.vitrine_area'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($ga, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('security.user.provider.concrete.customer')), 'vitrine_area', $a, $c), 2 => $ia, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $ha, 'vitrine_area', $ja, $ka, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '542e4b8771bb2', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $ga, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $ha, 'vitrine_area', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $ha, '/login', false), NULL, NULL, $a));
+    }
+    protected function getSecurity_PasswordEncoderService()
+    {
+        return $this->services['security.password_encoder'] = new \Symfony\Component\Security\Core\Encoder\UserPasswordEncoder($this->get('security.encoder_factory'));
     }
     protected function getSecurity_Rememberme_ResponseListenerService()
     {
@@ -513,13 +1472,21 @@ class appProdProjectContainer extends Container
     {
         return $this->services['security.role_hierarchy'] = new \Symfony\Component\Security\Core\Role\RoleHierarchy(array('ROLE_SUPER_ADMIN' => array(0 => 'ROLE_ADMIN')));
     }
+    protected function getSecurity_SecureRandomService()
+    {
+        return $this->services['security.secure_random'] = new \Symfony\Component\Security\Core\Util\SecureRandom('/home/florian/Documents/ecoleDeMusique/app/cache/prod/secure_random.seed', $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+    protected function getSecurity_TokenStorageService()
+    {
+        return $this->services['security.token_storage'] = new \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage();
+    }
     protected function getSecurity_Validator_UserPasswordService()
     {
-        return $this->services['security.validator.user_password'] = new \Symfony\Component\Security\Core\Validator\Constraint\UserPasswordValidator($this->get('security.context'), $this->get('security.encoder_factory'));
+        return $this->services['security.validator.user_password'] = new \Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator($this->get('security.context'), $this->get('security.encoder_factory'));
     }
     protected function getSensioFrameworkExtra_Cache_ListenerService()
     {
-        return $this->services['sensio_framework_extra.cache.listener'] = new \Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener();
+        return $this->services['sensio_framework_extra.cache.listener'] = new \Sensio\Bundle\FrameworkExtraBundle\EventListener\HttpCacheListener();
     }
     protected function getSensioFrameworkExtra_Controller_ListenerService()
     {
@@ -531,11 +1498,11 @@ class appProdProjectContainer extends Container
     }
     protected function getSensioFrameworkExtra_Converter_Doctrine_OrmService()
     {
-        return $this->services['sensio_framework_extra.converter.doctrine.orm'] = new \Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter($this->get('doctrine'));
+        return $this->services['sensio_framework_extra.converter.doctrine.orm'] = new \Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter($this->get('doctrine', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
     protected function getSensioFrameworkExtra_Converter_ListenerService()
     {
-        return $this->services['sensio_framework_extra.converter.listener'] = new \Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener($this->get('sensio_framework_extra.converter.manager'));
+        return $this->services['sensio_framework_extra.converter.listener'] = new \Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener($this->get('sensio_framework_extra.converter.manager'), true);
     }
     protected function getSensioFrameworkExtra_Converter_ManagerService()
     {
@@ -543,6 +1510,10 @@ class appProdProjectContainer extends Container
         $instance->add($this->get('sensio_framework_extra.converter.doctrine.orm'), 0, 'doctrine.orm');
         $instance->add($this->get('sensio_framework_extra.converter.datetime'), 0, 'datetime');
         return $instance;
+    }
+    protected function getSensioFrameworkExtra_Security_ListenerService()
+    {
+        return $this->services['sensio_framework_extra.security.listener'] = new \Sensio\Bundle\FrameworkExtraBundle\EventListener\SecurityListener($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE), new \Sensio\Bundle\FrameworkExtraBundle\Security\ExpressionLanguage(), $this->get('security.authentication.trust_resolver', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('security.role_hierarchy', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
     protected function getSensioFrameworkExtra_View_GuesserService()
     {
@@ -566,11 +1537,15 @@ class appProdProjectContainer extends Container
     }
     protected function getSession_Storage_FilesystemService()
     {
-        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/home/florian/Documents/ecoleDeMusique/app/cache/prod/sessions');
+        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/home/florian/Documents/ecoleDeMusique/app/cache/prod/sessions', 'MOCKSESSID', $this->get('session.storage.metadata_bag'));
     }
     protected function getSession_Storage_NativeService()
     {
-        return $this->services['session.storage.native'] = new \Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage(array(), $this->get('session.handler'));
+        return $this->services['session.storage.native'] = new \Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage(array('gc_probability' => 1), $this->get('session.handler'), $this->get('session.storage.metadata_bag'));
+    }
+    protected function getSession_Storage_PhpBridgeService()
+    {
+        return $this->services['session.storage.php_bridge'] = new \Symfony\Component\HttpFoundation\Session\Storage\PhpBridgeSessionStorage($this->get('session.handler'), $this->get('session.storage.metadata_bag'));
     }
     protected function getSessionListenerService()
     {
@@ -580,26 +1555,31 @@ class appProdProjectContainer extends Container
     {
         return $this->services['streamed_response_listener'] = new \Symfony\Component\HttpKernel\EventListener\StreamedResponseListener();
     }
-    protected function getSwiftmailer_Plugin_MessageloggerService()
+    protected function getSwiftmailer_EmailSender_ListenerService()
     {
-        return $this->services['swiftmailer.plugin.messagelogger'] = new \Swift_Plugins_MessageLogger();
+        return $this->services['swiftmailer.email_sender.listener'] = new \Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener($this, $this->get('logger', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
-    protected function getSwiftmailer_TransportService()
+    protected function getSwiftmailer_Mailer_DefaultService()
     {
-        $this->services['swiftmailer.transport'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()))), new \Swift_Events_SimpleEventDispatcher());
+        return $this->services['swiftmailer.mailer.default'] = new \Swift_Mailer($this->get('swiftmailer.mailer.default.transport'));
+    }
+    protected function getSwiftmailer_Mailer_Default_TransportService()
+    {
+        $a = new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()));
+        $a->setUsername('ecoledemusique');
+        $a->setPassword('sea42ap');
+        $a->setAuthMode(NULL);
+        $this->services['swiftmailer.mailer.default.transport'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => $a), new \Swift_Events_SimpleEventDispatcher());
         $instance->setHost('mail.ville-voreppe.fr');
         $instance->setPort(25);
         $instance->setEncryption(NULL);
-        $instance->setUsername('ecoledemusique');
-        $instance->setPassword('sea42ap');
-        $instance->setAuthMode(NULL);
         $instance->setTimeout(30);
         $instance->setSourceIp(NULL);
         return $instance;
     }
     protected function getTemplatingService()
     {
-        $this->services['templating'] = $instance = new \Symfony\Bundle\TwigBundle\TwigEngine($this->get('twig'), $this->get('templating.name_parser'), $this->get('templating.locator'), $this->get('templating.globals'));
+        $this->services['templating'] = $instance = new \Symfony\Bundle\TwigBundle\TwigEngine($this->get('twig'), $this->get('templating.name_parser'), $this->get('templating.locator'));
         $instance->setDefaultEscapingStrategy(array(0 => $instance, 1 => 'guessDefaultEscapingStrategy'));
         return $instance;
     }
@@ -617,7 +1597,7 @@ class appProdProjectContainer extends Container
     }
     protected function getTemplating_Helper_ActionsService()
     {
-        return $this->services['templating.helper.actions'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\ActionsHelper($this->get('http_kernel'));
+        return $this->services['templating.helper.actions'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\ActionsHelper($this->get('fragment.handler'));
     }
     protected function getTemplating_Helper_AssetsService()
     {
@@ -634,8 +1614,8 @@ class appProdProjectContainer extends Container
     {
         $a = new \Symfony\Bundle\FrameworkBundle\Templating\PhpEngine($this->get('templating.name_parser'), $this, $this->get('templating.loader'), $this->get('templating.globals'));
         $a->setCharset('UTF-8');
-        $a->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.static'));
-        return $this->services['templating.helper.form'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper(new \Symfony\Component\Form\FormRenderer(new \Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine($a, array(0 => 'FrameworkBundle:Form')), $this->get('form.csrf_provider')));
+        $a->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'stopwatch' => 'templating.helper.stopwatch', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.static'));
+        return $this->services['templating.helper.form'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper(new \Symfony\Component\Form\FormRenderer(new \Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine($a, array(0 => 'FrameworkBundle:Form')), $this->get('form.csrf_provider', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
     }
     protected function getTemplating_Helper_LogoutUrlService()
     {
@@ -645,7 +1625,7 @@ class appProdProjectContainer extends Container
     }
     protected function getTemplating_Helper_RequestService()
     {
-        return $this->services['templating.helper.request'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper($this->get('request'));
+        return $this->services['templating.helper.request'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper($this->get('request_stack'));
     }
     protected function getTemplating_Helper_RouterService()
     {
@@ -653,15 +1633,19 @@ class appProdProjectContainer extends Container
     }
     protected function getTemplating_Helper_SecurityService()
     {
-        return $this->services['templating.helper.security'] = new \Symfony\Bundle\SecurityBundle\Templating\Helper\SecurityHelper($this->get('security.context'));
+        return $this->services['templating.helper.security'] = new \Symfony\Bundle\SecurityBundle\Templating\Helper\SecurityHelper($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
     protected function getTemplating_Helper_SessionService()
     {
-        return $this->services['templating.helper.session'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper($this->get('request'));
+        return $this->services['templating.helper.session'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper($this->get('request_stack'));
     }
     protected function getTemplating_Helper_SlotsService()
     {
         return $this->services['templating.helper.slots'] = new \Symfony\Component\Templating\Helper\SlotsHelper();
+    }
+    protected function getTemplating_Helper_StopwatchService()
+    {
+        return $this->services['templating.helper.stopwatch'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\StopwatchHelper($this->get('debug.stopwatch', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
     protected function getTemplating_Helper_TranslatorService()
     {
@@ -682,6 +1666,10 @@ class appProdProjectContainer extends Container
     protected function getTranslation_Dumper_IniService()
     {
         return $this->services['translation.dumper.ini'] = new \Symfony\Component\Translation\Dumper\IniFileDumper();
+    }
+    protected function getTranslation_Dumper_JsonService()
+    {
+        return $this->services['translation.dumper.json'] = new \Symfony\Component\Translation\Dumper\JsonFileDumper();
     }
     protected function getTranslation_Dumper_MoService()
     {
@@ -737,6 +1725,7 @@ class appProdProjectContainer extends Container
         $instance->addLoader('res', $this->get('translation.loader.res'));
         $instance->addLoader('dat', $this->get('translation.loader.dat'));
         $instance->addLoader('ini', $this->get('translation.loader.ini'));
+        $instance->addLoader('json', $this->get('translation.loader.json'));
         return $instance;
     }
     protected function getTranslation_Loader_CsvService()
@@ -745,11 +1734,15 @@ class appProdProjectContainer extends Container
     }
     protected function getTranslation_Loader_DatService()
     {
-        return $this->services['translation.loader.dat'] = new \Symfony\Component\Translation\Loader\IcuResFileLoader();
+        return $this->services['translation.loader.dat'] = new \Symfony\Component\Translation\Loader\IcuDatFileLoader();
     }
     protected function getTranslation_Loader_IniService()
     {
         return $this->services['translation.loader.ini'] = new \Symfony\Component\Translation\Loader\IniFileLoader();
+    }
+    protected function getTranslation_Loader_JsonService()
+    {
+        return $this->services['translation.loader.json'] = new \Symfony\Component\Translation\Loader\JsonFileLoader();
     }
     protected function getTranslation_Loader_MoService()
     {
@@ -765,7 +1758,7 @@ class appProdProjectContainer extends Container
     }
     protected function getTranslation_Loader_QtService()
     {
-        return $this->services['translation.loader.qt'] = new \Symfony\Component\Translation\Loader\QtTranslationsLoader();
+        return $this->services['translation.loader.qt'] = new \Symfony\Component\Translation\Loader\QtFileLoader();
     }
     protected function getTranslation_Loader_ResService()
     {
@@ -790,6 +1783,7 @@ class appProdProjectContainer extends Container
         $instance->addDumper('ts', $this->get('translation.dumper.qt'));
         $instance->addDumper('csv', $this->get('translation.dumper.csv'));
         $instance->addDumper('ini', $this->get('translation.dumper.ini'));
+        $instance->addDumper('json', $this->get('translation.dumper.json'));
         $instance->addDumper('res', $this->get('translation.dumper.res'));
         return $instance;
     }
@@ -799,32 +1793,48 @@ class appProdProjectContainer extends Container
     }
     protected function getTranslator_DefaultService()
     {
-        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini')), array('cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/translations', 'debug' => false));
+        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini'), 'translation.loader.json' => array(0 => 'json')), array('cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/translations', 'debug' => false));
     }
     protected function getTwigService()
     {
         $a = $this->get('security.context');
-        $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => false, 'strict_variables' => false, 'exception_controller' => 'Symfony\\Bundle\\TwigBundle\\Controller\\ExceptionController::showAction', 'cache' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/twig', 'charset' => 'UTF-8', 'paths' => array()));
+        $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => false, 'strict_variables' => false, 'exception_controller' => 'twig.controller.exception:showAction', 'form_themes' => array(0 => 'form_div_layout.html.twig'), 'autoescape_service' => NULL, 'autoescape_service_method' => NULL, 'cache' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/twig', 'charset' => 'UTF-8', 'paths' => array()));
         $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($a));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
-        $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\AssetsExtension($this));
+        $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\AssetsExtension($this, $this->get('router.request_context', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\ActionsExtension($this));
-        $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\CodeExtension($this));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\CodeExtension(NULL, '/home/florian/Documents/ecoleDeMusique/app', 'UTF-8'));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\RoutingExtension($this->get('router')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
-        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig')), $this->get('form.csrf_provider'))));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\StopwatchExtension($this->get('debug.stopwatch', ContainerInterface::NULL_ON_INVALID_REFERENCE), false));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\ExpressionExtension());
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig')), $this->get('form.csrf_provider', ContainerInterface::NULL_ON_INVALID_REFERENCE))));
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), false, array(), array(0 => 'EcoleDeMusiqueWelcomeBundle'), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
+        $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addExtension(new \JMS\SecurityExtraBundle\Twig\SecurityExtension($a));
+        $instance->addGlobal('app', $this->get('templating.globals'));
         return $instance;
+    }
+    protected function getTwig_Controller_ExceptionService()
+    {
+        return $this->services['twig.controller.exception'] = new \Symfony\Bundle\TwigBundle\Controller\ExceptionController($this->get('twig'), false);
     }
     protected function getTwig_ExceptionListenerService()
     {
-        return $this->services['twig.exception_listener'] = new \Symfony\Component\HttpKernel\EventListener\ExceptionListener('Symfony\\Bundle\\TwigBundle\\Controller\\ExceptionController::showAction', $this->get('monolog.logger.request'));
+        return $this->services['twig.exception_listener'] = new \Symfony\Component\HttpKernel\EventListener\ExceptionListener('twig.controller.exception:showAction', $this->get('monolog.logger.request', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
     protected function getTwig_LoaderService()
     {
         $this->services['twig.loader'] = $instance = new \Symfony\Bundle\TwigBundle\Loader\FilesystemLoader($this->get('templating.locator'), $this->get('templating.name_parser'));
+        $instance->addPath('/home/florian/Documents/ecoleDeMusique/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views', 'Framework');
+        $instance->addPath('/home/florian/Documents/ecoleDeMusique/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views', 'Security');
+        $instance->addPath('/home/florian/Documents/ecoleDeMusique/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views', 'Twig');
+        $instance->addPath('/home/florian/Documents/ecoleDeMusique/vendor/symfony/swiftmailer-bundle/Resources/views', 'Swiftmailer');
+        $instance->addPath('/home/florian/Documents/ecoleDeMusique/vendor/doctrine/doctrine-bundle/Resources/views', 'Doctrine');
+        $instance->addPath('/home/florian/Documents/ecoleDeMusique/src/EcoleDeMusique/WelcomeBundle/Resources/views', 'EcoleDeMusiqueWelcome');
+        $instance->addPath('/home/florian/Documents/ecoleDeMusique/app/Resources/views');
         $instance->addPath('/home/florian/Documents/ecoleDeMusique/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
         return $instance;
     }
@@ -832,21 +1842,34 @@ class appProdProjectContainer extends Container
     {
         return $this->services['twig.translation.extractor'] = new \Symfony\Bridge\Twig\Translation\TwigExtractor($this->get('twig'));
     }
+    protected function getUriSignerService()
+    {
+        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('ThisTokenIsNotSoSecretChangeIt');
+    }
     protected function getValidatorService()
     {
-        return $this->services['validator'] = new \Symfony\Component\Validator\Validator($this->get('validator.mapping.class_metadata_factory'), new \Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory($this, array('security.validator.user_password' => 'security.validator.user_password', 'doctrine.orm.validator.unique' => 'doctrine.orm.validator.unique')), array(0 => $this->get('doctrine.orm.validator_initializer')));
+        return $this->services['validator'] = $this->get('validator.builder')->getValidator();
     }
-    protected function getDatabaseConnectionService()
+    protected function getValidator_BuilderService()
     {
-        return $this->get('doctrine.dbal.default_connection');
+        $this->services['validator.builder'] = $instance = \Symfony\Component\Validator\Validation::createValidatorBuilder();
+        $instance->setConstraintValidatorFactory(new \Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory($this, array('validator.expression' => 'validator.expression', 'Symfony\\Component\\Validator\\Constraints\\EmailValidator' => 'validator.email', 'security.validator.user_password' => 'security.validator.user_password', 'doctrine.orm.validator.unique' => 'doctrine.orm.validator.unique')));
+        $instance->setTranslator($this->get('translator'));
+        $instance->setTranslationDomain('validators');
+        $instance->addXmlMappings(array(0 => '/home/florian/Documents/ecoleDeMusique/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml'));
+        $instance->enableAnnotationMapping($this->get('annotation_reader'));
+        $instance->addMethodMapping('loadValidatorMetadata');
+        $instance->setApiVersion(3);
+        $instance->addObjectInitializers(array(0 => $this->get('doctrine.orm.validator_initializer')));
+        return $instance;
     }
-    protected function getDoctrine_Orm_EntityManagerService()
+    protected function getValidator_EmailService()
     {
-        return $this->get('doctrine.orm.default_entity_manager');
+        return $this->services['validator.email'] = new \Symfony\Component\Validator\Constraints\EmailValidator(false);
     }
-    protected function getSession_StorageService()
+    protected function getValidator_ExpressionService()
     {
-        return $this->get('session.storage.native');
+        return $this->services['validator.expression'] = new \Symfony\Component\Validator\Constraints\ExpressionValidator($this->get('property_accessor'));
     }
     protected function getAssetic_AssetFactoryService()
     {
@@ -858,34 +1881,36 @@ class appProdProjectContainer extends Container
     }
     protected function getJmsDiExtra_ControllerResolverService()
     {
-        return $this->services['jms_di_extra.controller_resolver'] = new \JMS\DiExtraBundle\HttpKernel\ControllerResolver($this, $this->get('controller_name_converter'), $this->get('monolog.logger.request'));
+        return $this->services['jms_di_extra.controller_resolver'] = new \JMS\DiExtraBundle\HttpKernel\ControllerResolver($this, $this->get('controller_name_converter'), $this->get('monolog.logger.request', ContainerInterface::NULL_ON_INVALID_REFERENCE));
     }
     protected function getRouter_RequestContextService()
     {
         return $this->services['router.request_context'] = new \Symfony\Component\Routing\RequestContext('', 'GET', 'localhost', 'http', 80, 443);
     }
-    protected function getSecurity_Access_DecisionManagerService()
-    {
-        $a = new \JMS\SecurityExtraBundle\Security\Authorization\Expression\LazyLoadingExpressionVoter(new \JMS\SecurityExtraBundle\Security\Authorization\Expression\ContainerAwareExpressionHandler($this));
-        $a->setLazyCompiler($this, 'security.expressions.compiler');
-        $a->setCacheDir('/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_security/expressions');
-        return $this->services['security.access.decision_manager'] = new \Symfony\Component\Security\Core\Authorization\AccessDecisionManager(array(0 => $a, 1 => new \Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter($this->get('security.role_hierarchy')), 2 => new \Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter($this->get('security.authentication.trust_resolver'))), 'affirmative', false, true);
-    }
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.customer'), new \Symfony\Component\Security\Core\User\UserChecker(), 'vitrine_area', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('542a543f310aa')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.customer'), new \Symfony\Component\Security\Core\User\UserChecker(), 'vitrine_area', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('542e4b8771bb2')), true);
         $instance->setEventDispatcher($this->get('event_dispatcher'));
         return $instance;
     }
+    protected function getSecurity_Expressions_HandlerService()
+    {
+        return $this->services['security.expressions.handler'] = new \JMS\SecurityExtraBundle\Security\Authorization\Expression\ContainerAwareExpressionHandler($this);
+    }
     protected function getSecurity_Extra_MetadataFactoryService()
     {
-        $this->services['security.extra.metadata_factory'] = $instance = new \Metadata\MetadataFactory(new \Metadata\Driver\LazyLoadingDriver($this, 'security.extra.metadata_driver'), new \Metadata\Cache\FileCache('/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_security', false));
+        $this->services['security.extra.metadata_factory'] = $instance = new \Metadata\MetadataFactory(new \Metadata\Driver\LazyLoadingDriver($this, 'security.extra.metadata_driver'));
+        $instance->setCache(new \Metadata\Cache\FileCache('/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_security', false));
         $instance->setIncludeInterfaces(true);
         return $instance;
     }
     protected function getSecurity_User_Provider_Concrete_CustomerService()
     {
         return $this->services['security.user.provider.concrete.customer'] = new \Symfony\Bridge\Doctrine\Security\User\EntityUserProvider($this->get('doctrine'), 'EcoleDeMusiqueWelcomeBundle:User', 'login', NULL);
+    }
+    protected function getSession_Storage_MetadataBagService()
+    {
+        return $this->services['session.storage.metadata_bag'] = new \Symfony\Component\HttpFoundation\Session\Storage\MetadataBag('_sf2_meta', '0');
     }
     protected function getTemplating_LocatorService()
     {
@@ -895,21 +1920,18 @@ class appProdProjectContainer extends Container
     {
         return $this->services['translator.selector'] = new \Symfony\Component\Translation\MessageSelector();
     }
-    protected function getValidator_Mapping_ClassMetadataFactoryService()
-    {
-        return $this->services['validator.mapping.class_metadata_factory'] = new \Symfony\Component\Validator\Mapping\ClassMetadataFactory(new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(0 => new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader($this->get('annotation_reader')), 1 => new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader(), 2 => new \Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader(array(0 => '/home/florian/Documents/ecoleDeMusique/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml')), 3 => new \Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader(array()))), NULL);
-    }
     public function getParameter($name)
     {
         $name = strtolower($name);
-        if (!array_key_exists($name, $this->parameters)) {
+        if (!(isset(self::$parameters[$name]) || array_key_exists($name, self::$parameters))) {
             throw new InvalidArgumentException(sprintf('The parameter "%s" must be defined.', $name));
         }
-        return $this->parameters[$name];
+        return self::$parameters[$name];
     }
     public function hasParameter($name)
     {
-        return array_key_exists(strtolower($name), $this->parameters);
+        $name = strtolower($name);
+        return isset(self::$parameters[$name]) || array_key_exists($name, self::$parameters);
     }
     public function setParameter($name, $value)
     {
@@ -918,476 +1940,8 @@ class appProdProjectContainer extends Container
     public function getParameterBag()
     {
         if (null === $this->parameterBag) {
-            $this->parameterBag = new FrozenParameterBag($this->parameters);
+            $this->parameterBag = new FrozenParameterBag(self::$parameters);
         }
         return $this->parameterBag;
-    }
-    protected function getDefaultParameters()
-    {
-        return array(
-            'kernel.root_dir' => '/home/florian/Documents/ecoleDeMusique/app',
-            'kernel.environment' => 'prod',
-            'kernel.debug' => false,
-            'kernel.name' => 'app',
-            'kernel.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod',
-            'kernel.logs_dir' => '/home/florian/Documents/ecoleDeMusique/app/logs',
-            'kernel.bundles' => array(
-                'FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
-                'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
-                'TwigBundle' => 'Symfony\\Bundle\\TwigBundle\\TwigBundle',
-                'MonologBundle' => 'Symfony\\Bundle\\MonologBundle\\MonologBundle',
-                'SwiftmailerBundle' => 'Symfony\\Bundle\\SwiftmailerBundle\\SwiftmailerBundle',
-                'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
-                'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
-                'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
-                'JMSAopBundle' => 'JMS\\AopBundle\\JMSAopBundle',
-                'JMSDiExtraBundle' => 'JMS\\DiExtraBundle\\JMSDiExtraBundle',
-                'JMSSecurityExtraBundle' => 'JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
-                'EcoleDeMusiqueWelcomeBundle' => 'EcoleDeMusique\\WelcomeBundle\\EcoleDeMusiqueWelcomeBundle',
-            ),
-            'kernel.charset' => 'UTF-8',
-            'kernel.container_class' => 'appProdProjectContainer',
-            'database_driver' => 'pdo_mysql',
-            'database_host' => '127.0.0.1',
-            'database_port' => NULL,
-            'database_name' => 'ecoleDeMusique',
-            'database_user' => 'root',
-            'database_password' => 'root',
-            'mailer_transport' => 'smtp',
-            'mailer_host' => 'mail.ville-voreppe.fr',
-            'locale' => 'fr',
-            'secret' => 'ThisTokenIsNotSoSecretChangeIt',
-            'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
-            'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
-            'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
-            'streamed_response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\StreamedResponseListener',
-            'locale_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\LocaleListener',
-            'event_dispatcher.class' => 'Symfony\\Component\\EventDispatcher\\ContainerAwareEventDispatcher',
-            'http_kernel.class' => 'Symfony\\Bundle\\FrameworkBundle\\HttpKernel',
-            'filesystem.class' => 'Symfony\\Component\\Filesystem\\Filesystem',
-            'cache_warmer.class' => 'Symfony\\Component\\HttpKernel\\CacheWarmer\\CacheWarmerAggregate',
-            'cache_clearer.class' => 'Symfony\\Component\\HttpKernel\\CacheClearer\\ChainCacheClearer',
-            'file_locator.class' => 'Symfony\\Component\\HttpKernel\\Config\\FileLocator',
-            'translator.class' => 'Symfony\\Bundle\\FrameworkBundle\\Translation\\Translator',
-            'translator.identity.class' => 'Symfony\\Component\\Translation\\IdentityTranslator',
-            'translator.selector.class' => 'Symfony\\Component\\Translation\\MessageSelector',
-            'translation.loader.php.class' => 'Symfony\\Component\\Translation\\Loader\\PhpFileLoader',
-            'translation.loader.yml.class' => 'Symfony\\Component\\Translation\\Loader\\YamlFileLoader',
-            'translation.loader.xliff.class' => 'Symfony\\Component\\Translation\\Loader\\XliffFileLoader',
-            'translation.loader.po.class' => 'Symfony\\Component\\Translation\\Loader\\PoFileLoader',
-            'translation.loader.mo.class' => 'Symfony\\Component\\Translation\\Loader\\MoFileLoader',
-            'translation.loader.qt.class' => 'Symfony\\Component\\Translation\\Loader\\QtTranslationsLoader',
-            'translation.loader.csv.class' => 'Symfony\\Component\\Translation\\Loader\\CsvFileLoader',
-            'translation.loader.res.class' => 'Symfony\\Component\\Translation\\Loader\\IcuResFileLoader',
-            'translation.loader.dat.class' => 'Symfony\\Component\\Translation\\Loader\\IcuDatFileLoader',
-            'translation.loader.ini.class' => 'Symfony\\Component\\Translation\\Loader\\IniFileLoader',
-            'translation.dumper.php.class' => 'Symfony\\Component\\Translation\\Dumper\\PhpFileDumper',
-            'translation.dumper.xliff.class' => 'Symfony\\Component\\Translation\\Dumper\\XliffFileDumper',
-            'translation.dumper.po.class' => 'Symfony\\Component\\Translation\\Dumper\\PoFileDumper',
-            'translation.dumper.mo.class' => 'Symfony\\Component\\Translation\\Dumper\\MoFileDumper',
-            'translation.dumper.yml.class' => 'Symfony\\Component\\Translation\\Dumper\\YamlFileDumper',
-            'translation.dumper.qt.class' => 'Symfony\\Component\\Translation\\Dumper\\QtFileDumper',
-            'translation.dumper.csv.class' => 'Symfony\\Component\\Translation\\Dumper\\CsvFileDumper',
-            'translation.dumper.ini.class' => 'Symfony\\Component\\Translation\\Dumper\\IniFileDumper',
-            'translation.dumper.res.class' => 'Symfony\\Component\\Translation\\Dumper\\IcuResFileDumper',
-            'translation.extractor.php.class' => 'Symfony\\Bundle\\FrameworkBundle\\Translation\\PhpExtractor',
-            'translation.loader.class' => 'Symfony\\Bundle\\FrameworkBundle\\Translation\\TranslationLoader',
-            'translation.extractor.class' => 'Symfony\\Component\\Translation\\Extractor\\ChainExtractor',
-            'translation.writer.class' => 'Symfony\\Component\\Translation\\Writer\\TranslationWriter',
-            'kernel.secret' => 'ThisTokenIsNotSoSecretChangeIt',
-            'kernel.trust_proxy_headers' => false,
-            'kernel.default_locale' => 'fr',
-            'session.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Session',
-            'session.flashbag.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Flash\\FlashBag',
-            'session.attribute_bag.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Attribute\\AttributeBag',
-            'session.storage.native.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\NativeSessionStorage',
-            'session.storage.mock_file.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\MockFileSessionStorage',
-            'session.handler.native_file.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\Handler\\NativeFileSessionHandler',
-            'session_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
-            'session.storage.options' => array(
-            ),
-            'session.save_path' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/sessions',
-            'form.resolved_type_factory.class' => 'Symfony\\Component\\Form\\ResolvedFormTypeFactory',
-            'form.registry.class' => 'Symfony\\Component\\Form\\FormRegistry',
-            'form.factory.class' => 'Symfony\\Component\\Form\\FormFactory',
-            'form.extension.class' => 'Symfony\\Component\\Form\\Extension\\DependencyInjection\\DependencyInjectionExtension',
-            'form.type_guesser.validator.class' => 'Symfony\\Component\\Form\\Extension\\Validator\\ValidatorTypeGuesser',
-            'form.csrf_provider.class' => 'Symfony\\Component\\Form\\Extension\\Csrf\\CsrfProvider\\SessionCsrfProvider',
-            'form.type_extension.csrf.enabled' => true,
-            'form.type_extension.csrf.field_name' => '_token',
-            'validator.class' => 'Symfony\\Component\\Validator\\Validator',
-            'validator.mapping.class_metadata_factory.class' => 'Symfony\\Component\\Validator\\Mapping\\ClassMetadataFactory',
-            'validator.mapping.cache.apc.class' => 'Symfony\\Component\\Validator\\Mapping\\Cache\\ApcCache',
-            'validator.mapping.cache.prefix' => '',
-            'validator.mapping.loader.loader_chain.class' => 'Symfony\\Component\\Validator\\Mapping\\Loader\\LoaderChain',
-            'validator.mapping.loader.static_method_loader.class' => 'Symfony\\Component\\Validator\\Mapping\\Loader\\StaticMethodLoader',
-            'validator.mapping.loader.annotation_loader.class' => 'Symfony\\Component\\Validator\\Mapping\\Loader\\AnnotationLoader',
-            'validator.mapping.loader.xml_files_loader.class' => 'Symfony\\Component\\Validator\\Mapping\\Loader\\XmlFilesLoader',
-            'validator.mapping.loader.yaml_files_loader.class' => 'Symfony\\Component\\Validator\\Mapping\\Loader\\YamlFilesLoader',
-            'validator.validator_factory.class' => 'Symfony\\Bundle\\FrameworkBundle\\Validator\\ConstraintValidatorFactory',
-            'validator.mapping.loader.xml_files_loader.mapping_files' => array(
-                0 => '/home/florian/Documents/ecoleDeMusique/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml',
-            ),
-            'validator.mapping.loader.yaml_files_loader.mapping_files' => array(
-            ),
-            'router.class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\Router',
-            'router.request_context.class' => 'Symfony\\Component\\Routing\\RequestContext',
-            'routing.loader.class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\DelegatingLoader',
-            'routing.resolver.class' => 'Symfony\\Component\\Config\\Loader\\LoaderResolver',
-            'routing.loader.xml.class' => 'Symfony\\Component\\Routing\\Loader\\XmlFileLoader',
-            'routing.loader.yml.class' => 'Symfony\\Component\\Routing\\Loader\\YamlFileLoader',
-            'routing.loader.php.class' => 'Symfony\\Component\\Routing\\Loader\\PhpFileLoader',
-            'router.options.generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator',
-            'router.options.generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator',
-            'router.options.generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper',
-            'router.options.matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher',
-            'router.options.matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher',
-            'router.options.matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper',
-            'router.cache_warmer.class' => 'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\RouterCacheWarmer',
-            'router.options.matcher.cache_class' => 'appprodUrlMatcher',
-            'router.options.generator.cache_class' => 'appprodUrlGenerator',
-            'router_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\RouterListener',
-            'router.request_context.host' => 'localhost',
-            'router.request_context.scheme' => 'http',
-            'router.resource' => '/home/florian/Documents/ecoleDeMusique/app/config/routing.yml',
-            'request_listener.http_port' => 80,
-            'request_listener.https_port' => 443,
-            'templating.engine.delegating.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\DelegatingEngine',
-            'templating.name_parser.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\TemplateNameParser',
-            'templating.filename_parser.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\TemplateFilenameParser',
-            'templating.cache_warmer.template_paths.class' => 'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\TemplatePathsCacheWarmer',
-            'templating.locator.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\TemplateLocator',
-            'templating.loader.filesystem.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Loader\\FilesystemLoader',
-            'templating.loader.cache.class' => 'Symfony\\Component\\Templating\\Loader\\CacheLoader',
-            'templating.loader.chain.class' => 'Symfony\\Component\\Templating\\Loader\\ChainLoader',
-            'templating.finder.class' => 'Symfony\\Bundle\\FrameworkBundle\\CacheWarmer\\TemplateFinder',
-            'templating.engine.php.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\PhpEngine',
-            'templating.helper.slots.class' => 'Symfony\\Component\\Templating\\Helper\\SlotsHelper',
-            'templating.helper.assets.class' => 'Symfony\\Component\\Templating\\Helper\\CoreAssetsHelper',
-            'templating.helper.actions.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\ActionsHelper',
-            'templating.helper.router.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\RouterHelper',
-            'templating.helper.request.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\RequestHelper',
-            'templating.helper.session.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\SessionHelper',
-            'templating.helper.code.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\CodeHelper',
-            'templating.helper.translator.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\TranslatorHelper',
-            'templating.helper.form.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Helper\\FormHelper',
-            'templating.form.engine.class' => 'Symfony\\Component\\Form\\Extension\\Templating\\TemplatingRendererEngine',
-            'templating.form.renderer.class' => 'Symfony\\Component\\Form\\FormRenderer',
-            'templating.globals.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\GlobalVariables',
-            'templating.asset.path_package.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Asset\\PathPackage',
-            'templating.asset.url_package.class' => 'Symfony\\Component\\Templating\\Asset\\UrlPackage',
-            'templating.asset.package_factory.class' => 'Symfony\\Bundle\\FrameworkBundle\\Templating\\Asset\\PackageFactory',
-            'templating.helper.code.file_link_format' => NULL,
-            'templating.helper.form.resources' => array(
-                0 => 'FrameworkBundle:Form',
-            ),
-            'templating.hinclude.default_template' => NULL,
-            'templating.loader.cache.path' => NULL,
-            'templating.engines' => array(
-                0 => 'twig',
-            ),
-            'annotations.reader.class' => 'Doctrine\\Common\\Annotations\\AnnotationReader',
-            'annotations.cached_reader.class' => 'Doctrine\\Common\\Annotations\\CachedReader',
-            'annotations.file_cache_reader.class' => 'Doctrine\\Common\\Annotations\\FileCacheReader',
-            'security.context.class' => 'Symfony\\Component\\Security\\Core\\SecurityContext',
-            'security.user_checker.class' => 'Symfony\\Component\\Security\\Core\\User\\UserChecker',
-            'security.encoder_factory.generic.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\EncoderFactory',
-            'security.encoder.digest.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\MessageDigestPasswordEncoder',
-            'security.encoder.plain.class' => 'Symfony\\Component\\Security\\Core\\Encoder\\PlaintextPasswordEncoder',
-            'security.user.provider.in_memory.class' => 'Symfony\\Component\\Security\\Core\\User\\InMemoryUserProvider',
-            'security.user.provider.in_memory.user.class' => 'Symfony\\Component\\Security\\Core\\User\\User',
-            'security.user.provider.chain.class' => 'Symfony\\Component\\Security\\Core\\User\\ChainUserProvider',
-            'security.authentication.trust_resolver.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\AuthenticationTrustResolver',
-            'security.authentication.trust_resolver.anonymous_class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Token\\AnonymousToken',
-            'security.authentication.trust_resolver.rememberme_class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Token\\RememberMeToken',
-            'security.authentication.manager.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\AuthenticationProviderManager',
-            'security.authentication.session_strategy.class' => 'Symfony\\Component\\Security\\Http\\Session\\SessionAuthenticationStrategy',
-            'security.access.decision_manager.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\AccessDecisionManager',
-            'security.access.simple_role_voter.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\RoleVoter',
-            'security.access.authenticated_voter.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\AuthenticatedVoter',
-            'security.access.role_hierarchy_voter.class' => 'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\RoleHierarchyVoter',
-            'security.firewall.class' => 'Symfony\\Component\\Security\\Http\\Firewall',
-            'security.firewall.map.class' => 'Symfony\\Bundle\\SecurityBundle\\Security\\FirewallMap',
-            'security.firewall.context.class' => 'Symfony\\Bundle\\SecurityBundle\\Security\\FirewallContext',
-            'security.matcher.class' => 'Symfony\\Component\\HttpFoundation\\RequestMatcher',
-            'security.role_hierarchy.class' => 'Symfony\\Component\\Security\\Core\\Role\\RoleHierarchy',
-            'security.http_utils.class' => 'Symfony\\Component\\Security\\Http\\HttpUtils',
-            'security.validator.user_password.class' => 'Symfony\\Component\\Security\\Core\\Validator\\Constraint\\UserPasswordValidator',
-            'security.authentication.retry_entry_point.class' => 'Symfony\\Component\\Security\\Http\\EntryPoint\\RetryAuthenticationEntryPoint',
-            'security.channel_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\ChannelListener',
-            'security.authentication.form_entry_point.class' => 'Symfony\\Component\\Security\\Http\\EntryPoint\\FormAuthenticationEntryPoint',
-            'security.authentication.listener.form.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\UsernamePasswordFormAuthenticationListener',
-            'security.authentication.listener.basic.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\BasicAuthenticationListener',
-            'security.authentication.basic_entry_point.class' => 'Symfony\\Component\\Security\\Http\\EntryPoint\\BasicAuthenticationEntryPoint',
-            'security.authentication.listener.digest.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\DigestAuthenticationListener',
-            'security.authentication.digest_entry_point.class' => 'Symfony\\Component\\Security\\Http\\EntryPoint\\DigestAuthenticationEntryPoint',
-            'security.authentication.listener.x509.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\X509AuthenticationListener',
-            'security.authentication.listener.anonymous.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\AnonymousAuthenticationListener',
-            'security.authentication.switchuser_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\SwitchUserListener',
-            'security.logout_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\LogoutListener',
-            'security.logout.handler.session.class' => 'Symfony\\Component\\Security\\Http\\Logout\\SessionLogoutHandler',
-            'security.logout.handler.cookie_clearing.class' => 'Symfony\\Component\\Security\\Http\\Logout\\CookieClearingLogoutHandler',
-            'security.logout.success_handler.class' => 'Symfony\\Component\\Security\\Http\\Logout\\DefaultLogoutSuccessHandler',
-            'security.access_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\AccessListener',
-            'security.access_map.class' => 'Symfony\\Component\\Security\\Http\\AccessMap',
-            'security.exception_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\ExceptionListener',
-            'security.context_listener.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\ContextListener',
-            'security.authentication.provider.dao.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\DaoAuthenticationProvider',
-            'security.authentication.provider.pre_authenticated.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\PreAuthenticatedAuthenticationProvider',
-            'security.authentication.provider.anonymous.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\AnonymousAuthenticationProvider',
-            'security.authentication.success_handler.class' => 'Symfony\\Component\\Security\\Http\\Authentication\\DefaultAuthenticationSuccessHandler',
-            'security.authentication.failure_handler.class' => 'Symfony\\Component\\Security\\Http\\Authentication\\DefaultAuthenticationFailureHandler',
-            'security.authentication.provider.rememberme.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\Provider\\RememberMeAuthenticationProvider',
-            'security.authentication.listener.rememberme.class' => 'Symfony\\Component\\Security\\Http\\Firewall\\RememberMeListener',
-            'security.rememberme.token.provider.in_memory.class' => 'Symfony\\Component\\Security\\Core\\Authentication\\RememberMe\\InMemoryTokenProvider',
-            'security.authentication.rememberme.services.persistent.class' => 'Symfony\\Component\\Security\\Http\\RememberMe\\PersistentTokenBasedRememberMeServices',
-            'security.authentication.rememberme.services.simplehash.class' => 'Symfony\\Component\\Security\\Http\\RememberMe\\TokenBasedRememberMeServices',
-            'security.rememberme.response_listener.class' => 'Symfony\\Component\\Security\\Http\\RememberMe\\ResponseListener',
-            'templating.helper.logout_url.class' => 'Symfony\\Bundle\\SecurityBundle\\Templating\\Helper\\LogoutUrlHelper',
-            'templating.helper.security.class' => 'Symfony\\Bundle\\SecurityBundle\\Templating\\Helper\\SecurityHelper',
-            'twig.extension.logout_url.class' => 'Symfony\\Bundle\\SecurityBundle\\Twig\\Extension\\LogoutUrlExtension',
-            'twig.extension.security.class' => 'Symfony\\Bridge\\Twig\\Extension\\SecurityExtension',
-            'data_collector.security.class' => 'Symfony\\Bundle\\SecurityBundle\\DataCollector\\SecurityDataCollector',
-            'security.access.denied_url' => NULL,
-            'security.authentication.manager.erase_credentials' => true,
-            'security.authentication.session_strategy.strategy' => 'migrate',
-            'security.access.always_authenticate_before_granting' => false,
-            'security.authentication.hide_user_not_found' => true,
-            'security.role_hierarchy.roles' => array(
-                'ROLE_SUPER_ADMIN' => array(
-                    0 => 'ROLE_ADMIN',
-                ),
-            ),
-            'twig.class' => 'Twig_Environment',
-            'twig.loader.class' => 'Symfony\\Bundle\\TwigBundle\\Loader\\FilesystemLoader',
-            'templating.engine.twig.class' => 'Symfony\\Bundle\\TwigBundle\\TwigEngine',
-            'twig.cache_warmer.class' => 'Symfony\\Bundle\\TwigBundle\\CacheWarmer\\TemplateCacheCacheWarmer',
-            'twig.extension.trans.class' => 'Symfony\\Bridge\\Twig\\Extension\\TranslationExtension',
-            'twig.extension.assets.class' => 'Symfony\\Bundle\\TwigBundle\\Extension\\AssetsExtension',
-            'twig.extension.actions.class' => 'Symfony\\Bundle\\TwigBundle\\Extension\\ActionsExtension',
-            'twig.extension.code.class' => 'Symfony\\Bundle\\TwigBundle\\Extension\\CodeExtension',
-            'twig.extension.routing.class' => 'Symfony\\Bridge\\Twig\\Extension\\RoutingExtension',
-            'twig.extension.yaml.class' => 'Symfony\\Bridge\\Twig\\Extension\\YamlExtension',
-            'twig.extension.form.class' => 'Symfony\\Bridge\\Twig\\Extension\\FormExtension',
-            'twig.form.engine.class' => 'Symfony\\Bridge\\Twig\\Form\\TwigRendererEngine',
-            'twig.form.renderer.class' => 'Symfony\\Bridge\\Twig\\Form\\TwigRenderer',
-            'twig.translation.extractor.class' => 'Symfony\\Bridge\\Twig\\Translation\\TwigExtractor',
-            'twig.exception_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ExceptionListener',
-            'twig.exception_listener.controller' => 'Symfony\\Bundle\\TwigBundle\\Controller\\ExceptionController::showAction',
-            'twig.form.resources' => array(
-                0 => 'form_div_layout.html.twig',
-            ),
-            'twig.options' => array(
-                'debug' => false,
-                'strict_variables' => false,
-                'exception_controller' => 'Symfony\\Bundle\\TwigBundle\\Controller\\ExceptionController::showAction',
-                'cache' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/twig',
-                'charset' => 'UTF-8',
-                'paths' => array(
-                ),
-            ),
-            'monolog.logger.class' => 'Symfony\\Bridge\\Monolog\\Logger',
-            'monolog.gelf.publisher.class' => 'Gelf\\MessagePublisher',
-            'monolog.handler.stream.class' => 'Monolog\\Handler\\StreamHandler',
-            'monolog.handler.group.class' => 'Monolog\\Handler\\GroupHandler',
-            'monolog.handler.buffer.class' => 'Monolog\\Handler\\BufferHandler',
-            'monolog.handler.rotating_file.class' => 'Monolog\\Handler\\RotatingFileHandler',
-            'monolog.handler.syslog.class' => 'Monolog\\Handler\\SyslogHandler',
-            'monolog.handler.null.class' => 'Monolog\\Handler\\NullHandler',
-            'monolog.handler.test.class' => 'Monolog\\Handler\\TestHandler',
-            'monolog.handler.gelf.class' => 'Monolog\\Handler\\GelfHandler',
-            'monolog.handler.firephp.class' => 'Symfony\\Bridge\\Monolog\\Handler\\FirePHPHandler',
-            'monolog.handler.chromephp.class' => 'Symfony\\Bridge\\Monolog\\Handler\\ChromePhpHandler',
-            'monolog.handler.debug.class' => 'Symfony\\Bridge\\Monolog\\Handler\\DebugHandler',
-            'monolog.handler.swift_mailer.class' => 'Monolog\\Handler\\SwiftMailerHandler',
-            'monolog.handler.native_mailer.class' => 'Monolog\\Handler\\NativeMailerHandler',
-            'monolog.handler.fingers_crossed.class' => 'Monolog\\Handler\\FingersCrossedHandler',
-            'monolog.handler.fingers_crossed.error_level_activation_strategy.class' => 'Monolog\\Handler\\FingersCrossed\\ErrorLevelActivationStrategy',
-            'monolog.handlers_to_channels' => array(
-                'monolog.handler.main' => NULL,
-            ),
-            'swiftmailer.class' => 'Swift_Mailer',
-            'swiftmailer.transport.sendmail.class' => 'Swift_Transport_SendmailTransport',
-            'swiftmailer.transport.mail.class' => 'Swift_Transport_MailTransport',
-            'swiftmailer.transport.failover.class' => 'Swift_Transport_FailoverTransport',
-            'swiftmailer.plugin.redirecting.class' => 'Swift_Plugins_RedirectingPlugin',
-            'swiftmailer.plugin.impersonate.class' => 'Swift_Plugins_ImpersonatePlugin',
-            'swiftmailer.plugin.messagelogger.class' => 'Swift_Plugins_MessageLogger',
-            'swiftmailer.plugin.antiflood.class' => 'Swift_Plugins_AntiFloodPlugin',
-            'swiftmailer.plugin.antiflood.threshold' => 99,
-            'swiftmailer.plugin.antiflood.sleep' => 0,
-            'swiftmailer.data_collector.class' => 'Symfony\\Bridge\\Swiftmailer\\DataCollector\\MessageDataCollector',
-            'swiftmailer.transport.smtp.class' => 'Swift_Transport_EsmtpTransport',
-            'swiftmailer.transport.smtp.encryption' => NULL,
-            'swiftmailer.transport.smtp.port' => 25,
-            'swiftmailer.transport.smtp.host' => 'mail.ville-voreppe.fr',
-            'swiftmailer.transport.smtp.username' => 'ecoledemusique',
-            'swiftmailer.transport.smtp.password' => 'sea42ap',
-            'swiftmailer.transport.smtp.auth_mode' => NULL,
-            'swiftmailer.transport.smtp.timeout' => 30,
-            'swiftmailer.transport.smtp.source_ip' => NULL,
-            'swiftmailer.spool.enabled' => false,
-            'swiftmailer.sender_address' => NULL,
-            'swiftmailer.single_address' => NULL,
-            'assetic.asset_factory.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\AssetFactory',
-            'assetic.asset_manager.class' => 'Assetic\\Factory\\LazyAssetManager',
-            'assetic.asset_manager_cache_warmer.class' => 'Symfony\\Bundle\\AsseticBundle\\CacheWarmer\\AssetManagerCacheWarmer',
-            'assetic.cached_formula_loader.class' => 'Assetic\\Factory\\Loader\\CachedFormulaLoader',
-            'assetic.config_cache.class' => 'Assetic\\Cache\\ConfigCache',
-            'assetic.config_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Loader\\ConfigurationLoader',
-            'assetic.config_resource.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Resource\\ConfigurationResource',
-            'assetic.coalescing_directory_resource.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Resource\\CoalescingDirectoryResource',
-            'assetic.directory_resource.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Resource\\DirectoryResource',
-            'assetic.filter_manager.class' => 'Symfony\\Bundle\\AsseticBundle\\FilterManager',
-            'assetic.worker.ensure_filter.class' => 'Assetic\\Factory\\Worker\\EnsureFilterWorker',
-            'assetic.value_supplier.class' => 'Symfony\\Bundle\\AsseticBundle\\DefaultValueSupplier',
-            'assetic.node.paths' => array(
-            ),
-            'assetic.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/assetic',
-            'assetic.bundles' => array(
-                0 => 'EcoleDeMusiqueWelcomeBundle',
-            ),
-            'assetic.twig_extension.class' => 'Symfony\\Bundle\\AsseticBundle\\Twig\\AsseticExtension',
-            'assetic.twig_formula_loader.class' => 'Assetic\\Extension\\Twig\\TwigFormulaLoader',
-            'assetic.helper.dynamic.class' => 'Symfony\\Bundle\\AsseticBundle\\Templating\\DynamicAsseticHelper',
-            'assetic.helper.static.class' => 'Symfony\\Bundle\\AsseticBundle\\Templating\\StaticAsseticHelper',
-            'assetic.php_formula_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Loader\\AsseticHelperFormulaLoader',
-            'assetic.debug' => false,
-            'assetic.use_controller' => false,
-            'assetic.enable_profiler' => false,
-            'assetic.read_from' => '/home/florian/Documents/ecoleDeMusique/app/../web',
-            'assetic.write_to' => '/home/florian/Documents/ecoleDeMusique/app/../web',
-            'assetic.variables' => array(
-            ),
-            'assetic.java.bin' => '/usr/bin/java',
-            'assetic.node.bin' => '/usr/local/bin/node',
-            'assetic.ruby.bin' => '/usr/bin/ruby',
-            'assetic.sass.bin' => '/usr/local/bin/sass',
-            'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',
-            'assetic.filter.yui_css.class' => 'Assetic\\Filter\\Yui\\CssCompressorFilter',
-            'assetic.filter.yui_css.java' => '/usr/bin/java',
-            'assetic.filter.yui_css.jar' => '/home/florian/Documents/ecoleDeMusique/app/Resources/java/yuicompressor-2.4.8.jar',
-            'assetic.filter.yui_css.charset' => 'UTF-8',
-            'assetic.twig_extension.functions' => array(
-            ),
-            'doctrine.dbal.logger.chain.class' => 'Doctrine\\DBAL\\Logging\\LoggerChain',
-            'doctrine.dbal.logger.profiling.class' => 'Doctrine\\DBAL\\Logging\\DebugStack',
-            'doctrine.dbal.logger.class' => 'Symfony\\Bridge\\Doctrine\\Logger\\DbalLogger',
-            'doctrine.dbal.configuration.class' => 'Doctrine\\DBAL\\Configuration',
-            'doctrine.data_collector.class' => 'Symfony\\Bridge\\Doctrine\\DataCollector\\DoctrineDataCollector',
-            'doctrine.dbal.connection.event_manager.class' => 'Symfony\\Bridge\\Doctrine\\ContainerAwareEventManager',
-            'doctrine.dbal.connection_factory.class' => 'Doctrine\\Bundle\\DoctrineBundle\\ConnectionFactory',
-            'doctrine.dbal.events.mysql_session_init.class' => 'Doctrine\\DBAL\\Event\\Listeners\\MysqlSessionInit',
-            'doctrine.dbal.events.oracle_session_init.class' => 'Doctrine\\DBAL\\Event\\Listeners\\OracleSessionInit',
-            'doctrine.class' => 'Doctrine\\Bundle\\DoctrineBundle\\Registry',
-            'doctrine.entity_managers' => array(
-                'default' => 'doctrine.orm.default_entity_manager',
-            ),
-            'doctrine.default_entity_manager' => 'default',
-            'doctrine.dbal.connection_factory.types' => array(
-            ),
-            'doctrine.connections' => array(
-                'default' => 'doctrine.dbal.default_connection',
-            ),
-            'doctrine.default_connection' => 'default',
-            'doctrine.orm.configuration.class' => 'Doctrine\\ORM\\Configuration',
-            'doctrine.orm.entity_manager.class' => 'Doctrine\\ORM\\EntityManager',
-            'doctrine.orm.manager_configurator.class' => 'Doctrine\\Bundle\\DoctrineBundle\\ManagerConfigurator',
-            'doctrine.orm.cache.array.class' => 'Doctrine\\Common\\Cache\\ArrayCache',
-            'doctrine.orm.cache.apc.class' => 'Doctrine\\Common\\Cache\\ApcCache',
-            'doctrine.orm.cache.memcache.class' => 'Doctrine\\Common\\Cache\\MemcacheCache',
-            'doctrine.orm.cache.memcache_host' => 'localhost',
-            'doctrine.orm.cache.memcache_port' => 11211,
-            'doctrine.orm.cache.memcache_instance.class' => 'Memcache',
-            'doctrine.orm.cache.memcached.class' => 'Doctrine\\Common\\Cache\\MemcachedCache',
-            'doctrine.orm.cache.memcached_host' => 'localhost',
-            'doctrine.orm.cache.memcached_port' => 11211,
-            'doctrine.orm.cache.memcached_instance.class' => 'Memcached',
-            'doctrine.orm.cache.redis.class' => 'Doctrine\\Common\\Cache\\RedisCache',
-            'doctrine.orm.cache.redis_host' => 'localhost',
-            'doctrine.orm.cache.redis_port' => 6379,
-            'doctrine.orm.cache.redis_instance.class' => 'Redis',
-            'doctrine.orm.cache.xcache.class' => 'Doctrine\\Common\\Cache\\XcacheCache',
-            'doctrine.orm.cache.wincache.class' => 'Doctrine\\Common\\Cache\\WinCacheCache',
-            'doctrine.orm.cache.zenddata.class' => 'Doctrine\\Common\\Cache\\ZendDataCache',
-            'doctrine.orm.metadata.driver_chain.class' => 'Doctrine\\ORM\\Mapping\\Driver\\DriverChain',
-            'doctrine.orm.metadata.annotation.class' => 'Doctrine\\ORM\\Mapping\\Driver\\AnnotationDriver',
-            'doctrine.orm.metadata.xml.class' => 'Doctrine\\ORM\\Mapping\\Driver\\SimplifiedXmlDriver',
-            'doctrine.orm.metadata.yml.class' => 'Doctrine\\ORM\\Mapping\\Driver\\SimplifiedYamlDriver',
-            'doctrine.orm.metadata.php.class' => 'Doctrine\\ORM\\Mapping\\Driver\\PHPDriver',
-            'doctrine.orm.metadata.staticphp.class' => 'Doctrine\\ORM\\Mapping\\Driver\\StaticPHPDriver',
-            'doctrine.orm.proxy_cache_warmer.class' => 'Symfony\\Bridge\\Doctrine\\CacheWarmer\\ProxyCacheWarmer',
-            'form.type_guesser.doctrine.class' => 'Symfony\\Bridge\\Doctrine\\Form\\DoctrineOrmTypeGuesser',
-            'doctrine.orm.validator.unique.class' => 'Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntityValidator',
-            'doctrine.orm.validator_initializer.class' => 'Symfony\\Bridge\\Doctrine\\Validator\\DoctrineInitializer',
-            'doctrine.orm.security.user.provider.class' => 'Symfony\\Bridge\\Doctrine\\Security\\User\\EntityUserProvider',
-            'doctrine.orm.listeners.resolve_target_entity.class' => 'Doctrine\\ORM\\Tools\\ResolveTargetEntityListener',
-            'doctrine.orm.naming_strategy.default.class' => 'Doctrine\\ORM\\Mapping\\DefaultNamingStrategy',
-            'doctrine.orm.naming_strategy.underscore.class' => 'Doctrine\\ORM\\Mapping\\UnderscoreNamingStrategy',
-            'doctrine.orm.auto_generate_proxy_classes' => false,
-            'doctrine.orm.proxy_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/doctrine/orm/Proxies',
-            'doctrine.orm.proxy_namespace' => 'Proxies',
-            'sensio_framework_extra.view.guesser.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Templating\\TemplateGuesser',
-            'sensio_framework_extra.controller.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ControllerListener',
-            'sensio_framework_extra.routing.loader.annot_dir.class' => 'Symfony\\Component\\Routing\\Loader\\AnnotationDirectoryLoader',
-            'sensio_framework_extra.routing.loader.annot_file.class' => 'Symfony\\Component\\Routing\\Loader\\AnnotationFileLoader',
-            'sensio_framework_extra.routing.loader.annot_class.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Routing\\AnnotatedRouteControllerLoader',
-            'sensio_framework_extra.converter.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ParamConverterListener',
-            'sensio_framework_extra.converter.manager.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\ParamConverterManager',
-            'sensio_framework_extra.converter.doctrine.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
-            'sensio_framework_extra.converter.datetime.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DateTimeParamConverter',
-            'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
-            'jms_aop.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_aop',
-            'jms_aop.interceptor_loader.class' => 'JMS\\AopBundle\\Aop\\InterceptorLoader',
-            'jms_di_extra.metadata.driver.annotation_driver.class' => 'JMS\\DiExtraBundle\\Metadata\\Driver\\AnnotationDriver',
-            'jms_di_extra.metadata.driver.configured_controller_injections.class' => 'JMS\\DiExtraBundle\\Metadata\\Driver\\ConfiguredControllerInjectionsDriver',
-            'jms_di_extra.metadata.driver.lazy_loading_driver.class' => 'Metadata\\Driver\\LazyLoadingDriver',
-            'jms_di_extra.metadata.metadata_factory.class' => 'Metadata\\MetadataFactory',
-            'jms_di_extra.metadata.cache.file_cache.class' => 'Metadata\\Cache\\FileCache',
-            'jms_di_extra.metadata.converter.class' => 'JMS\\DiExtraBundle\\Metadata\\MetadataConverter',
-            'jms_di_extra.controller_resolver.class' => 'JMS\\DiExtraBundle\\HttpKernel\\ControllerResolver',
-            'jms_di_extra.controller_injectors_warmer.class' => 'JMS\\DiExtraBundle\\HttpKernel\\ControllerInjectorsWarmer',
-            'jms_di_extra.all_bundles' => false,
-            'jms_di_extra.bundles' => array(
-            ),
-            'jms_di_extra.directories' => array(
-            ),
-            'jms_di_extra.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_diextra',
-            'jms_di_extra.doctrine_integration' => true,
-            'jms_di_extra.doctrine_integration.entity_manager.file' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_diextra/doctrine/EntityManager_542a543f43f33.php',
-            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager542a543f43f33_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
-            'security.secured_services' => array(
-            ),
-            'security.access.method_interceptor.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Interception\\MethodSecurityInterceptor',
-            'security.access.method_access_control' => array(
-            ),
-            'security.access.run_as_manager.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\RunAsManager',
-            'security.authentication.provider.run_as.class' => 'JMS\\SecurityExtraBundle\\Security\\Authentication\\Provider\\RunAsAuthenticationProvider',
-            'security.run_as.key' => 'RunAsToken',
-            'security.run_as.role_prefix' => 'ROLE_',
-            'security.access.after_invocation_manager.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\AfterInvocation\\AfterInvocationManager',
-            'security.access.after_invocation.acl_provider.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\AfterInvocation\\AclAfterInvocationProvider',
-            'security.access.iddqd_voter.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Voter\\IddqdVoter',
-            'security.extra.metadata_factory.class' => 'Metadata\\MetadataFactory',
-            'security.extra.lazy_loading_driver.class' => 'Metadata\\Driver\\LazyLoadingDriver',
-            'security.extra.driver_chain.class' => 'Metadata\\Driver\\DriverChain',
-            'security.extra.annotation_driver.class' => 'JMS\\SecurityExtraBundle\\Metadata\\Driver\\AnnotationDriver',
-            'security.extra.file_cache.class' => 'Metadata\\Cache\\FileCache',
-            'security.access.secure_all_services' => false,
-            'security.extra.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/prod/jms_security',
-            'security.acl.permission_evaluator.class' => 'JMS\\SecurityExtraBundle\\Security\\Acl\\Expression\\PermissionEvaluator',
-            'security.acl.has_permission_compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Acl\\Expression\\HasPermissionFunctionCompiler',
-            'security.expressions.voter.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\LazyLoadingExpressionVoter',
-            'security.expressions.handler.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\ContainerAwareExpressionHandler',
-            'security.expressions.compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\ExpressionCompiler',
-            'security.expressions.expression.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\Expression',
-            'security.expressions.variable_compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\Compiler\\ContainerAwareVariableCompiler',
-            'security.expressions.parameter_compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\Compiler\\ParameterExpressionCompiler',
-            'security.extra.config_driver.class' => 'JMS\\SecurityExtraBundle\\Metadata\\Driver\\ConfigDriver',
-            'security.extra.twig_extension.class' => 'JMS\\SecurityExtraBundle\\Twig\\SecurityExtension',
-            'security.authenticated_voter.disabled' => false,
-            'security.role_voter.disabled' => false,
-            'security.acl_voter.disabled' => false,
-        );
     }
 }

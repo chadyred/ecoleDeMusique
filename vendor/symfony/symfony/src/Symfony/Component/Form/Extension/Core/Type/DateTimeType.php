@@ -69,9 +69,14 @@ class DateTimeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $parts = array('year', 'month', 'day', 'hour', 'minute');
+        $parts = array('year', 'month', 'day', 'hour');
         $dateParts = array('year', 'month', 'day');
-        $timeParts = array('hour', 'minute');
+        $timeParts = array('hour');
+
+        if ($options['with_minutes']) {
+            $parts[] = 'minute';
+            $timeParts[] = 'minute';
+        }
 
         if ($options['with_seconds']) {
             $parts[] = 'second';
@@ -110,18 +115,27 @@ class DateTimeType extends AbstractType
                 'months',
                 'days',
                 'empty_value',
+                'placeholder',
                 'required',
                 'translation_domain',
+                'html5',
+                'invalid_message',
+                'invalid_message_parameters',
             )));
 
             $timeOptions = array_intersect_key($options, array_flip(array(
                 'hours',
                 'minutes',
                 'seconds',
+                'with_minutes',
                 'with_seconds',
                 'empty_value',
+                'placeholder',
                 'required',
                 'translation_domain',
+                'html5',
+                'invalid_message',
+                'invalid_message_parameters',
             )));
 
             if (null !== $options['date_widget']) {
@@ -174,10 +188,11 @@ class DateTimeType extends AbstractType
     {
         $view->vars['widget'] = $options['widget'];
 
-        // Change the input to a HTML5 date input if
+        // Change the input to a HTML5 datetime input if
         //  * the widget is set to "single_text"
         //  * the format matches the one expected by HTML5
-        if ('single_text' === $options['widget'] && self::HTML5_FORMAT === $options['format']) {
+        //  * the html5 is set to true
+        if ($options['html5'] && 'single_text' === $options['widget'] && self::HTML5_FORMAT === $options['format']) {
             $view->vars['type'] = 'datetime';
         }
     }
@@ -201,29 +216,18 @@ class DateTimeType extends AbstractType
             return $options['widget'];
         };
 
-        // BC until Symfony 2.3
-        $modelTimezone = function (Options $options) {
-            return $options['data_timezone'];
-        };
-
-        // BC until Symfony 2.3
-        $viewTimezone = function (Options $options) {
-            return $options['user_timezone'];
-        };
-
         $resolver->setDefaults(array(
             'input'          => 'datetime',
-            'model_timezone' => $modelTimezone,
-            'view_timezone'  => $viewTimezone,
-            // Deprecated timezone options
-            'data_timezone'  => null,
-            'user_timezone'  => null,
+            'model_timezone' => null,
+            'view_timezone'  => null,
             'format'         => self::HTML5_FORMAT,
             'date_format'    => null,
             'widget'         => null,
             'date_widget'    => $dateWidget,
             'time_widget'    => $timeWidget,
+            'with_minutes'   => true,
             'with_seconds'   => false,
+            'html5'          => true,
             // Don't modify \DateTime classes by reference, we treat
             // them like immutable value objects
             'by_reference'   => false,
@@ -239,7 +243,8 @@ class DateTimeType extends AbstractType
         // Don't add some defaults in order to preserve the defaults
         // set in DateType and TimeType
         $resolver->setOptional(array(
-            'empty_value',
+            'empty_value', // deprecated
+            'placeholder',
             'years',
             'months',
             'days',
@@ -275,14 +280,6 @@ class DateTimeType extends AbstractType
                 'choice',
             ),
         ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return 'field';
     }
 
     /**

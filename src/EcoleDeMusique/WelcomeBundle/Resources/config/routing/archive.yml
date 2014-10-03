@@ -15,9 +15,15 @@ archive_create:
     defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:create" }
     requirements: { _method: post }
     
-archive_create_all:
-    pattern:  /createall
-    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:createall" }
+archive_create_all_renouvellement:
+    pattern:  /createallrenouvellement
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:createallrenouvellement" }
+    requirements: { _method: get }
+
+
+archive_create_all_sans_renouvellement:
+    pattern:  /createallsansrenouvellement
+    defaults: { _controller: "EcoleDeMusiqueWelcomeBundle:Archive:createallrenouvellement" }
     requirements: { _method: get }
     
 

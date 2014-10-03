@@ -87,6 +87,7 @@ class ResolveDefinitionTemplatesPass implements CompilerPassInterface
         $def->setConfigurator($parentDef->getConfigurator());
         $def->setFile($parentDef->getFile());
         $def->setPublic($parentDef->isPublic());
+        $def->setLazy($parentDef->isLazy());
 
         // overwrite with values specified in the decorator
         $changes = $definition->getChanges();
@@ -102,6 +103,9 @@ class ResolveDefinitionTemplatesPass implements CompilerPassInterface
         if (isset($changes['factory_service'])) {
             $def->setFactoryService($definition->getFactoryService());
         }
+        if (isset($changes['factory'])) {
+            $def->setFactory($definition->getFactory());
+        }
         if (isset($changes['configurator'])) {
             $def->setConfigurator($definition->getConfigurator());
         }
@@ -110,6 +114,9 @@ class ResolveDefinitionTemplatesPass implements CompilerPassInterface
         }
         if (isset($changes['public'])) {
             $def->setPublic($definition->isPublic());
+        }
+        if (isset($changes['lazy'])) {
+            $def->setLazy($definition->isLazy());
         }
 
         // merge arguments
@@ -123,7 +130,7 @@ class ResolveDefinitionTemplatesPass implements CompilerPassInterface
                 throw new RuntimeException(sprintf('Invalid argument key "%s" found.', $k));
             }
 
-            $index = (integer) substr($k, strlen('index_'));
+            $index = (int) substr($k, strlen('index_'));
             $def->replaceArgument($index, $v);
         }
 

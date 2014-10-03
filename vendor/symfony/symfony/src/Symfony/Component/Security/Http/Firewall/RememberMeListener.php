@@ -11,7 +11,7 @@
 
 namespace Symfony\Component\Security\Http\Firewall;
 
-use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -33,23 +33,26 @@ class RememberMeListener implements ListenerInterface
     private $authenticationManager;
     private $logger;
     private $dispatcher;
+    private $catchExceptions = true;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param SecurityContextInterface       $securityContext
      * @param RememberMeServicesInterface    $rememberMeServices
      * @param AuthenticationManagerInterface $authenticationManager
      * @param LoggerInterface                $logger
      * @param EventDispatcherInterface       $dispatcher
+     * @param bool                           $catchExceptions
      */
-    public function __construct(SecurityContextInterface $securityContext, RememberMeServicesInterface $rememberMeServices, AuthenticationManagerInterface $authenticationManager, LoggerInterface $logger = null, EventDispatcherInterface $dispatcher = null)
+    public function __construct(SecurityContextInterface $securityContext, RememberMeServicesInterface $rememberMeServices, AuthenticationManagerInterface $authenticationManager, LoggerInterface $logger = null, EventDispatcherInterface $dispatcher = null, $catchExceptions = true)
     {
         $this->securityContext = $securityContext;
         $this->rememberMeServices = $rememberMeServices;
         $this->authenticationManager = $authenticationManager;
         $this->logger = $logger;
         $this->dispatcher = $dispatcher;
+        $this->catchExceptions = $catchExceptions;
     }
 
     /**
@@ -82,7 +85,7 @@ class RememberMeListener implements ListenerInterface
             }
         } catch (AuthenticationException $failed) {
             if (null !== $this->logger) {
-                $this->logger->warn(
+                $this->logger->warning(
                     'SecurityContext not populated with remember-me token as the'
                    .' AuthenticationManager rejected the AuthenticationToken returned'
                    .' by the RememberMeServices: '.$failed->getMessage()
@@ -90,6 +93,10 @@ class RememberMeListener implements ListenerInterface
             }
 
             $this->rememberMeServices->loginFail($request);
+
+            if (!$this->catchExceptions) {
+                throw $failed;
+            }
         }
     }
 }

@@ -59,6 +59,11 @@ class Regie
      */
     private $regies;
 
+    
+    /**
+     * @var integer $anneDeCours
+     */
+    private $anneDeCours;
 
     /**
      * Get id
@@ -282,11 +287,6 @@ class Regie
             return "".$this->getId();
     }
     
-
-    /**
-     * @var integer $anneDeCours
-     */
-    private $anneDeCours;
 
 
     /**

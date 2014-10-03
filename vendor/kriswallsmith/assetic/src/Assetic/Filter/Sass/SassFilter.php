@@ -3,7 +3,7 @@
 /*
  * This file is part of the Assetic package, an OpenSky project.
  *
- * (c) 2010-2012 OpenSky Project Inc
+ * (c) 2010-2014 OpenSky Project Inc
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,9 +12,9 @@
 namespace Assetic\Filter\Sass;
 
 use Assetic\Asset\AssetInterface;
-use Assetic\Filter\FilterInterface;
 use Assetic\Exception\FilterException;
-use Symfony\Component\Process\ProcessBuilder;
+use Assetic\Factory\AssetFactory;
+use Assetic\Util\CssUtils;
 
 /**
  * Loads SASS files.
@@ -22,7 +22,7 @@ use Symfony\Component\Process\ProcessBuilder;
  * @link http://sass-lang.com/
  * @author Kris Wallsmith <kris.wallsmith@gmail.com>
  */
-class SassFilter implements FilterInterface
+class SassFilter extends BaseSassFilter
 {
     const STYLE_NESTED     = 'nested';
     const STYLE_EXPANDED   = 'expanded';
@@ -37,7 +37,6 @@ class SassFilter implements FilterInterface
     private $quiet;
     private $debugInfo;
     private $lineNumbers;
-    private $loadPaths = array();
     private $cacheLocation;
     private $noCache;
     private $compass;
@@ -79,11 +78,6 @@ class SassFilter implements FilterInterface
         $this->lineNumbers = $lineNumbers;
     }
 
-    public function addLoadPath($loadPath)
-    {
-        $this->loadPaths[] = $loadPath;
-    }
-
     public function setCacheLocation($cacheLocation)
     {
         $this->cacheLocation = $cacheLocation;
@@ -106,20 +100,17 @@ class SassFilter implements FilterInterface
             $sassProcessArgs = array_merge(explode(' ', $this->rubyPath), $sassProcessArgs);
         }
 
-        $pb = new ProcessBuilder($sassProcessArgs);
+        $pb = $this->createProcessBuilder($sassProcessArgs);
 
-        $root = $asset->getSourceRoot();
-        $path = $asset->getSourcePath();
-
-        if ($root && $path) {
-            $pb->add('--load-path')->add(dirname($root.'/'.$path));
+        if ($dir = $asset->getSourceDirectory()) {
+            $pb->add('--load-path')->add($dir);
         }
 
         if ($this->unixNewlines) {
             $pb->add('--unix-newlines');
         }
 
-        if (true === $this->scss || (null === $this->scss && 'scss' == pathinfo($path, PATHINFO_EXTENSION))) {
+        if (true === $this->scss || (null === $this->scss && 'scss' == pathinfo($asset->getSourcePath(), PATHINFO_EXTENSION))) {
             $pb->add('--scss');
         }
 
@@ -163,7 +154,7 @@ class SassFilter implements FilterInterface
         $code = $proc->run();
         unlink($input);
 
-        if (0 < $code) {
+        if (0 !== $code) {
             throw FilterException::fromProcess($proc)->setInput($asset->getContent());
         }
 

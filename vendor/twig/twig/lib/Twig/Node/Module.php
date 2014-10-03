@@ -13,8 +13,7 @@
 /**
  * Represents a module node.
  *
- * @package    twig
- * @author     Fabien Potencier <fabien@symfony.com>
+ * @author Fabien Potencier <fabien@symfony.com>
  */
 class Twig_Node_Module extends Twig_Node
 {
@@ -32,7 +31,7 @@ class Twig_Node_Module extends Twig_Node
     /**
      * Compiles the node to PHP.
      *
-     * @param Twig_Compiler A Twig_Compiler instance
+     * @param Twig_Compiler $compiler A Twig_Compiler instance
      */
     public function compile(Twig_Compiler $compiler)
     {
@@ -171,6 +170,18 @@ class Twig_Node_Module extends Twig_Node
 
                 foreach ($trait->getNode('targets') as $key => $value) {
                     $compiler
+                        ->write(sprintf("if (!isset(\$_trait_%s_blocks[", $i))
+                        ->string($key)
+                        ->raw("])) {\n")
+                        ->indent()
+                        ->write("throw new Twig_Error_Runtime(sprintf('Block ")
+                        ->string($key)
+                        ->raw(" is not defined in trait ")
+                        ->subcompile($trait->getNode('template'))
+                        ->raw(".'));\n")
+                        ->outdent()
+                        ->write("}\n\n")
+
                         ->write(sprintf("\$_trait_%s_blocks[", $i))
                         ->subcompile($value)
                         ->raw(sprintf("] = \$_trait_%s_blocks[", $i))

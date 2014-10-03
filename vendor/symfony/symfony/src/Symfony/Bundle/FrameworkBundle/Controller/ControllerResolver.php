@@ -11,10 +11,9 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Controller;
 
-use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver as BaseControllerResolver;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 
 /**
@@ -64,6 +63,8 @@ class ControllerResolver extends BaseControllerResolver
                 list($service, $method) = explode(':', $controller, 2);
 
                 return array($this->container->get($service), $method);
+            } elseif ($this->container->has($controller) && method_exists($service = $this->container->get($controller), '__invoke')) {
+                return $service;
             } else {
                 throw new \LogicException(sprintf('Unable to parse the controller name "%s".', $controller));
             }

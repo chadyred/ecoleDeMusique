@@ -21,5 +21,3 @@ EcoleDeMusique\WelcomeBundle\Entity\Famille:
         familles:
           targetEntity: Eleve
           mappedBy: famille
-          
-          

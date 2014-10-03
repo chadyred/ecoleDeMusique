@@ -184,7 +184,18 @@ class ArchiveController extends Controller
 
               
                  
-                 
+            /**
+             * Inutile : DRY non respecter : le removeOrphan existe ActiviteEleve->Eleve(removeOrphan) supprime les activiteEleve
+             *  ActiviteEleve orpheline
+             * 
+             * Correctif qui fonctionne but not Symfony way !
+             * 
+             * foreach($entiteTteActiviteEleve as $ActElev)
+             *  {
+             *      $ActElev->setEleve(null);
+             *      $em3->remove($ActElev);  
+             *  }
+             */
              $em3 = $this->getDoctrine()->getManager();
              $entiteTteActiviteEleve=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findByEleve($entityEleve);        
          
@@ -197,13 +208,14 @@ class ArchiveController extends Controller
          }
          else
          {
-             
-              $this->get('session')->getFlashBag()->add('notice', "Archivage Impossible, instru 2 non saisi"); 
+              
+             $this->get('session')->getFlashBag()->add('notice', "Archivage Impossible, instru 2 non saisi"); 
          }
          
+          //Non renouvellement par le service asynchrone = suppression de l'entité élève
            if( $_POST["re"]=="non")
            {     
-                   $em->remove($entityEleve);      
+                $em->remove($entityEleve);      
            }
 
            $em->persist($Archive);
@@ -224,8 +236,16 @@ class ArchiveController extends Controller
     }
     
     
-    
-    public function createallAction()
+    /**
+     * Fonction qui ne pense pas objet, afin de supprimer les paiement, les cours des élèves, les périodes EN LES RENOUVELLANT TOUS 
+     * on enlève  
+     *  if( $_POST["re"]=="non")
+     *     {     
+     *          $em->remove($entityEleve);      
+     *     }
+     * @return type
+     */
+    public function createallrenouvellementAction()
     {
         $session = $this->getRequest()->getSession();
           
@@ -233,7 +253,8 @@ class ArchiveController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         
-        //si un eleve est pas dans la regie aucun intêrét de l'archivé 
+        //si un eleve est pas dans la regie aucun intêrét de l'archiver, car cela signifie qu'il le serait déjà, cad qu'il n'a plus de régie
+        // dans ce cas
        $entityRegie = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Regie')->findAll(); 
        $tab=array();
         foreach($entityRegie as $entityRegie)
@@ -242,13 +263,10 @@ class ArchiveController extends Controller
         
         }
         
- 
-        
-        
-        $entityEleve = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Eleve')->findByregie($tab);    
+        $entityEleves = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Eleve')->findByregie($tab);    
        //Recup info actvité
    
-       foreach ($entityEleve as $entityEleve)
+       foreach ($entityEleves as $entityEleve)
        {
             $entiteInstru1=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array('type'=>'instru1','eleve'=>$entityEleve));
             $entiteInstru2=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array('type'=>'instru2','eleve'=>$entityEleve));    

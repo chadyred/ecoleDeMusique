@@ -45,9 +45,17 @@ class DefaultNamingStrategy implements NamingStrategy
     /**
      * {@inheritdoc}
      */
-    public function propertyToColumnName($propertyName)
+    public function propertyToColumnName($propertyName, $className = null)
     {
         return $propertyName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function embeddedFieldToColumnName($propertyName, $embeddedColumnName, $className = null, $embeddedClassName = null)
+    {
+        return $propertyName.'_'.$embeddedColumnName;
     }
 
     /**

@@ -128,8 +128,7 @@ class RegieController extends Controller
     }
 
     /**
-     * Edits an existing Regie entity.
-     *
+     * Edits an existing Regie entity.     
      */
     public function updateAction(Request $request, $id)
     {
@@ -182,32 +181,34 @@ class RegieController extends Controller
             $em->flush();
         }
                   
-      /*---------------------------------------------------------------------------------*/  
+        /*---------------------------------------------------------------------------------*/  
 
         /* Suppresion de la tarification en elle même*/
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Regie')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Regie')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Regie entity.');
-            }         
-            $em->remove($entity);
-            $em->flush();
-      /*-------------------------------------------------------------------------------------------*/
-            /* Suppresion de la tarification en elle même*/
-            $em = $this->getDoctrine()->getManager();
-            $entityPaiement = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Paiement')->findOneByEleve($Eleve);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Regie entity.');
+        }         
+        $em->remove($entity);
+        $em->flush();
+        
+        /*-------------------------------------------------------------------------------------------*/
+        /* Suppresion de l'ensemble des paiement de l'élève lié réalisé au travers sa tarification*/
+        $em = $this->getDoctrine()->getManager();
+        $entityPaiement = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Paiement')->findOneByEleve($Eleve);
 
-            if (!$entityPaiement) {
-                throw $this->createNotFoundException('Unable to find Regie entity.');
-            }      
-            $entitiesPaiementPeriode=$em->getRepository('EcoleDeMusiqueWelcomeBundle:PaiementPeriode')->findByPaiement($entityPaiement);
-            foreach($entitiesPaiementPeriode as $ent){$em->remove($ent);}
-            
-            $em->remove($entityPaiement);
-            
-            
-            $em->flush();
+        if (!$entityPaiement) {
+            throw $this->createNotFoundException('Unable to find Regie entity.');
+        }      
+        
+        $entitiesPaiementPeriode=$em->getRepository('EcoleDeMusiqueWelcomeBundle:PaiementPeriode')->findByPaiement($entityPaiement);
+        foreach($entitiesPaiementPeriode as $ent) {$em->remove($ent);}
+
+        $em->remove($entityPaiement);
+
+
+        $em->flush();
 
         return $this->redirect($this->generateUrl('regie'));
     }
@@ -222,21 +223,19 @@ class RegieController extends Controller
     
     
      public function simulationAction()
-    {
-         
-         
+     {        
          $form = $this->createFormBuilder();
-         $f=new \EcoleDeMusique\WelcomeBundle\Form\SimulationType();  
+         $f = new \EcoleDeMusique\WelcomeBundle\Form\SimulationType();  
          
     
          $formulaire=$f->buildForm($form);
 
          
          return $this->render('EcoleDeMusiqueWelcomeBundle:Regie:simulation.html.twig',array('form' => $formulaire->createView()));
-    }
+     }
        
       public function simulationApplicationAction()
-    {
+      {
      
             $request = $this->getRequest();
             $form = $request->request->get("form");

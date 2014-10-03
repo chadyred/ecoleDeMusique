@@ -36,7 +36,6 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->booleanNode('verbose')->defaultTrue()->info('DEPRECATED, it is not useful anymore and can be removed safely from your configuration')->end()
                 ->booleanNode('toolbar')->defaultFalse()->end()
                 ->scalarNode('position')
                     ->defaultValue('bottom')
@@ -46,6 +45,7 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->booleanNode('intercept_redirects')->defaultFalse()->end()
+                ->scalarNode('excluded_ajax_paths')->defaultValue('^/bundles|^/_wdt')->end()
             ->end()
         ;
 
