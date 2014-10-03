@@ -397,6 +397,8 @@ class Eleve
     }
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
+     * 
+     * CE SONT DES COURSELEVE ET NON DES ELEVES
      */
     private $eleves;
 
@@ -414,9 +416,9 @@ class Eleve
      * @param EcoleDeMusique\WelcomeBundle\Entity\Paiement $eleves
      * @return Eleve
      */
-    public function addEleve(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $eleves)
+    public function addEleve(\EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $eleve)
     {
-        $this->eleves[] = $eleves;
+        $this->eleves[] = $eleve;
     
         return $this;
     }
@@ -426,9 +428,9 @@ class Eleve
      *
      * @param EcoleDeMusique\WelcomeBundle\Entity\Paiement $eleves
      */
-    public function removeEleve(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $eleves)
+    public function removeEleve(\EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $eleve)
     {
-        $this->eleves->removeElement($eleves);
+        $this->eleves->removeElement($eleve);
     }
 
     /**
@@ -504,7 +506,6 @@ class Eleve
     }
     
     public function findremisebyeleve() {
-        
         return $this->getRegie()->getRemise();
        
     }

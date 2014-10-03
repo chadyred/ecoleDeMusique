@@ -62,8 +62,8 @@ EcoleDeMusique\WelcomeBundle\Entity\Eleve:
             mappedBy: eleve
    oneToMany:
         eleves:
-            targetEntity: CoursEleve
-            orphanRemoval: true
+            targetEntity: CoursEleve 
+            orphanRemoval: true #Ne fonctionne pas 
             mappedBy: eleve
    ManyToMany:
         eleves:

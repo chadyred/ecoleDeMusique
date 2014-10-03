@@ -705,12 +705,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "05045d9544dcdaf18a7d9ce69f3ffe709703898a"
+                "reference": "0bff6aadbc9f3fd8167a320d9f4f6cf269382da0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/05045d9544dcdaf18a7d9ce69f3ffe709703898a",
-                "reference": "05045d9544dcdaf18a7d9ce69f3ffe709703898a",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/0bff6aadbc9f3fd8167a320d9f4f6cf269382da0",
+                "reference": "0bff6aadbc9f3fd8167a320d9f4f6cf269382da0",
                 "shasum": ""
             },
             "require": {
@@ -772,7 +772,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-09-27 16:19:53"
+            "time": "2014-10-02 22:50:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1820,12 +1820,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "d318e09eef441aa2c5b928a63d4e8c0c74355d20"
+                "reference": "3da6fc22c6c4533b2b63e9a711a19a807ec2bb1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/d318e09eef441aa2c5b928a63d4e8c0c74355d20",
-                "reference": "d318e09eef441aa2c5b928a63d4e8c0c74355d20",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/3da6fc22c6c4533b2b63e9a711a19a807ec2bb1e",
+                "reference": "3da6fc22c6c4533b2b63e9a711a19a807ec2bb1e",
                 "shasum": ""
             },
             "require": {
@@ -1928,7 +1928,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-10-02 10:40:33"
+            "time": "2014-10-03 09:43:16"
         },
         {
             "name": "twig/extensions",

@@ -196,6 +196,8 @@ class ArchiveController extends Controller
              *      $em3->remove($ActElev);  
              *  }
              */
+                    
+             //Suppression des activité
              $em3 = $this->getDoctrine()->getManager();
              $entiteTteActiviteEleve=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findByEleve($entityEleve);        
          
@@ -203,8 +205,18 @@ class ArchiveController extends Controller
              {
                  $em3->remove($ActElev);  
              }
-                 $em3->flush();
-                   $this->get('session')->getFlashBag()->add('notice', "Archivage bien Effectue");                
+             
+             //Suppression des cours sinon erreur sql
+             $em4 = $this->getDoctrine()->getManager();
+             $entiteTteCoursEleve = $em->getRepository('EcoleDeMusiqueWelcomeBundle:CoursEleve')->findByEleve($entityEleve);        
+         
+             foreach($entiteTteCoursEleve as $cours)
+             {
+                 $em4->remove($cours);  
+             }
+                 $em4->flush();
+                 
+                 $this->get('session')->getFlashBag()->add('notice', "Archivage bien Effectue");                
          }
          else
          {

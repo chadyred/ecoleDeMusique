@@ -488,23 +488,23 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function addEleve(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $eleves)
+    public function addEleve(\EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $eleve)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addEleve', array($eleves));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addEleve', array($eleve));
 
-        return parent::addEleve($eleves);
+        return parent::addEleve($eleve);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeEleve(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $eleves)
+    public function removeEleve(\EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $eleve)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeEleve', array($eleves));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeEleve', array($eleve));
 
-        return parent::removeEleve($eleves);
+        return parent::removeEleve($eleve);
     }
 
     /**
