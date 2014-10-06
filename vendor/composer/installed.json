@@ -658,12 +658,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/symfony.git",
-            "reference": "3da6fc22c6c4533b2b63e9a711a19a807ec2bb1e"
+            "reference": "9b2195c17b449165f2146e2f0e6c623efc4ca15e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/symfony/zipball/3da6fc22c6c4533b2b63e9a711a19a807ec2bb1e",
-            "reference": "3da6fc22c6c4533b2b63e9a711a19a807ec2bb1e",
+            "url": "https://api.github.com/repos/symfony/symfony/zipball/9b2195c17b449165f2146e2f0e6c623efc4ca15e",
+            "reference": "9b2195c17b449165f2146e2f0e6c623efc4ca15e",
             "shasum": ""
         },
         "require": {
@@ -729,7 +729,7 @@
             "ocramius/proxy-manager": ">=0.3.1,<0.6-dev",
             "propel/propel1": "1.6.*"
         },
-        "time": "2014-10-03 09:43:16",
+        "time": "2014-10-03 13:11:31",
         "type": "library",
         "extra": {
             "branch-alias": {

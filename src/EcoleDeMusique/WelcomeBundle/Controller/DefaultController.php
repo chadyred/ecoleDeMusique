@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use EcoleDeMusique\WelcomeBundle\Entity\Regie;
 use EcoleDeMusique\WelcomeBundle\Entity\Paiement;
 use EcoleDeMusique\WelcomeBundle\Entity\PaiementPeriode;
+use EcoleDeMusique\WelcomeBundle\Entity\Formule;
 
 class DefaultController extends Controller
 {
@@ -28,42 +29,42 @@ class DefaultController extends Controller
     
     public function formulesChangementAction()
     {       
-            /*
          $request = $this->getRequest();
-         $form = $request->request->get("form");
-        */
+         $form = $request->request->get("form");       
         
-        echo $_POST['mode'];
-      die;
          
-                $em = $this->getDoctrine()->getEntityManager();
-                $formule = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Formule')->find(1);
+        $em = $this->getDoctrine()->getEntityManager();
+        $formule = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Formule')->find(1);
 
-                //Si on trouve pas la formule
-                if (!$formule) {
-                        throw $this->createNotFoundException("Pas de Formule à l'id 1");
-               }
-                   $formule->setParam1($form["Formule0param1"]);
-                   $formule->setParam2($form["Formule0param2"]);
-                   $formule->setParam3($form["Formule0param3"]);
-                   $formule->setParam4($form["Formule0param4"]);
-                   $formule->setParam5($form["Formule0param5"]);
-                   $formule->setcoefCapv($form["capv"]);
-                   $formule->setcoefInstru2($form["coefInstru2"]);
-                   $formule->setcoefInstru3($form["coefInstru3"]);
-                   $formule->setcoef2eleves($form["coef2eleves"]);
-                   $formule->setcoef3eleves($form["coef3eleves"]);
-                   $formule->setcoef4eleves($form["coef4eleves"]);
-                   $formule->setcoef5eleves($form["coef5eleves"]);
-                   $formule->setCoefcyle0($form["cycle0"]);
-                   $formule->setCoefcyle1($form["cycle1"]);
-                   $formule->setCoefcyle2($form["cycle2"]);
-                   $formule->setCoefcyle3($form["cycle3"]);
-                   $formule->setFormule($form["FormuleCalcul"]);
-                   $formule->setmultiplicateurAdulte($form["MultiplicateurAdulte"]);
-                   $formule->settarifMax($form["tarifMax"]);
-                   $em->flush();
-        
+        //Si on trouve pas la formule
+        if (!$formule) {
+                throw $this->createNotFoundException("Pas de Formule à l'id 1");
+       }
+               
+        if($request->getMethod() == 'POST')
+        {
+         //On nous retourne des string du coup on tranforme en float au travers d'une fonction de remplacement static dans Formule
+            $formule->setParam1(Formule::tofloat($form["Formule0param1"]));
+            $formule->setParam2(Formule::tofloat($form["Formule0param2"]));
+            $formule->setParam3(Formule::tofloat($form["Formule0param3"]));
+            $formule->setParam4(Formule::tofloat($form["Formule0param4"]));
+            $formule->setParam5(Formule::tofloat($form["Formule0param5"]));
+            $formule->setcoefCapv(Formule::tofloat($form["capv"]));
+            $formule->setcoefInstru2(Formule::tofloat($form["coefInstru2"]));
+            $formule->setcoefInstru3(Formule::tofloat($form["coefInstru3"]));
+            $formule->setcoef2eleves(Formule::tofloat($form["coef2eleves"]));
+            $formule->setcoef3eleves(Formule::tofloat($form["coef3eleves"]));
+            $formule->setcoef4eleves(Formule::tofloat($form["coef4eleves"]));
+            $formule->setcoef5eleves(Formule::tofloat($form["coef5eleves"]));
+            $formule->setCoefcyle0(Formule::tofloat($form["cycle0"]));
+            $formule->setCoefcyle1(Formule::tofloat($form["cycle1"]));
+            $formule->setCoefcyle2(Formule::tofloat($form["cycle2"]));
+            $formule->setCoefcyle3(Formule::tofloat($form["cycle3"]));
+            $formule->setFormule($form["FormuleCalcul"]);
+            $formule->setmultiplicateurAdulte(Formule::tofloat($form["MultiplicateurAdulte"]));
+            $formule->settarifMax(Formule::tofloat($form["tarifMax"]));
+            $em->flush();
+        }
             
          //rappel du formulaire et rafraichissement des données
          $form = $this->createFormBuilder() ;

@@ -10,12 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Formule
 {
     /**
-     * @var integer $id
+     * @var float $id
      */
     private $id;
 
     /**
-     * @var integer $cycle
+     * @var float $cycle
      */
     private $cycle;
 
@@ -30,82 +30,82 @@ class Formule
     private $formule;
 
     /**
-     * @var integer $param1
+     * @var float $param1
      */
     private $param1;
 
     /**
-     * @var integer $param2
+     * @var float $param2
      */
     private $param2;
 
     /**
-     * @var integer $param3
+     * @var float $param3
      */
     private $param3;
 
     /**
-     * @var integer $param4
+     * @var float $param4
      */
     private $param4;
 
     /**
-     * @var integer $param5
+     * @var float $param5
      */
     private $param5;
 
     /**
-     * @var integer $coefCapv
+     * @var float $coefCapv
      */
     private $coefCapv;
 
     /**
-     * @var integer $coefInstru2
+     * @var float $coefInstru2
      */
     private $coefInstru2;
 
     /**
-     * @var integer $coefInstru3
+     * @var float $coefInstru3
      */
     private $coefInstru3;
 
     /**
-     * @var integer $coef2eleves
+     * @var float $coef2eleves
      */
     private $coef2eleves;
 
     /**
-     * @var integer $coef3eleves
+     * @var float $coef3eleves
      */
     private $coef3eleves;
 
     /**
-     * @var integer $coef4eleves
+     * @var float $coef4eleves
      */
     private $coef4eleves;
 
     /**
-     * @var integer $coef5eleves
+     * @var float $coef5eleves
      */
     private $coef5eleves;
 
     /**
-     * @var integer $coefcyle0
+     * @var float $coefcyle0
      */
     private $coefcyle0;
 
     /**
-     * @var integer $coefcyle1
+     * @var float $coefcyle1
      */
     private $coefcyle1;
 
     /**
-     * @var integer $coefcyle2
+     * @var float $coefcyle2
      */
     private $coefcyle2;
 
     /**
-     * @var integer $coefcyle3
+     * @var float $coefcyle3
      */
     private $coefcyle3;
 
@@ -113,7 +113,7 @@ class Formule
     /**
      * Get id
      *
-     * @return integer 
+     * @return float 
      */
     public function getId()
     {
@@ -123,7 +123,7 @@ class Formule
     /**
      * Set cycle
      *
-     * @param integer $cycle
+     * @param float $cycle
      * @return Formule
      */
     public function setCycle($cycle)
@@ -136,7 +136,7 @@ class Formule
     /**
      * Get cycle
      *
-     * @return integer 
+     * @return float 
      */
     public function getCycle()
     {
@@ -192,7 +192,7 @@ class Formule
     /**
      * Set param1
      *
-     * @param integer $param1
+     * @param float $param1
      * @return Formule
      */
     public function setParam1($param1)
@@ -205,7 +205,7 @@ class Formule
     /**
      * Get param1
      *
-     * @return integer 
+     * @return float 
      */
     public function getParam1()
     {
@@ -215,7 +215,7 @@ class Formule
     /**
      * Set param2
      *
-     * @param integer $param2
+     * @param float $param2
      * @return Formule
      */
     public function setParam2($param2)
@@ -228,7 +228,7 @@ class Formule
     /**
      * Get param2
      *
-     * @return integer 
+     * @return float 
      */
     public function getParam2()
     {
@@ -238,7 +238,7 @@ class Formule
     /**
      * Set param3
      *
-     * @param integer $param3
+     * @param float $param3
      * @return Formule
      */
     public function setParam3($param3)
@@ -251,7 +251,7 @@ class Formule
     /**
      * Get param3
      *
-     * @return integer 
+     * @return float 
      */
     public function getParam3()
     {
@@ -261,7 +261,7 @@ class Formule
     /**
      * Set param4
      *
-     * @param integer $param4
+     * @param float $param4
      * @return Formule
      */
     public function setParam4($param4)
@@ -274,7 +274,7 @@ class Formule
     /**
      * Get param4
      *
-     * @return integer 
+     * @return float 
      */
     public function getParam4()
     {
@@ -284,7 +284,7 @@ class Formule
     /**
      * Set param5
      *
-     * @param integer $param5
+     * @param float $param5
      * @return Formule
      */
     public function setParam5($param5)
@@ -297,7 +297,7 @@ class Formule
     /**
      * Get param5
      *
-     * @return integer 
+     * @return float 
      */
     public function getParam5()
     {
@@ -307,7 +307,7 @@ class Formule
     /**
      * Set coefCapv
      *
-     * @param integer $coefCapv
+     * @param float $coefCapv
      * @return Formule
      */
     public function setCoefCapv($coefCapv)
@@ -320,7 +320,7 @@ class Formule
     /**
      * Get coefCapv
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoefCapv()
     {
@@ -330,7 +330,7 @@ class Formule
     /**
      * Set coefInstru2
      *
-     * @param integer $coefInstru2
+     * @param float $coefInstru2
      * @return Formule
      */
     public function setCoefInstru2($coefInstru2)
@@ -343,7 +343,7 @@ class Formule
     /**
      * Get coefInstru2
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoefInstru2()
     {
@@ -353,7 +353,7 @@ class Formule
     /**
      * Set coefInstru3
      *
-     * @param integer $coefInstru3
+     * @param float $coefInstru3
      * @return Formule
      */
     public function setCoefInstru3($coefInstru3)
@@ -366,7 +366,7 @@ class Formule
     /**
      * Get coefInstru3
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoefInstru3()
     {
@@ -376,7 +376,7 @@ class Formule
     /**
      * Set coef2eleves
      *
-     * @param integer $coef2eleves
+     * @param float $coef2eleves
      * @return Formule
      */
     public function setCoef2eleves($coef2eleves)
@@ -389,7 +389,7 @@ class Formule
     /**
      * Get coef2eleves
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoef2eleves()
     {
@@ -399,7 +399,7 @@ class Formule
     /**
      * Set coef3eleves
      *
-     * @param integer $coef3eleves
+     * @param float $coef3eleves
      * @return Formule
      */
     public function setCoef3eleves($coef3eleves)
@@ -412,7 +412,7 @@ class Formule
     /**
      * Get coef3eleves
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoef3eleves()
     {
@@ -422,7 +422,7 @@ class Formule
     /**
      * Set coef4eleves
      *
-     * @param integer $coef4eleves
+     * @param float $coef4eleves
      * @return Formule
      */
     public function setCoef4eleves($coef4eleves)
@@ -435,7 +435,7 @@ class Formule
     /**
      * Get coef4eleves
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoef4eleves()
     {
@@ -445,7 +445,7 @@ class Formule
     /**
      * Set coef5eleves
      *
-     * @param integer $coef5eleves
+     * @param float $coef5eleves
      * @return Formule
      */
     public function setCoef5eleves($coef5eleves)
@@ -458,7 +458,7 @@ class Formule
     /**
      * Get coef5eleves
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoef5eleves()
     {
@@ -468,7 +468,7 @@ class Formule
     /**
      * Set coefcyle0
      *
-     * @param integer $coefcyle0
+     * @param float $coefcyle0
      * @return Formule
      */
     public function setCoefcyle0($coefcyle0)
@@ -481,7 +481,7 @@ class Formule
     /**
      * Get coefcyle0
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoefcyle0()
     {
@@ -491,7 +491,7 @@ class Formule
     /**
      * Set coefcyle1
      *
-     * @param integer $coefcyle1
+     * @param float $coefcyle1
      * @return Formule
      */
     public function setCoefcyle1($coefcyle1)
@@ -504,7 +504,7 @@ class Formule
     /**
      * Get coefcyle1
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoefcyle1()
     {
@@ -514,7 +514,7 @@ class Formule
     /**
      * Set coefcyle2
      *
-     * @param integer $coefcyle2
+     * @param float $coefcyle2
      * @return Formule
      */
     public function setCoefcyle2($coefcyle2)
@@ -527,7 +527,7 @@ class Formule
     /**
      * Get coefcyle2
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoefcyle2()
     {
@@ -537,7 +537,7 @@ class Formule
     /**
      * Set coefcyle3
      *
-     * @param integer $coefcyle3
+     * @param float $coefcyle3
      * @return Formule
      */
     public function setCoefcyle3($coefcyle3)
@@ -550,7 +550,7 @@ class Formule
     /**
      * Get coefcyle3
      *
-     * @return integer 
+     * @return float 
      */
     public function getCoefcyle3()
     {
@@ -695,5 +695,22 @@ class Formule
     public function getSommeMax()
     {
         return $this->sommeMax;
+    }
+    
+    public static function tofloat($num)
+    {
+        $dotPos = strrpos($num, '.');
+        $commaPos = strrpos($num, ',');
+        $sep = (($dotPos > $commaPos) && $dotPos) ? $dotPos : 
+            ((($commaPos > $dotPos) && $commaPos) ? $commaPos : false);
+
+        if (!$sep) {
+            return floatval(preg_replace("/[^0-9]/", "", $num));
+        } 
+
+        return floatval(
+            preg_replace("/[^0-9]/", "", substr($num, 0, $sep)) . '.' .
+            preg_replace("/[^0-9]/", "", substr($num, $sep+1, strlen($num)))
+        );
     }
 }
