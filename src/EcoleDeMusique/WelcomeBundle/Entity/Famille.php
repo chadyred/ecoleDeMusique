@@ -22,21 +22,19 @@ class Famille
     private $qf;
     
     /**
-     * @var integer $nom
+     * @var integer $qf
      */
-    private $nom;
+    private $nom;    
     
     /**
-     * @var integer $prenom
+     * @var Eleve
      */
-    private $prenom;
-    
-    
+    private $responsable;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
-    private $familles;
+    private $eleves;
 
 
     /**
@@ -44,7 +42,7 @@ class Famille
      */
     public function __construct()
     {
-        $this->familles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->eleves = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -83,12 +81,12 @@ class Famille
     /**
      * Add familles
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Eleve $familles
+     * @param EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve
      * @return Famille
      */
-    public function addFamille(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $familles)
+    public function addEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve)
     {
-        $this->familles[] = $familles;
+        $this->eleves[] = $eleve;
     
         return $this;
     }
@@ -96,11 +94,11 @@ class Famille
     /**
      * Remove familles
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Eleve $familles
+     * @param EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve
      */
-    public function removeFamille(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $familles)
+    public function removeEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve)
     {
-        $this->familles->removeElement($familles);
+        $this->eleves->removeElement($eleve);
     }
 
     /**
@@ -108,62 +106,41 @@ class Famille
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getFamilles()
+    public function getEleves()
     {
-        return $this->familles;
+        return $this->eleves;
     }
     
     
           public function __toString() 
     {
             return "".$this->getId();
-    }
-    
+    }       
+
     
 
     /**
-     * Set nom
+     * Set responsable
      *
-     * @param string $nom
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Eleve $responsable
+     *
      * @return Famille
      */
-    public function setNom($nom)
+    public function setResponsable(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $responsable = null)
     {
-        $this->nom = $nom;
-    
+        $this->responsable = $responsable;
+
         return $this;
     }
 
     /**
-     * Get nom
+     * Get responsable
      *
-     * @return string 
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Eleve
      */
-    public function getNom()
+    public function getResponsable()
     {
-        return $this->nom;
+        return $this->responsable;
     }
 
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     * @return Famille
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-    
-        return $this;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string 
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
 }

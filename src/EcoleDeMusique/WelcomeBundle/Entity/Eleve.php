@@ -73,6 +73,27 @@ class Eleve
      * @var EcoleDeMusique\WelcomeBundle\Entity\Famille
      */
     private $famille;   
+    
+    /**
+     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Paiement", mappedBy="eleve", cascade={"persist"})
+     */
+    private $paiement;
+    
+    
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     * 
+     * CE SONT DES COURSELEVE ET NON DES ELEVES
+     */
+    private $eleves;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->eleves = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -367,10 +388,6 @@ class Eleve
     }
    
        
-    /**
-     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Paiement", mappedBy="eleve", cascade={"persist"})
-     */
-    private $paiement;
 
 
     /**
@@ -394,20 +411,6 @@ class Eleve
     public function getPaiement()
     {
         return $this->paiement;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     * 
-     * CE SONT DES COURSELEVE ET NON DES ELEVES
-     */
-    private $eleves;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->eleves = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

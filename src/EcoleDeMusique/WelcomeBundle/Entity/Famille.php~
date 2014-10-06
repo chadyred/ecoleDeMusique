@@ -22,11 +22,14 @@ class Famille
     private $qf;
     
     /**
-     * @var responsable
-     * 
+     * @var integer $qf
+     */
+    private $nom;    
+    
+    /**
+     * @var Eleve
      */
     private $responsable;
-    
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
@@ -109,11 +112,34 @@ class Famille
     }
     
     
-    
           public function __toString() 
     {
             return "".$this->getId();
-    }
+    }       
+
     
-   
+
+    /**
+     * Set responsable
+     *
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Eleve $responsable
+     *
+     * @return Famille
+     */
+    public function setResponsable(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $responsable = null)
+    {
+        $this->responsable = $responsable;
+
+        return $this;
+    }
+
+    /**
+     * Get responsable
+     *
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Eleve
+     */
+    public function getResponsable()
+    {
+        return $this->responsable;
+    }
 }

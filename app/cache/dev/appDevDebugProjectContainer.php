@@ -20,7 +20,7 @@ class appDevDebugProjectContainer extends Container
             'kernel.root_dir' => '/home/florian/Documents/ecoleDeMusique/app',
             'kernel.environment' => 'dev',
             'kernel.debug' => true,
-            'kernel.name' => 'app',
+            'kernel.name' => 'ap_',
             'kernel.cache_dir' => '/home/florian/Documents/ecoleDeMusique/app/cache/dev',
             'kernel.logs_dir' => '/home/florian/Documents/ecoleDeMusique/app/logs',
             'kernel.bundles' => array(
@@ -631,8 +631,8 @@ class appDevDebugProjectContainer extends Container
             'jms_di_extra.cache_warmer.controller_file_blacklist' => array(
 
             ),
-            'jms_di_extra.doctrine_integration.entity_manager.file' => '/home/florian/Documents/ecoleDeMusique/app/cache/dev/jms_diextra/doctrine/EntityManager_54324139a3f3e.php',
-            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager54324139a3f3e_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+            'jms_di_extra.doctrine_integration.entity_manager.file' => '/home/florian/Documents/ecoleDeMusique/app/cache/dev/jms_diextra/doctrine/EntityManager_5432825c9dd2c.php',
+            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager5432825c9dd2c_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
             'security.secured_services' => array(
 
             ),
@@ -1376,11 +1376,11 @@ class appDevDebugProjectContainer extends Container
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return \EntityManager54324139a3f3e_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager54324139a3f3e_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
+     * @return \EntityManager5432825c9dd2c_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager5432825c9dd2c_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
      */
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
-        require_once '/home/florian/Documents/ecoleDeMusique/app/cache/dev/jms_diextra/doctrine/EntityManager_54324139a3f3e.php';
+        require_once '/home/florian/Documents/ecoleDeMusique/app/cache/dev/jms_diextra/doctrine/EntityManager_5432825c9dd2c.php';
 
         $a = new \Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver(array('/home/florian/Documents/ecoleDeMusique/src/EcoleDeMusique/WelcomeBundle/Resources/config/doctrine' => 'EcoleDeMusique\\WelcomeBundle\\Entity'));
         $a->setGlobalBasename('mapping');
@@ -1405,7 +1405,7 @@ class appDevDebugProjectContainer extends Container
         $d = \Doctrine\ORM\EntityManager::create($this->get('doctrine.dbal.default_connection'), $c);
         $this->get('doctrine.orm.default_manager_configurator')->configure($d);
 
-        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager54324139a3f3e_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($d, $this);
+        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager5432825c9dd2c_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($d, $this);
     }
 
     /**
@@ -3001,7 +3001,7 @@ class appDevDebugProjectContainer extends Container
         $ka = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $ha, array(), $a);
         $ka->setOptions(array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.vitrine_area'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($ga, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('security.user.provider.concrete.customer')), 'vitrine_area', $a, $c), 2 => $ia, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $ha, 'vitrine_area', $ja, $ka, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '54324139640f9', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $ga, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $ha, 'vitrine_area', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $ha, '/login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.vitrine_area'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($ga, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('security.user.provider.concrete.customer')), 'vitrine_area', $a, $c), 2 => $ia, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $ha, 'vitrine_area', $ja, $ka, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5432825c83f47', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $ga, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $ha, 'vitrine_area', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $ha, '/login', false), NULL, NULL, $a));
     }
 
     /**
@@ -4403,7 +4403,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.customer'), new \Symfony\Component\Security\Core\User\UserChecker(), 'vitrine_area', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('54324139640f9')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.customer'), new \Symfony\Component\Security\Core\User\UserChecker(), 'vitrine_area', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5432825c83f47')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 

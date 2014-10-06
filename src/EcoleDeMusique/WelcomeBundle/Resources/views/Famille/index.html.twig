@@ -1,89 +1,100 @@
 {% extends 'EcoleDeMusiqueWelcomeBundle::layout.html.twig' %}
 
 {% block title %}
-Etat Civil
+    Etat Civil
 {% endblock %}
 {% block titlePage %}
-Etat Civil
+    Etat Civil
 {% endblock %}
-      {% block content %}  
-<style>
+{% block content %}  
+    <style>
 
-    table
-    {
-        border-collapse:collapse;   
-    }
-    .records_list tr:hover
-    {
-        background: #DCDCDC;
-    }       
+        table
+        {
+            border-collapse:collapse;   
+        }
+        .records_list tr:hover
+        {
+            background: #DCDCDC;
+        }       
 
-    .colonneId
-    {
-        width: 50px;
-    }
+        .colonneId
+        {
+            width: 50px;
+        }
 
-    .colonneQf
-    {        
-        width: 100px; 
-    }
-</style>
+        .colonneQf
+        {        
+            width: 100px; 
+        }
+    </style>
 
 
 
-<div id="header">
-    <div id="nompage">
-        <h1>Familles</h1>
+    <div id="header">
+        <div id="nompage">
+            <h1>Familles</h1>
+        </div>
     </div>
-</div>
 
-<div id="page">
-    <div>
-        <div class="post">
-            <p>Liste des familles</p>
-            <br />
-            <div class="entry">
+    <div id="page">
+        <div>
+            <div class="post">
+                <p>Liste des familles</p>
+                <br />
+                <div class="entry">
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="colonneId">Id</th>
-                            <th class="colonneQf">Qf</th>
-                            <th class="colonneMembre">Membres de la famille</th>
-                            <th class="colonneMembre">Responsable</th>
-                            <th class=""></th>
-                            <!--  <th>Actions</th> -->
-                        </tr>
-                </table>
-                <div style="max-height:750px;overflow-y: scroll;">
-                    <table class="records_list">
-                                        {% for tabeuh in tab %}
-                        <tr>
-                            <td class="colonneId"><a href="{{ path('famille_membre', { 'id': tabeuh.id }) }}">{{ tabeuh.id }}</a></td>
-                            <td class="colonneQf">{{ tabeuh.qf }}</td>
-                            <td class="colonneMembre"> {{ tabeuh.noms }}</td>
-                            <td class="colonneMembre"> {% if tabeuh.nom %}{{ tabeuh.nom }}{%endif %}</td>
-                            <td class="colonneMembre"> {{ tabeuh.prenom }}</td>                                                
-                            <td>
-                                <a href="{{ path('famille_edit', { 'id': tabeuh.id }) }}"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/crayon.png') }}"></a>
-
-                            </td>
-                            <td>
-                                <a href="{{ path('famille_delete', { 'id': tabeuh.id }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer cette famille?')"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"></a>
-                            </td>
-                        </tr>
-                                        {% endfor %}
-                        </tbody>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="colonneId">Id eleve</th>
+                                <th class="colonneQf">Qf</th>
+                                <th class="colonneMembre">Nom famille</th>
+                                <th class="colonneMembre">Prenom élève</th>
+                                <th class="colonneMembre">Responsable</th>
+                                <th class=""></th>
+                                <!--  <th>Actions</th> -->
+                            </tr>
                     </table>
+                    <div style="max-height:750px;overflow-y: scroll;">
+                        <table class="records_list">
+                            {% for famille in familles %}
+                                {% for eleve in famille.getEleves() %}
+                                    <tr>
+                                        <td class="colonneId">{{ eleve.id }}</a></td>
+                                        <td class="colonneQf">{{ famille.qf }}</td>
+                                        <td class="colonneMembre"><a href="{{ path('famille_membre', { 'id': famille.id }) }}">{{ eleve.nom }}</a></td>
+                                        <td class="colonneMembre"><a href="{{ path('eleve_show', { 'id': eleve.id }) }}">{{ eleve.prenom }}</a></td>
+                                        <td class="colonneMembre"> 
+                                            {% if famille.responsable != NULL %}
+                                                <a href="{{ path('famille_membre', { 'id': famille.id }) }}">
+                                                {{ famille.responsable.nom ~ " " ~ famille.responsable.prenom }}   
+                                                </a>
+                                            {% else %}
+                                                {{ "Pas de responsable designé"|upper }}
+                                            {% endif %}
+                                        </td>                                                
+                                        <td>
+                                            <a href="{{ path('famille_edit', { 'id': famille.id }) }}"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/crayon.png') }}"></a>
+
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('famille_delete', { 'id': famille.id }) }}" onclick="return confirm('Êtes vous sur de vouloir supprimer cette famille?')"><img src="{{ asset('bundles/ecoledemusiquewelcome/images/recycle-bin.png') }}"></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <a href="{{ path('famille_new') }}">
+                        Nouvelle Famille
+                    </a>
+
                 </div>
-
-                <a href="{{ path('famille_new') }}">
-                    Nouvelle Famille
-                </a>
-
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

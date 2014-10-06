@@ -9,15 +9,12 @@ EcoleDeMusique\WelcomeBundle\Entity\Famille:
         qf:
             type: integer 
             nullable: true
-        nom:
-            type: string 
-            length: 255
-            nullable: true
-        prenom:
-            type: string 
-            length: 255
             nullable: true   
    oneToMany:
-        familles:
+        eleves:
           targetEntity: Eleve
           mappedBy: famille
+   oneToOne:
+       responsable:
+           targetEntity: Eleve
+           

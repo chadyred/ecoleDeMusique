@@ -603,8 +603,24 @@ class PaiementController extends Controller {
             $object->addCell(0, $i + 1, 13, $paiement->getEleve()->getMail(), "string");
             $object->addCell(0, $i + 1, 14, $paiement->getEleve()->getFamille()->getId(), "string");
             $object->addCell(0, $i + 1, 15, $paiement->getEleve()->getFamille()->getQf(), "string");
-            $object->addCell(0, $i + 1, 16, $paiement->getEleve()->getFamille()->getNom(), "string");
-            $object->addCell(0, $i + 1, 17, $paiement->getEleve()->getFamille()->getPrenom(), "string");
+            
+            //Gestion du nom et prénom du responsable
+            $nomResponsable = "";
+            $prenomResponsable = "";
+            
+            if($paiement->getEleve()->getFamille()->getResponsable() != NULL)
+            {
+                $nomResponsable = $paiement->getEleve()->getFamille()->getResponsable()->getNom();
+                $prenomResponsable = $paiement->getEleve()->getFamille()->getResponsable()->getPrenom();
+            }
+            else
+            {
+                $nomResponsable = "Non définis";
+                $prenomResponsable =  "Non définis";
+            }
+            
+            $object->addCell(0, $i + 1, 16, $nomResponsable, "string");
+            $object->addCell(0, $i + 1, 17, $prenomResponsable, "string");
 
 
 
