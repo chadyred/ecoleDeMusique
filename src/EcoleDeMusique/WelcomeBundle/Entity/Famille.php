@@ -20,11 +20,7 @@ class Famille
      * @var integer $qf
      */
     private $qf;
-    
-    /**
-     * @var integer $qf
-     */
-    private $nom;    
+     
     
     /**
      * @var Eleve

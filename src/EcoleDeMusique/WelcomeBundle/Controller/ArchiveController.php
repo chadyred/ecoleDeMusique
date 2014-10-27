@@ -113,116 +113,121 @@ class ArchiveController extends Controller
          $em = $this->getDoctrine()->getManager();
          $entiteInstru1=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array('type'=>'instru1','eleve'=>$entityEleve));
          $entiteInstru2=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findOneBy(array('type'=>'instru2','eleve'=>$entityEleve));        
-         
-   
-                   
-       if($entiteInstru1)
-       {
+                             
            
-           //booleen -> si y'a un instru et qu'il est inscrit à l'instru
-           $cdt1=$entityEleve->getRegie()->getIntru2()!="non" && $entiteInstru2;
-           
-           $cdt2=$entityEleve->getRegie()->getIntru2()=="non";
-           
+        //booleen -> si y'a un instru et qu'il est inscrit à l'instru
+        $cdt1=$entityEleve->getRegie()->getIntru2()!="non" && $entiteInstru2;
+        $cdt2=$entityEleve->getRegie()->getIntru2()=="non";
+        
+         //Si on a un instrument 1 (cycle 1). Le cas conraire serait lorsque l'élève est en éveil. Aucun archivage serait possible.
+       /* if($entiteInstru1)
+        {   
           if($cdt1 || $cdt2)
-         {    
+          { */   
 
-                //Rangement dans dans archive
-                $Archive  = new \EcoleDeMusique\WelcomeBundle\Entity\Archive();
+        //Rangement dans dans archive
+        $Archive  = new \EcoleDeMusique\WelcomeBundle\Entity\Archive();
 
-                $Archive->setNom($entityEleve->getNom());
-                $Archive->setPrenom($entityEleve->getPrenom());
-                $Archive->setdateDeNaissance($entityEleve->getDateDeNaissance());
-                $Archive->setCycle($entityEleve->getregie()->getcycleParcours());
-                $Archive->setInstru1($entiteInstru1->getActivite()->getNom());
-                
-                $em->remove($entiteInstru1);
-                
-                //si y'a un instru j'enregistre le cours 
-                if(!$cdt2)
-                {
-                    $Archive->setInstru2($entiteInstru2->getActivite()->getNom());
-                    $em->remove($entiteInstru2);
-                    
-                }
-                else //sinon je met une valeur par defaut
-                {
-                    $Archive->setInstru2("aucun");
-                }
-                
-                $Archive->setanneeActivite($entityEleve->getRegie()->getanneDeCours());
+        $Archive->setNom($entityEleve->getNom());
+        $Archive->setPrenom($entityEleve->getPrenom());
+        $Archive->setdateDeNaissance($entityEleve->getDateDeNaissance());
+        $Archive->setCycle($entityEleve->getregie()->getcycleParcours());
 
-                $entityPaiement = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Paiement')->findOneByEleve($entityEleve);
-                
-                $Archive->setInteruptionCourannee($entityPaiement->getdateInterupt());
+        //Si il à pour activité l'instrument 1, c'est que l'on suppose qu'il est inscrit. Information à récupérer en régie normalement.
+        //On a un instrument 1 (cycle 1). Le cas conraire serait lorsque l'élève est en éveil
+        if($entiteInstru1)
+        {
+            $Archive->setInstru1($entiteInstru1->getActivite()->getNom());
+            $em->remove($entiteInstru1);
+        }
+        else //sinon je met une valeur par defaut
+        {
+             $Archive->setInstru1("aucun");
+        }
 
 
+        //Si la personne est inscrite pour un instrument de cycle dans une activité, j'enregistre le nom de l'activité puis je supprime ce dernier
+        //des activité qu'il exerce dans ActiviteEleve
+        if(!$cdt2)
+        {
+            $Archive->setInstru2($entiteInstru2->getActivite()->getNom());
+            $em->remove($entiteInstru2);
 
-                $em2 = $this->getDoctrine()->getManager();
-                    //Suppresion periode 
-                    $entityPaiementPeriode = $em->getRepository('EcoleDeMusiqueWelcomeBundle:PaiementPeriode')->findByPaiement($entityPaiement);  
-                    //$entityPaiementPeriode->setPaiement(null);
+        }
+        else //sinon je met une valeur par defaut
+        {
+            $Archive->setInstru2("aucun");
+        }
+
+        $Archive->setanneeActivite($entityEleve->getRegie()->getanneDeCours());
+
+        $entityPaiement = $em->getRepository('EcoleDeMusiqueWelcomeBundle:Paiement')->findOneByEleve($entityEleve);
+        $Archive->setInteruptionCourannee($entityPaiement->getdateInterupt());
+
+        $em2 = $this->getDoctrine()->getManager();
+
+        //Suppresion periode 
+        $entityPaiementPeriode = $em->getRepository('EcoleDeMusiqueWelcomeBundle:PaiementPeriode')->findByPaiement($entityPaiement);  
+        //$entityPaiementPeriode->setPaiement(null);
+
+        foreach($entityPaiementPeriode as $pp)
+        {
+            $em2->remove($pp);
+        }
+
+        //suppression du paiement
+        $entityPaiement->setEleve(null);
+
+        $em2->remove($entityPaiement);
+        $regie=$entityEleve->getregie();
+        $entityEleve->setregie(null);
+        //suppresion de la regie 
+        $em2->remove($regie);    
+        $em2->flush();
 
 
-                    foreach($entityPaiementPeriode as $pp)
-                    {
-                            $em2->remove($pp);
-                    }
+        /**
+         * Inutile : DRY non respecter : le removeOrphan existe ActiviteEleve->Eleve(removeOrphan) supprime les activiteEleve
+         *  ActiviteEleve orpheline
+         * 
+         * Correctif qui fonctionne but not Symfony way !
+         * 
+         * foreach($entiteTteActiviteEleve as $ActElev)
+         *  {
+         *      $ActElev->setEleve(null);
+         *      $em3->remove($ActElev);  
+         *  }
+         */
 
+         //Suppression des activité
+         $em3 = $this->getDoctrine()->getManager();
+         $entiteTteActiviteEleve=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findByEleve($entityEleve);        
 
-                    //suppression du paiement
-
-                    $entityPaiement->setEleve(null);
-
-                    $em2->remove($entityPaiement);
-                    $regie=$entityEleve->getregie();
-                    $entityEleve->setregie(null);
-                    //suppresion de la regie 
-                    $em2->remove($regie);    
-                    $em2->flush();
-
-
-              
-                 
-            /**
-             * Inutile : DRY non respecter : le removeOrphan existe ActiviteEleve->Eleve(removeOrphan) supprime les activiteEleve
-             *  ActiviteEleve orpheline
-             * 
-             * Correctif qui fonctionne but not Symfony way !
-             * 
-             * foreach($entiteTteActiviteEleve as $ActElev)
-             *  {
-             *      $ActElev->setEleve(null);
-             *      $em3->remove($ActElev);  
-             *  }
-             */
-                    
-             //Suppression des activité
-             $em3 = $this->getDoctrine()->getManager();
-             $entiteTteActiviteEleve=$em->getRepository('EcoleDeMusiqueWelcomeBundle:ActiviteEleve')->findByEleve($entityEleve);        
-         
-             foreach($entiteTteActiviteEleve as $ActElev)
-             {
-                 $em3->remove($ActElev);  
-             }
-             
-             //Suppression des cours sinon erreur sql
-             $em4 = $this->getDoctrine()->getManager();
-             $entiteTteCoursEleve = $em->getRepository('EcoleDeMusiqueWelcomeBundle:CoursEleve')->findByEleve($entityEleve);        
-         
-             foreach($entiteTteCoursEleve as $cours)
-             {
-                 $em4->remove($cours);  
-             }
-                 $em4->flush();
-                 
-                 $this->get('session')->getFlashBag()->add('notice', "Archivage bien Effectue");                
+         foreach($entiteTteActiviteEleve as $ActElev)
+         {
+             $em3->remove($ActElev);  
          }
+
+         //Suppression des cours sinon erreur contriante d'intégrité : un élève supprimé n'a plus de cours
+         $em4 = $this->getDoctrine()->getManager();
+         $entiteTteCoursEleve = $em->getRepository('EcoleDeMusiqueWelcomeBundle:CoursEleve')->findByEleve($entityEleve);        
+
+         foreach($entiteTteCoursEleve as $cours)
+         {
+             $em4->remove($cours);  
+         }
+
+        $em4->flush();
+
+        $this->get('session')->getFlashBag()->add('notice', "Archivage bien Effectue");                
+        /** 
+         * Inutile - cas de l'éveil: aucun instrument
+         * }
          else
          {
               
              $this->get('session')->getFlashBag()->add('notice', "Archivage Impossible, instru 2 non saisi"); 
-         }
+         }*/
          
           //Non renouvellement par le service asynchrone = suppression de l'entité élève
            if( $_POST["re"]=="non")
@@ -233,7 +238,7 @@ class ArchiveController extends Controller
            $em->persist($Archive);
            $em->flush();
 
-       }
+      /* }
        else
        {
             if(!$entiteInstru1)
@@ -242,7 +247,8 @@ class ArchiveController extends Controller
             }
            
            
-       }
+       }*/
+           
        return $this->redirect($this->generateUrl('archive_new'));
 
     }

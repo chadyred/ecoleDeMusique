@@ -67,8 +67,8 @@
                                         <td class="colonneMembre"><a href="{{ path('eleve_show', { 'id': eleve.id }) }}">{{ eleve.prenom }}</a></td>
                                         <td class="colonneMembre"> 
                                             {% if famille.responsable != NULL %}
-                                                <a href="{{ path('famille_membre', { 'id': famille.id }) }}">
-                                                {{ famille.responsable.nom ~ " " ~ famille.responsable.prenom }}   
+                                                <a href="{{ path('eleve_show', { 'id': eleve.id }) }}">
+                                                    {{ famille.responsable.nom ~ " " ~ famille.responsable.prenom }}   
                                                 </a>
                                             {% else %}
                                                 {{ "Pas de responsable designé"|upper }}
