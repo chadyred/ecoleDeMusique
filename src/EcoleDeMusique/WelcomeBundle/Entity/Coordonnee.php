@@ -68,13 +68,22 @@ class Coordonnee
 
     /**
      * @var Villephp app/console doctrine:generate:entities
+     * 
+     * Si la ville est supprimée, on passe à null la colonne
      *
      * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Ville", inversedBy="coordonnees")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $ville;
     
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->individuExterneCoordonnee = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -276,13 +285,6 @@ class Coordonnee
     public function getVille()
     {
         return $this->ville;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->individuExterneCoordonnee = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

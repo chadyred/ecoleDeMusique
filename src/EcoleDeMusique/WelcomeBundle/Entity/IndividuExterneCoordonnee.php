@@ -11,12 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="EcoleDeMusique\WelcomeBundle\Entity\CoordonneePrincipaleRepository")
  */
 class IndividuExterneCoordonnee
-{       
+{      
+    
     /**
      * @var 
      * 
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne", inversedBy="coordonneesPrincipaux")
+     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne", inversedBy="individuExterneCoordonnee")
      * @ORM\JoinColumn(nullable=false)
      */
     private $individuExterne;
@@ -40,15 +41,6 @@ class IndividuExterneCoordonnee
      */
     private $coordonneePrincipale;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set coordonneePrincipale

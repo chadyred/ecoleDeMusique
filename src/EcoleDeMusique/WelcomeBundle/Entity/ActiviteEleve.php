@@ -48,8 +48,20 @@ class ActiviteEleve
      */
     private $eleve;
 
+    /**	
+     * @ORM\ManyToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Mailing", mappedBy="activiteEleves", cascade={"persist"})	
+     */	
+    private $mailings;
 
-
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->mailings = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -152,12 +164,5 @@ class ActiviteEleve
         return $this->activite->getNom();
     } 
  
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->mailings = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     
 }

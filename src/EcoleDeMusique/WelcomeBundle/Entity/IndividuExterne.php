@@ -47,7 +47,7 @@ class IndividuExterne
      *  
      * Un IndivduCoordonnee disparaitra si un individu disparait. Egalement par principe du DRY, on va persisté un IndividuExterneCoordonnee de coté d'individu
      * 
-     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee", inversedBy="individuExterne", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee", mappedBy="individuExterne", cascade={"remove", "persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $individuExterneCoordonnee;
@@ -59,6 +59,11 @@ class IndividuExterne
      * @ORM\Column(name="coordonnee", type="string", length=10)
      */
     private $coordonneePrincipal;
+    
+    public function __construct()
+    {
+        $this->individuExterneCoordonnee = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     /**
      * Get id
