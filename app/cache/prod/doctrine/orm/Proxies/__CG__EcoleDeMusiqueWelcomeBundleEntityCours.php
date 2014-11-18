@@ -64,10 +64,10 @@ class Cours extends \EcoleDeMusique\WelcomeBundle\Entity\Cours implements \Doctr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'date', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'courss', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'prof', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'salle', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'dateDeb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'dateFin', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'activite');
+            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'dateDeb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'dateFin', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'activite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'prof', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'salle', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'courss');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'date', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'courss', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'prof', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'salle', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'dateDeb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'dateFin', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'activite');
+        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'dateDeb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'dateFin', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'activite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'prof', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'salle', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Cours' . "\0" . 'courss');
     }
 
     /**
@@ -191,56 +191,67 @@ class Cours extends \EcoleDeMusique\WelcomeBundle\Entity\Cours implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function setDate($date)
+    public function setDateDeb($datedeb)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDate', array($date));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateDeb', array($datedeb));
 
-        return parent::setDate($date);
+        return parent::setDateDeb($datedeb);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getDate()
+    public function getDateDeb()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDate', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDateDeb', array());
 
-        return parent::getDate();
+        return parent::getDateDeb();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function addCours(\EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $courss)
+    public function setDateFin($datefin)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCours', array($courss));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateFin', array($datefin));
 
-        return parent::addCours($courss);
+        return parent::setDateFin($datefin);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeCours(\EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $courss)
+    public function getDateFin()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCours', array($courss));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDateFin', array());
 
-        return parent::removeCours($courss);
+        return parent::getDateFin();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCourss()
+    public function setActivite(\EcoleDeMusique\WelcomeBundle\Entity\Activite $activite = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCourss', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActivite', array($activite));
 
-        return parent::getCourss();
+        return parent::setActivite($activite);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getActivite()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActivite', array());
+
+        return parent::getActivite();
     }
 
     /**
@@ -285,72 +296,6 @@ class Cours extends \EcoleDeMusique\WelcomeBundle\Entity\Cours implements \Doctr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSalle', array());
 
         return parent::getSalle();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDateDeb($dateDeb)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateDeb', array($dateDeb));
-
-        return parent::setDateDeb($dateDeb);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getDateDeb()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDateDeb', array());
-
-        return parent::getDateDeb();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDateFin($dateFin)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateFin', array($dateFin));
-
-        return parent::setDateFin($dateFin);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getDateFin()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDateFin', array());
-
-        return parent::getDateFin();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setActivite(\EcoleDeMusique\WelcomeBundle\Entity\Activite $activite = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActivite', array($activite));
-
-        return parent::setActivite($activite);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getActivite()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActivite', array());
-
-        return parent::getActivite();
     }
 
 }

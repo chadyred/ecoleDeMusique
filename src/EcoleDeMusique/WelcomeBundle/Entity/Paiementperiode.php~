@@ -1,0 +1,127 @@
+<?php
+
+namespace EcoleDeMusique\WelcomeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Paiementperiode
+ *
+ * @ORM\Table(name="paiementPeriode", indexes={@ORM\Index(name="IDX_28ED66FC2A4C4478", columns={"paiement_id"})})
+ * @ORM\Entity
+ */
+class Paiementperiode
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="numPeriod", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $numperiod;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="numeraire", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $numeraire;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="chequeJeune", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $chequejeune;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="chequeVacance", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $chequevacance;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="cheque", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $cheque;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="cb", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $cb;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="prelev", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $prelev;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateNumeraire", type="date", nullable=true)
+     */
+    private $datenumeraire;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateChequeJeune", type="date", nullable=true)
+     */
+    private $datechequejeune;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateChequeVacance", type="date", nullable=true)
+     */
+    private $datechequevacance;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCheque", type="date", nullable=true)
+     */
+    private $datecheque;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCb", type="date", nullable=true)
+     */
+    private $datecb;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePrelev", type="date", nullable=true)
+     */
+    private $dateprelev;
+
+    /**
+     * @var \Paiement
+     *
+     * @ORM\ManyToOne(targetEntity="Paiement")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="paiement_id", referencedColumnName="id")
+     * })
+     */
+    private $paiement;
+
+
+}
+

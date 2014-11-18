@@ -5,42 +5,129 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table()
- * EcoleDeMusique\WelcomeBundle\Entity\PaiementPeriode
+ * Paiementperiode
+ *
+ * @ORM\Table(name="paiementPeriode", indexes={@ORM\Index(name="IDX_28ED66FC2A4C4478", columns={"paiement_id"})})
+ * @ORM\Entity
  */
 class PaiementPeriode
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var integer $numeraire
+     * @var float
+     *
+     * @ORM\Column(name="numPeriod", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $numPeriod;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="numeraire", type="float", precision=10, scale=0, nullable=true)
      */
     private $numeraire;
 
     /**
-     * @var integer $chequeJeune
+     * @var float
+     *
+     * @ORM\Column(name="chequeJeune", type="float", precision=10, scale=0, nullable=true)
      */
     private $chequeJeune;
 
     /**
-     * @var integer $chequeVacance
+     * @var float
+     *
+     * @ORM\Column(name="chequeVacance", type="float", precision=10, scale=0, nullable=true)
      */
     private $chequeVacance;
 
     /**
-     * @var integer $cheque
+     * @var float
+     *
+     * @ORM\Column(name="cheque", type="float", precision=10, scale=0, nullable=true)
      */
     private $cheque;
-    
 
-    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="cb", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $cb;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="prelev", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $prelev;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateNumeraire", type="date", nullable=true)
+     */
+    private $dateNumeraire;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateChequeJeune", type="date", nullable=true)
+     */
+    private $dateChequeJeune;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateChequeVacance", type="date", nullable=true)
+     */
+    private $dateChequeVacance;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCheque", type="date", nullable=true)
+     */
+    private $dateCheque;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCb", type="date", nullable=true)
+     */
+    private $dateCb;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePrelev", type="date", nullable=true)
+     */
+    private $datePrelev;
+
+    /**
+     * @var \Paiement
+     *
+     * @ORM\ManyToOne(targetEntity="Paiement")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="paiement_id", referencedColumnName="id")
+     * })
+     */
+    private $paiement;
+
+
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -48,22 +135,47 @@ class PaiementPeriode
     }
 
     /**
+     * Set numPeriod
+     *
+     * @param float $numPeriod
+     *
+     * @return Paiementperiode
+     */
+    public function setNumPeriod($numPeriod)
+    {
+        $this->numPeriod = $numPeriod;
+
+        return $this;
+    }
+
+    /**
+     * Get numPeriod
+     *
+     * @return float
+     */
+    public function getNumPeriod()
+    {
+        return $this->numPeriod;
+    }
+
+    /**
      * Set numeraire
      *
-     * @param integer $numeraire
-     * @return PaiementPeriode
+     * @param float $numeraire
+     *
+     * @return Paiementperiode
      */
     public function setNumeraire($numeraire)
     {
         $this->numeraire = $numeraire;
-    
+
         return $this;
     }
 
     /**
      * Get numeraire
      *
-     * @return integer 
+     * @return float
      */
     public function getNumeraire()
     {
@@ -73,22 +185,23 @@ class PaiementPeriode
     /**
      * Set chequeJeune
      *
-     * @param integer $chequeJeune
-     * @return PaiementPeriode
+     * @param float $chequeJeune
+     *
+     * @return Paiementperiode
      */
-    public function setChequeJeune($chequeJeune)
+    public function setChequejeune($chequeJeune)
     {
         $this->chequeJeune = $chequeJeune;
-    
+
         return $this;
     }
 
     /**
      * Get chequeJeune
      *
-     * @return integer 
+     * @return float
      */
-    public function getChequeJeune()
+    public function getChequejeune()
     {
         return $this->chequeJeune;
     }
@@ -96,22 +209,23 @@ class PaiementPeriode
     /**
      * Set chequeVacance
      *
-     * @param integer $chequeVacance
-     * @return PaiementPeriode
+     * @param float $chequeVacance
+     *
+     * @return Paiementperiode
      */
-    public function setChequeVacance($chequeVacance)
+    public function setChequevacance($chequeVacance)
     {
         $this->chequeVacance = $chequeVacance;
-    
+
         return $this;
     }
 
     /**
      * Get chequeVacance
      *
-     * @return integer 
+     * @return float
      */
-    public function getChequeVacance()
+    public function getChequevacance()
     {
         return $this->chequeVacance;
     }
@@ -119,109 +233,47 @@ class PaiementPeriode
     /**
      * Set cheque
      *
-     * @param integer $cheque
-     * @return PaiementPeriode
+     * @param float $cheque
+     *
+     * @return Paiementperiode
      */
     public function setCheque($cheque)
     {
         $this->cheque = $cheque;
-    
+
         return $this;
     }
 
     /**
      * Get cheque
      *
-     * @return integer 
+     * @return float
      */
     public function getCheque()
     {
         return $this->cheque;
     }
-    /**
-     * @var integer $numPeriod
-     */
-    private $numPeriod;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Paiement", inversedBy="paiementPeriode", cascade={"persist"})
-     */
-    private $paiement;
-
-
-    /**
-     * Set numPeriod
-     *
-     * @param integer $numPeriod
-     * @return PaiementPeriode
-     */
-    public function setNumPeriod($numPeriod)
-    {
-        $this->numPeriod = $numPeriod;
-    
-        return $this;
-    }
-
-    /**
-     * Get numPeriod
-     *
-     * @return integer 
-     */
-    public function getNumPeriod()
-    {
-        return $this->numPeriod;
-    }
-
-    /**
-     * Set paiement
-     *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Paiement $paiement
-     * @return PaiementPeriode
-     */
-    public function setPaiement(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $paiement = null)
-    {
-        $this->paiement = $paiement;
-    
-        return $this;
-    }
-
-    /**
-     * Get paiement
-     *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Paiement 
-     */
-    public function getPaiement()
-    {
-        return $this->paiement;
-    }
-    /**
-     * @var float $cb
-     */
-    private $cb;
-
-    /**
-     * @var float $prelev
-     */
-    private $prelev;
 
 
     /**
      * Set cb
      *
      * @param float $cb
-     * @return PaiementPeriode
+     *
+     * @return Paiementperiode
      */
     public function setCb($cb)
     {
         $this->cb = $cb;
-    
+
         return $this;
     }
 
     /**
      * Get cb
      *
-     * @return float 
+     * @return float
      */
     public function getCb()
     {
@@ -232,72 +284,44 @@ class PaiementPeriode
      * Set prelev
      *
      * @param float $prelev
-     * @return PaiementPeriode
+     *
+     * @return Paiementperiode
      */
     public function setPrelev($prelev)
     {
         $this->prelev = $prelev;
-    
+
         return $this;
     }
 
     /**
      * Get prelev
      *
-     * @return float 
+     * @return float
      */
     public function getPrelev()
     {
         return $this->prelev;
     }
-    /**
-     * @var \DateTime $dateNumeraire
-     */
-    private $dateNumeraire;
 
     /**
-     * @var \DateTime $dateChequeJeune
-     */
-    private $dateChequeJeune;
-
-    /**
-     * @var \DateTime $dateChequeVacance
-     */
-    private $dateChequeVacance;
-
-    /**
-     * @var \DateTime $dateCheque
-     */
-    private $dateCheque;
-
-    /**
-     * @var \DateTime $dateCb
-     */
-    private $dateCb;
-
-    /**
-     * @var \DateTime $datePrelev
-     */
-    private $datePrelev;
-
-
-    /**
-     * Set dateNumeraire
+     * Set datenumeraire
      *
-     * @param \DateTime $dateNumeraire
-     * @return PaiementPeriode
+     * @param \DateTime $datenumeraire
+     *
+     * @return Paiementperiode
      */
     public function setDateNumeraire($dateNumeraire)
     {
         $this->dateNumeraire = $dateNumeraire;
-    
+
         return $this;
     }
 
     /**
-     * Get dateNumeraire
+     * Get datenumeraire
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateNumeraire()
     {
@@ -308,19 +332,20 @@ class PaiementPeriode
      * Set dateChequeJeune
      *
      * @param \DateTime $dateChequeJeune
-     * @return PaiementPeriode
+     *
+     * @return Paiementperiode
      */
     public function setDateChequeJeune($dateChequeJeune)
     {
         $this->dateChequeJeune = $dateChequeJeune;
-    
+
         return $this;
     }
 
     /**
      * Get dateChequeJeune
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateChequeJeune()
     {
@@ -331,19 +356,20 @@ class PaiementPeriode
      * Set dateChequeVacance
      *
      * @param \DateTime $dateChequeVacance
-     * @return PaiementPeriode
+     *
+     * @return Paiementperiode
      */
     public function setDateChequeVacance($dateChequeVacance)
     {
         $this->dateChequeVacance = $dateChequeVacance;
-    
+
         return $this;
     }
 
     /**
      * Get dateChequeVacance
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateChequeVacance()
     {
@@ -354,21 +380,22 @@ class PaiementPeriode
      * Set dateCheque
      *
      * @param \DateTime $dateCheque
-     * @return PaiementPeriode
+     *
+     * @return Paiementperiode
      */
     public function setDateCheque($dateCheque)
     {
         $this->dateCheque = $dateCheque;
-    
+
         return $this;
     }
 
     /**
      * Get dateCheque
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getDateCheque()
+    public function getDatecheque()
     {
         return $this->dateCheque;
     }
@@ -377,19 +404,20 @@ class PaiementPeriode
      * Set dateCb
      *
      * @param \DateTime $dateCb
-     * @return PaiementPeriode
+     *
+     * @return Paiementperiode
      */
     public function setDateCb($dateCb)
     {
         $this->dateCb = $dateCb;
-    
+
         return $this;
     }
 
     /**
      * Get dateCb
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCb()
     {
@@ -400,22 +428,47 @@ class PaiementPeriode
      * Set datePrelev
      *
      * @param \DateTime $datePrelev
-     * @return PaiementPeriode
+     *
+     * @return Paiementperiode
      */
     public function setDatePrelev($datePrelev)
     {
         $this->datePrelev = $datePrelev;
-    
+
         return $this;
     }
 
     /**
      * Get datePrelev
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDatePrelev()
     {
         return $this->datePrelev;
+    }
+
+    /**
+     * Set paiement
+     *
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Paiement $paiement
+     *
+     * @return Paiementperiode
+     */
+    public function setPaiement(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $paiement = null)
+    {
+        $this->paiement = $paiement;
+
+        return $this;
+    }
+
+    /**
+     * Get paiement
+     *
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Paiement
+     */
+    public function getPaiement()
+    {
+        return $this->paiement;
     }
 }

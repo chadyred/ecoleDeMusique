@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: /home/florian/Documents/ecoleDeMusique/app/config/routing_dev.yml
+    resource: /home/florian/mairie2014-2015/ecoleDeMusique/app/config/routing_dev.yml

@@ -1,0 +1,53 @@
+<?php
+
+namespace EcoleDeMusique\WelcomeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Activiteeleve
+ *
+ * @ORM\Table(name="ActiviteEleve", indexes={@ORM\Index(name="IDX_B4EB086F9B0F88B1", columns={"activite_id"}), @ORM\Index(name="IDX_B4EB086FA6CC7B2", columns={"eleve_id"})})
+ * @ORM\Entity
+ */
+class Activiteeleve
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var \Activite
+     *
+     * @ORM\ManyToOne(targetEntity="Activite")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
+     * })
+     */
+    private $activite;
+
+    /**
+     * @var \Eleve
+     *
+     * @ORM\ManyToOne(targetEntity="Eleve")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="eleve_id", referencedColumnName="id")
+     * })
+     */
+    private $eleve;
+
+
+}
+

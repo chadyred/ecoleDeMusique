@@ -235,12 +235,12 @@ class Archive extends \EcoleDeMusique\WelcomeBundle\Entity\Archive implements \D
     /**
      * {@inheritDoc}
      */
-    public function setDateDeNaissance($dateDeNaissance)
+    public function setDateDeNaissance($datedenaissance)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateDeNaissance', array($dateDeNaissance));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateDeNaissance', array($datedenaissance));
 
-        return parent::setDateDeNaissance($dateDeNaissance);
+        return parent::setDateDeNaissance($datedenaissance);
     }
 
     /**
@@ -323,12 +323,12 @@ class Archive extends \EcoleDeMusique\WelcomeBundle\Entity\Archive implements \D
     /**
      * {@inheritDoc}
      */
-    public function setAnneeActivite($anneeActivite)
+    public function setAnneeActivite($anneeactivite)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAnneeActivite', array($anneeActivite));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAnneeActivite', array($anneeactivite));
 
-        return parent::setAnneeActivite($anneeActivite);
+        return parent::setAnneeActivite($anneeactivite);
     }
 
     /**
@@ -345,12 +345,12 @@ class Archive extends \EcoleDeMusique\WelcomeBundle\Entity\Archive implements \D
     /**
      * {@inheritDoc}
      */
-    public function setInteruptionCourannee($interuptionCourannee)
+    public function setInteruptionCourannee($interuptioncourannee)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInteruptionCourannee', array($interuptionCourannee));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInteruptionCourannee', array($interuptioncourannee));
 
-        return parent::setInteruptionCourannee($interuptionCourannee);
+        return parent::setInteruptionCourannee($interuptioncourannee);
     }
 
     /**

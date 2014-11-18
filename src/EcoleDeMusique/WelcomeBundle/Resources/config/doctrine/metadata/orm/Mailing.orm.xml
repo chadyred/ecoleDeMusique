@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Mailing" table="mailing">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="titre" type="string" column="titre" length="50" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="message" type="string" column="message" length="500" nullable="true">
+      <options fixed=""/>
+    </field>
+    <field name="nomactivite" type="string" column="nomActivite" length="500" nullable="true">
+      <options fixed=""/>
+    </field>
+  </entity>
+</doctrine-mapping>

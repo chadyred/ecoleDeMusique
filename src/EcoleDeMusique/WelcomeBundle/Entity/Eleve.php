@@ -5,100 +5,157 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EcoleDeMusique\WelcomeBundle\Entity\Eleve
+ * Eleve
+ *
+ * @ORM\Table(name="eleve", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_ECA105F746F21B0B", columns={"regie_id"})}, indexes={@ORM\Index(name="IDX_ECA105F797A77B84", columns={"famille_id"})})
+ * @ORM\Entity
  */
 class Eleve
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $nom
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
-     * @var string $prenom
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
      */
     private $prenom;
 
     /**
-     * @var string $adresse
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
      */
     private $adresse;
 
     /**
-     * @var integer $codePostal
+     * @var integer
+     *
+     * @ORM\Column(name="codePostal", type="integer", nullable=false)
      */
     private $codePostal;
 
     /**
-     * @var string $civilite
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255, nullable=false)
+     */
+    private $ville;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="civilite", type="string", length=255, nullable=false)
      */
     private $civilite;
 
     /**
-     * @var integer $telEleve
+     * @var string
+     *
+     * @ORM\Column(name="telEleve", type="string", length=255, nullable=false)
      */
     private $telEleve;
 
     /**
-     * @var integer $telMere
+     * @var string
+     *
+     * @ORM\Column(name="telMere", type="string", length=255, nullable=false)
      */
     private $telMere;
 
     /**
-     * @var integer $telPere
+     * @var string
+     *
+     * @ORM\Column(name="telPere", type="string", length=255, nullable=false)
      */
     private $telPere;
 
     /**
-     * @var \DateTime $dateDeNaissance
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateDeNaissance", type="date", nullable=false)
      */
     private $dateDeNaissance;
 
     /**
-     * @var string $mail
+     * @var string
+     *
+     * @ORM\Column(name="mail", type="string", length=255, nullable=false)
      */
     private $mail;
-   
+
     /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Regie
+     * @var \Regie
+     *
+     * @ORM\ManyToOne(targetEntity="Regie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="regie_id", referencedColumnName="id")
+     * })
      */
     private $regie;
 
     /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Famille
+     * @var \Famille
+     *
+     * @ORM\ManyToOne(targetEntity="Famille")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="famille_id", referencedColumnName="id")
+     * })
      */
-    private $famille;   
-    
+    private $famille;
+
     /**
      * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Paiement", mappedBy="eleve", cascade={"persist"})
      */
     private $paiement;
-    
-    
+
+
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      * 
-     * CE SONT DES COURSELEVE ET NON DES ELEVES
+     * Orphan removal Ne fonctionne pas - !! $eleves POINTES LES COURS !!
+     * 
+     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\CoursEleve", orphanRemoval=true, mappedBy="eleve")
      */
     private $eleves;
-
+    
+     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     * 
+     * Orphan removal Ne fonctionne 
+     * 
+     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve", orphanRemoval=true, mappedBy="eleve")
+     */
+    private $activitesEleves;
+    
+    
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->eleves = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->activitesEleves = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -109,19 +166,20 @@ class Eleve
      * Set nom
      *
      * @param string $nom
+     *
      * @return Eleve
      */
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -132,19 +190,20 @@ class Eleve
      * Set prenom
      *
      * @param string $prenom
+     *
      * @return Eleve
      */
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-    
+
         return $this;
     }
 
     /**
      * Get prenom
      *
-     * @return string 
+     * @return string
      */
     public function getPrenom()
     {
@@ -155,19 +214,20 @@ class Eleve
      * Set adresse
      *
      * @param string $adresse
+     *
      * @return Eleve
      */
     public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
-    
+
         return $this;
     }
 
     /**
      * Get adresse
      *
-     * @return string 
+     * @return string
      */
     public function getAdresse()
     {
@@ -178,19 +238,20 @@ class Eleve
      * Set codePostal
      *
      * @param integer $codePostal
+     *
      * @return Eleve
      */
     public function setCodePostal($codePostal)
     {
         $this->codePostal = $codePostal;
-    
+
         return $this;
     }
 
     /**
      * Get codePostal
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodePostal()
     {
@@ -198,22 +259,47 @@ class Eleve
     }
 
     /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Eleve
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
      * Set civilite
      *
      * @param string $civilite
+     *
      * @return Eleve
      */
     public function setCivilite($civilite)
     {
         $this->civilite = $civilite;
-    
+
         return $this;
     }
 
     /**
      * Get civilite
      *
-     * @return string 
+     * @return string
      */
     public function getCivilite()
     {
@@ -223,20 +309,21 @@ class Eleve
     /**
      * Set telEleve
      *
-     * @param integer $telEleve
+     * @param string $telEleve
+     *
      * @return Eleve
      */
     public function setTelEleve($telEleve)
     {
         $this->telEleve = $telEleve;
-    
+
         return $this;
     }
 
     /**
      * Get telEleve
      *
-     * @return integer 
+     * @return string
      */
     public function getTelEleve()
     {
@@ -244,22 +331,23 @@ class Eleve
     }
 
     /**
-     * Set telMere
+     * Set telmere
      *
-     * @param integer $telMere
+     * @param string $telmere
+     *
      * @return Eleve
      */
-    public function setTelMere($telMere)
+    public function setTelMere($telmere)
     {
-        $this->telMere = $telMere;
-    
+        $this->telMere = $telmere;
+
         return $this;
     }
 
     /**
-     * Get telMere
+     * Get telmere
      *
-     * @return integer 
+     * @return string
      */
     public function getTelMere()
     {
@@ -267,22 +355,23 @@ class Eleve
     }
 
     /**
-     * Set telPere
+     * Set telpere
      *
-     * @param integer $telPere
+     * @param string $telpere
+     *
      * @return Eleve
      */
-    public function setTelPere($telPere)
+    public function setTelPere($telpere)
     {
-        $this->telPere = $telPere;
-    
+        $this->telPere = $telpere;
+
         return $this;
     }
 
     /**
-     * Get telPere
+     * Get telpere
      *
-     * @return integer 
+     * @return string
      */
     public function getTelPere()
     {
@@ -290,22 +379,23 @@ class Eleve
     }
 
     /**
-     * Set dateDeNaissance
+     * Set datedenaissance
      *
-     * @param \DateTime $dateDeNaissance
+     * @param \DateTime $datedenaissance
+     *
      * @return Eleve
      */
-    public function setDateDeNaissance($dateDeNaissance)
+    public function setDateDeNaissance($datedenaissance)
     {
-        $this->dateDeNaissance = $dateDeNaissance;
-    
+        $this->dateDeNaissance = $datedenaissance;
+
         return $this;
     }
 
     /**
-     * Get dateDeNaissance
+     * Get datedenaissance
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateDeNaissance()
     {
@@ -321,14 +411,14 @@ class Eleve
     public function setMail($mail)
     {
         $this->mail = $mail;
-    
+
         return $this;
     }
 
     /**
      * Get mail
      *
-     * @return string 
+     * @return string
      */
     public function getMail()
     {
@@ -338,20 +428,21 @@ class Eleve
     /**
      * Set regie
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Regie $regie
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Regie $regie
+     *
      * @return Eleve
      */
     public function setRegie(\EcoleDeMusique\WelcomeBundle\Entity\Regie $regie = null)
     {
         $this->regie = $regie;
-    
+
         return $this;
     }
 
     /**
      * Get regie
      *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Regie 
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Regie
      */
     public function getRegie()
     {
@@ -361,32 +452,28 @@ class Eleve
     /**
      * Set famille
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Famille $famille
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Famille $famille
+     *
      * @return Eleve
      */
     public function setFamille(\EcoleDeMusique\WelcomeBundle\Entity\Famille $famille = null)
     {
         $this->famille = $famille;
-    
+
         return $this;
     }
 
     /**
      * Get famille
      *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Famille 
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Famille
      */
     public function getFamille()
     {
         return $this->famille;
     }
     
-    
-   public function __toString() 
-    {
-            return $this->getNom()." ".$this->getPrenom();
-    }
-   
+     
        
 
 
@@ -445,34 +532,6 @@ class Eleve
     {
         return $this->eleves;
     }
-    /**
-     * @var string $ville
-     */
-    private $ville;
-
-
-    /**
-     * Set ville
-     *
-     * @param string $ville
-     * @return Eleve
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
-    
-        return $this;
-    }
-
-    /**
-     * Get ville
-     *
-     * @return string 
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
    
  
         /**
@@ -483,7 +542,7 @@ class Eleve
      */
     public function addActivite(\EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $activites)
     {
-        $this->activites[] = $activites;
+        $this->activitesEleves[] = $activites;
     
         return $this;
     }
@@ -505,7 +564,7 @@ class Eleve
      */
     public function getActivites()
     {
-        return $this->activites;
+        return $this->activitesEleves;
     }
     
     public function findremisebyeleve() {
@@ -517,4 +576,9 @@ class Eleve
          return $this->getRegie()->getSommeAvecRemise();
      }
     
+     
+   public function __toString() 
+    {
+            return $this->getNom()." ".$this->getPrenom();
+    }
 }

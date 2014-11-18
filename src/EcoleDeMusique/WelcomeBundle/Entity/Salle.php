@@ -5,22 +5,36 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EcoleDeMusique\WelcomeBundle\Entity\Salle
+ * Salle
+ *
+ * @ORM\Table(name="salle")
+ * @ORM\Entity
  */
 class Salle
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $nom
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
+     * 
+     * ON RECUPERE DES COURS ET NON DES SALLES
+     * 
+     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Cours", mappedBy="salle", cascade={"persist"})
+     *
      */
     private $salles;
 
@@ -31,11 +45,11 @@ class Salle
     {
         $this->salles = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -46,19 +60,20 @@ class Salle
      * Set nom
      *
      * @param string $nom
+     *
      * @return Salle
      */
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -81,11 +96,11 @@ class Salle
     /**
      * Remove salles
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Salle $salles
+     * @param EcoleDeMusique\WelcomeBundle\Entity\Salle $salle
      */
-    public function removeSalle(\EcoleDeMusique\WelcomeBundle\Entity\Salle $salles)
+    public function removeSalle(\EcoleDeMusique\WelcomeBundle\Entity\Salle $salle)
     {
-        $this->salles->removeElement($salles);
+        $this->salles->removeElement($salle);
     }
 
     /**
@@ -99,8 +114,8 @@ class Salle
     }
     
     
-      public function __toString() 
+    public function __toString() 
     {
-            return "".$this->getNom();
+        return "".$this->getNom();
     }
 }

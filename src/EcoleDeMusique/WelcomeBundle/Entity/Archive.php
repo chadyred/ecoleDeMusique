@@ -5,55 +5,84 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EcoleDeMusique\WelcomeBundle\Entity\Archive
+ * Archive
+ *
+ * @ORM\Table(name="archive")
+ * @ORM\Entity
  */
 class Archive
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $nom
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
-     * @var string $prenom
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
      */
     private $prenom;
 
     /**
-     * @var \DateTime $dateDeNaissance
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateDeNaissance", type="date", nullable=false)
      */
     private $dateDeNaissance;
 
     /**
-     * @var integer $cycle
+     * @var integer
+     *
+     * @ORM\Column(name="cycle", type="integer", nullable=false)
      */
     private $cycle;
 
     /**
-     * @var string $instru1
+     * @var string
+     *
+     * @ORM\Column(name="instru1", type="string", length=255, nullable=false)
      */
     private $instru1;
 
     /**
-     * @var string $instru2
+     * @var string
+     *
+     * @ORM\Column(name="instru2", type="string", length=255, nullable=false)
      */
     private $instru2;
 
     /**
-     * @var \DateTime $anneeActivite
+     * @var integer
+     *
+     * @ORM\Column(name="anneeActivite", type="integer", nullable=false)
      */
     private $anneeActivite;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="interuptionCourannee", type="date", nullable=true)
+     */
+    private $interuptionCourannee;
+
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -64,19 +93,20 @@ class Archive
      * Set nom
      *
      * @param string $nom
+     *
      * @return Archive
      */
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -87,19 +117,20 @@ class Archive
      * Set prenom
      *
      * @param string $prenom
+     *
      * @return Archive
      */
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-    
+
         return $this;
     }
 
     /**
      * Get prenom
      *
-     * @return string 
+     * @return string
      */
     public function getPrenom()
     {
@@ -107,22 +138,23 @@ class Archive
     }
 
     /**
-     * Set dateDeNaissance
+     * Set datedenaissance
      *
-     * @param \DateTime $dateDeNaissance
+     * @param \DateTime $datedenaissance
+     *
      * @return Archive
      */
-    public function setDateDeNaissance($dateDeNaissance)
+    public function setDateDeNaissance($datedenaissance)
     {
-        $this->dateDeNaissance = $dateDeNaissance;
-    
+        $this->dateDeNaissance = $datedenaissance;
+
         return $this;
     }
 
     /**
-     * Get dateDeNaissance
+     * Get datedenaissance
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateDeNaissance()
     {
@@ -133,19 +165,20 @@ class Archive
      * Set cycle
      *
      * @param integer $cycle
+     *
      * @return Archive
      */
     public function setCycle($cycle)
     {
         $this->cycle = $cycle;
-    
+
         return $this;
     }
 
     /**
      * Get cycle
      *
-     * @return integer 
+     * @return integer
      */
     public function getCycle()
     {
@@ -156,19 +189,20 @@ class Archive
      * Set instru1
      *
      * @param string $instru1
+     *
      * @return Archive
      */
     public function setInstru1($instru1)
     {
         $this->instru1 = $instru1;
-    
+
         return $this;
     }
 
     /**
      * Get instru1
      *
-     * @return string 
+     * @return string
      */
     public function getInstru1()
     {
@@ -179,19 +213,20 @@ class Archive
      * Set instru2
      *
      * @param string $instru2
+     *
      * @return Archive
      */
     public function setInstru2($instru2)
     {
         $this->instru2 = $instru2;
-    
+
         return $this;
     }
 
     /**
      * Get instru2
      *
-     * @return string 
+     * @return string
      */
     public function getInstru2()
     {
@@ -199,50 +234,47 @@ class Archive
     }
 
     /**
-     * Set anneeActivite
+     * Set anneeactivite
      *
-     * @param \DateTime $anneeActivite
+     * @param integer $anneeactivite
+     *
      * @return Archive
      */
-    public function setAnneeActivite($anneeActivite)
+    public function setAnneeActivite($anneeactivite)
     {
-        $this->anneeActivite = $anneeActivite;
-    
+        $this->anneeActivite = $anneeactivite;
+
         return $this;
     }
 
     /**
-     * Get anneeActivite
+     * Get anneeactivite
      *
-     * @return \DateTime 
+     * @return integer
      */
     public function getAnneeActivite()
     {
         return $this->anneeActivite;
     }
-    /**
-     * @var \DateTime $interuptionCourannee
-     */
-    private $interuptionCourannee;
-
 
     /**
-     * Set interuptionCourannee
+     * Set interuptioncourannee
      *
-     * @param \DateTime $interuptionCourannee
+     * @param \DateTime $interuptioncourannee
+     *
      * @return Archive
      */
-    public function setInteruptionCourannee($interuptionCourannee)
+    public function setInteruptionCourannee($interuptioncourannee)
     {
-        $this->interuptionCourannee = $interuptionCourannee;
-    
+        $this->interuptionCourannee = $interuptioncourannee;
+
         return $this;
     }
 
     /**
-     * Get interuptionCourannee
+     * Get interuptioncourannee
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getInteruptionCourannee()
     {

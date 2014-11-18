@@ -64,10 +64,10 @@ class ActiviteEleve extends \EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve i
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'type', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'eleve', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'activite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'mailings');
+            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'type', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'activite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'eleve');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'type', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'eleve', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'activite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'mailings');
+        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'type', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'activite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\ActiviteEleve' . "\0" . 'eleve');
     }
 
     /**
@@ -213,28 +213,6 @@ class ActiviteEleve extends \EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve i
     /**
      * {@inheritDoc}
      */
-    public function setEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEleve', array($eleve));
-
-        return parent::setEleve($eleve);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getEleve()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEleve', array());
-
-        return parent::getEleve();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setActivite(\EcoleDeMusique\WelcomeBundle\Entity\Activite $activite = NULL)
     {
 
@@ -257,23 +235,23 @@ class ActiviteEleve extends \EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve i
     /**
      * {@inheritDoc}
      */
-    public function addMailing(\EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings)
+    public function setEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addMailing', array($mailings));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEleve', array($eleve));
 
-        return parent::addMailing($mailings);
+        return parent::setEleve($eleve);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeMailing(\EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings)
+    public function getEleve()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeMailing', array($mailings));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEleve', array());
 
-        return parent::removeMailing($mailings);
+        return parent::getEleve();
     }
 
     /**

@@ -5,39 +5,55 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve
+ * Activiteeleve
+ *
+ * @ORM\Table(name="ActiviteEleve", indexes={@ORM\Index(name="IDX_B4EB086F9B0F88B1", columns={"activite_id"}), @ORM\Index(name="IDX_B4EB086FA6CC7B2", columns={"eleve_id"})})
+ * @ORM\Entity
  */
 class ActiviteEleve
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $type
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
     private $type;
 
     /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Eleve
-     */
-    private $eleve;
-    
-    /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Activite
+     * @var \Activite
+     *
+     * @ORM\ManyToOne(targetEntity="Activite")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
+     * })
      */
     private $activite;
-    
-     /**
-     * @ORM\ManyToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Mailing", mappedBy="activiteEleves", cascade={"persist"})
+
+    /**
+     * @var \Eleve
+     *
+     * @ORM\ManyToOne(targetEntity="Eleve")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="eleve_id", referencedColumnName="id")
+     * })
      */
-    private $mailings;
+    private $eleve;
+
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -48,19 +64,20 @@ class ActiviteEleve
      * Set type
      *
      * @param string $type
-     * @return ActiviteEleve
+     *
+     * @return Activiteeleve
      */
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -68,75 +85,51 @@ class ActiviteEleve
     }
 
     /**
-     * Set eleve
-     *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve
-     * @return ActiviteEleve
-     */
-    public function setEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve = null)
-    {
-        $this->eleve = $eleve;
-    
-        return $this;
-    }
-
-    /**
-     * Get eleve
-     *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Eleve 
-     */
-    public function getEleve()
-    {
-        return $this->eleve;
-    }
-
-
-
-    /**
      * Set activite
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Activite $activite
-     * @return ActiviteEleve
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Activite $activite
+     *
+     * @return Activiteeleve
      */
     public function setActivite(\EcoleDeMusique\WelcomeBundle\Entity\Activite $activite = null)
     {
         $this->activite = $activite;
-    
+
         return $this;
     }
 
     /**
      * Get activite
      *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Activite 
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Activite
      */
     public function getActivite()
     {
         return $this->activite;
     }
-    
-    
-     /**
-     * Add mailings
+
+    /**
+     * Set eleve
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings
-     * @return Mailing
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve
+     *
+     * @return Activiteeleve
      */
-    public function addMailing(\EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings)
+    public function setEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve = null)
     {
-        $this->mailings[] = $mailings;
-    
+        $this->eleve = $eleve;
+
         return $this;
     }
 
     /**
-     * Remove mailings
+     * Get eleve
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Eleve
      */
-    public function removeMailing(\EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $mailings)
+    public function getEleve()
     {
-        $this->mailings->removeElement($mailings);
+        return $this->eleve;
     }
 
     /**
@@ -149,12 +142,12 @@ class ActiviteEleve
         return $this->mailings;
     }
     
-       public function getLabel()
+    public function getLabel()
     {
         return $this->eleve->getNom().', '. $this->eleve->getPrenom() .' ('. $this->eleve->getMail() .')';
     }
       
-       public function getNomActivite()
+    public function getNomActivite()
     {
         return $this->activite->getNom();
     } 

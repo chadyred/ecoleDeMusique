@@ -5,170 +5,60 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table()
- * EcoleDeMusique\WelcomeBundle\Entity\Paiement
+ * Paiement
+ *
+ * @ORM\Table(name="paiement", indexes={@ORM\Index(name="IDX_B1DC7A1EA6CC7B2", columns={"eleve_id"})})
+ * @ORM\Entity
  */
 class Paiement
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var boolean $interupt
+     * @var boolean
+     *
+     * @ORM\Column(name="interupt", type="boolean", nullable=false)
      */
     private $interupt;
 
     /**
-     * @var \DateTime $dateInterupt
-     */
-    private $dateInterupt;
-
-    /**
-     * @var integer $sommePeriode
-     */
-    private $sommePeriode;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\PaiementPeriode", mappedBy="paiement", cascade={"persist"})
-     */
-    private $paiementPeriode;
-
-    
-    /**
-     * Get id
+     * @var \DateTime
      *
-     * @return integer 
+     * @ORM\Column(name="dateInterupt", type="date", nullable=true)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $dateinterupt;
 
     /**
-     * Set interupt
+     * @var float
      *
-     * @param boolean $interupt
-     * @return Paiement
+     * @ORM\Column(name="sommePeriode", type="float", precision=10, scale=0, nullable=false)
      */
-    public function setInterupt($interupt)
-    {
-        $this->interupt = $interupt;
-    
-        return $this;
-    }
+    private $sommeperiode;
 
     /**
-     * Get interupt
+     * @var float
      *
-     * @return boolean 
+     * @ORM\Column(name="sommeTotal", type="float", precision=10, scale=0, nullable=false)
      */
-    public function getInterupt()
-    {
-        return $this->interupt;
-    }
+    private $sommetotal;
 
     /**
-     * Set dateInterupt
+     * @var \Eleve
      *
-     * @param \DateTime $dateInterupt
-     * @return Paiement
-     */
-    public function setDateInterupt($dateInterupt)
-    {
-        $this->dateInterupt = $dateInterupt;
-    
-        return $this;
-    }
-
-    /**
-     * Get dateInterupt
-     *
-     * @return \DateTime 
-     */
-    public function getDateInterupt()
-    {
-        return $this->dateInterupt;
-    }
-
-    /**
-     * Set sommePeriode
-     *
-     * @param integer $sommePeriode
-     * @return Paiement
-     */
-    public function setSommePeriode($sommePeriode)
-    {
-        $this->sommePeriode = $sommePeriode;
-    
-        return $this;
-    }
-
-    /**
-     * Get sommePeriode
-     *
-     * @return integer 
-     */
-    public function getSommePeriode()
-    {
-        return $this->sommePeriode;
-    }
-    /**
-     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Eleve", inversedBy="paiement", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Eleve")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="eleve_id", referencedColumnName="id")
+     * })
      */
     private $eleve;
 
-    /**
-     * @var float $sommeTotal
-     */
-    private $sommeTotal;
-
-
-    /**
-     * Set sommeTotal
-     *
-     * @param float $sommeTotal
-     * @return Paiement
-     */
-    public function setSommeTotal($sommeTotal)
-    {
-        $this->sommeTotal = $sommeTotal;
-    
-        return $this;
-    }
-
-    /**
-     * Get sommeTotal
-     *
-     * @return float 
-     */
-    public function getSommeTotal()
-    {
-        return $this->sommeTotal;
-    }
-
-    /**
-     * Set eleve
-     *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve
-     * @return Paiement
-     */
-    public function setEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve = null)
-    {
-        $this->eleve = $eleve;
-    
-        return $this;
-    }
-
-    /**
-     * Get eleve
-     *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Eleve 
-     */
-    public function getEleve()
-    {
-        return $this->eleve;
-    }
 
 }
+

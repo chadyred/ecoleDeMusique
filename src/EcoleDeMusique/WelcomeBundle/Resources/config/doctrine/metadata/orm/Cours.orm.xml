@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Cours" table="cours">
+    <indexes>
+      <index name="IDX_FDCA8C9CABC1F7FE" columns="prof_id"/>
+      <index name="IDX_FDCA8C9CDC304035" columns="salle_id"/>
+      <index name="IDX_FDCA8C9C9B0F88B1" columns="activite_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="datedeb" type="datetime" column="dateDeb" nullable="false"/>
+    <field name="datefin" type="datetime" column="dateFin" nullable="false"/>
+    <many-to-one field="salle" target-entity="Salle" fetch="LAZY">
+      <join-columns>
+        <join-column name="salle_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="prof" target-entity="Prof" fetch="LAZY">
+      <join-columns>
+        <join-column name="prof_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="activite" target-entity="Activite" fetch="LAZY">
+      <join-columns>
+        <join-column name="activite_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

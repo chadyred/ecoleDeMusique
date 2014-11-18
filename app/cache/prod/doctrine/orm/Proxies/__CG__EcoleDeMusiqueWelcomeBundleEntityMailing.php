@@ -213,17 +213,6 @@ class Mailing extends \EcoleDeMusique\WelcomeBundle\Entity\Mailing implements \D
     /**
      * {@inheritDoc}
      */
-    public function getMessage()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMessage', array());
-
-        return parent::getMessage();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setMessage($message)
     {
 
@@ -235,12 +224,12 @@ class Mailing extends \EcoleDeMusique\WelcomeBundle\Entity\Mailing implements \D
     /**
      * {@inheritDoc}
      */
-    public function getNomActivite()
+    public function getMessage()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNomActivite', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMessage', array());
 
-        return parent::getNomActivite();
+        return parent::getMessage();
     }
 
     /**
@@ -252,6 +241,17 @@ class Mailing extends \EcoleDeMusique\WelcomeBundle\Entity\Mailing implements \D
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNomActivite', array($nomActivite));
 
         return parent::setNomActivite($nomActivite);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNomActivite()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNomActivite', array());
+
+        return parent::getNomActivite();
     }
 
     /**

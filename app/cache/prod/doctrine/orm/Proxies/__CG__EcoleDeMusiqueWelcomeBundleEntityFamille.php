@@ -64,10 +64,10 @@ class Famille extends \EcoleDeMusique\WelcomeBundle\Entity\Famille implements \D
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'qf', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'nom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'responsable', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'eleves');
+            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'qf', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'responsable', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'eleves');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'qf', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'nom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'responsable', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'eleves');
+        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'qf', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'responsable', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Famille' . "\0" . 'eleves');
     }
 
     /**
@@ -213,6 +213,28 @@ class Famille extends \EcoleDeMusique\WelcomeBundle\Entity\Famille implements \D
     /**
      * {@inheritDoc}
      */
+    public function setResponsable(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $responsable = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setResponsable', array($responsable));
+
+        return parent::setResponsable($responsable);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResponsable()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getResponsable', array());
+
+        return parent::getResponsable();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function addEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve)
     {
 
@@ -252,28 +274,6 @@ class Famille extends \EcoleDeMusique\WelcomeBundle\Entity\Famille implements \D
         $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
 
         return parent::__toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setResponsable(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $responsable = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setResponsable', array($responsable));
-
-        return parent::setResponsable($responsable);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getResponsable()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getResponsable', array());
-
-        return parent::getResponsable();
     }
 
 }

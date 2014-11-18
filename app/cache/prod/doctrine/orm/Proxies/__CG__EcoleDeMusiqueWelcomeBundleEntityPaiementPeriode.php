@@ -64,10 +64,10 @@ class PaiementPeriode extends \EcoleDeMusique\WelcomeBundle\Entity\PaiementPerio
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'numeraire', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'chequeJeune', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'chequeVacance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'cheque', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'numPeriod', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'paiement', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'cb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'prelev', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateNumeraire', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateChequeJeune', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateChequeVacance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateCheque', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateCb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'datePrelev');
+            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'numPeriod', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'numeraire', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'chequeJeune', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'chequeVacance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'cheque', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'cb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'prelev', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateNumeraire', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateChequeJeune', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateChequeVacance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateCheque', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateCb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'datePrelev', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'paiement');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'numeraire', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'chequeJeune', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'chequeVacance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'cheque', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'numPeriod', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'paiement', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'cb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'prelev', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateNumeraire', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateChequeJeune', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateChequeVacance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateCheque', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateCb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'datePrelev');
+        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'numPeriod', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'numeraire', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'chequeJeune', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'chequeVacance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'cheque', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'cb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'prelev', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateNumeraire', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateChequeJeune', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateChequeVacance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateCheque', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'dateCb', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'datePrelev', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\PaiementPeriode' . "\0" . 'paiement');
     }
 
     /**
@@ -191,94 +191,6 @@ class PaiementPeriode extends \EcoleDeMusique\WelcomeBundle\Entity\PaiementPerio
     /**
      * {@inheritDoc}
      */
-    public function setNumeraire($numeraire)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumeraire', array($numeraire));
-
-        return parent::setNumeraire($numeraire);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNumeraire()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumeraire', array());
-
-        return parent::getNumeraire();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setChequeJeune($chequeJeune)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setChequeJeune', array($chequeJeune));
-
-        return parent::setChequeJeune($chequeJeune);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getChequeJeune()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getChequeJeune', array());
-
-        return parent::getChequeJeune();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setChequeVacance($chequeVacance)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setChequeVacance', array($chequeVacance));
-
-        return parent::setChequeVacance($chequeVacance);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getChequeVacance()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getChequeVacance', array());
-
-        return parent::getChequeVacance();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setCheque($cheque)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCheque', array($cheque));
-
-        return parent::setCheque($cheque);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCheque()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCheque', array());
-
-        return parent::getCheque();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setNumPeriod($numPeriod)
     {
 
@@ -301,23 +213,89 @@ class PaiementPeriode extends \EcoleDeMusique\WelcomeBundle\Entity\PaiementPerio
     /**
      * {@inheritDoc}
      */
-    public function setPaiement(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $paiement = NULL)
+    public function setNumeraire($numeraire)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPaiement', array($paiement));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumeraire', array($numeraire));
 
-        return parent::setPaiement($paiement);
+        return parent::setNumeraire($numeraire);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getPaiement()
+    public function getNumeraire()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPaiement', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumeraire', array());
 
-        return parent::getPaiement();
+        return parent::getNumeraire();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setChequejeune($chequeJeune)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setChequejeune', array($chequeJeune));
+
+        return parent::setChequejeune($chequeJeune);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getChequejeune()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getChequejeune', array());
+
+        return parent::getChequejeune();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setChequevacance($chequeVacance)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setChequevacance', array($chequeVacance));
+
+        return parent::setChequevacance($chequeVacance);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getChequevacance()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getChequevacance', array());
+
+        return parent::getChequevacance();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCheque($cheque)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCheque', array($cheque));
+
+        return parent::setCheque($cheque);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCheque()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCheque', array());
+
+        return parent::getCheque();
     }
 
     /**
@@ -444,12 +422,12 @@ class PaiementPeriode extends \EcoleDeMusique\WelcomeBundle\Entity\PaiementPerio
     /**
      * {@inheritDoc}
      */
-    public function getDateCheque()
+    public function getDatecheque()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDateCheque', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDatecheque', array());
 
-        return parent::getDateCheque();
+        return parent::getDatecheque();
     }
 
     /**
@@ -494,6 +472,28 @@ class PaiementPeriode extends \EcoleDeMusique\WelcomeBundle\Entity\PaiementPerio
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDatePrelev', array());
 
         return parent::getDatePrelev();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPaiement(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $paiement = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPaiement', array($paiement));
+
+        return parent::setPaiement($paiement);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPaiement()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPaiement', array());
+
+        return parent::getPaiement();
     }
 
 }

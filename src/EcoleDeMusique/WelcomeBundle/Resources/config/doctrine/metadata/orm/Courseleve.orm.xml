@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Courseleve" table="CoursEleve">
+    <indexes>
+      <index name="IDX_EC6E66D77ECF78B0" columns="cours_id"/>
+      <index name="IDX_EC6E66D7A6CC7B2" columns="eleve_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="eleve" target-entity="Eleve" fetch="LAZY">
+      <join-columns>
+        <join-column name="eleve_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="cours" target-entity="Cours" fetch="LAZY">
+      <join-columns>
+        <join-column name="cours_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

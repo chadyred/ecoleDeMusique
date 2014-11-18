@@ -5,70 +5,91 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EcoleDeMusique\WelcomeBundle\Entity\Regie
+ * Regie
+ *
+ * @ORM\Table(name="regie")
+ * @ORM\Entity
  */
 class Regie
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var boolean $capv
+     * @var boolean
+     *
+     * @ORM\Column(name="capv", type="boolean", nullable=false)
      */
     private $capv;
 
     /**
-     * @var boolean $enfantAdulte
+     * @var boolean
+     *
+     * @ORM\Column(name="enfantAdulte", type="boolean", nullable=false)
      */
     private $enfantAdulte;
 
     /**
-     * @var integer $cycleParcours
+     * @var integer
+     *
+     * @ORM\Column(name="cycleParcours", type="integer", nullable=false)
      */
     private $cycleParcours;
 
     /**
-     * @var string $intru2
+     * @var string
+     *
+     * @ORM\Column(name="intru2", type="string", length=255, nullable=false)
      */
     private $intru2;
 
     /**
-     * @var string $intru3
+     * @var string
+     *
+     * @ORM\Column(name="intru3", type="string", length=255, nullable=false)
      */
     private $intru3;
 
     /**
-     * @var integer $sommeSansRemise
+     * @var float
+     *
+     * @ORM\Column(name="sommeSansRemise", type="float", precision=10, scale=0, nullable=false)
      */
     private $sommeSansRemise;
 
     /**
-     * @var integer $remise
+     * @var float
+     *
+     * @ORM\Column(name="remise", type="float", precision=10, scale=0, nullable=false)
      */
     private $remise;
 
     /**
-     * @var integer $sommeAvecRemise
+     * @var float
+     *
+     * @ORM\Column(name="sommeAvecRemise", type="float", precision=10, scale=0, nullable=false)
      */
     private $sommeAvecRemise;
 
     /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Eleve
-     */
-    private $regies;
-
-    
-    /**
-     * @var integer $anneDeCours
+     * @var integer
+     *
+     * @ORM\Column(name="anneDeCours", type="integer", nullable=false)
      */
     private $anneDeCours;
+
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,19 +100,20 @@ class Regie
      * Set capv
      *
      * @param boolean $capv
+     *
      * @return Regie
      */
     public function setCapv($capv)
     {
         $this->capv = $capv;
-    
+
         return $this;
     }
 
     /**
      * Get capv
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getCapv()
     {
@@ -102,19 +124,20 @@ class Regie
      * Set enfantAdulte
      *
      * @param boolean $enfantAdulte
+     *
      * @return Regie
      */
     public function setEnfantAdulte($enfantAdulte)
     {
         $this->enfantAdulte = $enfantAdulte;
-    
+
         return $this;
     }
 
     /**
      * Get enfantAdulte
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnfantAdulte()
     {
@@ -125,19 +148,20 @@ class Regie
      * Set cycleParcours
      *
      * @param integer $cycleParcours
+     *
      * @return Regie
      */
     public function setCycleParcours($cycleParcours)
     {
         $this->cycleParcours = $cycleParcours;
-    
+
         return $this;
     }
 
     /**
      * Get cycleParcours
      *
-     * @return integer 
+     * @return integer
      */
     public function getCycleParcours()
     {
@@ -148,19 +172,20 @@ class Regie
      * Set intru2
      *
      * @param string $intru2
+     *
      * @return Regie
      */
     public function setIntru2($intru2)
     {
         $this->intru2 = $intru2;
-    
+
         return $this;
     }
 
     /**
      * Get intru2
      *
-     * @return string 
+     * @return string
      */
     public function getIntru2()
     {
@@ -171,19 +196,20 @@ class Regie
      * Set intru3
      *
      * @param string $intru3
+     *
      * @return Regie
      */
     public function setIntru3($intru3)
     {
         $this->intru3 = $intru3;
-    
+
         return $this;
     }
 
     /**
      * Get intru3
      *
-     * @return string 
+     * @return string
      */
     public function getIntru3()
     {
@@ -193,20 +219,21 @@ class Regie
     /**
      * Set sommeSansRemise
      *
-     * @param integer $sommeSansRemise
+     * @param float $sommeSansRemise
+     *
      * @return Regie
      */
     public function setSommeSansRemise($sommeSansRemise)
     {
         $this->sommeSansRemise = $sommeSansRemise;
-    
+
         return $this;
     }
 
     /**
      * Get sommeSansRemise
      *
-     * @return integer 
+     * @return float
      */
     public function getSommeSansRemise()
     {
@@ -216,20 +243,21 @@ class Regie
     /**
      * Set remise
      *
-     * @param integer $remise
+     * @param float $remise
+     *
      * @return Regie
      */
     public function setRemise($remise)
     {
         $this->remise = $remise;
-    
+
         return $this;
     }
 
     /**
      * Get remise
      *
-     * @return integer 
+     * @return float
      */
     public function getRemise()
     {
@@ -239,20 +267,21 @@ class Regie
     /**
      * Set sommeAvecRemise
      *
-     * @param integer $sommeAvecRemise
+     * @param float $sommeAvecRemise
+     *
      * @return Regie
      */
     public function setSommeAvecRemise($sommeAvecRemise)
     {
         $this->sommeAvecRemise = $sommeAvecRemise;
-    
+
         return $this;
     }
 
     /**
      * Get sommeAvecRemise
      *
-     * @return integer 
+     * @return float
      */
     public function getSommeAvecRemise()
     {
@@ -260,52 +289,23 @@ class Regie
     }
 
     /**
-     * Set regies
-     *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Eleve $regies
-     * @return Regie
-     */
-    public function setRegies(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $regies = null)
-    {
-        $this->regies = $regies;
-    
-        return $this;
-    }
-
-    /**
-     * Get regies
-     *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Eleve 
-     */
-    public function getRegies()
-    {
-        return $this->regies;
-    }
-    
-      public function __toString() 
-    {
-            return "".$this->getId();
-    }
-    
-
-
-    /**
      * Set anneDeCours
      *
      * @param integer $anneDeCours
+     *
      * @return Regie
      */
     public function setAnneDeCours($anneDeCours)
     {
         $this->anneDeCours = $anneDeCours;
-    
+
         return $this;
     }
 
     /**
      * Get anneDeCours
      *
-     * @return integer 
+     * @return integer
      */
     public function getAnneDeCours()
     {

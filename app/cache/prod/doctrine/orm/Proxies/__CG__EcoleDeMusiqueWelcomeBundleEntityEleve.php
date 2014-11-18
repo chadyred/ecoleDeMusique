@@ -64,10 +64,10 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'nom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'prenom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'adresse', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'codePostal', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'civilite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telEleve', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telMere', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telPere', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'dateDeNaissance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'mail', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'regie', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'famille', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'paiement', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'ville');
+            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'nom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'prenom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'adresse', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'codePostal', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'ville', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'civilite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telEleve', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telMere', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telPere', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'dateDeNaissance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'mail', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'regie', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'famille', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'paiement', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'activitesEleves');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'nom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'prenom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'adresse', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'codePostal', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'civilite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telEleve', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telMere', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telPere', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'dateDeNaissance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'mail', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'regie', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'famille', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'paiement', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'ville');
+        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'nom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'prenom', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'adresse', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'codePostal', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'ville', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'civilite', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telEleve', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telMere', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'telPere', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'dateDeNaissance', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'mail', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'regie', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'famille', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'paiement', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Eleve' . "\0" . 'activitesEleves');
     }
 
     /**
@@ -257,23 +257,45 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function setCodePostal($codePostal)
+    public function setCodepostal($codepostal)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCodePostal', array($codePostal));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCodepostal', array($codepostal));
 
-        return parent::setCodePostal($codePostal);
+        return parent::setCodepostal($codepostal);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCodePostal()
+    public function getCodepostal()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCodePostal', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCodepostal', array());
 
-        return parent::getCodePostal();
+        return parent::getCodepostal();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setVille($ville)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVille', array($ville));
+
+        return parent::setVille($ville);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getVille()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVille', array());
+
+        return parent::getVille();
     }
 
     /**
@@ -301,34 +323,34 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function setTelEleve($telEleve)
+    public function setTeleleve($teleleve)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTelEleve', array($telEleve));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTeleleve', array($teleleve));
 
-        return parent::setTelEleve($telEleve);
+        return parent::setTeleleve($teleleve);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getTelEleve()
+    public function getTeleleve()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTelEleve', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTeleleve', array());
 
-        return parent::getTelEleve();
+        return parent::getTeleleve();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setTelMere($telMere)
+    public function setTelMere($telmere)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTelMere', array($telMere));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTelMere', array($telmere));
 
-        return parent::setTelMere($telMere);
+        return parent::setTelMere($telmere);
     }
 
     /**
@@ -345,12 +367,12 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function setTelPere($telPere)
+    public function setTelPere($telpere)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTelPere', array($telPere));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTelPere', array($telpere));
 
-        return parent::setTelPere($telPere);
+        return parent::setTelPere($telpere);
     }
 
     /**
@@ -367,12 +389,12 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function setDateDeNaissance($dateDeNaissance)
+    public function setDateDeNaissance($datedenaissance)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateDeNaissance', array($dateDeNaissance));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateDeNaissance', array($datedenaissance));
 
-        return parent::setDateDeNaissance($dateDeNaissance);
+        return parent::setDateDeNaissance($datedenaissance);
     }
 
     /**
@@ -455,17 +477,6 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function __toString()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
-
-        return parent::__toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setPaiement(\EcoleDeMusique\WelcomeBundle\Entity\Paiement $paiement = NULL)
     {
 
@@ -521,28 +532,6 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function setVille($ville)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVille', array($ville));
-
-        return parent::setVille($ville);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getVille()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVille', array());
-
-        return parent::getVille();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function addActivite(\EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve $activites)
     {
 
@@ -593,6 +582,17 @@ class Eleve extends \EcoleDeMusique\WelcomeBundle\Entity\Eleve implements \Doctr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'findSommeAvecRemise', array());
 
         return parent::findSommeAvecRemise();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
+
+        return parent::__toString();
     }
 
 }

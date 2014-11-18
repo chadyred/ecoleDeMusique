@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Activiteeleve" table="ActiviteEleve">
+    <indexes>
+      <index name="IDX_B4EB086F9B0F88B1" columns="activite_id"/>
+      <index name="IDX_B4EB086FA6CC7B2" columns="eleve_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="type" type="string" column="type" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <many-to-one field="eleve" target-entity="Eleve" fetch="LAZY">
+      <join-columns>
+        <join-column name="eleve_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="activite" target-entity="Activite" fetch="LAZY">
+      <join-columns>
+        <join-column name="activite_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

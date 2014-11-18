@@ -5,115 +5,191 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EcoleDeMusique\WelcomeBundle\Entity\Formule
+ * Formule
+ *
+ * @ORM\Table(name="formule")
+ * @ORM\Entity
  */
 class Formule
 {
     /**
-     * @var float $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var float $cycle
+     * @var integer
+     *
+     * @ORM\Column(name="cycle", type="integer", nullable=false)
      */
     private $cycle;
-
+    
     /**
      * @var string $name
+     * 
+     * Name n'est pas utilisé
      */
     private $name;
 
+
     /**
-     * @var string $formule
+     * @var string
+     *
+     * @ORM\Column(name="formule", type="string", length=255, nullable=false)
      */
     private $formule;
 
     /**
-     * @var float $param1
+     * @var float
+     *
+     * @ORM\Column(name="param1", type="float", precision=10, scale=0, nullable=false)
      */
     private $param1;
 
     /**
-     * @var float $param2
+     * @var float
+     *
+     * @ORM\Column(name="param2", type="float", precision=10, scale=0, nullable=false)
      */
     private $param2;
 
     /**
-     * @var float $param3
+     * @var float
+     *
+     * @ORM\Column(name="param3", type="float", precision=10, scale=0, nullable=false)
      */
     private $param3;
 
     /**
-     * @var float $param4
+     * @var float
+     *
+     * @ORM\Column(name="param4", type="float", precision=10, scale=0, nullable=false)
      */
     private $param4;
 
     /**
-     * @var float $param5
+     * @var float
+     *
+     * @ORM\Column(name="param5", type="float", precision=10, scale=0, nullable=false)
      */
     private $param5;
 
     /**
-     * @var float $coefCapv
+     * @var float
+     *
+     * @ORM\Column(name="multiplicateurAdulte", type="float", precision=10, scale=0, nullable=false)
      */
-    private $coefCapv;
+    private $multiplicateurAdulte;
 
     /**
-     * @var float $coefInstru2
+     * @var float
+     *
+     * @ORM\Column(name="coefCapv", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $coefcapv;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="coefInstru2", type="float", precision=10, scale=0, nullable=false)
      */
     private $coefInstru2;
 
     /**
-     * @var float $coefInstru3
+     * @var float
+     *
+     * @ORM\Column(name="coefInstru3", type="float", precision=10, scale=0, nullable=false)
      */
     private $coefInstru3;
 
     /**
-     * @var float $coef2eleves
+     * @var float
+     *
+     * @ORM\Column(name="coef2eleves", type="float", precision=10, scale=0, nullable=false)
      */
     private $coef2eleves;
 
     /**
-     * @var float $coef3eleves
+     * @var float
+     *
+     * @ORM\Column(name="coef3eleves", type="float", precision=10, scale=0, nullable=false)
      */
     private $coef3eleves;
 
     /**
-     * @var float $coef4eleves
+     * @var float
+     *
+     * @ORM\Column(name="coef4eleves", type="float", precision=10, scale=0, nullable=false)
      */
     private $coef4eleves;
 
     /**
-     * @var float $coef5eleves
+     * @var float
+     *
+     * @ORM\Column(name="coef5eleves", type="float", precision=10, scale=0, nullable=false)
      */
     private $coef5eleves;
 
     /**
-     * @var float $coefcyle0
+     * @var float
+     *
+     * @ORM\Column(name="coefcyle0", type="float", precision=10, scale=0, nullable=false)
      */
     private $coefcyle0;
 
     /**
-     * @var float $coefcyle1
+     * @var float
+     *
+     * @ORM\Column(name="coefcyle1", type="float", precision=10, scale=0, nullable=false)
      */
     private $coefcyle1;
 
     /**
-     * @var float $coefcyle2
+     * @var float
+     *
+     * @ORM\Column(name="coefcyle2", type="float", precision=10, scale=0, nullable=false)
      */
     private $coefcyle2;
 
     /**
-     * @var float $coefcyle3
+     * @var float
+     *
+     * @ORM\Column(name="coefcyle3", type="float", precision=10, scale=0, nullable=false)
      */
     private $coefcyle3;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="tarifMax", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $tarifMax;
+
+
+    /**
+     * @var float $sommeMax
+     */
+    private $sommeMax;
+
+    
+    /**
+     * @var float $tarifMaxCapv
+     */
+    private $tarifMaxCapv;
+
+    /**
+     * @var float $tarifMaxHorsCapv
+     */
+    private $tarifMaxHorsCapv;
 
     /**
      * Get id
      *
-     * @return float 
+     * @return integer
      */
     public function getId()
     {
@@ -123,20 +199,21 @@ class Formule
     /**
      * Set cycle
      *
-     * @param float $cycle
+     * @param integer $cycle
+     *
      * @return Formule
      */
     public function setCycle($cycle)
     {
         $this->cycle = $cycle;
-    
+
         return $this;
     }
 
     /**
      * Get cycle
      *
-     * @return float 
+     * @return integer
      */
     public function getCycle()
     {
@@ -170,19 +247,20 @@ class Formule
      * Set formule
      *
      * @param string $formule
+     *
      * @return Formule
      */
     public function setFormule($formule)
     {
         $this->formule = $formule;
-    
+
         return $this;
     }
 
     /**
      * Get formule
      *
-     * @return string 
+     * @return string
      */
     public function getFormule()
     {
@@ -193,19 +271,20 @@ class Formule
      * Set param1
      *
      * @param float $param1
+     *
      * @return Formule
      */
     public function setParam1($param1)
     {
         $this->param1 = $param1;
-    
+
         return $this;
     }
 
     /**
      * Get param1
      *
-     * @return float 
+     * @return float
      */
     public function getParam1()
     {
@@ -216,19 +295,20 @@ class Formule
      * Set param2
      *
      * @param float $param2
+     *
      * @return Formule
      */
     public function setParam2($param2)
     {
         $this->param2 = $param2;
-    
+
         return $this;
     }
 
     /**
      * Get param2
      *
-     * @return float 
+     * @return float
      */
     public function getParam2()
     {
@@ -239,19 +319,20 @@ class Formule
      * Set param3
      *
      * @param float $param3
+     *
      * @return Formule
      */
     public function setParam3($param3)
     {
         $this->param3 = $param3;
-    
+
         return $this;
     }
 
     /**
      * Get param3
      *
-     * @return float 
+     * @return float
      */
     public function getParam3()
     {
@@ -262,19 +343,20 @@ class Formule
      * Set param4
      *
      * @param float $param4
+     *
      * @return Formule
      */
     public function setParam4($param4)
     {
         $this->param4 = $param4;
-    
+
         return $this;
     }
 
     /**
      * Get param4
      *
-     * @return float 
+     * @return float
      */
     public function getParam4()
     {
@@ -285,19 +367,20 @@ class Formule
      * Set param5
      *
      * @param float $param5
+     *
      * @return Formule
      */
     public function setParam5($param5)
     {
         $this->param5 = $param5;
-    
+
         return $this;
     }
 
     /**
      * Get param5
      *
-     * @return float 
+     * @return float
      */
     public function getParam5()
     {
@@ -305,45 +388,71 @@ class Formule
     }
 
     /**
-     * Set coefCapv
+     * Set multiplicateurAdulte
      *
-     * @param float $coefCapv
+     * @param float $multiplicateurAdulte
+     *
      * @return Formule
      */
-    public function setCoefCapv($coefCapv)
+    public function setMultiplicateurAdulte($multiplicateurAdulte)
     {
-        $this->coefCapv = $coefCapv;
-    
+        $this->multiplicateurAdulte = $multiplicateurAdulte;
+
         return $this;
     }
 
     /**
-     * Get coefCapv
+     * Get multiplicateurAdulte
      *
-     * @return float 
+     * @return float
      */
-    public function getCoefCapv()
+    public function getMultiplicateurAdulte()
     {
-        return $this->coefCapv;
+        return $this->multiplicateurAdulte;
+    }
+
+    /**
+     * Set coefcapv
+     *
+     * @param float $coefcapv
+     *
+     * @return Formule
+     */
+    public function setCoefcapv($coefcapv)
+    {
+        $this->coefcapv = $coefcapv;
+
+        return $this;
+    }
+
+    /**
+     * Get coefcapv
+     *
+     * @return float
+     */
+    public function getCoefcapv()
+    {
+        return $this->coefcapv;
     }
 
     /**
      * Set coefInstru2
      *
      * @param float $coefInstru2
+     *
      * @return Formule
      */
     public function setCoefInstru2($coefInstru2)
     {
         $this->coefInstru2 = $coefInstru2;
-    
+
         return $this;
     }
 
     /**
      * Get coefInstru2
      *
-     * @return float 
+     * @return float
      */
     public function getCoefInstru2()
     {
@@ -354,19 +463,20 @@ class Formule
      * Set coefInstru3
      *
      * @param float $coefInstru3
+     *
      * @return Formule
      */
     public function setCoefInstru3($coefInstru3)
     {
         $this->coefInstru3 = $coefInstru3;
-    
+
         return $this;
     }
 
     /**
      * Get coefInstru3
      *
-     * @return float 
+     * @return float
      */
     public function getCoefInstru3()
     {
@@ -377,19 +487,20 @@ class Formule
      * Set coef2eleves
      *
      * @param float $coef2eleves
+     *
      * @return Formule
      */
     public function setCoef2eleves($coef2eleves)
     {
         $this->coef2eleves = $coef2eleves;
-    
+
         return $this;
     }
 
     /**
      * Get coef2eleves
      *
-     * @return float 
+     * @return float
      */
     public function getCoef2eleves()
     {
@@ -400,19 +511,20 @@ class Formule
      * Set coef3eleves
      *
      * @param float $coef3eleves
+     *
      * @return Formule
      */
     public function setCoef3eleves($coef3eleves)
     {
         $this->coef3eleves = $coef3eleves;
-    
+
         return $this;
     }
 
     /**
      * Get coef3eleves
      *
-     * @return float 
+     * @return float
      */
     public function getCoef3eleves()
     {
@@ -423,19 +535,20 @@ class Formule
      * Set coef4eleves
      *
      * @param float $coef4eleves
+     *
      * @return Formule
      */
     public function setCoef4eleves($coef4eleves)
     {
         $this->coef4eleves = $coef4eleves;
-    
+
         return $this;
     }
 
     /**
      * Get coef4eleves
      *
-     * @return float 
+     * @return float
      */
     public function getCoef4eleves()
     {
@@ -446,19 +559,20 @@ class Formule
      * Set coef5eleves
      *
      * @param float $coef5eleves
+     *
      * @return Formule
      */
     public function setCoef5eleves($coef5eleves)
     {
         $this->coef5eleves = $coef5eleves;
-    
+
         return $this;
     }
 
     /**
      * Get coef5eleves
      *
-     * @return float 
+     * @return float
      */
     public function getCoef5eleves()
     {
@@ -469,19 +583,20 @@ class Formule
      * Set coefcyle0
      *
      * @param float $coefcyle0
+     *
      * @return Formule
      */
     public function setCoefcyle0($coefcyle0)
     {
         $this->coefcyle0 = $coefcyle0;
-    
+
         return $this;
     }
 
     /**
      * Get coefcyle0
      *
-     * @return float 
+     * @return float
      */
     public function getCoefcyle0()
     {
@@ -492,19 +607,20 @@ class Formule
      * Set coefcyle1
      *
      * @param float $coefcyle1
+     *
      * @return Formule
      */
     public function setCoefcyle1($coefcyle1)
     {
         $this->coefcyle1 = $coefcyle1;
-    
+
         return $this;
     }
 
     /**
      * Get coefcyle1
      *
-     * @return float 
+     * @return float
      */
     public function getCoefcyle1()
     {
@@ -515,19 +631,20 @@ class Formule
      * Set coefcyle2
      *
      * @param float $coefcyle2
+     *
      * @return Formule
      */
     public function setCoefcyle2($coefcyle2)
     {
         $this->coefcyle2 = $coefcyle2;
-    
+
         return $this;
     }
 
     /**
      * Get coefcyle2
      *
-     * @return float 
+     * @return float
      */
     public function getCoefcyle2()
     {
@@ -538,84 +655,49 @@ class Formule
      * Set coefcyle3
      *
      * @param float $coefcyle3
+     *
      * @return Formule
      */
     public function setCoefcyle3($coefcyle3)
     {
         $this->coefcyle3 = $coefcyle3;
-    
+
         return $this;
     }
 
     /**
      * Get coefcyle3
      *
-     * @return float 
+     * @return float
      */
     public function getCoefcyle3()
     {
         return $this->coefcyle3;
     }
-    /**
-     * @var float $multiplicateurAdulte
-     */
-    private $multiplicateurAdulte;
+
 
 
     /**
-     * Set multiplicateurAdulte
+     * Set tarifMax
      *
-     * @param float $multiplicateurAdulte
+     * @param float $tarifMax
      * @return Formule
      */
-    public function setMultiplicateurAdulte($multiplicateurAdulte)
+    public function setTarifMax($tarifMax)
     {
-        $this->multiplicateurAdulte = $multiplicateurAdulte;
-    
+        $this->tarifMax = $tarifMax;
+
         return $this;
     }
 
     /**
-     * Get multiplicateurAdulte
+     * Get tarifmax
      *
-     * @return float 
+     * @return float
      */
-    public function getMultiplicateurAdulte()
+    public function getTarifMax()
     {
-        return $this->multiplicateurAdulte;
-    }
-    /**
-     * @var float $tarifMaxCapv
-     */
-    private $tarifMaxCapv;
-
-    /**
-     * @var float $tarifMaxHorsCapv
-     */
-    private $tarifMaxHorsCapv;
-
-
-    /**
-     * Set tarifMaxCapv
-     *
-     * @param float $tarifMaxCapv
-     * @return Formule
-     */
-    public function setTarifMaxCapv($tarifMaxCapv)
-    {
-        $this->tarifMaxCapv = $tarifMaxCapv;
-    
-        return $this;
-    }
-
-    /**
-     * Get tarifMaxCapv
-     *
-     * @return float 
-     */
-    public function getTarifMaxCapv()
-    {
-        return $this->tarifMaxCapv;
+        return $this->tarifMax;
     }
 
     /**
@@ -640,40 +722,29 @@ class Formule
     {
         return $this->tarifMaxHorsCapv;
     }
-    /**
-     * @var float $tarifMax
-     */
-    private $tarifMax;
 
-
-    /**
-     * Set tarifMax
+     /**
+     * Set tarifMaxCapv
      *
-     * @param float $tarifMax
+     * @param float $tarifMaxCapv
      * @return Formule
      */
-    public function setTarifMax($tarifMax)
+    public function setTarifMaxCapv($tarifMaxCapv)
     {
-        $this->tarifMax = $tarifMax;
+        $this->tarifMaxCapv = $tarifMaxCapv;
     
         return $this;
     }
-
     /**
-     * Get tarifMax
+     * Get tarifMaxCapv
      *
      * @return float 
      */
-    public function getTarifMax()
+    public function getTarifMaxCapv()
     {
-        return $this->tarifMax;
+        return $this->tarifMaxCapv;
     }
-    /**
-     * @var float $sommeMax
-     */
-    private $sommeMax;
-
-
+    
     /**
      * Set sommeMax
      *
@@ -697,6 +768,12 @@ class Formule
         return $this->sommeMax;
     }
     
+    /**
+     * Fonction qui transforme une chaine en float. On regarde si il y a une virgule ou non.
+     * 
+     * @param type $num
+     * @return type
+     */
     public static function tofloat($num)
     {
         $dotPos = strrpos($num, '.');

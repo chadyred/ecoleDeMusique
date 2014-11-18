@@ -80,7 +80,7 @@ class ActiviteController extends Controller
             $em->persist($entity);
             $em->flush();
 
-             $this->get('session')->getFlashBag()->add('notice', "Nouvel instrument créer avec succés");
+             $this->get('session')->getFlashBag()->add('notice', "Nouvel activité créer avec succés");
             return $this->redirect($this->generateUrl('activite_new', array('id' => $entity->getId())));
         }
 

@@ -124,7 +124,7 @@ public function donnerValeur($formule,$param1=0,$param2=0,$param3=0,$param4=0,$p
             $param5=$formule->getparam5();
              
            
-            $formuleEcrite=$formule->getformule();
+            $formuleEcrite=$formule->getFormule();
             /*DonnerValeur donne la valeur du calcul de la formule au format enregistrer dans la bdd
             */
             
@@ -142,7 +142,7 @@ public function donnerValeur($formule,$param1=0,$param2=0,$param3=0,$param4=0,$p
             }
             else 
             {
-                $somme=$formule->gettarifMax();
+                $somme=$formule->getTarifMax();
                 
             }
           // $somme=$param1+$param2+$param3+$param4+$param5;

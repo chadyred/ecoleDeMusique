@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Famille" table="famille">
+    <unique-constraints>
+      <unique-constraint name="UNIQ_2473F21353C59D72" columns="responsable_id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="qf" type="integer" column="qf" nullable="true">
+      <options unsigned=""/>
+    </field>
+    <many-to-one field="responsable" target-entity="Eleve" fetch="LAZY">
+      <join-columns>
+        <join-column name="responsable_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

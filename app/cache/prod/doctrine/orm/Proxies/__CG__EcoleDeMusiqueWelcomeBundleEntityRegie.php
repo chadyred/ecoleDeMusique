@@ -64,10 +64,10 @@ class Regie extends \EcoleDeMusique\WelcomeBundle\Entity\Regie implements \Doctr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'capv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'enfantAdulte', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'cycleParcours', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'intru2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'intru3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'sommeSansRemise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'remise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'sommeAvecRemise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'regies', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'anneDeCours');
+            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'capv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'enfantAdulte', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'cycleParcours', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'intru2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'intru3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'sommeSansRemise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'remise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'sommeAvecRemise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'anneDeCours');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'capv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'enfantAdulte', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'cycleParcours', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'intru2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'intru3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'sommeSansRemise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'remise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'sommeAvecRemise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'regies', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'anneDeCours');
+        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'capv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'enfantAdulte', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'cycleParcours', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'intru2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'intru3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'sommeSansRemise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'remise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'sommeAvecRemise', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Regie' . "\0" . 'anneDeCours');
     }
 
     /**
@@ -362,39 +362,6 @@ class Regie extends \EcoleDeMusique\WelcomeBundle\Entity\Regie implements \Doctr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSommeAvecRemise', array());
 
         return parent::getSommeAvecRemise();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setRegies(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $regies = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRegies', array($regies));
-
-        return parent::setRegies($regies);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getRegies()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRegies', array());
-
-        return parent::getRegies();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function __toString()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
-
-        return parent::__toString();
     }
 
     /**

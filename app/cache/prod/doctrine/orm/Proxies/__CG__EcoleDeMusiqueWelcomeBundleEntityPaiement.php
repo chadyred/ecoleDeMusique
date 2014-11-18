@@ -64,10 +64,10 @@ class Paiement extends \EcoleDeMusique\WelcomeBundle\Entity\Paiement implements 
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'interupt', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'dateInterupt', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'sommePeriode', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'paiementPeriode', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'eleve', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'sommeTotal');
+            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'interupt', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'dateInterupt', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'sommePeriode', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'sommeTotal', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'eleve');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'interupt', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'dateInterupt', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'sommePeriode', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'paiementPeriode', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'eleve', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'sommeTotal');
+        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'interupt', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'dateInterupt', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'sommePeriode', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'sommeTotal', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Paiement' . "\0" . 'eleve');
     }
 
     /**
@@ -257,12 +257,12 @@ class Paiement extends \EcoleDeMusique\WelcomeBundle\Entity\Paiement implements 
     /**
      * {@inheritDoc}
      */
-    public function setSommeTotal($sommeTotal)
+    public function setSommeTotal($sommetotal)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSommeTotal', array($sommeTotal));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSommeTotal', array($sommetotal));
 
-        return parent::setSommeTotal($sommeTotal);
+        return parent::setSommeTotal($sommetotal);
     }
 
     /**

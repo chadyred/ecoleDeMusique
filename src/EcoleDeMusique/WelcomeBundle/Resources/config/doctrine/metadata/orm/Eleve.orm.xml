@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Eleve" table="eleve">
+    <indexes>
+      <index name="IDX_ECA105F797A77B84" columns="famille_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="UNIQ_ECA105F746F21B0B" columns="regie_id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="prenom" type="string" column="prenom" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="adresse" type="string" column="adresse" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="codepostal" type="integer" column="codePostal" nullable="false">
+      <options unsigned=""/>
+    </field>
+    <field name="ville" type="string" column="ville" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="civilite" type="string" column="civilite" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="teleleve" type="string" column="telEleve" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="telmere" type="string" column="telMere" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="telpere" type="string" column="telPere" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="datedenaissance" type="date" column="dateDeNaissance" nullable="false"/>
+    <field name="mail" type="string" column="mail" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <many-to-one field="famille" target-entity="Famille" fetch="LAZY">
+      <join-columns>
+        <join-column name="famille_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="regie" target-entity="Regie" fetch="LAZY">
+      <join-columns>
+        <join-column name="regie_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

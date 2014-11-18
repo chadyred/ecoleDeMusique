@@ -64,10 +64,10 @@ class Formule extends \EcoleDeMusique\WelcomeBundle\Entity\Formule implements \D
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'cycle', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'name', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'formule', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param1', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param4', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param5', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefCapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefInstru2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefInstru3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef2eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef3eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef4eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef5eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle0', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle1', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'multiplicateurAdulte', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMaxCapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMaxHorsCapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMax', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'sommeMax');
+            return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'cycle', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'name', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'formule', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param1', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param4', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param5', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'multiplicateurAdulte', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefInstru2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefInstru3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef2eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef3eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef4eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef5eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle0', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle1', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMax', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'sommeMax', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMaxCapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMaxHorsCapv');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'cycle', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'name', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'formule', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param1', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param4', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param5', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefCapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefInstru2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefInstru3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef2eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef3eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef4eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef5eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle0', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle1', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'multiplicateurAdulte', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMaxCapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMaxHorsCapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMax', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'sommeMax');
+        return array('__isInitialized__', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'id', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'cycle', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'name', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'formule', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param1', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param4', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'param5', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'multiplicateurAdulte', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefInstru2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefInstru3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef2eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef3eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef4eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coef5eleves', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle0', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle1', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle2', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'coefcyle3', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMax', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'sommeMax', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMaxCapv', '' . "\0" . 'EcoleDeMusique\\WelcomeBundle\\Entity\\Formule' . "\0" . 'tarifMaxHorsCapv');
     }
 
     /**
@@ -367,23 +367,45 @@ class Formule extends \EcoleDeMusique\WelcomeBundle\Entity\Formule implements \D
     /**
      * {@inheritDoc}
      */
-    public function setCoefCapv($coefCapv)
+    public function setMultiplicateurAdulte($multiplicateurAdulte)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCoefCapv', array($coefCapv));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMultiplicateurAdulte', array($multiplicateurAdulte));
 
-        return parent::setCoefCapv($coefCapv);
+        return parent::setMultiplicateurAdulte($multiplicateurAdulte);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCoefCapv()
+    public function getMultiplicateurAdulte()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCoefCapv', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMultiplicateurAdulte', array());
 
-        return parent::getCoefCapv();
+        return parent::getMultiplicateurAdulte();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCoefcapv($coefcapv)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCoefcapv', array($coefcapv));
+
+        return parent::setCoefcapv($coefcapv);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCoefcapv()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCoefcapv', array());
+
+        return parent::getCoefcapv();
     }
 
     /**
@@ -609,45 +631,23 @@ class Formule extends \EcoleDeMusique\WelcomeBundle\Entity\Formule implements \D
     /**
      * {@inheritDoc}
      */
-    public function setMultiplicateurAdulte($multiplicateurAdulte)
+    public function setTarifMax($tarifMax)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMultiplicateurAdulte', array($multiplicateurAdulte));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTarifMax', array($tarifMax));
 
-        return parent::setMultiplicateurAdulte($multiplicateurAdulte);
+        return parent::setTarifMax($tarifMax);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getMultiplicateurAdulte()
+    public function getTarifMax()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMultiplicateurAdulte', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTarifMax', array());
 
-        return parent::getMultiplicateurAdulte();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setTarifMaxCapv($tarifMaxCapv)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTarifMaxCapv', array($tarifMaxCapv));
-
-        return parent::setTarifMaxCapv($tarifMaxCapv);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTarifMaxCapv()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTarifMaxCapv', array());
-
-        return parent::getTarifMaxCapv();
+        return parent::getTarifMax();
     }
 
     /**
@@ -675,23 +675,23 @@ class Formule extends \EcoleDeMusique\WelcomeBundle\Entity\Formule implements \D
     /**
      * {@inheritDoc}
      */
-    public function setTarifMax($tarifMax)
+    public function setTarifMaxCapv($tarifMaxCapv)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTarifMax', array($tarifMax));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTarifMaxCapv', array($tarifMaxCapv));
 
-        return parent::setTarifMax($tarifMax);
+        return parent::setTarifMaxCapv($tarifMaxCapv);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getTarifMax()
+    public function getTarifMaxCapv()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTarifMax', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTarifMaxCapv', array());
 
-        return parent::getTarifMax();
+        return parent::getTarifMaxCapv();
     }
 
     /**

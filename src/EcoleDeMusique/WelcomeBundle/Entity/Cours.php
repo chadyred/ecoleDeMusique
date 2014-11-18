@@ -5,34 +5,72 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EcoleDeMusique\WelcomeBundle\Entity\Cours
+ * Cours
+ *
+ * @ORM\Table(name="cours", indexes={@ORM\Index(name="IDX_FDCA8C9CABC1F7FE", columns={"prof_id"}), @ORM\Index(name="IDX_FDCA8C9CDC304035", columns={"salle_id"}), @ORM\Index(name="IDX_FDCA8C9C9B0F88B1", columns={"activite_id"})})
+ * @ORM\Entity
  */
 class Cours
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var \DateTime $date
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateDeb", type="datetime", nullable=false)
      */
-    private $date;
+    private $dateDeb;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateFin", type="datetime", nullable=false)
      */
-    private $courss;
+    private $dateFin;
 
     /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Prof
+     * @var \Activite
+     *
+     * @ORM\ManyToOne(targetEntity="Activite")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
+     * })
+     */
+    private $activite;
+
+    /**
+     * @var \Prof
+     *
+     * @ORM\ManyToOne(targetEntity="Prof")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="prof_id", referencedColumnName="id")
+     * })
      */
     private $prof;
 
     /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Salle
+     * @var \Salle
+     *
+     * @ORM\ManyToOne(targetEntity="Salle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="salle_id", referencedColumnName="id")
+     * })
      */
     private $salle;
+    
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection 
+     * 
+     *  @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\CoursEleve", mappedBy="cours")
+     */
+    private $courss;
 
     /**
      * Constructor
@@ -41,11 +79,11 @@ class Cours
     {
         $this->courss = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -53,78 +91,95 @@ class Cours
     }
 
     /**
-     * Set date
+     * Set datedeb
      *
-     * @param \DateTime $date
+     * @param \DateTime $datedeb
+     *
      * @return Cours
      */
-    public function setDate($date)
+    public function setDateDeb($datedeb)
     {
-        $this->date = $date;
-    
+        $this->dateDeb = $datedeb;
+
         return $this;
     }
 
     /**
-     * Get date
+     * Get datedeb
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getDate()
+    public function getDateDeb()
     {
-        return $this->date;
+        return $this->dateDeb;
     }
 
     /**
-     * Add courss
+     * Set datefin
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $courss
+     * @param \DateTime $datefin
+     *
      * @return Cours
      */
-    public function addCours(\EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $courss)
+    public function setDateFin($datefin)
     {
-        $this->courss[] = $courss;
-    
+        $this->dateFin = $datefin;
+
         return $this;
     }
 
     /**
-     * Remove courss
+     * Get datefin
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $courss
+     * @return \DateTime
      */
-    public function removeCours(\EcoleDeMusique\WelcomeBundle\Entity\CoursEleve $courss)
+    public function getDateFin()
     {
-        $this->courss->removeElement($courss);
+        return $this->dateFin;
     }
 
     /**
-     * Get courss
+     * Set activite
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Activite $activite
+     *
+     * @return Cours
      */
-    public function getCourss()
+    public function setActivite(\EcoleDeMusique\WelcomeBundle\Entity\Activite $activite = null)
     {
-        return $this->courss;
+        $this->activite = $activite;
+
+        return $this;
+    }
+
+    /**
+     * Get activite
+     *
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Activite
+     */
+    public function getActivite()
+    {
+        return $this->activite;
     }
 
     /**
      * Set prof
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Prof $prof
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Prof $prof
+     *
      * @return Cours
      */
     public function setProf(\EcoleDeMusique\WelcomeBundle\Entity\Prof $prof = null)
     {
         $this->prof = $prof;
-    
+
         return $this;
     }
 
     /**
      * Get prof
      *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Prof 
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Prof
      */
     public function getProf()
     {
@@ -134,107 +189,24 @@ class Cours
     /**
      * Set salle
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Salle $salle
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Salle $salle
+     *
      * @return Cours
      */
     public function setSalle(\EcoleDeMusique\WelcomeBundle\Entity\Salle $salle = null)
     {
         $this->salle = $salle;
-    
+
         return $this;
     }
 
     /**
      * Get salle
      *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Salle 
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Salle
      */
     public function getSalle()
     {
         return $this->salle;
-    }
-    /**
-     * @var \DateTime $dateDeb
-     */
-    private $dateDeb;
-
-    /**
-     * @var \DateTime $dateFin
-     */
-    private $dateFin;
-
-
-    /**
-     * Set dateDeb
-     *
-     * @param \DateTime $dateDeb
-     * @return Cours
-     */
-    public function setDateDeb($dateDeb)
-    {
-        $this->dateDeb = $dateDeb;
-    
-        return $this;
-    }
-
-    /**
-     * Get dateDeb
-     *
-     * @return \DateTime 
-     */
-    public function getDateDeb()
-    {
-        return $this->dateDeb;
-    }
-
-    /**
-     * Set dateFin
-     *
-     * @param \DateTime $dateFin
-     * @return Cours
-     */
-    public function setDateFin($dateFin)
-    {
-        $this->dateFin = $dateFin;
-    
-        return $this;
-    }
-
-    /**
-     * Get dateFin
-     *
-     * @return \DateTime 
-     */
-    public function getDateFin()
-    {
-        return $this->dateFin;
-    }
-    /**
-     * @var EcoleDeMusique\WelcomeBundle\Entity\Activite
-     */
-    private $activite;
-
-
-    /**
-     * Set activite
-     *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Activite $activite
-     * @return Cours
-     */
-    public function setActivite(\EcoleDeMusique\WelcomeBundle\Entity\Activite $activite = null)
-    {
-        $this->activite = $activite;
-    
-        return $this;
-    }
-
-    /**
-     * Get activite
-     *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Activite 
-     */
-    public function getActivite()
-    {
-        return $this->activite;
     }
 }

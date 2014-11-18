@@ -6,43 +6,47 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * EcoleDeMusique\WelcomeBundle\Entity\Mailing
+ * Mailing
+ *
+ * @ORM\Table(name="mailing")
+ * @ORM\Entity
  */
 class Mailing
 {
-         /**
-	 * @var integer
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=50, nullable=false)
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="string", length=500, nullable=true)
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomActivite", type="string", length=500, nullable=true)
+     */
+    private $nomActivite;
     
-private $id;
-
-         /**
-	 * @var string
-	 *
-	 * @ORM\Column(name="titre", type="string", length=50, nullable=false)
-	 * @Assert\NotBlank(message="Le champ titre doit contenir un nom valide.")
-	 */
-private $titre;
-         /**
-	 * @var string
-	 *
-	 * @ORM\Column(name="message", type="text", nullable=false)
-	 */
-
-private $message;
-         /**
-	 * @var string
-	 * @ORM\Column(name="nomActivite", type="text", nullable=true)
-	 */
-private $nomActivite;
-  	/**
-	 * @ORM\ManyToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve",inversedBy="mailings", cascade={"persist"})
-	 */
-private $activiteEleves;  
+    /**
+     * @ORM\ManyToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\ActiviteEleve",inversedBy="mailings", cascade={"persist"})
+     */
+    private $activiteEleves;  
 
 /**
      * Constructor
@@ -51,48 +55,90 @@ private $activiteEleves;
     {
         $this->activiteEleves = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Mailing
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Mailing
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
     
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
 
-/**
-	 * Get id
-	 *
-	 * @return integer 
-	 */
-public function getId() {
-		return $this->id;
-	}
+    /**
+     * Set nomactivite
+     *
+     * @param string $nomactivite
+     *
+     * @return Mailing
+     */
+    public function setNomActivite($nomActivite)
+    {
+        $this->nomActivite = $nomActivite;
 
+        return $this;
+    }
 
-public function setTitre($titre) {
-	$this->titre = $titre;
-
-	return $this;
-}
-
-public function getTitre() {
-	return $this->titre;
-}
-
-
-public function getMessage() {
-	return $this->message;
-}
-
-public function setMessage($message) {
-	$this->message = $message;
-
-	return $this;
-}
-
-public function getNomActivite() {
-	return $this->nomActivite;
-}
-
-public function setNomActivite($nomActivite) {
-	$this->nomActivite = $nomActivite;
-
-	return $this;
-}
+    /**
+     * Get nomactivite
+     *
+     * @return string
+     */
+    public function getNomActivite()
+    {
+        return $this->nomActivite;
+    }
     
     /**
      * Get activiteEleves
@@ -126,7 +172,5 @@ public function setNomActivite($nomActivite) {
     {
         $this->activiteEleves->removeElement($activiteEleves);
     }
-
  
-
 }

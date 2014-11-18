@@ -5,41 +5,66 @@ namespace EcoleDeMusique\WelcomeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table()
- * EcoleDeMusique\WelcomeBundle\Entity\Paiement
+ * Paiement
+ *
+ * @ORM\Table(name="paiement", indexes={@ORM\Index(name="IDX_B1DC7A1EA6CC7B2", columns={"eleve_id"})})
+ * @ORM\Entity
  */
 class Paiement
 {
     /**
-     * @var integer $id
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var boolean $interupt
+     * @var boolean
+     *
+     * @ORM\Column(name="interupt", type="boolean", nullable=false)
      */
     private $interupt;
 
     /**
-     * @var \DateTime $dateInterupt
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateInterupt", type="date", nullable=true)
      */
     private $dateInterupt;
 
     /**
-     * @var integer $sommePeriode
+     * @var float
+     *
+     * @ORM\Column(name="sommePeriode", type="float", precision=10, scale=0, nullable=false)
      */
     private $sommePeriode;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\PaiementPeriode", mappedBy="paiement", cascade={"persist"})
-     */
-    private $paiementPeriode;
 
-    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="sommeTotal", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $sommeTotal;
+
+    /**
+     * @var \Eleve
+     *
+     * @ORM\ManyToOne(targetEntity="Eleve")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="eleve_id", referencedColumnName="id")
+     * })
+     */
+    private $eleve;
+
+
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -50,19 +75,20 @@ class Paiement
      * Set interupt
      *
      * @param boolean $interupt
+     *
      * @return Paiement
      */
     public function setInterupt($interupt)
     {
         $this->interupt = $interupt;
-    
+
         return $this;
     }
 
     /**
      * Get interupt
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getInterupt()
     {
@@ -70,22 +96,23 @@ class Paiement
     }
 
     /**
-     * Set dateInterupt
+     * Set dateinterupt
      *
      * @param \DateTime $dateInterupt
+     *
      * @return Paiement
      */
     public function setDateInterupt($dateInterupt)
     {
         $this->dateInterupt = $dateInterupt;
-    
+
         return $this;
     }
 
     /**
-     * Get dateInterupt
+     * Get dateinterupt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateInterupt()
     {
@@ -93,55 +120,48 @@ class Paiement
     }
 
     /**
-     * Set sommePeriode
+     * Set sommeperiode
      *
-     * @param integer $sommePeriode
+     * @param float $sommeperiode
+     *
      * @return Paiement
      */
     public function setSommePeriode($sommePeriode)
     {
         $this->sommePeriode = $sommePeriode;
-    
+
         return $this;
     }
 
     /**
-     * Get sommePeriode
+     * Get sommeperiode
      *
-     * @return integer 
+     * @return float
      */
     public function getSommePeriode()
     {
         return $this->sommePeriode;
     }
-    /**
-     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\Eleve", inversedBy="paiement", cascade={"persist"})
-     */
-    private $eleve;
+    
 
     /**
-     * @var float $sommeTotal
-     */
-    private $sommeTotal;
-
-
-    /**
-     * Set sommeTotal
+     * Set sommetotal
      *
-     * @param float $sommeTotal
+     * @param float $sommetotal
+     *
      * @return Paiement
      */
-    public function setSommeTotal($sommeTotal)
+    public function setSommeTotal($sommetotal)
     {
-        $this->sommeTotal = $sommeTotal;
-    
+        $this->sommeTotal = $sommetotal;
+
         return $this;
     }
 
     /**
-     * Get sommeTotal
+     * Get sommetotal
      *
-     * @return float 
+     * @return float
      */
     public function getSommeTotal()
     {
@@ -151,24 +171,24 @@ class Paiement
     /**
      * Set eleve
      *
-     * @param EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve
+     *
      * @return Paiement
      */
     public function setEleve(\EcoleDeMusique\WelcomeBundle\Entity\Eleve $eleve = null)
     {
         $this->eleve = $eleve;
-    
+
         return $this;
     }
 
     /**
      * Get eleve
      *
-     * @return EcoleDeMusique\WelcomeBundle\Entity\Eleve 
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\Eleve
      */
     public function getEleve()
     {
         return $this->eleve;
     }
-
 }

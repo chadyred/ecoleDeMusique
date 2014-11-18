@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Formule" table="formule">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="cycle" type="integer" column="cycle" nullable="false">
+      <options unsigned=""/>
+    </field>
+    <field name="formule" type="string" column="formule" length="255" nullable="false">
+      <options fixed=""/>
+    </field>
+    <field name="param1" type="float" column="param1" precision="10" scale="0" nullable="false"/>
+    <field name="param2" type="float" column="param2" precision="10" scale="0" nullable="false"/>
+    <field name="param3" type="float" column="param3" precision="10" scale="0" nullable="false"/>
+    <field name="param4" type="float" column="param4" precision="10" scale="0" nullable="false"/>
+    <field name="param5" type="float" column="param5" precision="10" scale="0" nullable="false"/>
+    <field name="multiplicateuradulte" type="float" column="multiplicateurAdulte" precision="10" scale="0" nullable="false"/>
+    <field name="coefcapv" type="float" column="coefCapv" precision="10" scale="0" nullable="false"/>
+    <field name="coefinstru2" type="float" column="coefInstru2" precision="10" scale="0" nullable="false"/>
+    <field name="coefinstru3" type="float" column="coefInstru3" precision="10" scale="0" nullable="false"/>
+    <field name="coef2eleves" type="float" column="coef2eleves" precision="10" scale="0" nullable="false"/>
+    <field name="coef3eleves" type="float" column="coef3eleves" precision="10" scale="0" nullable="false"/>
+    <field name="coef4eleves" type="float" column="coef4eleves" precision="10" scale="0" nullable="false"/>
+    <field name="coef5eleves" type="float" column="coef5eleves" precision="10" scale="0" nullable="false"/>
+    <field name="coefcyle0" type="float" column="coefcyle0" precision="10" scale="0" nullable="false"/>
+    <field name="coefcyle1" type="float" column="coefcyle1" precision="10" scale="0" nullable="false"/>
+    <field name="coefcyle2" type="float" column="coefcyle2" precision="10" scale="0" nullable="false"/>
+    <field name="coefcyle3" type="float" column="coefcyle3" precision="10" scale="0" nullable="false"/>
+    <field name="tarifmax" type="float" column="tarifMax" precision="10" scale="0" nullable="false"/>
+  </entity>
+</doctrine-mapping>

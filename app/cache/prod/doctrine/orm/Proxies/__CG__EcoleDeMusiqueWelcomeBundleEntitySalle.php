@@ -224,12 +224,12 @@ class Salle extends \EcoleDeMusique\WelcomeBundle\Entity\Salle implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function removeSalle(\EcoleDeMusique\WelcomeBundle\Entity\Salle $salles)
+    public function removeSalle(\EcoleDeMusique\WelcomeBundle\Entity\Salle $salle)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeSalle', array($salles));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeSalle', array($salle));
 
-        return parent::removeSalle($salles);
+        return parent::removeSalle($salle);
     }
 
     /**

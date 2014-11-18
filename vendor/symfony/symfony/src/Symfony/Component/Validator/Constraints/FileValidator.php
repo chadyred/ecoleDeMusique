@@ -53,15 +53,19 @@ class FileValidator extends ConstraintValidator
         if ($value instanceof UploadedFile && !$value->isValid()) {
             switch ($value->getError()) {
                 case UPLOAD_ERR_INI_SIZE:
-                    if ($constraint->maxSize) {
-                        $limitInBytes = min(UploadedFile::getMaxFilesize(), $constraint->maxSize);
+                    $iniLimitSize = UploadedFile::getMaxFilesize();
+                    if ($constraint->maxSize && $constraint->maxSize < $iniLimitSize) {
+                        $limitInBytes = $constraint->maxSize;
+                        $binaryFormat = $constraint->binaryFormat;
                     } else {
-                        $limitInBytes = UploadedFile::getMaxFilesize();
+                        $limitInBytes = $iniLimitSize;
+                        $binaryFormat = true;
                     }
 
+                    list($sizeAsString, $limitAsString, $suffix) = $this->factorizeSizes(0, $limitInBytes, $binaryFormat);
                     $this->buildViolation($constraint->uploadIniSizeErrorMessage)
-                        ->setParameter('{{ limit }}', $limitInBytes)
-                        ->setParameter('{{ suffix }}', 'bytes')
+                        ->setParameter('{{ limit }}', $limitAsString)
+                        ->setParameter('{{ suffix }}', $suffix)
                         ->setCode(UPLOAD_ERR_INI_SIZE)
                         ->addViolation();
 
@@ -150,41 +154,12 @@ class FileValidator extends ConstraintValidator
             $limitInBytes = $constraint->maxSize;
 
             if ($sizeInBytes > $limitInBytes) {
-                // Convert the limit to the smallest possible number
-                // (i.e. try "MB", then "kB", then "bytes")
-                if ($constraint->binaryFormat) {
-                    $coef = self::MIB_BYTES;
-                    $coefFactor = self::KIB_BYTES;
-                } else {
-                    $coef = self::MB_BYTES;
-                    $coefFactor = self::KB_BYTES;
-                }
-
-                $limitAsString = (string) ($limitInBytes / $coef);
-
-                // Restrict the limit to 2 decimals (without rounding! we
-                // need the precise value)
-                while (self::moreDecimalsThan($limitAsString, 2)) {
-                    $coef /= $coefFactor;
-                    $limitAsString = (string) ($limitInBytes / $coef);
-                }
-
-                // Convert size to the same measure, but round to 2 decimals
-                $sizeAsString = (string) round($sizeInBytes / $coef, 2);
-
-                // If the size and limit produce the same string output
-                // (due to rounding), reduce the coefficient
-                while ($sizeAsString === $limitAsString) {
-                    $coef /= $coefFactor;
-                    $limitAsString = (string) ($limitInBytes / $coef);
-                    $sizeAsString = (string) round($sizeInBytes / $coef, 2);
-                }
-
+                list($sizeAsString, $limitAsString, $suffix) = $this->factorizeSizes($sizeInBytes, $limitInBytes, $constraint->binaryFormat);
                 $this->buildViolation($constraint->maxSizeMessage)
                     ->setParameter('{{ file }}', $this->formatValue($path))
                     ->setParameter('{{ size }}', $sizeAsString)
                     ->setParameter('{{ limit }}', $limitAsString)
-                    ->setParameter('{{ suffix }}', self::$suffices[$coef])
+                    ->setParameter('{{ suffix }}', $suffix)
                     ->setCode(File::TOO_LARGE_ERROR)
                     ->addViolation();
 
@@ -224,5 +199,42 @@ class FileValidator extends ConstraintValidator
     private static function moreDecimalsThan($double, $numberOfDecimals)
     {
         return strlen((string) $double) > strlen(round($double, $numberOfDecimals));
+    }
+
+    /**
+     * Convert the limit to the smallest possible number
+     * (i.e. try "MB", then "kB", then "bytes")
+     */
+    private function factorizeSizes($size, $limit, $binaryFormat)
+    {
+        if ($binaryFormat) {
+            $coef = self::MIB_BYTES;
+            $coefFactor = self::KIB_BYTES;
+        } else {
+            $coef = self::MB_BYTES;
+            $coefFactor = self::KB_BYTES;
+        }
+
+        $limitAsString = (string) ($limit / $coef);
+
+        // Restrict the limit to 2 decimals (without rounding! we
+        // need the precise value)
+        while (self::moreDecimalsThan($limitAsString, 2)) {
+            $coef /= $coefFactor;
+            $limitAsString = (string) ($limit / $coef);
+        }
+
+        // Convert size to the same measure, but round to 2 decimals
+        $sizeAsString = (string) round($size / $coef, 2);
+
+        // If the size and limit produce the same string output
+        // (due to rounding), reduce the coefficient
+        while ($sizeAsString === $limitAsString) {
+            $coef /= $coefFactor;
+            $limitAsString = (string) ($limit / $coef);
+            $sizeAsString = (string) round($size / $coef, 2);
+        }
+
+        return array($sizeAsString, $limitAsString, self::$suffices[$coef]);
     }
 }

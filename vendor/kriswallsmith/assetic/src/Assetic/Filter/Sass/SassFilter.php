@@ -13,8 +13,6 @@ namespace Assetic\Filter\Sass;
 
 use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
-use Assetic\Factory\AssetFactory;
-use Assetic\Util\CssUtils;
 
 /**
  * Loads SASS files.
@@ -37,6 +35,7 @@ class SassFilter extends BaseSassFilter
     private $quiet;
     private $debugInfo;
     private $lineNumbers;
+    private $sourceMap;
     private $cacheLocation;
     private $noCache;
     private $compass;
@@ -76,6 +75,11 @@ class SassFilter extends BaseSassFilter
     public function setLineNumbers($lineNumbers)
     {
         $this->lineNumbers = $lineNumbers;
+    }
+
+    public function setSourceMap($sourceMap)
+    {
+        $this->sourceMap = $sourceMap;
     }
 
     public function setCacheLocation($cacheLocation)
@@ -128,6 +132,10 @@ class SassFilter extends BaseSassFilter
 
         if ($this->lineNumbers) {
             $pb->add('--line-numbers');
+        }
+
+        if ($this->sourceMap) {
+            $pb->add('--sourcemap');
         }
 
         foreach ($this->loadPaths as $loadPath) {
