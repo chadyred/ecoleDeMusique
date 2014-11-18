@@ -35,6 +35,23 @@ class Civilite
      */
     private $abreviation;
 
+    
+    /**
+     * doctrine array
+     * 
+     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne", mappedBy="civilite")
+     * 
+     */
+    private $individusExterne;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->individusExterne = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get id
@@ -94,4 +111,3 @@ class Civilite
         return $this->abreviation;
     }
 }
-

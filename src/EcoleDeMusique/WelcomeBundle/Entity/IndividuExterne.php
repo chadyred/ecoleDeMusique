@@ -60,6 +60,14 @@ class IndividuExterne
      */
     private $coordonneePrincipal;
     
+    /**
+     * @var Civilite
+     * 
+     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne", inversedBy="individusExterne")
+     */
+    private $civilite;
+    
+    
     public function __construct()
     {
         $this->individuExterneCoordonnee = new \Doctrine\Common\Collections\ArrayCollection();
@@ -193,5 +201,53 @@ class IndividuExterne
     public function getIndividuExterneCoordonnee()
     {
         return $this->individuExterneCoordonnee;
+    }
+
+    /**
+     * Add individuExterneCoordonnee
+     *
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee $individuExterneCoordonnee
+     *
+     * @return IndividuExterne
+     */
+    public function addIndividuExterneCoordonnee(\EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee $individuExterneCoordonnee)
+    {
+        $this->individuExterneCoordonnee[] = $individuExterneCoordonnee;
+
+        return $this;
+    }
+
+    /**
+     * Remove individuExterneCoordonnee
+     *
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee $individuExterneCoordonnee
+     */
+    public function removeIndividuExterneCoordonnee(\EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee $individuExterneCoordonnee)
+    {
+        $this->individuExterneCoordonnee->removeElement($individuExterneCoordonnee);
+    }
+
+    /**
+     * Set civilite
+     *
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne $civilite
+     *
+     * @return IndividuExterne
+     */
+    public function setCivilite(\EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne $civilite = null)
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    /**
+     * Get civilite
+     *
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne
+     */
+    public function getCivilite()
+    {
+        return $this->civilite;
     }
 }

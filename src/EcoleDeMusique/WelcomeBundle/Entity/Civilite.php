@@ -35,6 +35,25 @@ class Civilite
      */
     private $abreviation;
 
+    
+    /**
+     * doctrine array
+     * 
+     * On persiste un individu au sein d'une civilité
+     * 
+     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne", mappedBy="civilite", cascade={"persist"))
+     * 
+     */
+    private $individusExterne;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->individusExterne = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get id
@@ -92,5 +111,39 @@ class Civilite
     public function getAbreviation()
     {
         return $this->abreviation;
+    }
+
+    /**
+     * Add individusExterne
+     *
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne $individusExterne
+     *
+     * @return Civilite
+     */
+    public function addIndividusExterne(\EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne $individusExterne)
+    {
+        $this->individusExterne[] = $individusExterne;
+
+        return $this;
+    }
+
+    /**
+     * Remove individusExterne
+     *
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne $individusExterne
+     */
+    public function removeIndividusExterne(\EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne $individusExterne)
+    {
+        $this->individusExterne->removeElement($individusExterne);
+    }
+
+    /**
+     * Get individusExterne
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIndividusExterne()
+    {
+        return $this->individusExterne;
     }
 }

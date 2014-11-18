@@ -47,7 +47,7 @@ class IndividuExterne
      *  
      * Un IndivduCoordonnee disparaitra si un individu disparait. Egalement par principe du DRY, on va persisté un IndividuExterneCoordonnee de coté d'individu
      * 
-     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee", inversedBy="individuExterne", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee", mappedBy="individuExterne", cascade={"remove", "persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $individuExterneCoordonnee;
@@ -59,6 +59,19 @@ class IndividuExterne
      * @ORM\Column(name="coordonnee", type="string", length=10)
      */
     private $coordonneePrincipal;
+    
+    /**
+     * @var Civilite
+     * 
+     * @ORM\ManyToOne(targetEntity="EcoleDeMusique\WelcomeBundle\Entity\IndividuExterne", inversedBy="individusExterne")
+     */
+    private $civilite;
+    
+    
+    public function __construct()
+    {
+        $this->individuExterneCoordonnee = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     /**
      * Get id
@@ -141,5 +154,52 @@ class IndividuExterne
     {
         return $this->dateNaissance;
     }
-}
 
+    /**
+     * Set coordonneePrincipal
+     *
+     * @param string $coordonneePrincipal
+     *
+     * @return IndividuExterne
+     */
+    public function setCoordonneePrincipal($coordonneePrincipal)
+    {
+        $this->coordonneePrincipal = $coordonneePrincipal;
+
+        return $this;
+    }
+
+    /**
+     * Get coordonneePrincipal
+     *
+     * @return string
+     */
+    public function getCoordonneePrincipal()
+    {
+        return $this->coordonneePrincipal;
+    }
+
+    /**
+     * Set individuExterneCoordonnee
+     *
+     * @param \EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee $individuExterneCoordonnee
+     *
+     * @return IndividuExterne
+     */
+    public function setIndividuExterneCoordonnee(\EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee $individuExterneCoordonnee)
+    {
+        $this->individuExterneCoordonnee = $individuExterneCoordonnee;
+
+        return $this;
+    }
+
+    /**
+     * Get individuExterneCoordonnee
+     *
+     * @return \EcoleDeMusique\WelcomeBundle\Entity\IndividuExterneCoordonnee
+     */
+    public function getIndividuExterneCoordonnee()
+    {
+        return $this->individuExterneCoordonnee;
+    }
+}
